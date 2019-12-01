@@ -51,7 +51,7 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
                                   .fontSize(ViewUtil.dpToPx(context, 24))
                                   .textColor(inverted ? color : Color.WHITE)
                                   .endConfig()
-                                  .buildRound(character, inverted ? Color.WHITE : color);
+                                  .buildRect(character, inverted ? Color.WHITE : color);
 
       Drawable gradient = context.getResources().getDrawable(ThemeUtil.isDarkTheme(context) ? R.drawable.avatar_gradient_dark
                                                                                             : R.drawable.avatar_gradient_light);

@@ -197,7 +197,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     GlideApp.with(this)
             .load(new ProfileContactPhoto(recipient.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
             .error(fallback)
-            .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(icon);
 

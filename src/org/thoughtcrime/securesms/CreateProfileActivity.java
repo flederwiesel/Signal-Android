@@ -152,8 +152,6 @@ public class CreateProfileActivity extends BaseActionBarActivity {
           if (data != null && data.getBooleanExtra("delete", false)) {
             avatarBytes = null;
             avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_camera_solid_white_24).asDrawable(this, getResources().getColor(R.color.grey_400)));
-          } else {
-            AvatarSelection.circularCropImage(this, inputFile, outputFile, R.string.CropImageActivity_profile_avatar);
           }
         }
 
@@ -180,7 +178,6 @@ public class CreateProfileActivity extends BaseActionBarActivity {
                         .load(avatarBytes)
                         .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .circleCrop()
                         .into(avatar);
               } else {
                 Toast.makeText(CreateProfileActivity.this, R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
@@ -284,7 +281,6 @@ public class CreateProfileActivity extends BaseActionBarActivity {
             avatarBytes = result;
             GlideApp.with(CreateProfileActivity.this)
                     .load(result)
-                    .circleCrop()
                     .into(avatar);
           }
         }
@@ -297,7 +293,6 @@ public class CreateProfileActivity extends BaseActionBarActivity {
             avatarBytes = result;
             GlideApp.with(CreateProfileActivity.this)
                     .load(result)
-                    .circleCrop()
                     .into(avatar);
           }
         }

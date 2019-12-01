@@ -107,7 +107,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
         glideRequests.load(field.iconUri)
                      .diskCacheStrategy(DiskCacheStrategy.NONE)
                      .skipMemoryCache(true)
-                     .circleCrop()
                      .into(avatar);
       } else {
         avatar.setVisibility(View.GONE);

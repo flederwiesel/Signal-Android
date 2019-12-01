@@ -43,7 +43,7 @@ public final class AvatarSelection {
     CropImage.activity(inputFile)
              .setGuidelines(CropImageView.Guidelines.ON)
              .setAspectRatio(1, 1)
-             .setCropShape(CropImageView.CropShape.OVAL)
+             .setCropShape(CropImageView.CropShape.RECTANGLE)
              .setOutputUri(outputFile)
              .setAllowRotation(true)
              .setAllowFlipping(true)

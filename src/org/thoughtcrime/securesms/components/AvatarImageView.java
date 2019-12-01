@@ -85,15 +85,6 @@ public final class AvatarImageView extends AppCompatImageView {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-
-    float width  = getWidth()  - getPaddingRight()  - getPaddingLeft();
-    float height = getHeight() - getPaddingBottom() - getPaddingTop();
-    float cx     = width  / 2f;
-    float cy     = height / 2f;
-    float radius = Math.min(cx, cy) - (outlinePaint.getStrokeWidth() / 2f);
-
-    canvas.translate(getPaddingLeft(), getPaddingTop());
-    canvas.drawCircle(cx, cy, radius, outlinePaint);
   }
 
   @Override
@@ -119,7 +110,6 @@ public final class AvatarImageView extends AppCompatImageView {
                         .fallback(fallbackContactPhotoDrawable)
                         .error(fallbackContactPhotoDrawable)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .circleCrop()
                         .into(this);
         } else {
           setImageDrawable(fallbackContactPhotoDrawable);

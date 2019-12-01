@@ -45,7 +45,7 @@
                     android:layout_height="80dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="4dp"
-                    android:src="@drawable/circle_tintable"
+                    android:src="@drawable/rectangle_tintable"
                     android:tint="@color/core_grey_05"
                     app:layout_constraintBottom_toBottomOf="@+id/name"
                     app:layout_constraintStart_toStartOf="parent"

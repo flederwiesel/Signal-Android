@@ -576,7 +576,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     avatarBmp = bitmap;
     GlideApp.with(this)
             .load(model)
-            .circleCrop()
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(avatar);

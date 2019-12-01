@@ -173,13 +173,11 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     if (uri != null) {
       glideRequests.load(new DecryptableUri(uri))
                    .fallback(R.drawable.ic_contact_picture)
-                   .circleCrop()
                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                    .dontAnimate()
                    .into(avatarView);
     } else {
       glideRequests.load(R.drawable.ic_contact_picture)
-                   .circleCrop()
                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                    .into(avatarView);
     }

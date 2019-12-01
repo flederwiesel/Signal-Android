@@ -182,12 +182,10 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     if (uri != null) {
       glideRequests.load(new DecryptableUri(uri))
           .fallback(R.drawable.ic_contact_picture)
-          .circleCrop()
           .diskCacheStrategy(DiskCacheStrategy.ALL)
           .into(avatarView);
     } else {
       glideRequests.load(R.drawable.ic_contact_picture)
-          .circleCrop()
           .diskCacheStrategy(DiskCacheStrategy.ALL)
           .into(avatarView);
     }

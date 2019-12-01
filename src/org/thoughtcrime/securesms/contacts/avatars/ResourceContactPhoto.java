@@ -52,7 +52,7 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
   }
 
   private Drawable buildDrawable(Context context, int resourceId, int color, boolean inverted) {
-    Drawable        background = TextDrawable.builder().buildRound(" ", inverted ? Color.WHITE : color);
+    Drawable        background = TextDrawable.builder().buildRect(" ", inverted ? Color.WHITE : color);
     RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));
 
     foreground.setScaleType(ImageView.ScaleType.CENTER);
