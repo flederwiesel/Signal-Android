@@ -47,7 +47,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:paddingLeft="5dp"
-            android:tint="@color/core_blue"
+            android:tint="@color/signal_primary"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/triangle_right"
             tools:ignore="RtlHardcoded,RtlSymmetry" />

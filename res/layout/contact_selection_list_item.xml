@@ -19,7 +19,7 @@
             android:foreground="@drawable/contact_photo_background"
             android:cropToPadding="true"
             android:contentDescription="@string/SingleContactSelectionActivity_contact_photo"
-            tools:src="@color/blue_600"
+            tools:src="@color/signal_primary"
             tools:ignore="UnusedAttribute" />
 
     <LinearLayout android:layout_width="0dp"

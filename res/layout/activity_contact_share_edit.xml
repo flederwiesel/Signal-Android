@@ -17,6 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:tint="@color/white"
+        app:backgroundTint="@color/signal_primary"
+        app:rippleColor="@color/signal_primary_dark"
         app:srcCompat="@drawable/ic_send_lock_24"
         android:layout_margin="@dimen/floating_action_button_margin"/>
 

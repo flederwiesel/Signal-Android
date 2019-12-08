@@ -90,6 +90,7 @@
             android:tint="?conversation_list_compose_icon_tint"
             app:srcCompat="@drawable/ic_compose_solid_24"
             android:focusable="true"
+            app:backgroundTint="@color/signal_primary"
             android:contentDescription="@string/conversation_list_fragment__fab_content_description"/>
 
 

@@ -43,7 +43,7 @@
                         android:src="@drawable/ic_image_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__gallery_description"
-                        app:circleColor="@color/purple_400"/>
+                        app:circleColor="@color/signal_primary"/>
 
                 <TextView android:layout_marginTop="10dp"
                           style="@style/AttachmentTypeLabel"
@@ -66,7 +66,7 @@
                         android:src="@drawable/ic_headset_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__audio_description"
-                        app:circleColor="@color/orange_400"/>
+                        app:circleColor="@color/signal_primary"/>
 
                 <TextView android:layout_marginTop="10dp"
                           android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                         android:src="@drawable/ic_insert_drive_file_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__file_description"
-                        app:circleColor="@color/red_400"/>
+                        app:circleColor="@color/signal_primary"/>
 
                 <TextView android:layout_marginTop="10dp"
                           style="@style/AttachmentTypeLabel"
@@ -112,7 +112,7 @@
                         android:src="@drawable/ic_person_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__contact_description"
-                        app:circleColor="@color/blue_400"/>
+                        app:circleColor="@color/signal_primary"/>
 
                 <TextView android:layout_marginTop="10dp"
                           android:layout_width="wrap_content"
@@ -146,7 +146,7 @@
                         android:src="@drawable/ic_camera_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__camera_description"
-                        app:circleColor="@color/green_400"/>
+                        app:circleColor="@color/signal_primary"/>
 
                 <TextView android:layout_marginTop="10dp"
                           android:layout_width="wrap_content"
@@ -171,7 +171,7 @@
                         android:src="@drawable/ic_location_on_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__location_description"
-                        app:circleColor="@color/blue_grey_400"/>
+                        app:circleColor="@color/signal_primary"/>
 
                 <TextView android:layout_marginTop="10dp"
                           android:layout_width="wrap_content"
@@ -195,7 +195,7 @@
                         android:src="@drawable/ic_gif_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__gif_description"
-                        app:circleColor="@color/cyan_400"/>
+                        app:circleColor="@color/signal_primary"/>
 
                 <TextView android:layout_marginTop="10dp"
                           android:layout_width="wrap_content"
@@ -218,7 +218,7 @@
                         android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__drawer_description"
-                        app:circleColor="@color/core_grey_50"/>
+                        app:circleColor="@color/signal_primary"/>
 
                 <TextView android:layout_marginTop="10dp"
                           android:layout_width="wrap_content"

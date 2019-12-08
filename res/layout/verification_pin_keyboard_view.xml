@@ -25,7 +25,7 @@
             android:layout_height="96dp"
             android:layout_gravity="center"
             android:background="@drawable/circle_tintable"
-            android:backgroundTint="@color/green_400"
+            android:backgroundTint="@color/signal_primary"
             android:gravity="center_vertical"
             android:src="@drawable/ic_check_white_48dp"/>
 
@@ -35,7 +35,7 @@
             android:layout_height="96dp"
             android:layout_gravity="center"
             android:background="@drawable/circle_tintable"
-            android:backgroundTint="@color/green_400"
+            android:backgroundTint="@color/signal_primary"
             android:gravity="center_vertical"
             android:src="@drawable/ic_close_white_48dp"/>
 
@@ -46,7 +46,7 @@
             android:padding="10dp"
             android:layout_gravity="center"
             android:background="@drawable/circle_tintable"
-            android:backgroundTint="@color/green_400"
+            android:backgroundTint="@color/signal_primary"
             android:gravity="center_vertical"
             android:src="@drawable/ic_lock_white_48dp"
             android:visibility="gone"

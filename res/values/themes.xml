@@ -332,7 +332,7 @@
 
         <item name="registration_lock_reminder_view_pin_text_color">@color/core_black</item>
 
-        <item name="reminder_header_background">#ff1d85d7</item>
+        <item name="reminder_header_background">@color/signal_primary_alpha33</item>
 
         <item name="sticker_management_icon">@drawable/sticker_button_light</item>
         <item name="sticker_management_divider_color">@color/core_grey_15</item>
@@ -584,7 +584,7 @@
         <item name="shared_contact_details_titlebar">@color/grey_900</item>
         <item name="shared_contact_item_button_color">@color/core_grey_85</item>
     </style>
-    
+
     <style name="RationaleDialogLight" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="#FF2090ea">
+    tools:background="@color/signal_primary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,7 +90,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:text="@string/ExperienceUpgradeActivity_turn_on_typing_indicators"
-            android:textColor="@color/core_blue"
+            android:textColor="@color/signal_primary"
             app:backgroundTint="@color/core_white" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -100,7 +100,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/ExperienceUpgradeActivity_no_thanks"
             android:textColor="@color/core_white"
-            app:backgroundTint="@color/conversation_blue" />
+            app:backgroundTint="@color/signal_primary_dark" />
 
     </LinearLayout>
 
