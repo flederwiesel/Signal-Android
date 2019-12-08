@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="core_flederwiesel">#1D6C7F</color>
+    <color name="core_flederwiesel_dark">#ff134754</color>
     <color name="core_blue">#2090ea</color>
     <color name="core_green">#4caf50</color>
     <color name="core_yellow">#ffd624</color> <!-- new -->

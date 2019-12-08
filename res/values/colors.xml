@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <color name="signal_primary">@color/core_blue</color>
-    <color name="signal_primary_dark">#ff1c7ac5</color>
-    <color name="signal_primary_alpha33">#552090ea</color>
-    <color name="signal_primary_alpha_focus">#882090ea</color>
+    <color name="signal_primary">@color/core_flederwiesel</color>
+    <color name="signal_primary_dark">@color/core_flederwiesel_dark</color>
+    <color name="signal_primary_alpha33">#801D6C7F</color>
+    <color name="signal_primary_alpha_focus">#c01D6C7F</color>
 
     <color name="textsecure_primary">@color/signal_primary</color>
     <color name="textsecure_primary_dark">@color/signal_primary_dark</color>
@@ -46,7 +46,7 @@
 
     <color name="MediaOverview_Media_selected_overlay">#88000000</color>
 
-    <color name="logsubmit_confirmation_background">#44ff2d00</color>
+    <color name="logsubmit_confirmation_background">#80FFEFAA</color>
 
     <color name="avatar_background">@color/transparent_black_40</color>
 
