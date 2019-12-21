@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -76,7 +77,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     setContentView(R.layout.sticker_preview_activity);
 
-    Optional<Pair<String, String>> stickerParams = StickerUrl.parseActionUri(getIntent().getData());
+    Optional<Pair<String, String>> stickerParams = StickerUrl.parseExternalUri(getIntent().getData());
 
     if (!stickerParams.isPresent()) {
       Log.w(TAG, "Invalid URI!");
@@ -130,11 +131,6 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     getSupportActionBar().setTitle(R.string.StickerPackPreviewActivity_stickers);
 
     toolbar.setNavigationOnClickListener(v -> onBackPressed());
-
-    if (!ThemeUtil.isDarkTheme(this) && Build.VERSION.SDK_INT >= 23) {
-      setStatusBarColor(ThemeUtil.getThemedColor(this, R.attr.sticker_preview_status_bar_color));
-      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-    }
   }
 
   private void initViewModel(@NonNull String packId, @NonNull String packKey) {
@@ -160,14 +156,6 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     stickerTitle.setText(manifest.getTitle().or(getString(R.string.StickerPackPreviewActivity_untitled)));
     stickerAuthor.setText(manifest.getAuthor().or(getString(R.string.StickerPackPreviewActivity_unknown)));
     adapter.setStickers(manifest.getStickers());
-
-    installButton.setOnClickListener(v -> {
-      SimpleTask.run(() -> {
-        ApplicationDependencies.getJobManager().add(new StickerPackDownloadJob(manifest.getPackId(), manifest.getPackKey(), false));
-
-        return null;
-      }, (nothing) -> finish());
-    });
 
     Sticker first = manifest.getStickers().isEmpty() ? null : manifest.getStickers().get(0);
     Sticker cover = manifest.getCover().or(Optional.fromNullable(first)).orNull();
