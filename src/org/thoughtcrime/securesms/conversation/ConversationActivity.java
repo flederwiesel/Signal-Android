@@ -1747,7 +1747,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inputPanel.setMediaKeyboardToggleMode(true);
 
     TooltipPopup.forTarget(inputPanel.getMediaKeyboardToggleAnchorView())
-                .setBackgroundTint(getResources().getColor(R.color.core_blue))
+                .setBackgroundTint(getResources().getColor(R.color.signal_primary))
                 .setTextColor(getResources().getColor(R.color.core_white))
                 .setText(R.string.ConversationActivity_new_say_it_with_stickers)
                 .setOnDismissListener(() -> {

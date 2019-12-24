@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:contentInsetStart="46dp"
-            tools:background="#ff007f00">
+            tools:background="@color/signal_primary">
 
             <include layout="@layout/conversation_title_view" />
 

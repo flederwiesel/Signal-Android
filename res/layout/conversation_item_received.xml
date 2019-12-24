@@ -64,7 +64,7 @@
             android:clipToPadding="false"
             android:clipChildren="false"
             android:background="@color/white"
-            tools:backgroundTint="@color/conversation_blue">
+            tools:backgroundTint="@color/signal_primary_alpha_focus">
 
             <LinearLayout
                 android:id="@+id/group_sender_holder"
