@@ -59,14 +59,15 @@
                       android:gravity="top"
                       android:inputType="textShortMessage|textMultiLine"/>
 
-            <Button android:id="@+id/sms_button"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/InviteActivity_share_with_contacts"
-                android:layout_marginTop="16dp"
-                android:textColor="?conversation_title_color"
-                android:background="@drawable/cta_button_background"
+            <Button
+                android:id="@+id/sms_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/cta_button_background"
+                android:text="@string/InviteActivity_share_with_contacts"
+                android:textColor="@color/core_white" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/share_button"
