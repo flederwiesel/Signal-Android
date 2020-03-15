@@ -17,7 +17,6 @@ import org.whispersystems.signalservice.internal.keybackup.protos.BackupResponse
 import org.whispersystems.signalservice.internal.keybackup.protos.RestoreResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
-import org.whispersystems.signalservice.internal.storage.protos.SignalStorage;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -70,16 +69,6 @@ public final class KeyBackupService {
   }
 
   /**
-   * Use this to validate that the pin is still set on the server with the current token.
-   * Additionally this validates that no one has used any tries.
-   */
-  public RestoreSession newRestoreSession(TokenResponse currentToken)
-    throws IOException
-  {
-    return newSession(pushServiceSocket.getKeyBackupServiceAuthorization(), currentToken);
-  }
-
-  /**
    * Only call before registration, to see how many tries are left.
    * <p>
    * Pass the token to the newRegistrationSession.
@@ -124,7 +113,7 @@ public final class KeyBackupService {
 
     @Override
     public RegistrationLockData restorePin(HashedPin hashedPin)
-      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException
+      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException
     {
       int           attempt = 0;
       SecureRandom  random  = new SecureRandom();
@@ -157,7 +146,7 @@ public final class KeyBackupService {
     }
 
     private RegistrationLockData restorePin(HashedPin hashedPin, TokenResponse token)
-      throws UnauthenticatedResponseException, IOException, TokenException
+      throws UnauthenticatedResponseException, IOException, TokenException, KeyBackupSystemNoDataException
     {
       try {
         final int               remainingTries    = token.getTries();
@@ -190,14 +179,15 @@ public final class KeyBackupService {
             throw new TokenException(nextToken, canRetry);
           case MISSING:
             Log.i(TAG, "Restore OK! No data though");
-            return null;
+            throw new KeyBackupSystemNoDataException();
           case NOT_YET_VALID:
             throw new UnauthenticatedResponseException("Key is not valid yet, clock mismatch");
+          default:
+            throw new AssertionError("Unexpected case");
         }
       } catch (InvalidCiphertextException e) {
         throw new UnauthenticatedResponseException(e);
       }
-      return null;
     }
 
     private RemoteAttestation getAndVerifyRemoteAttestation() throws UnauthenticatedResponseException, IOException {
@@ -277,7 +267,7 @@ public final class KeyBackupService {
   public interface RestoreSession extends HashSession {
 
     RegistrationLockData restorePin(HashedPin hashedPin)
-      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException;
+      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException;
   }
 
   public interface PinChangeSession extends HashSession {

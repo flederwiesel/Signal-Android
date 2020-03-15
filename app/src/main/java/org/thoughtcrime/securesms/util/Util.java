@@ -509,6 +509,10 @@ public class Util {
     return Math.min(Math.max(value, min), max);
   }
 
+  public static long clamp(long value, long min, long max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
   public static float clamp(float value, float min, float max) {
     return Math.min(Math.max(value, min), max);
   }
@@ -563,6 +567,10 @@ public class Util {
     } catch (InterruptedException e) {
       throw new AssertionError(e);
     }
+  }
+
+  public static void copyToClipboard(@NonNull Context context, @NonNull String text) {
+    ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText("text", text));
   }
 
   private static Handler getHandler() {

@@ -63,7 +63,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.ShareActivity;
+import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.TooltipPopup;
@@ -114,6 +114,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.views.AdaptiveActionsToolbar;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -602,8 +603,10 @@ public class ConversationFragment extends Fragment
                                       attachment.getWidth(),
                                       attachment.getHeight(),
                                       attachment.getSize(),
+                                      0,
                                       Optional.absent(),
-                                      Optional.fromNullable(attachment.getCaption())));
+                                      Optional.fromNullable(attachment.getCaption()),
+                                      Optional.absent()));
             }
           };
 
@@ -994,8 +997,7 @@ public class ConversationFragment extends Fragment
 
       if (actionMode != null) return;
 
-      if (FeatureFlags.reactionSending() &&
-          messageRecord.isSecure()       &&
+      if (messageRecord.isSecure()       &&
           !messageRecord.isUpdate()      &&
           ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
       {
@@ -1211,6 +1213,7 @@ public class ConversationFragment extends Fragment
       }
 
       setCorrectMenuVisibility(menu);
+      AdaptiveActionsToolbar.adjustMenuActions(menu, 10, requireActivity().getWindow().getDecorView().getMeasuredWidth());
       listener.onMessageActionToolbarOpened();
       return true;
     }

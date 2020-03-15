@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
+import org.thoughtcrime.securesms.database.MegaphoneDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -46,10 +48,12 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.util.List;
@@ -102,8 +106,13 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_DISPLAY_ORDER         = 42;
   private static final int SPLIT_PROFILE_NAMES              = 43;
   private static final int STICKER_PACK_ORDER               = 44;
+  private static final int MEGAPHONES                       = 45;
+  private static final int MEGAPHONE_FIRST_APPEARANCE       = 46;
+  private static final int PROFILE_KEY_TO_DB                = 47;
+  private static final int PROFILE_KEY_CREDENTIALS          = 48;
+  private static final int ATTACHMENT_FILE_INDEX            = 49;
 
-  private static final int    DATABASE_VERSION = 44;
+  private static final int    DATABASE_VERSION = 49;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -146,6 +155,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(StickerDatabase.CREATE_TABLE);
     db.execSQL(StorageKeyDatabase.CREATE_TABLE);
     db.execSQL(KeyValueDatabase.CREATE_TABLE);
+    db.execSQL(MegaphoneDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, JobDatabase.CREATE_TABLE);
 
@@ -706,6 +716,41 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < STICKER_PACK_ORDER) {
         db.execSQL("ALTER TABLE sticker ADD COLUMN pack_order INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < MEGAPHONES) {
+        db.execSQL("CREATE TABLE megaphone (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                           "event TEXT UNIQUE, "  +
+                                           "seen_count INTEGER, " +
+                                           "last_seen INTEGER, "  +
+                                           "finished INTEGER)");
+      }
+
+      if (oldVersion < MEGAPHONE_FIRST_APPEARANCE) {
+        db.execSQL("ALTER TABLE megaphone ADD COLUMN first_visible INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < PROFILE_KEY_TO_DB) {
+        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        if (!TextUtils.isEmpty(localNumber)) {
+          String        encodedProfileKey = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_key", null);
+          byte[]        profileKey        = encodedProfileKey != null ? Base64.decodeOrThrow(encodedProfileKey) : Util.getSecretBytes(32);
+          ContentValues values            = new ContentValues(1);
+
+          values.put("profile_key", Base64.encodeBytes(profileKey));
+
+          if (db.update("recipient", values, "phone = ?", new String[]{localNumber}) == 0) {
+            throw new AssertionError("No rows updated!");
+          }
+        }
+      }
+
+      if (oldVersion < PROFILE_KEY_CREDENTIALS) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN profile_key_credential TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < ATTACHMENT_FILE_INDEX) {
+        db.execSQL("CREATE INDEX IF NOT EXISTS part_data_index ON part (_data)");
       }
 
       db.setTransactionSuccessful();

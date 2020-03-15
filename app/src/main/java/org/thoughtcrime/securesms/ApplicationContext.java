@@ -34,7 +34,7 @@ import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
-import org.signal.ringrtc.CallConnectionFactory;
+import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
@@ -155,6 +156,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     ApplicationDependencies.getFrameRateTracker().begin();
+    ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
   }
 
   @Override
@@ -248,8 +250,12 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
         TextSecurePreferences.setJobManagerVersion(this, JobManager.CURRENT_VERSION);
         TextSecurePreferences.setLastExperienceVersionCode(this, Util.getCanonicalVersionCode());
         TextSecurePreferences.setHasSeenStickerIntroTooltip(this, true);
+        ApplicationDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
+        SignalStore.registrationValues().onNewInstall();
         ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.ZOZO.getPackId(), BlessedPacks.ZOZO.getPackKey(), false));
         ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.BANDIT.getPackId(), BlessedPacks.BANDIT.getPackKey(), false));
+        ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forReference(BlessedPacks.SWOON_HANDS.getPackId(), BlessedPacks.SWOON_HANDS.getPackKey()));
+        ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forReference(BlessedPacks.SWOON_FACES.getPackId(), BlessedPacks.SWOON_FACES.getPackKey()));
       }
 
       Log.i(TAG, "Setting first install version to " + BuildConfig.CANONICAL_VERSION_CODE);
@@ -330,9 +336,9 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
         WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
       }
 
-      CallConnectionFactory.initialize(this, new RingRtcLogger());
+      CallManager.initialize(this, new RingRtcLogger());
     } catch (UnsatisfiedLinkError e) {
-      Log.w(TAG, e);
+      throw new AssertionError("Unable to load ringrtc library", e);
     }
   }
 

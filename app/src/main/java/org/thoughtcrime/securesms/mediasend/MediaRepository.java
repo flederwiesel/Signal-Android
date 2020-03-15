@@ -4,31 +4,28 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
 import android.provider.OpenableColumns;
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import android.util.Pair;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +39,7 @@ import java.util.Map;
 /**
  * Handles the retrieval of media present on the user's device.
  */
-class MediaRepository {
+public class MediaRepository {
 
   private static final String TAG = Log.tag(MediaRepository.class);
 
@@ -56,7 +53,7 @@ class MediaRepository {
   /**
    * Retrieves a list of media items (images and videos) that are present int he specified bucket.
    */
-  void getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Callback<List<Media>> callback) {
+  public void getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Callback<List<Media>> callback) {
     SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getMediaInBucket(context, bucketId)));
   }
 
@@ -77,12 +74,12 @@ class MediaRepository {
     SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getMostRecentItem(context)));
   }
 
-  void renderMedia(@NonNull Context context,
-                   @NonNull List<Media> currentMedia,
-                   @NonNull Map<Media, EditorModel> modelsToRender,
-                   @NonNull Callback<LinkedHashMap<Media, Media>> callback)
+  static void transformMedia(@NonNull Context context,
+                             @NonNull List<Media> currentMedia,
+                             @NonNull Map<Media, MediaTransform> modelsToTransform,
+                             @NonNull Callback<LinkedHashMap<Media, Media>> callback)
   {
-    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(renderMedia(context, currentMedia, modelsToRender)));
+    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(transformMedia(context, currentMedia, modelsToTransform)));
   }
 
   @WorkerThread
@@ -141,9 +138,9 @@ class MediaRepository {
     long                    thumbnailTimestamp = 0;
     Map<String, FolderData> folders            = new HashMap<>();
 
-    String[] projection = new String[] { Images.Media.DATA, Images.Media.BUCKET_ID, Images.Media.BUCKET_DISPLAY_NAME, Images.Media.DATE_TAKEN };
+    String[] projection = new String[] { Images.Media.DATA, Images.Media.BUCKET_ID, Images.Media.BUCKET_DISPLAY_NAME, Images.Media.DATE_MODIFIED };
     String   selection  = Images.Media.DATA + " NOT NULL";
-    String   sortBy     = Images.Media.BUCKET_DISPLAY_NAME + " COLLATE NOCASE ASC, " + Images.Media.DATE_TAKEN + " DESC";
+    String   sortBy     = Images.Media.BUCKET_DISPLAY_NAME + " COLLATE NOCASE ASC, " + Images.Media.DATE_MODIFIED + " DESC";
 
     try (Cursor cursor = context.getContentResolver().query(contentUri, projection, selection, null, sortBy)) {
       while (cursor != null && cursor.moveToNext()) {
@@ -189,18 +186,18 @@ class MediaRepository {
   }
 
   @WorkerThread
-  private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Uri contentUri, boolean hasOrientation) {
+  private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Uri contentUri, boolean isImage) {
     List<Media> media         = new LinkedList<>();
     String      selection     = Images.Media.BUCKET_ID + " = ? AND " + Images.Media.DATA + " NOT NULL";
     String[]    selectionArgs = new String[] { bucketId };
-    String      sortBy        = Images.Media.DATE_TAKEN + " DESC";
+    String      sortBy        = Images.Media.DATE_MODIFIED + " DESC";
 
     String[] projection;
 
-    if (hasOrientation) {
-      projection = new String[]{Images.Media.DATA, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
+    if (isImage) {
+      projection = new String[]{Images.Media.DATA, Images.Media.MIME_TYPE, Images.Media.DATE_MODIFIED, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
     } else {
-      projection = new String[]{Images.Media.DATA, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
+      projection = new String[]{Images.Media.DATA, Images.Media.MIME_TYPE, Images.Media.DATE_MODIFIED, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE, Video.Media.DURATION};
     }
 
     if (Media.ALL_MEDIA_BUCKET_ID.equals(bucketId)) {
@@ -213,13 +210,14 @@ class MediaRepository {
         String path        = cursor.getString(cursor.getColumnIndexOrThrow(projection[0]));
         Uri    uri         = Uri.fromFile(new File(path));
         String mimetype    = cursor.getString(cursor.getColumnIndexOrThrow(Images.Media.MIME_TYPE));
-        long   dateTaken   = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.DATE_TAKEN));
-        int    orientation = hasOrientation ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
+        long   date        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.DATE_MODIFIED));
+        int    orientation = isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
         int    width       = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
         int    height      = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
+        long   duration    = !isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Video.Media.DURATION)) : 0;
 
-        media.add(new Media(uri, mimetype, dateTaken, width, height, size, Optional.of(bucketId), Optional.absent()));
+        media.add(new Media(uri, mimetype, date, width, height, size, duration, Optional.of(bucketId), Optional.absent(), Optional.absent()));
       }
     }
 
@@ -248,35 +246,16 @@ class MediaRepository {
   }
 
   @WorkerThread
-  private LinkedHashMap<Media, Media> renderMedia(@NonNull Context context,
-                                                  @NonNull List<Media> currentMedia,
-                                                  @NonNull Map<Media, EditorModel> modelsToRender)
+  private static LinkedHashMap<Media, Media> transformMedia(@NonNull Context context,
+                                                            @NonNull List<Media> currentMedia,
+                                                            @NonNull Map<Media, MediaTransform> modelsToTransform)
   {
     LinkedHashMap<Media, Media> updatedMedia = new LinkedHashMap<>(currentMedia.size());
-    ByteArrayOutputStream       outputStream = new ByteArrayOutputStream();
 
     for (Media media : currentMedia) {
-      EditorModel modelToRender = modelsToRender.get(media);
-      if (modelToRender != null) {
-        Bitmap bitmap = modelToRender.render(context);
-        try {
-          outputStream.reset();
-          bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
-
-          Uri uri = BlobProvider.getInstance()
-                                .forData(outputStream.toByteArray())
-                                .withMimeType(MediaUtil.IMAGE_JPEG)
-                                .createForSingleSessionOnDisk(context);
-
-          Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), media.getBucketId(), media.getCaption());
-
-          updatedMedia.put(media, updated);
-        } catch (IOException e) {
-          Log.w(TAG, "Failed to render image. Using base image.");
-          updatedMedia.put(media, media);
-        } finally {
-          bitmap.recycle();
-        }
+      MediaTransform transformer = modelsToTransform.get(media);
+      if (transformer != null) {
+        updatedMedia.put(media, transformer.transform(context, media));
       } else {
         updatedMedia.put(media, media);
       }
@@ -332,7 +311,7 @@ class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, media.getBucketId(), media.getCaption());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.getBucketId(), media.getCaption(), Optional.absent());
   }
 
   private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
@@ -358,7 +337,7 @@ class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, media.getBucketId(), media.getCaption());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.getBucketId(), media.getCaption(), Optional.absent());
   }
 
   private static class FolderResult {
@@ -433,7 +412,7 @@ class MediaRepository {
     }
   }
 
-  interface Callback<E> {
+  public interface Callback<E> {
     void onComplete(@NonNull E result);
   }
 }
