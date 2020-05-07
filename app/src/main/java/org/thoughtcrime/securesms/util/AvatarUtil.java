@@ -49,14 +49,12 @@ public final class AvatarUtil {
                    .asDrawable()
                    .load(new ProfileContactPhoto(Recipient.self(), Recipient.self().getProfileAvatar()))
                    .error(fallbackIcon)
-                   .circleCrop()
                    .diskCacheStrategy(DiskCacheStrategy.ALL);
   }
 
   private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
     return glideRequest.load(new ProfileContactPhoto(recipient, recipient.getProfileAvatar()))
                        .error(getFallback(context, recipient))
-                       .circleCrop()
                        .diskCacheStrategy(DiskCacheStrategy.ALL);
   }
 

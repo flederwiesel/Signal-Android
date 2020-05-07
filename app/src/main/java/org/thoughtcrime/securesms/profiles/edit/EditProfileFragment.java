@@ -180,7 +180,6 @@ public class EditProfileFragment extends Fragment {
                   .load(avatarBytes)
                   .skipMemoryCache(true)
                   .diskCacheStrategy(DiskCacheStrategy.NONE)
-                  .circleCrop()
                   .into(avatar);
         } else {
           Toast.makeText(requireActivity(), R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
@@ -274,7 +273,6 @@ public class EditProfileFragment extends Fragment {
 
       GlideApp.with(this)
               .load(bytes)
-              .circleCrop()
               .into(avatar);
     });
   }

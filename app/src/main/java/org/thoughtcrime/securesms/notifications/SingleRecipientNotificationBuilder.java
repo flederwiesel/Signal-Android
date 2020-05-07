@@ -99,7 +99,6 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
         return GlideApp.with(context.getApplicationContext())
                                     .load(contactPhoto)
                                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                    .circleCrop()
                                     .submit(context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
                                             context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
                                     .get();
