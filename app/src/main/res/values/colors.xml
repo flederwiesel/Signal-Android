@@ -1,14 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <color name="signal_primary">@color/core_flederwiesel</color>
-    <color name="signal_primary_dark">@color/core_flederwiesel_dark</color>
-    <color name="signal_primary_alpha33">#801D6C7F</color>
-    <color name="signal_primary_alpha_focus">#c01D6C7F</color>
-
-    <color name="textsecure_primary">@color/signal_primary</color>
-    <color name="textsecure_primary_dark">@color/signal_primary_dark</color>
-    <color name="textsecure_primary_alpha33">@color/signal_primary_alpha33</color>
-
     <color name="white">@color/core_white</color>
     <color name="black">@color/core_black</color>
 
@@ -59,7 +50,7 @@
     <color name="storage_color_empty">@color/core_grey_50</color>
     <color name="storage_color_photos">#ff5951C8</color>
     <color name="storage_color_videos">#ff9BCFBD</color>
-    <color name="storage_color_audio">#ff2090EA</color>
+    <color name="storage_color_audio">@color/core_ultramarine</color>
     <color name="storage_color_files">#ffA23474</color>
 
 </resources>

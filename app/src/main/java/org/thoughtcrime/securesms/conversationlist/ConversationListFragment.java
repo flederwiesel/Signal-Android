@@ -20,7 +20,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -30,7 +29,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,6 +38,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,7 +102,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
-import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
+import org.thoughtcrime.securesms.lock.RegistrationLockV1Dialog;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -117,7 +116,9 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -133,6 +134,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class ConversationListFragment extends MainFragment implements LoaderManager.LoaderCallbacks<Cursor>,
                                                                       ActionMode.Callback,
@@ -141,6 +144,10 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
                                                                       MainNavigator.BackHandler,
                                                                       MegaphoneActionController
 {
+  public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
+  public static final short PROFILE_NAMES_REQUEST_CODE_CREATE_NAME    = 18473;
+  public static final short PROFILE_NAMES_REQUEST_CODE_CONFIRM_NAME   = 19563;
+
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
   private static final int[] EMPTY_IMAGES = new int[] { R.drawable.empty_inbox_1,
@@ -231,7 +238,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
-    RegistrationLockDialog.showReminderIfNecessary(this);
+    RegistrationLockV1Dialog.showReminderIfNecessary(this);
 
     TooltipCompat.setTooltipText(searchAction, getText(R.string.SearchToolbar_search_for_conversations_contacts_and_messages));
   }
@@ -289,7 +296,6 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
       case R.id.menu_mark_all_read:     handleMarkAllRead();     return true;
       case R.id.menu_invite:            handleInvite();          return true;
       case R.id.menu_insights:          handleInsights();        return true;
-      case R.id.menu_help:              handleHelp();            return true;
     }
 
     return false;
@@ -297,6 +303,10 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
   @Override
   public boolean onBackPressed() {
+    return closeSearchIfOpen();
+  }
+
+  private boolean closeSearchIfOpen() {
     if (searchToolbar.isVisible() || activeAdapter == searchAdapter) {
       activeAdapter = defaultAdapter;
       list.removeItemDecoration(searchAdapterDecoration);
@@ -310,14 +320,30 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN && resultCode == CreateKbsPinActivity.RESULT_OK) {
+    if (resultCode != RESULT_OK) {
+      return;
+    }
+
+    boolean isProfileCreatedRequestCode = requestCode == MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME ||
+                                          requestCode ==PROFILE_NAMES_REQUEST_CODE_CREATE_NAME;
+
+    if (requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN) {
       Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show();
       viewModel.onMegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL);
+    } else if (isProfileCreatedRequestCode) {
+      Snackbar.make(fab, R.string.ConversationListFragment__your_profile_name_has_been_created, Snackbar.LENGTH_LONG).show();
+
+      if (requestCode == MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME) {
+        viewModel.onMegaphoneCompleted(Megaphones.Event.MESSAGE_REQUESTS);
+      }
+    } else if (requestCode == PROFILE_NAMES_REQUEST_CODE_CONFIRM_NAME) {
+      Snackbar.make(fab, R.string.ConversationListFragment__your_profile_name_has_been_saved, Snackbar.LENGTH_LONG).show();
     }
   }
 
   @Override
   public void onConversationClicked(@NonNull ThreadRecord threadRecord) {
+    hideKeyboard();
     getNavigator().goToConversation(threadRecord.getRecipient().getId(),
                                     threadRecord.getThreadId(),
                                     threadRecord.getDistributionType(),
@@ -330,6 +356,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
       return DatabaseFactory.getThreadDatabase(getContext()).getThreadIdIfExistsFor(contact);
     }, threadId -> {
+      hideKeyboard();
       getNavigator().goToConversation(contact.getId(),
                                       threadId,
                                       ThreadDatabase.DistributionTypes.DEFAULT,
@@ -344,6 +371,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
       int startingPosition = DatabaseFactory.getMmsSmsDatabase(getContext()).getMessagePositionInConversation(message.threadId, message.receivedTimestampMs);
       return Math.max(0, startingPosition);
     }, startingPosition -> {
+      hideKeyboard();
       getNavigator().goToConversation(message.conversationRecipient.getId(),
                                       message.threadId,
                                       ThreadDatabase.DistributionTypes.DEFAULT,
@@ -380,6 +408,11 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   @Override
   public void onMegaphoneCompleted(@NonNull Megaphones.Event event) {
     viewModel.onMegaphoneCompleted(event);
+  }
+
+  private void hideKeyboard() {
+    InputMethodManager imm = ServiceUtil.getInputMethodManager(requireContext());
+    imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
   }
 
   private void initializeProfileIcon(@NonNull Recipient recipient) {
@@ -563,14 +596,6 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
   private void handleInsights() {
     getNavigator().goToInsights();
-  }
-
-  private void handleHelp() {
-    try {
-      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://support.signal.org")));
-    } catch (ActivityNotFoundException e) {
-      Toast.makeText(requireActivity(), R.string.ConversationListActivity_there_is_no_browser_installed_on_your_device, Toast.LENGTH_LONG).show();
-    }
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -795,6 +820,12 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(ReminderUpdateEvent event) {
     updateReminders();
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+  public void onEvent(MessageSender.MessageSentEvent event) {
+    EventBus.getDefault().removeStickyEvent(event);
+    closeSearchIfOpen();
   }
 
   protected @IdRes int getToolbarRes() {

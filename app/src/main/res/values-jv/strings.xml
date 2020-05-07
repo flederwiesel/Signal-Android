@@ -70,6 +70,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">Enten masalah kala muter suwanten!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Kontak ingkang dipunblokir</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_unblock">Uculaken blokiranipun</string>
+  <string name="BlockUnblockDialog_block">Blokir</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Dinten niki</string>
   <string name="BucketedThreadMedia_Yesterday">Wingi</string>
@@ -198,6 +201,8 @@
   <string name="ConversationActivity_no_results">Mboten enten asil</string>
   <string name="ConversationActivity_sticker_pack_installed">Paket stiker dipunpasang</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Enggal! Ngobrol ngginakaken stiker</string>
+  <string name="ConversationActivity_cancel">Batalaken</string>
+  <string name="ConversationActivity_delete">Brusak</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d pesen ingkang dereng dipunwaos</item>
@@ -273,6 +278,8 @@
   <string name="CustomDefaultPreference_using_custom">Ginakaken kustom: %s</string>
   <string name="CustomDefaultPreference_using_default">Ginakaken default: %s</string>
   <string name="CustomDefaultPreference_none">Mboten enten</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Brusak foto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sakmenika</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -303,34 +310,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Pirantos niki mboten ndukung Play Services. Tutul kangge nonaktifaken paningkatan baterai sistem ingkang ngewatesi Signal saking nampi pesen kala mboten aktif.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Diunjukaken kangge</string>
-  <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Sugeng rawuh ing Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Sakmenika TextSecure lan RedPhone dados pirantos perpesanan pribadi tunggil kangge ragam-ragam kabetahan: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Sugeng rawuh ing Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Sakmenika TextSecure dados Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Sakmenika TextSecure lan RedPhone dados aplikasi tunggil: Signal. Tutul kangge nyobi.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Monggo cobi telepon kangge video ingkang aman.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Sakmenika Signal saged diginakaken kangge telepon video ingkang aman. Telepon mawon ngginakaken telepon Signal kados biasanipun, tutul tombol video, lajeng sampun.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Sakmenika Signal saged dipunginakaken kangge telepon video ingkang aman.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Sakmenika Signal saged dipunginakaken kangge telepon video ingkang aman. Tutul kangge nyobi.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Sakmenika wekdalipun tampil!</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sakmenika sampeyan saged ngunjukaken nami lan foto profil dhateng kanca-kanca ing Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Sakmenika sampun enten profil Signal</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Nepangaken indikator ketikan.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sakmenika sampeyan saged mileh menawi badhe ningali lan ngunjukaken kala pesen taksih diketik.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Badhe nyobi ngaktifaken fitur kasebut?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Sakmenika sampun enten indikator ketikan</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktifaken indikator ketikan</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Gesangaken indikator ketikan</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Mboten usah</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Nepangaken tampilan awal tautan.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Sakmenika tampilan awal tautan dipundukung kangge ragam-ragam situs paling populer ing internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Sampeyan saged ngaktifaken utawi ngenonaktifaken fitur kasebut kala-kala saking panatanan Signal (Privasi &gt; Kirimaken tampilan awal tautan).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Oke</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Nepangaken stiker</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Punapa nembung menawi saged ngginakaken stiker?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Punapa nembung menawi saged ngginakaken stiker? Tutul ikon ing keyboard sampeyan:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Mangga</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Taksih nampi pesen…</string>
   <!--GcmRefreshJob-->
@@ -362,7 +341,10 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Sampeyan kersa menawi foto lan nami profil sampeyan saged ditingali anggota lan bakal anggota grup niki mboten?</string>
   <string name="GroupShareProfileView_make_visible">Nyagedaken dipuntingali</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Kula</string>
+  <string name="GroupMembersDialog_you">Sampeyan</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -389,6 +371,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kanca sejatos mboten bakal kersa kanca-kancanipun ngobrol tanpa enkripsi.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Mlampah ing latar wingking…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">Sapepakipun</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gagal ngirimaken</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nomer keamanan enggal</string>
@@ -489,11 +473,35 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ngenonaktifaken pesen ngical.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sampeyan ngatur wekdal supados pesen ngical saksampune %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ngatur wekdal supados pesen ngical saksampune %2$s.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_s_joined_the_group">%1$s nembe mlebet ing grup.</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Nomer keamanan sampeyan kaliyan %s sampun dipungantos.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Sampeyan nandhai nomer keamanan sampeyan kaliyan %s dados terverifikasi</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Sampeyan nandhai nomer keamanan sampeyan kaliyan %s dados terverifikasi saking pirantos ingkang benten</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Sampeyan nandhai nomer keamanan sampeyan kaliyan %s dados mboten terverifikasi</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Sampeyan nandhai nomer keamanan sampeyan kaliyan %s dados mboten terverifikasi saking pirantos ingkang benten</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Setujoni</string>
+  <string name="MessageRequestBottomView_delete">Brusak</string>
+  <string name="MessageRequestBottomView_block">Blokir</string>
+  <string name="MessageRequestBottomView_unblock">Uculaken blokiranipun</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Anggota ing %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Anggota ing %1$s lan %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Anggota ing %1$s, %2$s, lan %3$s</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="other">%d bentenipun</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Tembung sandi mboten gathuk!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Tembung sandi ingkang dangu klintu!</string>
@@ -536,6 +544,14 @@
   <string name="PlacePickerActivity_accept_address">Tampi alamat</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versi Google Play Service ingkang dipunpasang mboten berfungsi sacara leres. Pasangaken malih Google Play Services lan cobi malih.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">PIN klintu</string>
+  <string name="PinRestoreEntryFragment_cancel">Batalaken</string>
+  <string name="PinRestoreEntryFragment_skip">Langkungi</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Lebetaken PIN alfanumerik</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Lebetaken PIN wilangan</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Damel PIN sampeyan</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Sukani peringkat kangge aplikasi niki</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Menawi sampeyan remen ngangge aplikasi niki, nyuwun tulung sampeyan sukani peringkat.</string>
@@ -545,17 +561,10 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aduh, kadosipun aplikasi Play Store mboten dipunpasangaken ing pirantos sampeyan.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Sampeyan</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Blokir kontak niki?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sampeyan bakalan mboten saged nampi pesen lan telepon saking kontak niki malih.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Blokir lan medal saking grup niki?</string>
-  <string name="RecipientPreferenceActivity_block_group">Blokir grup niki?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Sampeyan bakalan mboten saged nampi pesen utawi pangenggalan saking grup niki malih.</string>
   <string name="RecipientPreferenceActivity_block">Blokir</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Uculaken blokiranipun kontak niki?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Sampeyan bakal saged nampi pesen lan telepon saking kontak niki malih.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Uculaken blokiranipun grup niki?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Anggota ingkang sampun enten bakal saged minggahaken sampeyan dhateng grup malih.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Enten masalah kala medal saking grup</string>
   <string name="RecipientPreferenceActivity_unblock">Uculaken blokiranipun</string>
   <string name="RecipientPreferenceActivity_enabled">Aktifaken</string>
@@ -615,6 +624,7 @@
   <string name="RegistrationActivity_phone_number_description">Nomer telepon</string>
   <string name="RegistrationActivity_country_code_description">Kode nagari</string>
   <string name="RegistrationActivity_call">Telepon</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Tingali Foto</string>
   <string name="RevealableMessageView_view_video">Tingali Video</string>
@@ -654,7 +664,6 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s  ngatur malih sesi aman.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikataken pesen.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Pesen niki mboten saged dipunproses amargi dipunkirimaken saking versi Signal ingkang enggal. Tedhakaken supados pesen kasebut dipunkirimaken malih saksampune sampeyan ngenggalaken Signal.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Gagal ndameli pesen ingkang mlebet</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stiker</string>
   <!--StickerManagementAdapter-->
@@ -672,6 +681,11 @@
   <string name="StickerPackPreviewActivity_remove">Brusak</string>
   <string name="StickerPackPreviewActivity_stickers">Stiker</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Gagal ngunggahi paket stiker</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_submit">Ajengaken</string>
+  <string name="SubmitDebugLogActivity_success">Sukses!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Dipunsalin dhateng clipboard</string>
+  <string name="SubmitDebugLogActivity_share">Unjukaken</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup nembe dipunenggalaken</string>
   <string name="ThreadRecord_left_the_group">Medal saking grup</string>
@@ -1001,9 +1015,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Log niki bakal dipunkirimaken sacara online kangge publik supados kontributor saged ningali. Sampeyan saged mriksa lan nggantos log kasebut sadereng dipunajengaken.</string>
   <string name="log_submit_activity__loading_logs">Taksih ngunggahi log…</string>
   <string name="log_submit_activity__uploading_logs">Taksih ngenggali log…</string>
-  <string name="log_submit_activity__success">Sukses!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Salin URL niki lan minggahaken dhateng laporan masalah utawi email dukungan:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Dipunsalin dhateng clipboard</string>
   <string name="log_submit_activity__choose_email_app">Pileh aplikasi email</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Priksa malih log niki saking aplikasi kula: %1$s</string>
   <string name="log_submit_activity__network_failure">Jaringan gagal. Cobi malih.</string>
@@ -1106,6 +1117,10 @@
   <string name="AndroidManifest__invite_friends">Ajak kanca</string>
   <string name="AndroidManifest_archived_conversations">Obrolan ingkang dipunarsipaken</string>
   <string name="AndroidManifest_remove_photo">Brusak foto</string>
+  <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Pitulungan</string>
+  <string name="HelpFragment__next">Salajengipun</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor</string>
   <string name="arrays__use_default">Ginakaken default</string>
@@ -1183,6 +1198,7 @@
   <string name="preferences__fast">Gelis</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Alon</string>
+  <string name="preferences__help">Pitulungan</string>
   <string name="preferences__advanced">Lajengan</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">Agen Panggina MMS</string>
@@ -1447,8 +1463,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Taksih mindahi database Signal</string>
   <string name="PushDecryptJob_new_locked_message">Pesen ingkang dipunkunci enggal</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Uculaken kunci kangge ningali pesen-pesen ingkang ketundha</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Bikak kunci kangge ngerampungaken pangenggalan</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Bikak kunci Signal kangge ngerampungaken pengenggalan</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Tembung sandi serep</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Serep bakal dipunsimpen ing penyimpenan njawi lan dipunenkripsi ngginakaken tembung sandi ing ngandhap. Sampeyan wajib ngeling tembung sandi kasebut kangge mulihaken serep.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Kula sampun nyatet tembung sandi niki. Tanpa tembung sandi kasebut, kula mboten saged mulihaken serep.</string>
@@ -1492,9 +1506,6 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kunci Signal ngangge kunci layar Android utawi sidik jari</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Wates wekdal mboten aktif kangge kunci layar</string>
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
-  <string name="preferences_app_protection__pin">PIN</string>
-  <string name="preferences_app_protection__change">Gantos</string>
-  <string name="preferences_app_protection__create">Damel</string>
   <string name="AppProtectionPreferenceFragment_none">Mboten enten</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran mboten sami kaliyan kode verifikasi SMS ingkang nembe sampeyan tampi. Lebetaken PIN ingkang sampeyan tetapaken ing aplikasi saderengipun.</string>
   <string name="registration_activity__registration_lock_pin">PIN Kunci Pendaftaran</string>
@@ -1535,16 +1546,5 @@
   <string name="RegistrationLockDialog_reminder">Pangeling:</string>
   <string name="recipient_preferences__about">Babagan</string>
   <string name="Recipient_unknown">Mboten kasumarepan</string>
-  <string name="MessageRequestBottomView_accept">Setujoni</string>
-  <string name="MessageRequestBottomView_delete">Brusak</string>
-  <string name="MessageRequestBottomView_block">Blokir</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Kersa nampi pesen saking %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Anggota ing %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Anggota ing %1$s lan %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Anggota ing %1$s, %2$s, lan %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d anggota</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="other">%d bentenipun</item>
-  </plurals>
   <!--EOF-->
 </resources>

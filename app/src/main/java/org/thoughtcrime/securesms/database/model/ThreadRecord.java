@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase.Extra;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -77,7 +78,11 @@ public class ThreadRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if (isGroupUpdate()) {
+    if (getGroupAddedBy() != null) {
+      return emphasisAdded(context.getString(R.string.ThreadRecord_s_added_you_to_the_group, Recipient.live(getGroupAddedBy()).get().getDisplayName(context)));
+    } else if (!isMessageRequestAccepted()) {
+      return emphasisAdded(context.getString(R.string.ThreadRecord_message_request));
+    } else if (isGroupUpdate()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));
@@ -122,8 +127,10 @@ public class ThreadRecord extends DisplayRecord {
       if (TextUtils.isEmpty(getBody())) {
         if (extra != null && extra.isSticker()) {
           return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_sticker)));
-        } else if (extra != null && extra.isRevealable()) {
+        } else if (extra != null && extra.isViewOnce()) {
           return new SpannableString(emphasisAdded(getViewOnceDescription(context, contentType)));
+        } else if (extra != null && extra.isRemoteDelete()) {
+          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_this_message_was_deleted)));
         } else {
           return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
         }
@@ -180,5 +187,15 @@ public class ThreadRecord extends DisplayRecord {
 
   public long getLastSeen() {
     return lastSeen;
+  }
+
+  public @Nullable RecipientId getGroupAddedBy() {
+    if (extra != null && extra.getGroupAddedBy() != null) return RecipientId.from(extra.getGroupAddedBy());
+    else                                                  return null;
+  }
+
+  public boolean isMessageRequestAccepted() {
+    if (extra != null) return extra.isMessageRequestAccepted();
+    else               return true;
   }
 }

@@ -21,6 +21,13 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -43,19 +50,23 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.StorageKeyDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
@@ -111,8 +122,20 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int PROFILE_KEY_TO_DB                = 47;
   private static final int PROFILE_KEY_CREDENTIALS          = 48;
   private static final int ATTACHMENT_FILE_INDEX            = 49;
+  private static final int STORAGE_SERVICE_ACTIVE           = 50;
+  private static final int GROUPS_V2_RECIPIENT_CAPABILITY   = 51;
+  private static final int TRANSFER_FILE_CLEANUP            = 52;
+  private static final int PROFILE_DATA_MIGRATION           = 53;
+  private static final int AVATAR_LOCATION_MIGRATION        = 54;
+  private static final int GROUPS_V2                        = 55;
+  private static final int ATTACHMENT_UPLOAD_TIMESTAMP      = 56;
+  private static final int ATTACHMENT_CDN_NUMBER            = 57;
+  private static final int JOB_INPUT_DATA                   = 58;
+  private static final int SERVER_TIMESTAMP                 = 59;
+  private static final int REMOTE_DELETE                    = 60;
+  private static final int COLOR_MIGRATION                  = 61;
 
-  private static final int    DATABASE_VERSION = 49;
+  private static final int    DATABASE_VERSION = 61;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -345,7 +368,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, null, address);
             boolean vibrateEnabled  = vibrateState == 0 ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == 1;
 
-            if (GroupUtil.isEncodedGroup(address)) {
+            if (GroupId.isEncodedGroup(address)) {
               try(Cursor groupCursor = db.rawQuery("SELECT title FROM groups WHERE group_id = ?", new String[] { address })) {
                 if (groupCursor != null && groupCursor.moveToFirst()) {
                   String title = groupCursor.getString(groupCursor.getColumnIndexOrThrow("title"));
@@ -541,11 +564,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
               values.put("phone", localNumber);
               values.put("registered", 1);
               values.put("profile_sharing", 1);
-              values.put("signal_profile_name", TextSecurePreferences.getProfileName(context).getGivenName());
               db.insert("recipient", null, values);
             } else {
-              db.execSQL("UPDATE recipient SET registered = ?, profile_sharing = ?, signal_profile_name = ? WHERE phone = ?",
-                         new String[] { "1", "1", TextSecurePreferences.getProfileName(context).getGivenName(), localNumber });
+              db.execSQL("UPDATE recipient SET registered = ?, profile_sharing = ? WHERE phone = ?",
+                         new String[] { "1", "1", localNumber });
             }
           }
         }
@@ -673,20 +695,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE UNIQUE INDEX recipient_storage_service_key ON recipient (storage_service_key)");
         db.execSQL("CREATE INDEX recipient_dirty_index ON recipient (dirty)");
-
-        // TODO [greyson] Do this in a future DB migration
-//        db.execSQL("UPDATE recipient SET dirty = 2 WHERE registered = 1");
-//
-//        try (Cursor cursor = db.rawQuery("SELECT _id FROM recipient WHERE registered = 1", null)) {
-//          while (cursor != null && cursor.moveToNext()) {
-//            String        id     = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
-//            ContentValues values = new ContentValues(1);
-//
-//            values.put("storage_service_key", Base64.encodeBytes(StorageSyncHelper.generateKey()));
-//
-//            db.update("recipient", values, "_id = ?", new String[] { id });
-//          }
-//        }
       }
 
       if (oldVersion < REACTIONS_UNREAD_INDEX) {
@@ -753,6 +761,151 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE INDEX IF NOT EXISTS part_data_index ON part (_data)");
       }
 
+      if (oldVersion < STORAGE_SERVICE_ACTIVE) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN group_type INTEGER DEFAULT 0");
+        db.execSQL("CREATE INDEX IF NOT EXISTS recipient_group_type_index ON recipient (group_type)");
+
+        db.execSQL("UPDATE recipient set group_type = 1 WHERE group_id NOT NULL AND group_id LIKE '__signal_mms_group__%'");
+        db.execSQL("UPDATE recipient set group_type = 2 WHERE group_id NOT NULL AND group_id LIKE '__textsecure_group__%'");
+
+        try (Cursor cursor = db.rawQuery("SELECT _id FROM recipient WHERE registered = 1 or group_type = 2", null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            String        id     = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+            ContentValues values = new ContentValues(1);
+
+            values.put("dirty", 2);
+            values.put("storage_service_key", Base64.encodeBytes(StorageSyncHelper.generateKey()));
+
+            db.update("recipient", values, "_id = ?", new String[] { id });
+          }
+        }
+      }
+
+      if (oldVersion < GROUPS_V2_RECIPIENT_CAPABILITY) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN gv2_capability INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < TRANSFER_FILE_CLEANUP) {
+        File partsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
+
+        if (partsDirectory.exists()) {
+          File[] transferFiles = partsDirectory.listFiles((dir, name) -> name.startsWith("transfer"));
+          int    deleteCount   = 0;
+
+          Log.i(TAG, "Found " + transferFiles.length + " dangling transfer files.");
+
+          for (File file : transferFiles) {
+            if (file.delete()) {
+              Log.i(TAG, "Deleted " + file.getName());
+              deleteCount++;
+            }
+          }
+
+          Log.i(TAG, "Deleted " + deleteCount + " dangling transfer files.");
+        } else {
+          Log.w(TAG, "Part directory did not exist. Skipping.");
+        }
+      }
+
+      if (oldVersion < PROFILE_DATA_MIGRATION) {
+        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        if (localNumber != null) {
+          String      encodedProfileName = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_name", null);
+          ProfileName profileName        = ProfileName.fromSerialized(encodedProfileName);
+
+          db.execSQL("UPDATE recipient SET signal_profile_name = ?, profile_family_name = ?, profile_joined_name = ? WHERE phone = ?",
+                     new String[] { profileName.getGivenName(), profileName.getFamilyName(), profileName.toString(), localNumber });
+        }
+      }
+
+      if (oldVersion < AVATAR_LOCATION_MIGRATION) {
+        File   oldAvatarDirectory = new File(context.getFilesDir(), "avatars");
+        File[] results            = oldAvatarDirectory.listFiles();
+
+        if (results != null) {
+          Log.i(TAG, "Preparing to migrate " + results.length + " avatars.");
+
+          for (File file : results) {
+            if (Util.isLong(file.getName())) {
+              try {
+                AvatarHelper.setAvatar(context, RecipientId.from(file.getName()), new FileInputStream(file));
+              } catch(IOException e) {
+                Log.w(TAG, "Failed to copy file " + file.getName() + "! Skipping.");
+              }
+            } else {
+              Log.w(TAG, "Invalid avatar name '" + file.getName() + "'! Skipping.");
+            }
+          }
+        } else {
+          Log.w(TAG, "No avatar directory files found.");
+        }
+
+        if (!FileUtils.deleteDirectory(oldAvatarDirectory)) {
+          Log.w(TAG, "Failed to delete avatar directory.");
+        }
+
+        try (Cursor cursor = db.rawQuery("SELECT recipient_id, avatar FROM groups", null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            RecipientId recipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow("recipient_id")));
+            byte[]      avatar      = cursor.getBlob(cursor.getColumnIndexOrThrow("avatar"));
+
+            try {
+              AvatarHelper.setAvatar(context, recipientId, avatar != null ? new ByteArrayInputStream(avatar) : null);
+            } catch (IOException e) {
+              Log.w(TAG, "Failed to copy avatar for " + recipientId + "! Skipping.", e);
+            }
+          }
+        }
+
+        db.execSQL("UPDATE groups SET avatar_id = 0 WHERE avatar IS NULL");
+        db.execSQL("UPDATE groups SET avatar = NULL");
+      }
+
+      if (oldVersion < GROUPS_V2) {
+        db.execSQL("ALTER TABLE groups ADD COLUMN master_key");
+        db.execSQL("ALTER TABLE groups ADD COLUMN revision");
+        db.execSQL("ALTER TABLE groups ADD COLUMN decrypted_group");
+      }
+
+      if (oldVersion < ATTACHMENT_UPLOAD_TIMESTAMP) {
+        db.execSQL("ALTER TABLE part ADD COLUMN upload_timestamp DEFAULT 0");
+      }
+
+      if (oldVersion < ATTACHMENT_CDN_NUMBER) {
+        db.execSQL("ALTER TABLE part ADD COLUMN cdn_number INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < JOB_INPUT_DATA) {
+        db.execSQL("ALTER TABLE job_spec ADD COLUMN serialized_input_data TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < SERVER_TIMESTAMP) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN date_server INTEGER DEFAULT -1");
+        db.execSQL("CREATE INDEX IF NOT EXISTS sms_date_server_index ON sms (date_server)");
+
+        db.execSQL("ALTER TABLE mms ADD COLUMN date_server INTEGER DEFAULT -1");
+        db.execSQL("CREATE INDEX IF NOT EXISTS mms_date_server_index ON mms (date_server)");
+      }
+
+      if (oldVersion < REMOTE_DELETE) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN remote_deleted INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN remote_deleted INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < COLOR_MIGRATION) {
+        try (Cursor cursor = db.rawQuery("SELECT _id, system_display_name FROM recipient WHERE system_display_name NOT NULL AND color IS NULL", null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            long   id   = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow("system_display_name"));
+
+            ContentValues values = new ContentValues();
+            values.put("color", ContactColorsLegacy.generateForV2(name).serialize());
+
+            db.update("recipient", values, "_id = ?", new String[] { String.valueOf(id) });
+          }
+        }
+      }
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -779,6 +932,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   public static boolean databaseFileExists(@NonNull Context context) {
     return context.getDatabasePath(DATABASE_NAME).exists();
+  }
+
+  public static File getDatabaseFile(@NonNull Context context) {
+    return context.getDatabasePath(DATABASE_NAME);
   }
 
   private void executeStatements(SQLiteDatabase db, String[] statements) {

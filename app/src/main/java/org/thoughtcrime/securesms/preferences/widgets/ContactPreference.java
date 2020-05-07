@@ -20,6 +20,7 @@ public class ContactPreference extends Preference {
 
   private Listener listener;
   private boolean secure;
+  private boolean blocked;
 
   public ContactPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
@@ -55,20 +56,21 @@ public class ContactPreference extends Preference {
     this.secureVideoButton = (ImageView) view.findViewById(R.id.secure_video);
 
     if (listener != null) setListener(listener);
-    setSecure(secure);
+    setState(secure, blocked);
   }
 
-  public void setSecure(boolean secure) {
+  public void setState(boolean secure, boolean blocked) {
     this.secure = secure;
 
-    if (secureCallButton != null)  secureCallButton.setVisibility(secure ? View.VISIBLE : View.GONE);
-    if (secureVideoButton != null) secureVideoButton.setVisibility(secure ? View.VISIBLE : View.GONE);
-    if (callButton != null)        callButton.setVisibility(secure ? View.GONE : View.VISIBLE);
+    if (secureCallButton != null)  secureCallButton.setVisibility(secure && !blocked ? View.VISIBLE : View.GONE);
+    if (secureVideoButton != null) secureVideoButton.setVisibility(secure && !blocked ? View.VISIBLE : View.GONE);
+    if (callButton != null)        callButton.setVisibility(secure || blocked ? View.GONE : View.VISIBLE);
+    if (messageButton != null)     messageButton.setVisibility(blocked ? View.GONE : View.VISIBLE);
 
     int color;
 
     if (secure) {
-      color = getContext().getResources().getColor(R.color.textsecure_primary);
+      color = getContext().getResources().getColor(R.color.core_ultramarine);
     } else {
       color = getContext().getResources().getColor(R.color.grey_600);
     }

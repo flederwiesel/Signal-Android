@@ -39,6 +39,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
+import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -171,6 +172,10 @@ public class Util {
     return "";
   }
 
+  public static @NonNull String emptyIfNull(@Nullable String value) {
+    return value != null ? value : "";
+  }
+
   public static <E> List<List<E>> chunk(@NonNull List<E> list, int chunkSize) {
     List<List<E>> chunks = new ArrayList<>(list.size() / chunkSize);
 
@@ -223,7 +228,9 @@ public class Util {
     }
   }
 
-  public static void close(Closeable closeable) {
+  public static void close(@Nullable Closeable closeable) {
+    if (closeable == null) return;
+
     try {
       closeable.close();
     } catch (IOException e) {
@@ -320,6 +327,17 @@ public class Util {
     return Optional.fromNullable(simCountryIso != null ? simCountryIso.toUpperCase() : null);
   }
 
+  @SafeVarargs
+  public static @NonNull <T> T firstNonNull(T ... ts) {
+    for (T t : ts) {
+      if (t != null) {
+        return t;
+      }
+    }
+
+    throw new IllegalStateException("All choices were null.");
+  }
+
   public static <T> List<List<T>> partition(List<T> list, int partitionSize) {
     List<List<T>> results = new LinkedList<>();
 
@@ -414,13 +432,13 @@ public class Util {
   }
 
   public static byte[] getSecretBytes(int size) {
-    byte[] secret = new byte[size];
-    getSecureRandom().nextBytes(secret);
-    return secret;
+    return getSecretBytes(new SecureRandom(), size);
   }
 
-  public static SecureRandom getSecureRandom() {
-    return new SecureRandom();
+  public static byte[] getSecretBytes(@NonNull SecureRandom secureRandom, int size) {
+    byte[] secret = new byte[size];
+    secureRandom.nextBytes(secret);
+    return secret;
   }
 
   public static int getDaysTillBuildExpiry() {
@@ -584,13 +602,23 @@ public class Util {
     return handler;
   }
 
-  public static <T> List<T> concatenatedList(List<T> first, List<T> second) {
-    final List<T> concat = new ArrayList<>(first.size() + second.size());
+  @SafeVarargs
+  public static <T> List<T> concatenatedList(Collection <T>... items) {
+    final List<T> concat = new ArrayList<>(Stream.of(items).reduce(0, (sum, list) -> sum + list.size()));
 
-    concat.addAll(first);
-    concat.addAll(second);
+    for (Collection<T> list : items) {
+      concat.addAll(list);
+    }
 
     return concat;
   }
 
+  public static boolean isLong(String value) {
+    try {
+      Long.parseLong(value);
+      return true;
+    } catch (NumberFormatException e) {
+      return false;
+    }
+  }
 }

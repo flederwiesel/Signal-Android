@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="core_flederwiesel">#1D6C7F</color>
-    <color name="core_flederwiesel_dark">#ff134754</color>
-    <color name="core_blue">#2090ea</color>
-    <color name="core_green">#4caf50</color>
-    <color name="core_yellow">#ffd624</color> <!-- new -->
-    <color name="core_red">#f44336</color>
+    <color name="core_flederwiesel_light">#188199</color>
+    <color name="core_flederwiesel_dark">#134754</color>
+    <color name="core_flederwiesel_alpha33">#551D6C7F</color>
+    <color name="core_flederwiesel_alpha50">#801D6C7F</color>
 
-    <color name="core_red_highlight">#ef5350</color> <!-- extra -->
+    <color name="signal_primary">@color/core_flederwiesel</color>
+    <color name="signal_primary_light">@color/core_flederwiesel_light</color>
+    <color name="signal_primary_dark">@color/core_flederwiesel_dark</color>
+    <color name="signal_primary_alpha33">@color/core_flederwiesel_alpha33</color>
+    <color name="signal_primary_alpha50">@color/core_flederwiesel_alpha50</color>
+
+    <color name="core_ultramarine">@color/signal_primary</color>
+    <color name="core_ultramarine_light">@color/signal_primary_light</color>
+    <color name="core_ultramarine_dark">@color/signal_primary_dark</color>
+    <color name="core_ultramarine_icon">@color/signal_primary</color>
+    <color name="core_ultramarine_33">@color/signal_primary_alpha33</color>
+    <color name="core_ultramarine_50">@color/signal_primary_alpha50</color>
+
+    <color name="core_green">#4caf50</color>
+    <color name="core_yellow">#ffd624</color>
+    <color name="core_red">#f44336</color>
+    <color name="core_red_highlight">#ef5350</color>
 
     <color name="core_white">#ffffff</color>
     <color name="core_black">#000000</color>

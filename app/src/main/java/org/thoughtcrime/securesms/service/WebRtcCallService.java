@@ -423,7 +423,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
   private void handleDenyCall(Intent intent) {
     if (activePeer == null) {
-      throw new IllegalStateException("Deny with no active call");
+      Log.i(TAG, "handleDenyCall(): Ignoring for inactive call.");
+      return;
     }
 
     if (activePeer.getState() != CallState.LOCAL_RINGING) {
@@ -456,7 +457,9 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       lockManager.updatePhoneState(getInCallPhoneState());
     }
 
-    sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    if (activePeer != null) {
+      sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    }
   }
 
   private void handleSetBluetoothAudio(Intent intent) {
@@ -475,7 +478,9 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       lockManager.updatePhoneState(getInCallPhoneState());
     }
 
-    sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    if (activePeer != null) {
+      sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    }
   }
 
   private void handleSetMuteAudio(Intent intent) {
@@ -487,10 +492,12 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       return;
     }
 
-    try {
-      callManager.setAudioEnable(microphoneEnabled);
-    } catch (CallException e) {
-      callFailure("Enabling audio failed: ", e);
+    if (activePeer.getState() == CallState.CONNECTED) {
+      try {
+        callManager.setAudioEnable(microphoneEnabled);
+      } catch (CallException e) {
+        callFailure("Enabling audio failed: ", e);
+      }
     }
 
     if (activePeer != null) {
@@ -919,6 +926,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       callManager.setVideoEnable(enable);
     } catch  (CallException e) {
       callFailure("setVideoEnable() failed: ", e);
+      return;
     }
 
     localCameraState = camera.getCameraState();
@@ -1451,19 +1459,23 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     @Override
     public void onSuccessContinue(V result) {
-      try {
-        callManager.messageSent(getCallId());
-      } catch (CallException e) {
-        callFailure("callManager.messageSent() failed: ", e);
+      if (callManager != null) {
+        try {
+          callManager.messageSent(getCallId());
+        } catch (CallException e) {
+          callFailure("callManager.messageSent() failed: ", e);
+        }
       }
     }
 
     @Override
     public void onStateChangeContinue() {
-      try {
-        callManager.messageSent(getCallId());
-      } catch (CallException e) {
-        callFailure("callManager.messageSent() failed: ", e);
+      if (callManager != null) {
+        try {
+          callManager.messageSent(getCallId());
+        } catch (CallException e) {
+          callFailure("callManager.messageSent() failed: ", e);
+        }
       }
     }
 
@@ -1471,10 +1483,12 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     public void onFailureContinue(Throwable error) {
       Log.w(TAG, error);
 
-      try {
-        callManager.messageSendFailure(getCallId());
-      } catch (CallException e) {
-        callFailure("callManager.messageSendFailure() failed: ", e);
+      if (callManager != null) {
+        try {
+          callManager.messageSendFailure(getCallId());
+        } catch (CallException e) {
+          callFailure("callManager.messageSendFailure() failed: ", e);
+        }
       }
 
       if (activePeer == null) {
@@ -1678,7 +1692,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       RemotePeer remotePeer = (RemotePeer)remote;
       Intent     intent     = new Intent(this, WebRtcCallService.class);
 
-      ArrayList<IceCandidateParcel> iceCandidateParcels = new ArrayList(iceCandidates.size());
+      ArrayList<IceCandidateParcel> iceCandidateParcels = new ArrayList<>(iceCandidates.size());
       for (IceCandidate iceCandidate : iceCandidates) {
         iceCandidateParcels.add(new IceCandidateParcel(iceCandidate));
       }

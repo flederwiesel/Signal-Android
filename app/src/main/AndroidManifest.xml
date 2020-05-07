@@ -3,7 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms">
 
-    <uses-sdk tools:overrideLibrary="androidx.camera.core,androidx.camera.camera2"/>
+    <uses-sdk tools:overrideLibrary="androidx.camera.core,androidx.camera.camera2,androidx.camera.lifecycle" />
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -251,6 +251,10 @@
           android:windowSoftInputMode="stateVisible"
           android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".groups.ui.pendingmemberinvites.PendingMemberInvitesActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:theme="@style/TextSecure.LightNoActionBar" />
+
     <activity android:name=".DatabaseMigrationActivity"
               android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar"
               android:launchMode="singleTask"
@@ -261,12 +265,7 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ExperienceUpgradeActivity"
-              android:theme="@style/TextSecure.LightNoActionBar"
-              android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".PassphraseCreateActivity"
+      <activity android:name=".PassphraseCreateActivity"
               android:label="@string/AndroidManifest__create_passphrase"
               android:windowSoftInputMode="stateUnchanged"
               android:theme="@style/TextSecure.LightNoActionBar"
@@ -337,12 +336,12 @@
                android:label="@string/AndroidManifest__linked_devices"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".LogSubmitActivity"
+    <activity android:name=".logsubmit.SubmitDebugLogActivity"
               android:label="@string/AndroidManifest__log_submit"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".MediaPreviewActivity"
+        <activity android:name=".MediaPreviewActivity"
               android:label="@string/AndroidManifest__media_preview"
               android:windowSoftInputMode="stateHidden"
               android:launchMode="singleTask"
@@ -404,6 +403,10 @@
               android:theme="@style/TextSecure.LightNoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".mediasend.AvatarSelectionActivity"
+              android:theme="@style/TextSecure.FullScreenMedia"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".BlockedContactsActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -411,9 +414,6 @@
     <activity android:name=".scribbles.ImageEditorStickerSelectActivity"
               android:theme="@style/TextSecure.DarkTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-              android:theme="@style/TextSecure.DarkTheme"/>
 
     <activity android:name=".profiles.edit.EditProfileActivity"
             android:theme="@style/TextSecure.LightRegistrationTheme"
@@ -441,6 +441,11 @@
             <category android:name="android.intent.category.DEFAULT"/>
         </intent-filter>
     </activity>
+
+    <activity android:name=".messagerequests.MessageRequestMegaphoneActivity"
+              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:windowSoftInputMode="adjustResize"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".contactshare.ContactShareEditActivity"
               android:theme="@style/TextSecure.LightTheme"
@@ -470,7 +475,12 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
-    <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
+    <activity android:name=".pin.PinRestoreActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
+
+
+        <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.IncomingMessageObserver$ForegroundService"/>
@@ -624,11 +634,6 @@
               android:authorities="org.thoughtcrime.securesms.database.stickerpack"
               android:exported="false" />
 
-    <provider android:name="androidx.camera.camera2.impl.Camera2Initializer"
-              android:authorities="${applicationId}.camerax-init"
-              android:exported="false"
-              android:enabled="false" />
-
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -681,17 +686,6 @@
     <receiver android:name=".notifications.DeleteNotificationReceiver">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.DELETE_NOTIFICATION"/>
-        </intent-filter>
-    </receiver>
-
-    <receiver android:name=".ExperienceUpgradeActivity$AppUpgradeReceiver">
-        <intent-filter>
-            <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
-            <data android:scheme="package" />
-        </intent-filter>
-
-        <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.ExperienceUpgradeActivity.DISMISS_ACTION"/>
         </intent-filter>
     </receiver>
 

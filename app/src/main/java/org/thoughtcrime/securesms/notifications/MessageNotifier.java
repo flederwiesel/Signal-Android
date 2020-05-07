@@ -368,7 +368,7 @@ public class MessageNotifier {
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
-    if (!KeyCachingService.isLocked(context) && RecipientUtil.isRecipientMessageRequestAccepted(context, recipient.resolve())) {
+    if (!KeyCachingService.isLocked(context) && RecipientUtil.isMessageRequestAccepted(context, recipient.resolve())) {
       ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
 
       builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
@@ -507,6 +507,7 @@ public class MessageNotifier {
       Recipient    threadRecipients      = null;
       SlideDeck    slideDeck             = null;
       long         timestamp             = record.getTimestamp();
+      long         receivedTimestamp     = record.getDateReceived();
       boolean      isUnreadMessage       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.READ)) == 0;
       boolean      hasUnreadReactions    = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.REACTIONS_UNREAD)) == 1;
       long         lastReactionRead      = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.REACTIONS_LAST_SEEN));
@@ -526,6 +527,8 @@ public class MessageNotifier {
           slideDeck = ((MmsMessageRecord) record).getSlideDeck();
         } else if (record.isMms() && ((MmsMessageRecord) record).isViewOnce()) {
           body = SpanUtil.italic(context.getString(getViewOnceDescription((MmsMessageRecord) record)));
+        } else if (record.isRemoteDelete()) {
+          body = SpanUtil.italic(context.getString(R.string.MessageNotifier_this_message_was_deleted));;
         } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
           body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
           slideDeck = ((MediaMmsMessageRecord) record).getSlideDeck();
@@ -537,7 +540,7 @@ public class MessageNotifier {
         }
 
         if (threadRecipients == null || !threadRecipients.isMuted()) {
-          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, receivedTimestamp, slideDeck, false));
         }
       }
 
@@ -571,7 +574,7 @@ public class MessageNotifier {
           }
 
           if (threadRecipients == null || !threadRecipients.isMuted()) {
-            notificationState.addNotification(new NotificationItem(id, mms, reactionSender, conversationRecipient, threadRecipients, threadId, body, reaction.getDateReceived(), null));
+            notificationState.addNotification(new NotificationItem(id, mms, reactionSender, conversationRecipient, threadRecipients, threadId, body, reaction.getDateReceived(), receivedTimestamp, null, true));
           }
         }
       }

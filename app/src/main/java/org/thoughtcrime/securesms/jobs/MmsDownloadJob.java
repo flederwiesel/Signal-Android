@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
@@ -98,6 +100,10 @@ public class MmsDownloadJob extends BaseJob {
 
   @Override
   public void onRun() {
+    if (TextSecurePreferences.getLocalUuid(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
+      throw new NotReadyException();
+    }
+
     MmsDatabase                               database     = DatabaseFactory.getMmsDatabase(context);
     Optional<MmsDatabase.MmsNotificationInfo> notification = database.getNotification(messageId);
 
@@ -177,11 +183,11 @@ public class MmsDownloadJob extends BaseJob {
                                  int subscriptionId, @Nullable RecipientId notificationFrom)
       throws MmsException
   {
-    MmsDatabase      database    = DatabaseFactory.getMmsDatabase(context);
-    Optional<String> group       = Optional.absent();
-    Set<RecipientId> members     = new HashSet<>();
-    String           body        = null;
-    List<Attachment> attachments = new LinkedList<>();
+    MmsDatabase       database    = DatabaseFactory.getMmsDatabase(context);
+    Optional<GroupId> group       = Optional.absent();
+    Set<RecipientId>  members     = new HashSet<>();
+    String            body        = null;
+    List<Attachment>  attachments = new LinkedList<>();
 
     RecipientId from = null;
 
@@ -230,10 +236,10 @@ public class MmsDownloadJob extends BaseJob {
 
     if (members.size() > 2) {
       List<RecipientId> recipients = new ArrayList<>(members);
-      group = Optional.of(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(recipients, true));
+      group = Optional.of(DatabaseFactory.getGroupDatabase(context).getOrCreateMmsGroupForMembers(recipients));
     }
 
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false, false);
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, -1, attachments, subscriptionId, 0, false, false, false);
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {
@@ -262,5 +268,8 @@ public class MmsDownloadJob extends BaseJob {
                                 data.getLong(KEY_THREAD_ID),
                                 data.getBoolean(KEY_AUTOMATIC));
     }
+  }
+
+  private static class NotReadyException extends RuntimeException {
   }
 }

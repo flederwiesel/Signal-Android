@@ -34,13 +34,11 @@ public final class ProfileName implements Parcelable {
     this(in.readString(), in.readString());
   }
 
-  public @NonNull
-  String getGivenName() {
+  public @NonNull String getGivenName() {
     return givenName;
   }
 
-  public @NonNull
-  String getFamilyName() {
+  public @NonNull String getFamilyName() {
     return familyName;
   }
 
@@ -74,7 +72,7 @@ public final class ProfileName implements Parcelable {
    * Deserializes a profile name, trims if exceeds the limits.
    */
   public static @NonNull ProfileName fromSerialized(@Nullable String profileName) {
-    if (profileName == null) {
+    if (profileName == null || profileName.isEmpty()) {
       return EMPTY;
     }
 

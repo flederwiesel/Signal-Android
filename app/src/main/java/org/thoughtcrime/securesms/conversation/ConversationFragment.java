@@ -49,7 +49,9 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -88,6 +90,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -106,6 +109,8 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.HtmlUtil;
+import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -162,6 +167,9 @@ public class ConversationFragment extends Fragment
   private View                        composeDivider;
   private View                        scrollToBottomButton;
   private TextView                    scrollDateHeader;
+  private ConversationBannerView      conversationBanner;
+  private ConversationBannerView      emptyConversationBanner;
+  private MessageRequestViewModel     messageRequestViewModel;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -172,10 +180,11 @@ public class ConversationFragment extends Fragment
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
-    list                 = ViewUtil.findById(view, android.R.id.list);
-    composeDivider       = ViewUtil.findById(view, R.id.compose_divider);
-    scrollToBottomButton = ViewUtil.findById(view, R.id.scroll_to_bottom_button);
-    scrollDateHeader     = ViewUtil.findById(view, R.id.scroll_date_header);
+    list                    = ViewUtil.findById(view, android.R.id.list);
+    composeDivider          = ViewUtil.findById(view, R.id.compose_divider);
+    scrollToBottomButton    = ViewUtil.findById(view, R.id.scroll_to_bottom_button);
+    scrollDateHeader        = ViewUtil.findById(view, R.id.scroll_date_header);
+    emptyConversationBanner = ViewUtil.findById(view, R.id.empty_conversation_banner);
 
     scrollToBottomButton.setOnClickListener(v -> scrollToBottom());
 
@@ -183,6 +192,10 @@ public class ConversationFragment extends Fragment
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
     list.setItemAnimator(null);
+
+    if (FeatureFlags.messageRequests()) {
+      conversationBanner = (ConversationBannerView) inflater.inflate(R.layout.conversation_item_banner, container, false);
+    }
 
     topLoadMoreView    = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
     bottomLoadMoreView = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
@@ -193,11 +206,45 @@ public class ConversationFragment extends Fragment
 
     new ConversationItemSwipeCallback(
             messageRecord -> actionMode == null &&
-                             canReplyToMessage(isActionMessage(messageRecord), messageRecord),
+                             MenuState.canReplyToMessage(MenuState.isActionMessage(messageRecord), messageRecord, messageRequestViewModel.shouldShowMessageRequest()),
             this::handleReplyMessage
     ).attachToRecyclerView(list);
 
+    setupListLayoutListeners();
+
     return view;
+  }
+
+  private void setupListLayoutListeners() {
+    if (!FeatureFlags.messageRequests()) {
+      return;
+    }
+
+    list.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> setListVerticalTranslation());
+
+    list.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+      @Override
+      public void onChildViewAttachedToWindow(@NonNull View view) {
+        setListVerticalTranslation();
+      }
+
+      @Override
+      public void onChildViewDetachedFromWindow(@NonNull View view) {
+        setListVerticalTranslation();
+      }
+    });
+  }
+
+  private void setListVerticalTranslation() {
+    if (list.canScrollVertically(1) || list.canScrollVertically(-1) || list.getChildCount() == 0) {
+      list.setTranslationY(0);
+      list.setOverScrollMode(RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS);
+    } else {
+      int chTop = list.getChildAt(list.getChildCount() - 1).getTop();
+      list.setTranslationY(Math.min(0, -chTop));
+      list.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+    }
+    listener.onListVerticalTranslationChanged(list.getTranslationY());
   }
 
   @Override
@@ -205,6 +252,7 @@ public class ConversationFragment extends Fragment
     super.onActivityCreated(bundle);
 
     initializeResources();
+    initializeMessageRequestViewModel();
     initializeListAdapter();
   }
 
@@ -241,6 +289,7 @@ public class ConversationFragment extends Fragment
     }
 
     initializeResources();
+    messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
     initializeListAdapter();
 
     if (threadId == -1) {
@@ -267,7 +316,91 @@ public class ConversationFragment extends Fragment
     scrollToLastSeenPosition(position);
   }
 
+  private void initializeMessageRequestViewModel() {
+    MessageRequestViewModel.Factory factory = new MessageRequestViewModel.Factory(requireContext());
+
+    messageRequestViewModel = ViewModelProviders.of(requireActivity(), factory).get(MessageRequestViewModel.class);
+    messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
+
+    listener.onMessageRequest(messageRequestViewModel);
+
+    messageRequestViewModel.getRecipientInfo().observe(getViewLifecycleOwner(), recipientInfo -> {
+      presentMessageRequestProfileView(requireContext(), recipientInfo, conversationBanner);
+      presentMessageRequestProfileView(requireContext(), recipientInfo, emptyConversationBanner);
+    });
+  }
+
+  private static void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationBannerView conversationBanner) {
+
+    if (conversationBanner == null) {
+      return;
+    }
+
+    Recipient    recipient          = recipientInfo.getRecipient();
+    boolean      isSelf             = Recipient.self().equals(recipient);
+    int          memberCount        = recipientInfo.getGroupMemberCount();
+    int          pendingMemberCount = recipientInfo.getGroupPendingMemberCount();
+    List<String> groups             = recipientInfo.getSharedGroups();
+
+    if (recipient != null) {
+      conversationBanner.setAvatar(GlideApp.with(context), recipient);
+
+      String title = isSelf ? context.getString(R.string.note_to_self) : recipient.getDisplayName(context);
+      conversationBanner.setTitle(title);
+
+      if (recipient.isGroup()) {
+        if (pendingMemberCount > 0) {
+          conversationBanner.setSubtitle(context.getResources()
+                                                .getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, memberCount,
+                                                                   memberCount, pendingMemberCount));
+        } else {
+          conversationBanner.setSubtitle(context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_members, memberCount,
+                                                                                  memberCount));
+        }
+      } else if (isSelf) {
+        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation));
+      } else {
+        String subtitle = recipient.getUsername().or(recipient.getE164()).orNull();
+
+        if (subtitle == null || subtitle.equals(title)) {
+          conversationBanner.hideSubtitle();
+        } else {
+          conversationBanner.setSubtitle(subtitle);
+        }
+      }
+    }
+
+    if (groups.isEmpty() || isSelf) {
+      conversationBanner.hideDescription();
+    } else {
+      final String description;
+
+      switch (groups.size()) {
+        case 1:
+          description = context.getString(R.string.MessageRequestProfileView_member_of_one_group, HtmlUtil.bold(groups.get(0)));
+          break;
+        case 2:
+          description = context.getString(R.string.MessageRequestProfileView_member_of_two_groups, HtmlUtil.bold(groups.get(0)), HtmlUtil.bold(groups.get(1)));
+          break;
+        case 3:
+          description = context.getString(R.string.MessageRequestProfileView_member_of_many_groups, HtmlUtil.bold(groups.get(0)), HtmlUtil.bold(groups.get(1)), HtmlUtil.bold(groups.get(2)));
+          break;
+        default:
+          int others = groups.size() - 2;
+          description = context.getString(R.string.MessageRequestProfileView_member_of_many_groups,
+                                          HtmlUtil.bold(groups.get(0)),
+                                          HtmlUtil.bold(groups.get(1)),
+                                          context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_member_of_others, others, others));
+      }
+
+      conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0));
+      conversationBanner.showDescription();
+    }
+  }
+
   private void initializeResources() {
+    long oldThreadId = threadId;
+
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
@@ -277,6 +410,10 @@ public class ConversationFragment extends Fragment
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
+
+    if (oldThreadId != threadId) {
+      ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(oldThreadId).removeObservers(this);
+    }
   }
 
   private void initializeListAdapter() {
@@ -288,6 +425,10 @@ public class ConversationFragment extends Fragment
 
       setLastSeen(lastSeen);
       getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
+
+      emptyConversationBanner.setVisibility(View.GONE);
+    } else if (FeatureFlags.messageRequests() && threadId == -1) {
+      emptyConversationBanner.setVisibility(View.VISIBLE);
     }
   }
 
@@ -306,6 +447,7 @@ public class ConversationFragment extends Fragment
       return;
     }
 
+    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
     ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).observe(this, typingState ->  {
       List<Recipient> recipients;
       boolean         replacedByIncomingMessage;
@@ -369,77 +511,22 @@ public class ConversationFragment extends Fragment
     });
   }
 
-  private void setCorrectMenuVisibility(Menu menu) {
+  private void setCorrectMenuVisibility(@NonNull Menu menu) {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
-    boolean            actionMessage  = false;
-    boolean            hasText        = false;
-    boolean            sharedContact  = false;
-    boolean            viewOnce       = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
       return;
     }
 
-    for (MessageRecord messageRecord : messageRecords) {
-      if (isActionMessage(messageRecord))
-      {
-        actionMessage = true;
-      }
+    MenuState menuState = MenuState.getMenuState(messageRecords, messageRequestViewModel.shouldShowMessageRequest());
 
-      if (messageRecord.getBody().length() > 0) {
-        hasText = true;
-      }
-
-      if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
-        sharedContact = true;
-      }
-
-      if (messageRecord.isViewOnce()) {
-        viewOnce = true;
-      }
-    }
-
-    if (messageRecords.size() > 1) {
-      menu.findItem(R.id.menu_context_forward).setVisible(false);
-      menu.findItem(R.id.menu_context_reply).setVisible(false);
-      menu.findItem(R.id.menu_context_details).setVisible(false);
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
-      menu.findItem(R.id.menu_context_resend).setVisible(false);
-    } else {
-      MessageRecord messageRecord = messageRecords.iterator().next();
-
-      menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                                              &&
-                                                                  !viewOnce                                                   &&
-                                                                  messageRecord.isMms()                                       &&
-                                                                  !messageRecord.isMmsNotification()                          &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null);
-
-      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact && !viewOnce);
-      menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-      menu.findItem(R.id.menu_context_reply).setVisible(canReplyToMessage(actionMessage, messageRecord));
-    }
-    menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
-  }
-
-  private static boolean canReplyToMessage(boolean actionMessage, MessageRecord messageRecord) {
-    return !actionMessage             &&
-           !messageRecord.isPending() &&
-           !messageRecord.isFailed()  &&
-           messageRecord.isSecure();
-  }
-
-  private static boolean isActionMessage(MessageRecord messageRecord) {
-    return messageRecord.isGroupAction()           ||
-           messageRecord.isCallLog()               ||
-           messageRecord.isJoined()                ||
-           messageRecord.isExpirationTimerUpdate() ||
-           messageRecord.isEndSession()            ||
-           messageRecord.isIdentityUpdate()        ||
-           messageRecord.isIdentityVerified()      ||
-           messageRecord.isIdentityDefault();
+    menu.findItem(R.id.menu_context_forward).setVisible(menuState.shouldShowForwardAction());
+    menu.findItem(R.id.menu_context_reply).setVisible(menuState.shouldShowReplyAction());
+    menu.findItem(R.id.menu_context_details).setVisible(menuState.shouldShowDetailsAction());
+    menu.findItem(R.id.menu_context_save_attachment).setVisible(menuState.shouldShowSaveAttachmentAction());
+    menu.findItem(R.id.menu_context_resend).setVisible(menuState.shouldShowResendAction());
+    menu.findItem(R.id.menu_context_copy).setVisible(menuState.shouldShowCopyAction());
   }
 
   private ConversationAdapter getListAdapter() {
@@ -462,6 +549,7 @@ public class ConversationFragment extends Fragment
 
     if (this.threadId != threadId) {
       this.threadId = threadId;
+      messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
       initializeListAdapter();
     }
   }
@@ -515,6 +603,14 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
+    if (FeatureFlags.remoteDelete()) {
+      buildRemoteDeleteConfirmationDialog(messageRecords).show();
+    } else {
+      buildLegacyDeleteConfirmationDialog(messageRecords).show();
+    }
+  }
+
+  private AlertDialog.Builder buildLegacyDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
     int                 messagesCount = messageRecords.size();
     AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
 
@@ -523,39 +619,86 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        new ProgressDialogAsyncTask<MessageRecord, Void, Void>(getActivity(),
-                                                               R.string.ConversationFragment_deleting,
-                                                               R.string.ConversationFragment_deleting_messages)
-        {
-          @Override
-          protected Void doInBackground(MessageRecord... messageRecords) {
-            for (MessageRecord messageRecord : messageRecords) {
-              boolean threadDeleted;
+    builder.setPositiveButton(R.string.delete, (dialog, which) -> {
+      new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
+                                                    R.string.ConversationFragment_deleting,
+                                                    R.string.ConversationFragment_deleting_messages)
+      {
+        @Override
+        protected Void doInBackground(Void... voids) {
+          for (MessageRecord messageRecord : messageRecords) {
+            boolean threadDeleted;
 
-              if (messageRecord.isMms()) {
-                threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
-              } else {
-                threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
-              }
-
-              if (threadDeleted) {
-                threadId = -1;
-                listener.setThreadId(threadId);
-              }
+            if (messageRecord.isMms()) {
+              threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+            } else {
+              threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
             }
 
-            return null;
+            if (threadDeleted) {
+              threadId = -1;
+              listener.setThreadId(threadId);
+            }
           }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, messageRecords.toArray(new MessageRecord[messageRecords.size()]));
-      }
+
+          return null;
+        }
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     });
 
     builder.setNegativeButton(android.R.string.cancel, null);
-    builder.show();
+    return builder;
   }
+
+  private AlertDialog.Builder buildRemoteDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
+    Context             context       = requireActivity();
+    int                 messagesCount = messageRecords.size();
+    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
+
+    builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
+    builder.setCancelable(true);
+
+    builder.setPositiveButton(R.string.ConversationFragment_delete_for_me, (dialog, which) -> {
+      new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
+                                                    R.string.ConversationFragment_deleting,
+                                                    R.string.ConversationFragment_deleting_messages)
+      {
+        @Override
+        protected Void doInBackground(Void... voids) {
+          for (MessageRecord messageRecord : messageRecords) {
+            boolean threadDeleted;
+
+            if (messageRecord.isMms()) {
+              threadDeleted = DatabaseFactory.getMmsDatabase(context).delete(messageRecord.getId());
+            } else {
+              threadDeleted = DatabaseFactory.getSmsDatabase(context).deleteMessage(messageRecord.getId());
+            }
+
+            if (threadDeleted) {
+              threadId = -1;
+              listener.setThreadId(threadId);
+            }
+          }
+
+          return null;
+        }
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    });
+
+    if (RemoteDeleteUtil.isValidSend(messageRecords, System.currentTimeMillis())) {
+      builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> {
+        SignalExecutors.BOUNDED.execute(() -> {
+          for (MessageRecord message : messageRecords) {
+            MessageSender.sendRemoteDelete(context, message.getId(), message.isMms());
+          }
+        });
+      });
+    }
+
+    builder.setNegativeButton(android.R.string.cancel, null);
+    return builder;
+  }
+
 
   private void handleDisplayDetails(MessageRecord message) {
     Intent intent = new Intent(getActivity(), MessageDetailsActivity.class);
@@ -698,8 +841,8 @@ public class ConversationFragment extends Fragment
 
   @Override
   public void onLoadFinished(@NonNull Loader<Cursor> cursorLoader, Cursor cursor) {
-    int  count    = cursor.getCount();
-    ConversationLoader loader = (ConversationLoader)cursorLoader;
+    int                count  = cursor.getCount();
+    ConversationLoader loader = (ConversationLoader) cursorLoader;
 
     ConversationAdapter adapter = getListAdapter();
     if (adapter == null) {
@@ -708,6 +851,8 @@ public class ConversationFragment extends Fragment
 
     if (cursor.getCount() >= PARTIAL_CONVERSATION_LIMIT && loader.hasLimit()) {
       adapter.setFooterView(topLoadMoreView);
+    } else if (FeatureFlags.messageRequests()) {
+      adapter.setFooterView(conversationBanner);
     } else {
       adapter.setFooterView(null);
     }
@@ -716,12 +861,8 @@ public class ConversationFragment extends Fragment
       setLastSeen(loader.getLastSeen());
     }
 
-    if (FeatureFlags.messageRequests()) {
-      if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isProfileSharing() && !recipient.get().isBlocked() && recipient.get().isRegistered()) {
-        listener.onMessageRequest();
-      } else {
-        clearHeaderIfNotTyping(adapter);
-      }
+    if (FeatureFlags.messageRequests() && !loader.hasPreMessageRequestMessages()) {
+      clearHeaderIfNotTyping(adapter);
     } else {
       if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
         adapter.setHeaderView(unknownSenderView);
@@ -751,8 +892,10 @@ public class ConversationFragment extends Fragment
     if (firstLoad) {
       if (startingPosition >= 0) {
         scrollToStartingPosition(startingPosition);
-      } else {
+      } else if (loader.isMessageRequestAccepted()) {
         scrollToLastSeenPosition(lastSeenPosition);
+      } else if (FeatureFlags.messageRequests()) {
+        list.post(() -> getListLayoutManager().scrollToPosition(adapter.getItemCount() - 1));
       }
       firstLoad = false;
     } else if (previousOffset > 0) {
@@ -898,12 +1041,13 @@ public class ConversationFragment extends Fragment
     void handleReplyMessage(MessageRecord messageRecord);
     void onMessageActionToolbarOpened();
     void onForwardClicked();
-    void onMessageRequest();
+    void onMessageRequest(@NonNull MessageRequestViewModel viewModel);
     void handleReaction(@NonNull View maskTarget,
                         @NonNull MessageRecord messageRecord,
                         @NonNull Toolbar.OnMenuItemClickListener toolbarListener,
                         @NonNull ConversationReactionOverlay.OnHideListener onHideListener);
     void onCursorChanged();
+    void onListVerticalTranslationChanged(float translationY);
   }
 
   private class ConversationScrollListener extends OnScrollListener {
@@ -997,8 +1141,11 @@ public class ConversationFragment extends Fragment
 
       if (actionMode != null) return;
 
-      if (messageRecord.isSecure()       &&
-          !messageRecord.isUpdate()      &&
+      if (messageRecord.isSecure()                            &&
+          !messageRecord.isRemoteDelete()                     &&
+          !messageRecord.isUpdate()                           &&
+          !recipient.get().isBlocked()                        &&
+          !messageRequestViewModel.shouldShowMessageRequest() &&
           ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
       {
         isReacting = true;
@@ -1292,6 +1439,10 @@ public class ConversationFragment extends Fragment
     }
 
     public void show() {
+      if (textView.getText() == null || textView.getText().length() == 0) {
+        return;
+      }
+
       if (pendingHide) {
         pendingHide = false;
       } else {

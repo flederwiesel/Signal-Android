@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -35,7 +36,6 @@ import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
@@ -55,7 +55,8 @@ public class Recipient {
 
   public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails());
 
-  private static final String TAG = Log.tag(Recipient.class);
+  private static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
+  private static final String                TAG = Log.tag(Recipient.class);
 
   private final RecipientId            id;
   private final boolean                resolving;
@@ -63,7 +64,7 @@ public class Recipient {
   private final String                 username;
   private final String                 e164;
   private final String                 email;
-  private final String                 groupId;
+  private final GroupId                groupId;
   private final List<Recipient>        participants;
   private final Optional<Long>         groupAvatarId;
   private final boolean                localNumber;
@@ -85,13 +86,15 @@ public class Recipient {
   private final Uri                    contactUri;
   private final ProfileName            profileName;
   private final String                 profileAvatar;
+  private final boolean                hasProfileImage;
   private final boolean                profileSharing;
   private final String                 notificationChannel;
   private final UnidentifiedAccessMode unidentifiedAccessMode;
   private final boolean                forceSmsSelection;
-  private final boolean                uuidSupported;
+  private final Capability             uuidCapability;
+  private final Capability             groupsV2Capability;
   private final InsightsBannerTier     insightsBannerTier;
-  private final byte[]                 storageKey;
+  private final byte[]                 storageId;
   private final byte[]                 identityKey;
   private final VerifiedStatus         identityStatus;
 
@@ -230,6 +233,15 @@ public class Recipient {
   }
 
   /**
+   * A version of {@link #external(Context, String)} that should be used when you know the
+   * identifier is a groupId.
+   */
+  @WorkerThread
+  public static @NonNull Recipient externalGroup(@NonNull Context context, @NonNull GroupId groupId) {
+    return Recipient.resolved(DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId));
+  }
+
+  /**
    * Returns a fully-populated {@link Recipient} based off of a string identifier, creating one in
    * the database if necessary. The identifier may be a uuid, phone number, email,
    * or serialized groupId.
@@ -259,8 +271,8 @@ public class Recipient {
           throw new UuidRecipientError();
         }
       }
-    } else if (GroupUtil.isEncodedGroup(identifier)) {
-      id = db.getOrInsertFromGroupId(identifier);
+    } else if (GroupId.isEncodedGroup(identifier)) {
+      id = db.getOrInsertFromGroupId(GroupId.parseOrThrow(identifier));
     } else if (NumberUtil.isValidEmail(identifier)) {
       id = db.getOrInsertFromEmail(identifier);
     } else {
@@ -305,12 +317,14 @@ public class Recipient {
     this.contactUri             = null;
     this.profileName            = ProfileName.EMPTY;
     this.profileAvatar          = null;
+    this.hasProfileImage        = false;
     this.profileSharing         = false;
     this.notificationChannel    = null;
     this.unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
     this.forceSmsSelection      = false;
-    this.uuidSupported          = false;
-    this.storageKey             = null;
+    this.uuidCapability         = Capability.UNKNOWN;
+    this.groupsV2Capability     = Capability.UNKNOWN;
+    this.storageId              = null;
     this.identityKey            = null;
     this.identityStatus         = VerifiedStatus.DEFAULT;
   }
@@ -345,12 +359,14 @@ public class Recipient {
     this.contactUri             = details.contactUri;
     this.profileName            = details.profileName;
     this.profileAvatar          = details.profileAvatar;
+    this.hasProfileImage        = details.hasProfileImage;
     this.profileSharing         = details.profileSharing;
     this.notificationChannel    = details.notificationChannel;
     this.unidentifiedAccessMode = details.unidentifiedAccessMode;
     this.forceSmsSelection      = details.forceSmsSelection;
-    this.uuidSupported          = details.uuidSuported;
-    this.storageKey             = details.storageKey;
+    this.uuidCapability         = details.uuidCapability;
+    this.groupsV2Capability     = details.groupsV2Capability;
+    this.storageId              = details.storageId;
     this.identityKey            = details.identityKey;
     this.identityStatus         = details.identityStatus;
   }
@@ -368,7 +384,7 @@ public class Recipient {
   }
 
   public @Nullable String getName(@NonNull Context context) {
-    if (this.name == null && groupId != null && GroupUtil.isMmsGroup(groupId)) {
+    if (this.name == null && groupId != null && groupId.isMms()) {
       List<String> names = new LinkedList<>();
 
       for (Recipient recipient : participants) {
@@ -400,10 +416,18 @@ public class Recipient {
   }
 
   public @NonNull MaterialColor getColor() {
-    if      (isGroupInternal()) return MaterialColor.GROUP;
-    else if (color != null)     return color;
-    else if (name != null)      return ContactColors.generateFor(name);
-    else                        return ContactColors.UNKNOWN_COLOR;
+    if (isGroupInternal()) {
+      return MaterialColor.GROUP;
+    } else if (color != null) {
+      return color;
+     } else if (name != null) {
+      Log.i(TAG, "Saving color for " + id);
+      MaterialColor color = ContactColors.generateFor(name);
+      DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).setColor(id, color);
+      return color;
+    } else {
+      return ContactColors.UNKNOWN_COLOR;
+    }
   }
 
   public @NonNull Optional<UUID> getUuid() {
@@ -426,13 +450,24 @@ public class Recipient {
     return Optional.fromNullable(email);
   }
 
-  public @NonNull Optional<String> getGroupId() {
+  public @NonNull Optional<GroupId> getGroupId() {
     return Optional.fromNullable(groupId);
   }
 
   public @NonNull Optional<String> getSmsAddress() {
     return Optional.fromNullable(e164).or(Optional.fromNullable(email));
   }
+
+  public @NonNull UUID requireUuid() {
+    UUID resolved = resolving ? resolve().uuid : uuid;
+
+    if (resolved == null) {
+      throw new MissingAddressError();
+    }
+
+    return resolved;
+  }
+
 
   public @NonNull String requireE164() {
     String resolved = resolving ? resolve().e164 : e164;
@@ -478,8 +513,8 @@ public class Recipient {
     return getUuid().isPresent();
   }
 
-  public @NonNull String requireGroupId() {
-    String resolved = resolving ? resolve().groupId : groupId;
+  public @NonNull GroupId requireGroupId() {
+    GroupId resolved = resolving ? resolve().groupId : groupId;
 
     if (resolved == null) {
       throw new MissingAddressError();
@@ -515,7 +550,7 @@ public class Recipient {
     Recipient resolved = resolving ? resolve() : this;
 
     if (resolved.isGroup()) {
-      return resolved.requireGroupId();
+      return resolved.requireGroupId().toString();
     } else if (resolved.getUuid().isPresent()) {
       return resolved.getUuid().get().toString();
     }
@@ -553,13 +588,18 @@ public class Recipient {
   }
 
   public boolean isMmsGroup() {
-    String groupId = resolve().groupId;
-    return groupId != null && GroupUtil.isMmsGroup(groupId);
+    GroupId groupId = resolve().groupId;
+    return groupId != null && groupId.isMms();
   }
 
   public boolean isPushGroup() {
-    String groupId = resolve().groupId;
-    return groupId != null && !GroupUtil.isMmsGroup(groupId);
+    GroupId groupId = resolve().groupId;
+    return groupId != null && groupId.isPush();
+  }
+
+  public boolean isPushV2Group() {
+    GroupId groupId = resolve().groupId;
+    return groupId != null && groupId.isV2();
   }
 
   public @NonNull List<Recipient> getParticipants() {
@@ -567,27 +607,35 @@ public class Recipient {
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
-    return getFallbackContactPhoto().asDrawable(context, getColor().toAvatarColor(context), inverted);
+    return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
   }
 
-  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted) {
-    return getFallbackContactPhoto().asSmallDrawable(context, getColor().toAvatarColor(context), inverted);
+  public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, getColor().toAvatarColor(context), inverted);
+  }
+
+  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, getColor().toAvatarColor(context), inverted);
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto() {
-    if      (localNumber)              return new ResourceContactPhoto(R.drawable.ic_note_to_self);
-    if      (isResolving())            return new TransparentContactPhoto();
-    else if (isGroupInternal())        return new ResourceContactPhoto(R.drawable.ic_group_outline_40, R.drawable.ic_group_outline_20, R.drawable.ic_group_large);
-    else if (isGroup())                return new ResourceContactPhoto(R.drawable.ic_group_outline_40, R.drawable.ic_group_outline_20, R.drawable.ic_group_large);
-    else if (!TextUtils.isEmpty(name)) return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40);
-    else                               return new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20, R.drawable.ic_person_large);
+    return getFallbackContactPhoto(DEFAULT_FALLBACK_PHOTO_PROVIDER);
+  }
+
+  public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider) {
+    if      (localNumber)              return fallbackPhotoProvider.getPhotoForLocalNumber();
+    if      (isResolving())            return fallbackPhotoProvider.getPhotoForResolvingRecipient();
+    else if (isGroupInternal())        return fallbackPhotoProvider.getPhotoForGroup();
+    else if (isGroup())                return fallbackPhotoProvider.getPhotoForGroup();
+    else if (!TextUtils.isEmpty(name)) return fallbackPhotoProvider.getPhotoForRecipientWithName(name);
+    else                               return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
   }
 
   public @Nullable ContactPhoto getContactPhoto() {
     if      (localNumber)                                    return null;
     else if (isGroupInternal() && groupAvatarId.isPresent()) return new GroupRecordContactPhoto(groupId, groupAvatarId.get());
     else if (systemContactPhoto != null)                     return new SystemContactPhoto(id, systemContactPhoto, 0);
-    else if (profileAvatar != null)                          return new ProfileContactPhoto(id, profileAvatar);
+    else if (profileAvatar != null && hasProfileImage)       return new ProfileContactPhoto(this, profileAvatar);
     else                                                     return null;
   }
 
@@ -661,8 +709,12 @@ public class Recipient {
     if (FeatureFlags.usernames()) {
       return true;
     } else {
-      return FeatureFlags.uuids() && uuidSupported;
+      return FeatureFlags.uuids() && uuidCapability == Capability.SUPPORTED;
     }
+  }
+
+  public Capability getGroupsV2Capability() {
+    return groupsV2Capability;
   }
 
   public @Nullable byte[] getProfileKey() {
@@ -677,8 +729,8 @@ public class Recipient {
     return profileKeyCredential != null;
   }
 
-  public @Nullable byte[] getStorageServiceKey() {
-    return storageKey;
+  public @Nullable byte[] getStorageServiceId() {
+    return storageId;
   }
 
   public @NonNull VerifiedStatus getIdentityVerifiedStatus() {
@@ -697,7 +749,11 @@ public class Recipient {
     return contactUri != null;
   }
 
-  public Recipient resolve() {
+  /**
+   * If this recipient is missing crucial data, this will return a populated copy. Otherwise it
+   * returns itself.
+   */
+  public @NonNull Recipient resolve() {
     if (resolving) {
       return live().resolve();
     } else {
@@ -707,6 +763,13 @@ public class Recipient {
 
   public boolean isResolving() {
     return resolving;
+  }
+
+  /**
+   * Forces retrieving a fresh copy of the recipient, regardless of its state.
+   */
+  public @NonNull Recipient fresh() {
+    return live().resolve();
   }
 
   public @NonNull LiveRecipient live() {
@@ -729,9 +792,60 @@ public class Recipient {
     return id.equals(recipient.id);
   }
 
+  public enum Capability {
+    UNKNOWN(0),
+    SUPPORTED(1),
+    NOT_SUPPORTED(-1);
+
+    private final int value;
+
+    Capability(int value) {
+      this.value = value;
+    }
+
+    public int serialize() {
+      return value;
+    }
+
+    public static Capability deserialize(int value) {
+      switch (value) {
+        case  1 : return SUPPORTED;
+        case -1 : return NOT_SUPPORTED;
+        default : return UNKNOWN;
+      }
+    }
+
+    public static Capability fromBoolean(boolean supported) {
+      return supported ? SUPPORTED : NOT_SUPPORTED;
+    }
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id);
+  }
+
+  public static class FallbackPhotoProvider {
+    public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
+      return new ResourceContactPhoto(R.drawable.ic_note_34, R.drawable.ic_note_24);
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForResolvingRecipient() {
+      return new TransparentContactPhoto();
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForGroup() {
+      return new ResourceContactPhoto(R.drawable.ic_group_outline_34, R.drawable.ic_group_outline_20, R.drawable.ic_group_outline_48);
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForRecipientWithName(String name) {
+      return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40);
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
+      return new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20, R.drawable.ic_profile_outline_48);
+    }
+
   }
 
   private static class MissingAddressError extends AssertionError {

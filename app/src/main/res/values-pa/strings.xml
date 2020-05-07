@@ -196,6 +196,9 @@
   <string name="ConversationActivity_no_results">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ</string>
   <string name="ConversationActivity_sticker_pack_installed">ਸਟਿੱਕਰ ਪੈਕ ਇੰਸਟਾਲ ਕੀਤਾ ਗਿਆ </string>
   <string name="ConversationActivity_new_say_it_with_stickers">ਨਵਾਂ ! ਹੁਣ ਸਟਿੱਕਰ ਨਾਲ ਗੱਲਾਂਬਾਤਾਂ ਕਰੋ </string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_block">ਬਲਾਕ</string> -->
+  <string name="ConversationActivity_cancel">ਰੱਦ ਕਰੋ</string>
+  <string name="ConversationActivity_delete">ਮਿਟਾਓ </string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ਨਾ ਪੜੇ ਸੁਨੇਹੇ </item>
@@ -279,6 +282,8 @@
   <string name="CustomDefaultPreference_using_custom">ਕਸਟਮ ਦੀ ਵਰਤੋਂ: %s</string>
   <string name="CustomDefaultPreference_using_default">ਮੂਲ ਦੀ ਵਰਤੋਂ: %s</string>
   <string name="CustomDefaultPreference_none">ਕੋਈ ਨਹੀਂ</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ਫੋਟੋ ਨੂੰ ਹਟਾਓ</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ਹੁਣ</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -308,30 +313,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ਇਹ ਡਿਵਾਈਸ ਪਲੇ ਸੇਵਾਵਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ. ਸਿਸਟਮ ਬੈਟਰੀ ਅਨੁਕੂਲਤਾ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਟੈਪ ਕਰੋ ਜੋ ਕਿ Signal ਨੂੰ ਨਾ-ਸਰਗਰਮ ਹੋਣ ਵੇਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਤੋਂ ਰੋਕਦੇ ਹਨ.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ਨਾਲ ਸ਼ੇਅਰ ਕਰੋ</string>
-  <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ਅਤੇ RedPhone ਹੁਣ ਇਕ ਪ੍ਰਾਈਵੇਟ ਸੰਦੇਸ਼ਵਾਹਕ ਹਨ, ਹਰੇਕ ਸਥਿਤੀ ਲਈ: Signal</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ !</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ਹੁਣ Signal ਹੈ </string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ਅਤੇ RedPhone  ਹੁਣ ਇਕੋ ਐੱਪ ਹਨ : Signal | ਐਕਸਪਲੋਰ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">ਸੁਰੱਖਿਅਤ ਵੀਡੀਓ ਕਾਲਾਂ ਨੂੰ ਹੈਲੋ ਕਹੋ</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ਹੁਣ ਸੁਰੱਖਿਅਤ ਵੀਡੀਓ ਕਾਲਿੰਗ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ. ਬਸ ਸਧਾਰਨ ਤੌਰ \'ਤੇ ਇੱਕ Signal ਕਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਵੀਡੀਓ ਬਟਨ ਨੂੰ ਟੈਪ ਕਰੋ, ਅਤੇ ਹੈਲੋ ਕਹੋ .</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ਤੇ ਹੁਣ ਤੁਸੀਂ ਸੁਰੱਖਿਅਤ ਵੀਡੀਓ ਕਾਲਿੰਗ ਕਰ ਸਕਦੇ ਹੋ </string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ਤੇ ਹੁਣ ਤੁਸੀਂ ਸੁਰੱਖਿਅਤ ਵੀਡੀਓ ਕਾਲਿੰਗ ਕਰ ਸਕਦੇ ਹੋ | ਐਕਸਪਲੋਰ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">ਆਪਣੇ ਨਜ਼ਦੀਕੀ ਲਈ ਤਿਆਰ?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ਹੁਣ ਤੁਸੀਂ Signal \'ਤੇ ਦੋਸਤਾਂ ਦੇ ਨਾਲ ਪ੍ਰੋਫਾਇਲ ਫੋਟੋ ਅਤੇ ਨਾਮ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal ਪ੍ਰੋਫਾਈਲਾਂ ਇੱਥੇ ਹਨ</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕਾਂ ਨੂੰ ਪੇਸ਼ ਕਰ ਰਹੇ ਹਨ </string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">ਹੁਣ ਤੁਸੀਂ ਚੋਣਵੇਂ ਰੂਪ ਵਿੱਚ ਦੇਖ ਸਕਦੇ ਹੋ ਅਤੇ ਸ਼ੇਅਰ ਕਰ ਸਕਦੇ ਹੋ ਜਦੋਂ ਸੁਨੇਹੇ ਟਾਈਪ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">ਕੀ ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ ਹੁਣੇ ਸਮਰੱਥ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">ਟਾਈਪਿੰਗ ਸੂਚਕ ਇੱਥੇ ਹਨ</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕ ਚਾਲੂ ਕਰੋ</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">ਲਿੰਕ ਪੂਰਵਦਰਸ਼ਨ ਪੇਸ਼ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ </string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ਅਖ਼ਤਿਆਰੀ ਲਿੰਕ ਪ੍ਰੀਵਿਊ ਹੁਣ ਇੰਟਰਨੈਟ ਤੇ ਬਹੁਤ ਸਾਰੀਆਂ ਪ੍ਰਸਿੱਧ ਸਾਈਟਾਂ ਲਈ ਸਮਰਥਿਤ ਹੈ.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">ਤੁਸੀਂ ਆਪਣੀ Signal ਸੈਟਿੰਗਜ਼ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਇਸ ਵਿਸ਼ੇਸ਼ਤਾ ਨੂੰ ਅਸਮਰੱਥ ਜਾਂ ਸਮਰੱਥ ਬਣਾ ਸਕਦੇ ਹੋ | (Privacy &gt; Send link previews).</string>
-  <string name="ExperienceUpgradeActivity_got_it">ਮਿਲ ਗਿਆ</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <!--GcmRefreshJob-->
@@ -363,7 +344,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਪ੍ਰੋਫਾਈਲ ਨਾਂ ਅਤੇ ਫੋਟੋ ਨੂੰ ਇਸ ਸਮੂਹ ਦੇ ਸਾਰੇ ਮੌਜੂਦਾ ਅਤੇ ਭਵਿੱਖ ਦੇ ਮੈਂਬਰਾਂ ਲਈ ਦ੍ਰਿਸ਼ਤ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
   <string name="GroupShareProfileView_make_visible">ਦ੍ਰਿਸ਼ਟੀ ਬਣਾਓ</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">ਮੈਨੂੰ</string>
+  <string name="GroupMembersDialog_you">ਤੁਸੀਂ</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ਗਰੁੱਪ ਦਾ ਅਵਤਾਰ</string>
   <string name="CropImageActivity_profile_avatar">ਅਵਤਾਰ</string>
@@ -468,6 +449,11 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ ਤੋਂ %s ਨਾਲ ਆਪਣੀ ਸੁਰੱਖਿਆ ਨੰਬਰ ਪ੍ਰਮਾਣਿਤ ਕੀਤਾ ਹੈ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">ਤੁਸੀਂ ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ %s ਦੇ ਨਾਲ ਅਸਪਸ਼ਟ ਕੀਤਾ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ ਤੋਂ  ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ %s ਨਾਲ ਅਸਪਸ਼ਟ ਕੀਤਾ</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">ਸਵੀਕਾਰ ਕਰੋ</string>
+  <string name="MessageRequestBottomView_delete">ਮਿਟਾਓ </string>
+  <string name="MessageRequestBottomView_block">ਬਲਾਕ</string>
+  <string name="MessageRequestBottomView_unblock">ਅਨਬਲੌਕ</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ਪਾਸਫਰੇਜ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ਗਲਤ ਪੁਰਾਣਾ ਪਾਸਫਰੇਜ!</string>
@@ -518,17 +504,19 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ਓਹੋ, Play Store ਐਪ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤੇ ਸਥਾਪਤ ਨਹੀਂ ਹੈ</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">ਤੁਸੀਂ</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">ਇਸ ਸੰਪਰਕ ਨੂੰ ਬਲੌਕ ਕਰੋ ?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">ਤੁਸੀਂ ਹੁਣ ਇਸ ਸੰਪਰਕ ਤੋਂ ਸੰਦੇਸ਼ ਅਤੇ ਕਾਲ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰੋਗੇ</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">ਬਲਾਕ ਕਰੋ ਅਤੇ ਇਸ ਸਮੂਹ ਨੂੰ ਛੱਡੋ ?</string>
-  <string name="RecipientPreferenceActivity_block_group">ਇਸ ਗਰੁੱਪ ਨੂੰ ਬਲੌਕ ਕਰੋ ?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">ਤੁਸੀਂ ਹੁਣ ਇਸ ਸਮੂਹ ਤੋਂ ਸੰਦੇਸ਼ ਜਾਂ ਅਪਡੇਟਸ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰੋਗੇ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">ਇਸ ਸੰਪਰਕ ਨੂੰ ਬਲੌਕ ਕਰੋ ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">ਤੁਸੀਂ ਹੁਣ ਇਸ ਸੰਪਰਕ ਤੋਂ ਸੰਦੇਸ਼ ਅਤੇ ਕਾਲ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰੋਗੇ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_and_leave_group">ਬਲਾਕ ਕਰੋ ਅਤੇ ਇਸ ਸਮੂਹ ਨੂੰ ਛੱਡੋ ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_group">ਇਸ ਗਰੁੱਪ ਨੂੰ ਬਲੌਕ ਕਰੋ ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_and_leave_group_description">ਤੁਸੀਂ ਹੁਣ ਇਸ ਸਮੂਹ ਤੋਂ ਸੰਦੇਸ਼ ਜਾਂ ਅਪਡੇਟਸ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰੋਗੇ.</string> -->
   <string name="RecipientPreferenceActivity_block">ਬਲਾਕ</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">ਇਸ ਸੰਪਰਕ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ ?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">ਤੁਸੀਂ ਇੱਕ ਵਾਰ ਫਿਰ ਇਸ ਸੰਪਰਕ ਤੋਂ ਸੰਦੇਸ਼ ਅਤੇ ਕਾਲ ਪ੍ਰਾਪਤ ਕਰਨ ਦੇ ਯੋਗ ਹੋਵੋਗੇ</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">ਇਸ ਗਰੁੱਪ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ ?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">ਮੌਜੂਦਾ ਮੈਂਬਰ ਤੁਹਾਨੂੰ ਦੁਬਾਰਾ ਗਰੁੱਪ ਵਿੱਚ ਜੋੜਨ ਦੇ ਯੋਗ ਹੋਣਗੇ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_contact_question">ਇਸ ਸੰਪਰਕ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">ਤੁਸੀਂ ਇੱਕ ਵਾਰ ਫਿਰ ਇਸ ਸੰਪਰਕ ਤੋਂ ਸੰਦੇਸ਼ ਅਤੇ ਕਾਲ ਪ੍ਰਾਪਤ ਕਰਨ ਦੇ ਯੋਗ ਹੋਵੋਗੇ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_question">ਇਸ ਗਰੁੱਪ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_description">ਮੌਜੂਦਾ ਮੈਂਬਰ ਤੁਹਾਨੂੰ ਦੁਬਾਰਾ ਗਰੁੱਪ ਵਿੱਚ ਜੋੜਨ ਦੇ ਯੋਗ ਹੋਣਗੇ.</string> -->
   <string name="RecipientPreferenceActivity_error_leaving_group">ਗਰੁੱਪ ਛੱਡਣ ਵਿੱਚ ਗਲਤੀ</string>
   <string name="RecipientPreferenceActivity_unblock">ਅਨਬਲੌਕ ਕਰੋ</string>
   <string name="RecipientPreferenceActivity_enabled">ਸਮਰਥਿਤ</string>
@@ -637,6 +625,13 @@
   <string name="StickerPackPreviewActivity_remove">ਹਟਾਓ </string>
   <string name="StickerPackPreviewActivity_stickers">ਸਟਿੱਕਰ</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ਸਟੀਕਰ ਪੈਕ ਨੂੰ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">ਸੋਧ</string>
+  <string name="SubmitDebugLogActivity_done">ਕੀਤਾ</string>
+  <string name="SubmitDebugLogActivity_submit">ਜਮ੍ਹਾਂ ਕਰੋ</string>
+  <string name="SubmitDebugLogActivity_success">ਸਫਲਤਾ!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
+  <string name="SubmitDebugLogActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">ਗਰੁੱਪ ਅਪਡੇਟ ਕੀਤਾ</string>
   <string name="ThreadRecord_left_the_group">ਸਮੂਹ ਨੂੰ ਛੱਡ ਦਿੱਤਾ</string>
@@ -941,9 +936,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">ਇਸ ਲੌਗ ਨੂੰ ਦੇਖਣ ਲਈ ਯੋਗੀਆਂ ਲਈ ਆਨਲਾਇਨ ਪੋਸਟ ਕੀਤਾ ਜਾਵੇਗਾ, ਤੁਸੀਂ ਇਸ ਨੂੰ ਪ੍ਰਸਤੁਤ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦੇ ਹੋ.</string>
   <string name="log_submit_activity__loading_logs">ਲਾਗ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="log_submit_activity__uploading_logs">ਲਾਗ ਅੱਪਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
-  <string name="log_submit_activity__success">ਸਫਲਤਾ!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">ਇਸ URL ਨੂੰ ਕਾਪੀ ਕਰੋ ਅਤੇ ਇਸਨੂੰ ਆਪਣੇ ਮੁੱਦੇ ਦੀ ਰਿਪੋਰਟ ਜਾਂ ਸਹਾਇਤਾ ਈਮੇਲ ਵਿੱਚ ਜੋੜੋ:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
   <string name="log_submit_activity__choose_email_app">ਈਮੇਲ ਐਪ ਚੁਣੋ</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">ਕਿਰਪਾ ਕਰਕੇ ਮੇਰੇ ਐਪ ਤੋਂ ਇਸ ਲਾਗ ਦੀ ਸਮੀਖਿਆ ਕਰੋ: %1$s</string>
   <string name="log_submit_activity__network_failure">ਨੈਟਵਰਕ ਅਸਫਲਤਾ. ਮੁੜ ਕੋਸ਼ਿਸ ਕਰੋ ਜੀ.</string>
@@ -1043,6 +1035,10 @@
   <string name="AndroidManifest__invite_friends">ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
   <string name="AndroidManifest_archived_conversations">ਆਰਕਾਈਵ ਕੀਤੀਆਂ ਗੱਲਾਂਬਾਤਾਂ</string>
   <string name="AndroidManifest_remove_photo">ਫੋਟੋ ਨੂੰ ਹਟਾਓ</string>
+  <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">ਮਦਦ</string>
+  <string name="HelpFragment__next">ਅਗਲਾ</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ਆਯਾਤ ਕਰੋ</string>
   <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
@@ -1121,6 +1117,7 @@
   <string name="preferences__fast">ਤੇਜ਼</string>
   <string name="preferences__normal">ਆਮ</string>
   <string name="preferences__slow">ਹੌਲੀ</string>
+  <string name="preferences__help">ਮਦਦ</string>
   <string name="preferences__advanced">ਤਕਨੀਕੀ</string>
   <string name="preferences__privacy">ਗੋਪਨੀਯਤਾ</string>
   <string name="preferences__mms_user_agent">ਐਮਐਮਐਸ ਯੂਜ਼ਰ ਏਜੰਟ</string>
@@ -1343,8 +1340,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ਡਾਟਾਬੇਸ ਮਾਈਗ੍ਰੇਟ ਹੋ ਰਿਹਾ ਹੈ</string>
   <string name="PushDecryptJob_new_locked_message">ਨਵਾਂ ਲੌਕ ਕੀਤਾ ਸੁਨੇਹਾ</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ਬਕਾਇਆ ਸੁਨੇਹੇ ਵੇਖਣ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ਅਪਡੇਟ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">ਕਿਰਪਾ ਕਰਕੇ ਅਪਡੇਟ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ Signal ਅਨਲੌਕ ਕਰੋ</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">ਬੈਕਅਪ ਪਾਸਫਰੇਜ</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ਬੈਕਅਪ ਬਾਹਰੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤੇ ਜਾਣਗੇ ਅਤੇ ਹੇਠਾਂ ਪਾਸਫਰੇਜ ਨਾਲ ਏਨਕ੍ਰਿਪਟ ਕੀਤੇ ਜਾਣਗੇ. ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਪਾਸਫਰੇਜ ਹੋਣਾ ਲਾਜ਼ਮੀ ਹੈ.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ਮੈਂ ਇਹ ਪਾਸਫਰੇਜ ਲਿੱਖ ਲਿਆ ਹੈ. ਇਸ ਤੋਂ ਬਿਨਾਂ, ਮੈਂ ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਹੋਵਾਂਗਾ.</string>
@@ -1424,8 +1419,5 @@
   <string name="RegistrationLockDialog_reminder">ਰੀਮਾਈਂਡਰ:</string>
   <string name="recipient_preferences__about">ਇਸ ਬਾਰੇ</string>
   <string name="Recipient_unknown">ਅਣਜਾਣ</string>
-  <string name="MessageRequestBottomView_accept">ਸਵੀਕਾਰ ਕਰੋ</string>
-  <string name="MessageRequestBottomView_delete">ਮਿਟਾਓ </string>
-  <string name="MessageRequestBottomView_block">ਬਲਾਕ</string>
   <!--EOF-->
 </resources>

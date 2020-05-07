@@ -159,10 +159,12 @@ public class TextSecurePreferences {
   @Deprecated
   private static final String REGISTRATION_LOCK_PIN_PREF_V1            = "pref_registration_lock_pin";
 
+  public static final  String REGISTRATION_LOCK_PREF_V2                = "pref_registration_lock_v2";
+
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS = "pref_registration_lock_last_reminder_time_post_kbs";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL      = "pref_registration_lock_next_reminder_interval";
 
-  public  static final String KBS_PIN_CHANGE = "pref_kbs_change";
+  public  static final String SIGNAL_PIN_CHANGE = "pref_kbs_change";
 
   private static final String SERVICE_OUTAGE         = "pref_service_outage";
   private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";
@@ -252,7 +254,7 @@ public class TextSecurePreferences {
     return getStringPreference(context, REGISTRATION_LOCK_PIN_PREF_V1, null);
   }
 
-  public static void clearOldRegistrationLockPin(@NonNull Context context) {
+  public static void clearRegistrationLockV1(@NonNull Context context) {
     //noinspection deprecation
     PreferenceManager.getDefaultSharedPreferences(context)
                      .edit()
@@ -264,7 +266,7 @@ public class TextSecurePreferences {
    * @deprecated Use only for migrations to the Key Backup Store registration pinV2.
    */
   @Deprecated
-  public static void setDeprecatedRegistrationLockPin(@NonNull Context context, String pin) {
+  public static void setV1RegistrationLockPin(@NonNull Context context, String pin) {
     //noinspection deprecation
     setStringPreference(context, REGISTRATION_LOCK_PIN_PREF_V1, pin);
   }
@@ -432,22 +434,6 @@ public class TextSecurePreferences {
 
   public static void setIsGifSearchInGridLayout(Context context, boolean isGrid) {
     setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
-  }
-
-  public static void setProfileName(Context context, ProfileName name) {
-    setStringPreference(context, PROFILE_NAME_PREF, name.serialize());
-  }
-
-  public static ProfileName getProfileName(Context context) {
-    return ProfileName.fromSerialized(getStringPreference(context, PROFILE_NAME_PREF, null));
-  }
-
-  public static void setProfileAvatarId(Context context, int id) {
-    setIntegerPrefrence(context, PROFILE_AVATAR_ID_PREF, id);
-  }
-
-  public static int getProfileAvatarId(Context context) {
-    return getIntegerPreference(context, PROFILE_AVATAR_ID_PREF, 0);
   }
 
   public static int getNotificationPriority(Context context) {

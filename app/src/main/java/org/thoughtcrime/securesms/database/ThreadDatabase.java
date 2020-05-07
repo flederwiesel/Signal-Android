@@ -44,6 +44,8 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -52,6 +54,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -421,10 +424,48 @@ public class ThreadDatabase extends Database {
     return getConversationList("1");
   }
 
+  public boolean isArchived(@NonNull RecipientId recipientId) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = RECIPIENT_ID + " = ?";
+    String[]       args  = new String[]{ recipientId.serialize() };
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { ARCHIVED }, query, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(cursor.getColumnIndexOrThrow(ARCHIVED)) == 1;
+      }
+    }
+
+    return false;
+  }
+
+  public void setArchived(@NonNull RecipientId recipientId, boolean status) {
+    setArchived(Collections.singletonMap(recipientId, status));
+  }
+
+  public void setArchived(@NonNull Map<RecipientId, Boolean> status) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+
+    db.beginTransaction();
+    try {
+      String query = RECIPIENT_ID + " = ?";
+
+      for (Map.Entry<RecipientId, Boolean> entry : status.entrySet()) {
+        ContentValues values = new ContentValues(1);
+        values.put(ARCHIVED, entry.getValue() ? "1" : "0");
+        db.update(TABLE_NAME, values, query, new String[] { entry.getKey().serialize() });
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+      notifyConversationListListeners();
+    }
+  }
+
   public @NonNull Set<RecipientId> getArchivedRecipients() {
     Set<RecipientId> archived = new HashSet<>();
 
-    try (Cursor cursor = DatabaseFactory.getThreadDatabase(context).getArchivedConversationList()) {
+    try (Cursor cursor = getArchivedConversationList()) {
       while (cursor != null && cursor.moveToNext()) {
         archived.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_ID))));
       }
@@ -487,6 +528,12 @@ public class ThreadDatabase extends Database {
 
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
     notifyConversationListListeners();
+
+    Recipient recipient = getRecipientForThreadId(threadId);
+    if (recipient != null) {
+      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipient.getId());
+      StorageSyncHelper.scheduleSyncForDataChange();
+    }
   }
 
   public void unarchiveConversation(long threadId) {
@@ -496,6 +543,12 @@ public class ThreadDatabase extends Database {
 
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
     notifyConversationListListeners();
+
+    Recipient recipient = getRecipientForThreadId(threadId);
+    if (recipient != null) {
+      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipient.getId());
+      StorageSyncHelper.scheduleSyncForDataChange();
+    }
   }
 
   public void setLastSeen(long threadId) {
@@ -704,13 +757,32 @@ public class ThreadDatabase extends Database {
   }
 
   private @Nullable Extra getExtrasFor(MessageRecord record) {
-    if (record.isMms() && ((MmsMessageRecord) record).isViewOnce()) {
-      return Extra.forRevealableMessage();
+    boolean     messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(context, record.getThreadId());
+    RecipientId threadRecipientId      = getRecipientIdForThreadId(record.getThreadId());
+
+    if (!messageRequestAccepted && threadRecipientId != null) {
+      boolean isPushGroup = Recipient.resolved(threadRecipientId).isPushGroup();
+      if (isPushGroup) {
+        RecipientId recipientId = DatabaseFactory.getMmsSmsDatabase(context).getGroupAddedBy(record.getThreadId());
+
+        if (recipientId != null) {
+          return Extra.forGroupMessageRequest(recipientId);
+        }
+      }
+
+      return Extra.forMessageRequest();
+    }
+
+    if (record.isViewOnce()) {
+      return Extra.forViewOnce();
+    } else if (record.isRemoteDelete()) {
+      return Extra.forRemoteDelete();
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
       return Extra.forSticker();
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getSlides().size() > 1) {
       return Extra.forAlbum();
     }
+
     return null;
   }
 
@@ -829,30 +901,50 @@ public class ThreadDatabase extends Database {
     @JsonProperty private final boolean isRevealable;
     @JsonProperty private final boolean isSticker;
     @JsonProperty private final boolean isAlbum;
+    @JsonProperty private final boolean isRemoteDelete;
+    @JsonProperty private final boolean isMessageRequestAccepted;
+    @JsonProperty private final String  groupAddedBy;
 
     public Extra(@JsonProperty("isRevealable") boolean isRevealable,
                  @JsonProperty("isSticker") boolean isSticker,
-                 @JsonProperty("isAlbum") boolean isAlbum)
+                 @JsonProperty("isAlbum") boolean isAlbum,
+                 @JsonProperty("isRemoteDelete") boolean isRemoteDelete,
+                 @JsonProperty("isMessageRequestAccepted") boolean isMessageRequestAccepted,
+                 @JsonProperty("groupAddedBy") String groupAddedBy)
     {
-      this.isRevealable = isRevealable;
-      this.isSticker    = isSticker;
-      this.isAlbum      = isAlbum;
+      this.isRevealable             = isRevealable;
+      this.isSticker                = isSticker;
+      this.isAlbum                  = isAlbum;
+      this.isRemoteDelete           = isRemoteDelete;
+      this.isMessageRequestAccepted = isMessageRequestAccepted;
+      this.groupAddedBy             = groupAddedBy;
     }
 
-    public static @NonNull Extra forRevealableMessage() {
-      return new Extra(true, false, false);
+    public static @NonNull Extra forViewOnce() {
+      return new Extra(true, false, false, false, true, null);
     }
 
     public static @NonNull Extra forSticker() {
-      return new Extra(false, true, false);
+      return new Extra(false, true, false, false, true, null);
     }
 
     public static @NonNull Extra forAlbum() {
-      return new Extra(false, false, true);
+      return new Extra(false, false, true, false, true, null);
     }
 
+    public static @NonNull Extra forRemoteDelete() {
+      return new Extra(false, false, false, true, true, null);
+    }
 
-    public boolean isRevealable() {
+    public static @NonNull Extra forMessageRequest() {
+      return new Extra(false, false, false, false, false, null);
+    }
+
+    public static @NonNull Extra forGroupMessageRequest(RecipientId recipientId) {
+      return new Extra(false, false, false, false, false, recipientId.serialize());
+    }
+
+    public boolean isViewOnce() {
       return isRevealable;
     }
 
@@ -862,6 +954,18 @@ public class ThreadDatabase extends Database {
 
     public boolean isAlbum() {
       return isAlbum;
+    }
+
+    public boolean isRemoteDelete() {
+      return isRemoteDelete;
+    }
+
+    public boolean isMessageRequestAccepted() {
+      return isMessageRequestAccepted;
+    }
+
+    public @Nullable String getGroupAddedBy() {
+      return groupAddedBy;
     }
   }
 }

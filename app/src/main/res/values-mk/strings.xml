@@ -134,8 +134,8 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели со</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_no_thanks">Не, благодарам</string>
-  <string name="ExperienceUpgradeActivity_got_it">Во ред</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Не, благодарам</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Во ред</string> -->
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <!--GiphyActivity-->
@@ -152,7 +152,7 @@
   <string name="GroupCreateActivity_loading_group_details">Вчитување на детали за групата…</string>
   <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Јас</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Јас</string> -->
   <!--InputPanel-->
   <!--InviteActivity-->
   <!--Job-->
@@ -220,9 +220,9 @@
   <string name="RatingManager_no_thanks">Не, благодарам</string>
   <string name="RatingManager_later">Покасно</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирај го контактот?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирај го контактот?</string> -->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одблокирај го контактот?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одблокирај го контактот?</string> -->
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
   <string name="RecipientPreferenceActivity_enabled">Овозможено</string>
   <string name="RecipientPreferenceActivity_disabled">Оневозможено</string>
@@ -356,7 +356,7 @@
   <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string>
   <string name="log_submit_activity__submitting">Испраќање</string>
   <string name="log_submit_activity__button_got_it">Во ред</string>
-  <string name="log_submit_activity__success">Успешно!</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Успешно!</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Стандардната системска база нема да биде променета на ниеден начин.</string>
   <string name="database_migration_activity__skip">Прескокни</string>

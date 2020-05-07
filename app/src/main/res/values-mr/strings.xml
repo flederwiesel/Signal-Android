@@ -73,6 +73,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">ऑडिओ प्ले करण्यात त्रुटी!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">अवरोधित संपर्क</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_unblock">अनब्लॉक करा</string>
+  <string name="BlockUnblockDialog_block">अवरोधित करा</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">आज</string>
   <string name="BucketedThreadMedia_Yesterday">काल</string>
@@ -201,6 +204,8 @@
   <string name="ConversationActivity_no_results">कुठलेही परिणाम नाहीत</string>
   <string name="ConversationActivity_sticker_pack_installed">स्टिकर पॅक स्थापन केले</string>
   <string name="ConversationActivity_new_say_it_with_stickers">नवीन! स्टिकर सोबत बोला</string>
+  <string name="ConversationActivity_cancel">रद्द करा</string>
+  <string name="ConversationActivity_delete">हटवा</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d न वाचलेला संदेश</item>
@@ -287,6 +292,8 @@
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
   <string name="CustomDefaultPreference_using_default">पूर्वनिर्धारित वापरून: %s</string>
   <string name="CustomDefaultPreference_none">कुठलेही नाही</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">फोटो काढा</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">आता</string>
   <string name="DateUtils_minutes_ago">%d मि</string>
@@ -317,34 +324,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">हा डिव्हाईस प्ले सेवांचे समर्थन करत नाही. निष्क्रिय असल्यावर संदेश पुनर्प्राप्त करताना अवरोधित करणारे सिस्टिम बॅटरी ऑप्टीमाईझेशन अक्षम करण्यासाठी टॅप करा.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">यासोबत सामायिक करा </string>
-  <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal मध्ये स्वागत आहे.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure आणि RedPhone आता एक खाजगी संदेशक आहेत, प्रत्येक परिस्थितीसाठी: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal मध्ये स्वागत आहे!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure आता Signal आहे.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure आणि RedPhone आता एक अॅप आहेत: Signal. वापरण्यासाठी टॅप करा.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">सुरक्षित व्हिडिओ कॉल यांना नमस्कार म्हणा.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal आता सुरक्षित व्हिडिओ कॉलिंगचे समर्थन करते. सामान्यपणे Signal कॉल चालू करा,व्हिडिओ बटण टॅप करा, आणि नमस्कार म्हणा.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal आता सुरक्षित व्हिडिओ कॉलिंगचे समर्थन करते.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal आता सुरक्षित व्हिडिओ कॉलिंगचे समर्थन करते. वापरण्यासाठी टॅप करा.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">आपल्या क्लोझअप करिता तयार?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">आता आपण प्रोफाईल फोटो आणि नाव Signal वर मित्रांसोबत सामायिक करू शकता</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal प्रोफाईल येथे आहेत</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">सादर करत आहे टाईपिंग निर्देशक.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">आता आपण संदेश टाईप होत असताना पर्यायीरीत्या बघू आणि सामायिक करू शकता. </string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">आपल्याला ते आता सक्षम करण्यास आवडेल का?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">टाईपिंग निर्देशक येथे आहेत</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">टाईपिंग निर्देशक सक्षम करा</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">टाईपिंग निर्देशक चालू करा</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">नाही धन्यवाद</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">सादर करत आहे दुवा पुनरावलोकन.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">इंटरनेट वरील सर्वात लोकप्रिय साईट पैकी काहींकरिता पर्यायी दुवा पुनरावलोकन आता समर्थित आहे.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">आपण हे वैशिष्ट्य कुठल्याही वेळी आपल्या Signal सेटिंग मध्ये (गोपनीयताआणि दुवा पुनरावलोकन पाठवा)अक्षम किंवा सक्षम करू शकता.</string>
-  <string name="ExperienceUpgradeActivity_got_it">कळले</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">सादर करत आहे स्टिकर</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">स्टिकर वापरू शकत असताना शब्द का वापरायचे?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">आपण स्टिकर वापरू शकत असल्यावर शब्द का वापरायचे? आपल्या कीबोर्ड करीता हे चिन्ह टॅप करा:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">चला</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">संदेश पुनर्प्राप्त करत आहे…</string>
   <!--GcmRefreshJob-->
@@ -376,7 +355,10 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">या गटाच्या सर्व वर्तमान आणि भविष्यातील सदस्यांसाठी आपले प्रोफाईल नाव आणि फोटो आपल्याला दृश्यमान करायचे?</string>
   <string name="GroupShareProfileView_make_visible">दृश्यमान करा</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">मी</string>
+  <string name="GroupMembersDialog_you">आपण</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">गट अवतार</string>
   <string name="CropImageActivity_profile_avatar">अवतार</string>
@@ -405,6 +387,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">मित्र मित्रांना अनएन्क्रिप्टेड चॅट करू देत नाही.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">पार्श्वभूमीमध्ये कार्य करत आहे…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">अधिक जाणा</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">पाठविण्यात अयशस्वी</string>
   <string name="MessageDetailsRecipient_new_safety_number">नवीन सुरक्षितता नंबर</string>
@@ -510,11 +494,36 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ने हरवणारे संदेश अक्षम केले.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">आपण हरवणारे संदेश टायमर %1$s वर सेट केले.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ने हरवणारे संदेश टायमर %2$s वर सेट केले.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_s_joined_the_group">%1$s गटात सामील झाले</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s सोबतचा आपला सुरक्षितता नंबर बदलला आहे.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s सोबत आपण आपला सुरक्षितता नंबर सत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s सोबत आपण आपला सुरक्षितता नंबर दुसऱ्या डिव्हाईस वरून सत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s सोबत आपण आपला सुरक्षितता नंबर असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s सोबत आपण आपला सुरक्षितता नंबर दुसऱ्या डिव्हाईस वरून असत्यापित म्हणून चिन्हांकित केला आहे</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">स्वीकारा</string>
+  <string name="MessageRequestBottomView_delete">हटवा</string>
+  <string name="MessageRequestBottomView_block">अवरोधित करा</string>
+  <string name="MessageRequestBottomView_unblock">अनब्लॉक करा</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s चा सदस्य</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s आणि %2$s चा सदस्य</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, आणि %3$s चा सदस्य </string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d इतर</item>
+    <item quantity="other">%d इतर</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">पासफ्रेझ जुळत नाहीत!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">चुकीचे जुने पासफ्रेझ!</string>
@@ -557,6 +566,15 @@
   <string name="PlacePickerActivity_accept_address">पत्ता स्वीकारा</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">आपण स्थापन केलेली Google प्ले सेवेची आवृत्ती व्यवस्थित कार्य करत नाही. कृपया Google प्ले सेवा पुन्हा स्थापन करा आणि पुन्हा प्रयत्न करा.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">चुकीचा PIN</string>
+  <string name="PinRestoreEntryFragment_contact_support">समर्थन सोबत संपर्क साधा</string>
+  <string name="PinRestoreEntryFragment_cancel">रद्द करा</string>
+  <string name="PinRestoreEntryFragment_skip">वगळा</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">अल्फान्यूमेरिक PIN प्रविष्ट करा</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">न्यूमेरिक PIN प्रविष्ट करा</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">आपला PIN तयार करा</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ह्या अॅपला रेट करा</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">जर आपल्याला हा अॅप वापरणे आवडत असेल, तर कृपया एक क्षण काढून आम्हाला रेट करून आमची मदत करा.</string>
@@ -566,17 +584,10 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">अरेरे, प्ले स्टोअर अॅप आपल्या डिव्हाईस वर स्थापित केलेले दिसत नाही.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">आपण</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">हा संपर्क अवरोधित करायचा?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">आपल्याला यापुढे या संपर्काकडून संदेश आणि कॉल प्राप्त होणार नाहीत.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">हा गट अवरोधित करायचा आणि सोडायचा?</string>
-  <string name="RecipientPreferenceActivity_block_group">हा गट अवरोधित करायचा?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">या गटामधून आपल्याला यापुढे संदेश किंवा अद्यतने प्राप्त होणार नाहीत.</string>
   <string name="RecipientPreferenceActivity_block">अवरोधित करा</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">हा संपर्क अनब्लॉक करायचा?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">आपण पुन्हा एकदा या संपर्काकडून कॉल आणि संदेश प्राप्त करू शकाल.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">हा गट अनब्लॉक करायचा?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">अस्तित्वात असलेले सदस्य आपल्याला गटामध्ये पुन्हा जोडू शकतील.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">गट सोडण्यात त्रुटी</string>
   <string name="RecipientPreferenceActivity_unblock">अनब्लॉक करा</string>
   <string name="RecipientPreferenceActivity_enabled">सक्षम केले</string>
@@ -635,6 +646,7 @@
   <string name="RegistrationActivity_phone_number_description">फोन नंबर</string>
   <string name="RegistrationActivity_country_code_description">देश कोड</string>
   <string name="RegistrationActivity_call">कॉल करा</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">फोटो बघा</string>
   <string name="RevealableMessageView_view_video">व्हिडिओ बघा</string>
@@ -673,7 +685,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s ने सुरक्षित सत्र रीसेट केले.</string>
   <string name="SmsMessageRecord_duplicate_message">संदेश डूप्लिकेट करा</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">हा नवीन आवृत्तीवरून पाठविला गेला असल्यामुळे ह्या संदेशाची प्रक्रिया होऊ शकली नाही. आपण आपल्या संपर्काला आपण अद्यतन केल्यावर हा संदेश पुन्हा पाठविण्यास विचारू शकता.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">येणारा संदेश हाताळण्यात त्रुटी</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">येणारा संदेश हाताळण्यात त्रुटी.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">स्टिकर</string>
   <!--StickerManagementAdapter-->
@@ -691,6 +703,13 @@
   <string name="StickerPackPreviewActivity_remove">काढा</string>
   <string name="StickerPackPreviewActivity_stickers">स्टिकर</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">स्टिकर पॅक लोड करण्यात अयशस्वी</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">संपादन</string>
+  <string name="SubmitDebugLogActivity_done">ठीक</string>
+  <string name="SubmitDebugLogActivity_submit">सादर करा</string>
+  <string name="SubmitDebugLogActivity_success">यश!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
+  <string name="SubmitDebugLogActivity_share">सामायिक करा</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">गट अद्यतनित</string>
   <string name="ThreadRecord_left_the_group">गट सोडले</string>
@@ -712,6 +731,7 @@
   <string name="ThreadRecord_you_marked_verified">आपण सत्यापित म्हणून चिन्हांकित केले</string>
   <string name="ThreadRecord_you_marked_unverified">आपण असत्यापित म्हणून चिन्हांकित केले</string>
   <string name="ThreadRecord_message_could_not_be_processed">संदेशावर प्रक्रिया होऊ शकली नाही</string>
+  <string name="ThreadRecord_message_request">संदेश विनंती</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal अद्यतन</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ची एक नवीन आवृत्ती उपलब्ध आहे, अद्ययावत करण्यासाठी टॅप करा</string>
@@ -1027,9 +1047,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">अंशदात्यांनी बघण्यासाठी हा लॉग सार्वजनिकरीत्या ऑनलाईन पोस्ट केला जाईल, आपण प्रविष्ट करण्यापूर्वी त्यास तपासू आणि संपादित करू शकता.</string>
   <string name="log_submit_activity__loading_logs">लॉग लोड करत आहे…</string>
   <string name="log_submit_activity__uploading_logs">लॉग अपलोड करत आहे…</string>
-  <string name="log_submit_activity__success">यश!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">ही URL कॉपी करा आणि आपल्या समस्याअहवालात किंवा समर्थन ईमेल मध्ये जोडा:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
   <string name="log_submit_activity__choose_email_app">ईमेल अॅप निवडा</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">माझ्या अॅपमध्ये कृपया ह्या लॉगचे पुनरावलोकन करा:%1$s</string>
   <string name="log_submit_activity__network_failure">नेटवर्क अपयश. कृपया पुन्हा प्रयत्न करा.</string>
@@ -1133,6 +1150,11 @@
   <string name="AndroidManifest__invite_friends">मित्रांना आमंत्रित करा</string>
   <string name="AndroidManifest_archived_conversations">आर्काईव्ह केलेले संभाषण</string>
   <string name="AndroidManifest_remove_photo">फोटो काढा</string>
+  <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">मदत</string>
+  <string name="HelpFragment__next">पुढे</string>
+  <string name="HelpFragment__signal_support">Signal समर्थन</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">आयात</string>
   <string name="arrays__use_default">पूर्वनिर्धारित वापरा</string>
@@ -1211,6 +1233,7 @@
   <string name="preferences__fast">जलद</string>
   <string name="preferences__normal">सामान्य</string>
   <string name="preferences__slow">हळू</string>
+  <string name="preferences__help">मदत</string>
   <string name="preferences__advanced">प्रगत</string>
   <string name="preferences__privacy">गोपनीयता</string>
   <string name="preferences__mms_user_agent">MMS वापरकर्ता एजंट</string>
@@ -1431,7 +1454,6 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN तयार करणे अयशस्वी</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">आपला PIN जतन केला गेला नाही. आम्ही नंतर आपल्याला PIN तयार करण्यासाठी सूचित करू.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN तयार केले</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">PIN पुन्हा प्रविष्ट करा</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN ची ओळख करून देत आहे</string>
   <string name="KbsSplashFragment__learn_more">अधिक जाणा</string>
@@ -1477,8 +1499,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal डेटाबेस स्थलांतर करत आहे</string>
   <string name="PushDecryptJob_new_locked_message">नवीन लॉक केलेला संदेश</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">प्रलंबित संदेश बघण्यासाठी अनलॉक करा</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">पूर्ण अद्यतनासाठी अनलॉक करा</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">अद्यतन पूर्ण करण्यासाठी कृपया Signal अनलॉक करा</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">बॅकअप पासफ्रेझ</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">बॅकअप बाह्य संचयन मध्ये जतन केले जातील आणि खालील पासफ्रेझ सोबत एन्क्रिप्ट केले जातील. बॅकअप पुनर्स्थापना करण्यासाठी आपल्याकडे हे पासफ्रेझ असायलाच हवे.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">मी हे पासफ्रेझ लिहून ठेवले आहे. याविना, मी बॅकअपची पुनर्स्थापना करण्यास अक्षम असेल.</string>
@@ -1522,9 +1542,7 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android स्क्रीन लॉक किंवा फिंगरप्रिंटने Signal अॅक्सेस लॉक करा</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">स्क्रीन लॉक निष्क्रियता टाईमआऊट</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-  <string name="preferences_app_protection__pin">PIN</string>
-  <string name="preferences_app_protection__change">बदला</string>
-  <string name="preferences_app_protection__create">तयार करा</string>
+  <string name="preferences_app_protection__change_your_pin">आपला PIN बदला</string>
   <string name="AppProtectionPreferenceFragment_none">कुठलेही नाही</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">आपल्याला आता प्राप्त झालेल्या SMS सत्यापन कोड आणि नोंदणी लॉक PIN सारखे नाहीत. कृपया आपण अॅपलिकेशनमध्ये पूर्वी कॉन्फिगर केलेले PIN प्रविष्ट करा.</string>
   <string name="registration_activity__registration_lock_pin">नोंदणी लॉक PIN</string>
@@ -1565,17 +1583,5 @@
   <string name="RegistrationLockDialog_reminder">स्मरणपत्र:</string>
   <string name="recipient_preferences__about">याबद्दल</string>
   <string name="Recipient_unknown">अज्ञात</string>
-  <string name="MessageRequestBottomView_accept">स्वीकारा</string>
-  <string name="MessageRequestBottomView_delete">हटवा</string>
-  <string name="MessageRequestBottomView_block">अवरोधित करा</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">%1$s कडून आपण संदेश प्राप्त करू इच्छिता?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">%1$s चा सदस्य</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">%1$s आणि %2$s चा सदस्य</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, आणि %3$s चा सदस्य </string>
-  <string name="MessageRequestProfileView_members">%1$d सदस्य</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d इतर</item>
-    <item quantity="other">%d इतर</item>
-  </plurals>
   <!--EOF-->
 </resources>

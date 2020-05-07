@@ -34,17 +34,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.widget.SwitchCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
-
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -62,13 +54,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.qr.QrCode;
 import org.thoughtcrime.securesms.qr.ScanListener;
@@ -76,8 +77,8 @@ import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.DynamicDarkActionBarTheme;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -105,22 +106,53 @@ import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 @SuppressLint("StaticFieldLeak")
 public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity implements ScanListener, View.OnClickListener {
 
-  private static final String TAG = VerifyIdentityActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(VerifyIdentityActivity.class);
 
-  public static final String RECIPIENT_EXTRA = "recipient_id";
-  public static final String IDENTITY_EXTRA  = "recipient_identity";
-  public static final String VERIFIED_EXTRA  = "verified_state";
+  private static final String RECIPIENT_EXTRA = "recipient_id";
+  private static final String IDENTITY_EXTRA  = "recipient_identity";
+  private static final String VERIFIED_EXTRA  = "verified_state";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicDarkActionBarTheme();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicDarkActionBarTheme();
 
-  private VerifyDisplayFragment displayFragment = new VerifyDisplayFragment();
-  private VerifyScanFragment    scanFragment    = new VerifyScanFragment();
+  private final VerifyDisplayFragment displayFragment = new VerifyDisplayFragment();
+  private final VerifyScanFragment    scanFragment    = new VerifyScanFragment();
+
+  public static Intent newIntent(@NonNull Context context,
+                                 @NonNull IdentityDatabase.IdentityRecord identityRecord)
+  {
+    return newIntent(context,
+                     identityRecord.getRecipientId(),
+                     identityRecord.getIdentityKey(),
+                     identityRecord.getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
+  }
+
+  public static Intent newIntent(@NonNull Context context,
+                                 @NonNull IdentityDatabase.IdentityRecord identityRecord,
+                                 boolean verified)
+  {
+    return newIntent(context,
+                     identityRecord.getRecipientId(),
+                     identityRecord.getIdentityKey(),
+                     verified);
+  }
+
+  public static Intent newIntent(@NonNull Context context,
+                                 @NonNull RecipientId recipientId,
+                                 @NonNull IdentityKey identityKey,
+                                 boolean verified)
+  {
+    Intent intent = new Intent(context, VerifyIdentityActivity.class);
+
+    intent.putExtra(RECIPIENT_EXTRA, recipientId);
+    intent.putExtra(IDENTITY_EXTRA, new IdentityKeyParcelable(identityKey));
+    intent.putExtra(VERIFIED_EXTRA, verified);
+
+    return intent;
+  }
 
   @Override
   public void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -143,7 +175,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     scanFragment.setScanListener(this);
     displayFragment.setClickListener(this);
 
-    initFragment(android.R.id.content, displayFragment, dynamicLanguage.getCurrentLocale(), extras);
+    initFragment(android.R.id.content, displayFragment, Locale.getDefault(), extras);
   }
 
   @Override
@@ -604,6 +636,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
                                                                          remoteIdentity,
                                                                          isChecked ? VerifiedStatus.VERIFIED :
                                                                                      VerifiedStatus.DEFAULT));
+            StorageSyncHelper.scheduleSyncForDataChange();
 
             IdentityUtil.markIdentityVerified(getActivity(), recipient.get(), isChecked, false);
           }

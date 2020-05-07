@@ -31,6 +31,10 @@
     <attr name="conversation_list_compose_icon_tint" format="color" />
     <attr name="conversation_list_camera_button_background" format="color"/>
 
+    <attr name="avatar_selection_take_photo" format="reference" />
+    <attr name="avatar_selection_pick_photo" format="reference" />
+    <attr name="avatar_selection_remove_photo" format="reference" />
+
     <attr name="kbs_splash_image" format="reference" />
 
     <attr name="conversation_sent_card_background" format="reference|color"/>
@@ -92,7 +96,7 @@
     <attr name="emoji_category_activity" format="reference"/>
     <attr name="emoji_category_places" format="reference"/>
     <attr name="emoji_category_objects" format="reference"/>
-    <attr name="emoji_category_symbol" format="reference"/>
+    <attr name="emoji_category_symbols" format="reference"/>
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
@@ -132,6 +136,8 @@
     <attr name="conversation_item_sticky_date_text_color" format="color" />
     <attr name="conversation_item_image_outline_color" format="color" />
     <attr name="conversation_item_reveal_viewed_background_color" format="color" />
+    <attr name="conversation_scroll_to_bottom_background" format="reference" />
+    <attr name="conversation_scroll_to_bottom_foreground_color" format="color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -149,8 +155,6 @@
     <attr name="contact_filter_toolbar_keyboard_icon" format="reference" />
 
     <attr name="device_link_item_card_background" format="reference|color" />
-
-    <attr name="mediapicker_image_outline" format="reference" />
 
     <attr name="import_export_item_background_color" format="reference|color" />
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
@@ -198,6 +202,11 @@
     <attr name="linked_devices_icon" format="reference" />
     <attr name="advanced_icon" format="reference" />
     <attr name="safety_number_icon" format="reference" />
+    <attr name="help_icon" format="reference" />
+
+    <attr name="help_problem_background" format="reference" />
+    <attr name="help_next_background" format="reference" />
+    <attr name="help_emoji_radio_background" format="reference" />
 
     <attr name="message_request_dialog_button_background" format="reference" />
     <attr name="message_request_text_color_primary" format="color" />
@@ -208,6 +217,7 @@
     <attr name="pref_divider" format="reference" />
 
     <attr name="quote_missing_icon_color" format="color" />
+    <attr name="quote_dismiss_button_tint" format="color" />
 
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>
@@ -261,6 +271,16 @@
     <attr name="megaphone_reactions_shade" format="color"/>
     <attr name="megaphone_reactions_close_tint" format="color"/>
 
+    <attr name="pending_member_background" format="color" />
+    <attr name="pending_member_empty_text_color" format="color" />
+
+    <attr name="debuglog_color_none" format="color" />
+    <attr name="debuglog_color_verbose" format="color" />
+    <attr name="debuglog_color_debug" format="color" />
+    <attr name="debuglog_color_info" format="color" />
+    <attr name="debuglog_color_warn" format="color" />
+    <attr name="debuglog_color_error" format="color" />
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />
@@ -275,11 +295,16 @@
         </attr>
     </declare-styleable>
 
+    <attr name="minWidth" format="dimension" />
+    <attr name="maxWidth" format="dimension" />
+    <attr name="minHeight" format="dimension" />
+    <attr name="maxHeight" format="dimension" />
+
     <declare-styleable name="ThumbnailView">
-        <attr name="minWidth" format="dimension" />
-        <attr name="maxWidth" format="dimension" />
-        <attr name="minHeight" format="dimension" />
-        <attr name="maxHeight" format="dimension" />
+        <attr name="minWidth" />
+        <attr name="maxWidth" />
+        <attr name="minHeight" />
+        <attr name="maxHeight" />
         <attr name="thumbnail_radius" format="dimension" />
         <attr name="thumbnail_fit" format="enum">
             <enum name="center_crop" value="0" />
@@ -466,6 +491,13 @@
         <attr name="cursorWidth" format="dimension" />
         <attr name="cursorColor" format="color" />
         <attr name="thumbTouchRadius" format="dimension" />
+        <attr name="thumbHintTextSize" format="dimension" />
+        <attr name="thumbHintTextColor" format="color" />
+        <attr name="thumbHintBackgroundColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="GroupMemberListView">
+        <attr name="maxHeight" />
     </declare-styleable>
 
 </resources>

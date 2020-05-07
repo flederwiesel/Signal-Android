@@ -6,9 +6,11 @@
 
 package org.whispersystems.signalservice.api.messages;
 
+import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class SignalServiceDataMessage {
   private final long                                    timestamp;
   private final Optional<List<SignalServiceAttachment>> attachments;
   private final Optional<String>                        body;
-  private final Optional<SignalServiceGroup>            group;
+  private final Optional<SignalServiceGroupContext>     group;
   private final Optional<byte[]>                        profileKey;
   private final boolean                                 endSession;
   private final boolean                                 expirationUpdate;
@@ -33,102 +35,35 @@ public class SignalServiceDataMessage {
   private final Optional<Sticker>                       sticker;
   private final boolean                                 viewOnce;
   private final Optional<Reaction>                      reaction;
-
-  /**
-   * Construct a SignalServiceDataMessage with a body and no attachments.
-   *
-   * @param timestamp The sent timestamp.
-   * @param body The message contents.
-   */
-  public SignalServiceDataMessage(long timestamp, String body) {
-    this(timestamp, body, 0);
-  }
-
-  /**
-   * Construct an expiring SignalServiceDataMessage with a body and no attachments.
-   *
-   * @param timestamp The sent timestamp.
-   * @param body The message contents.
-   * @param expiresInSeconds The number of seconds in which the message should expire after having been seen.
-   */
-  public SignalServiceDataMessage(long timestamp, String body, int expiresInSeconds) {
-    this(timestamp, (List<SignalServiceAttachment>)null, body, expiresInSeconds);
-  }
-
-
-  public SignalServiceDataMessage(final long timestamp, final SignalServiceAttachment attachment, final String body) {
-    this(timestamp, new LinkedList<SignalServiceAttachment>() {{add(attachment);}}, body);
-  }
-
-  /**
-   * Construct a SignalServiceDataMessage with a body and list of attachments.
-   *
-   * @param timestamp The sent timestamp.
-   * @param attachments The attachments.
-   * @param body The message contents.
-   */
-  public SignalServiceDataMessage(long timestamp, List<SignalServiceAttachment> attachments, String body) {
-    this(timestamp, attachments, body, 0);
-  }
-
-  /**
-   * Construct an expiring SignalServiceDataMessage with a body and list of attachments.
-   *
-   * @param timestamp The sent timestamp.
-   * @param attachments The attachments.
-   * @param body The message contents.
-   * @param expiresInSeconds The number of seconds in which the message should expire after having been seen.
-   */
-  public SignalServiceDataMessage(long timestamp, List<SignalServiceAttachment> attachments, String body, int expiresInSeconds) {
-    this(timestamp, null, attachments, body, expiresInSeconds);
-  }
-
-  /**
-   * Construct a SignalServiceDataMessage group message with attachments and body.
-   *
-   * @param timestamp The sent timestamp.
-   * @param group The group information.
-   * @param attachments The attachments.
-   * @param body The message contents.
-   */
-  public SignalServiceDataMessage(long timestamp, SignalServiceGroup group, List<SignalServiceAttachment> attachments, String body) {
-    this(timestamp, group, attachments, body, 0);
-  }
-
-
-  /**
-   * Construct an expiring SignalServiceDataMessage group message with attachments and body.
-   *
-   * @param timestamp The sent timestamp.
-   * @param group The group information.
-   * @param attachments The attachments.
-   * @param body The message contents.
-   * @param expiresInSeconds The number of seconds in which a message should disappear after having been seen.
-   */
-  public SignalServiceDataMessage(long timestamp, SignalServiceGroup group, List<SignalServiceAttachment> attachments, String body, int expiresInSeconds) {
-    this(timestamp, group, attachments, body, false, expiresInSeconds, false, null, false, null, null, null, null, false, null);
-  }
+  private final Optional<RemoteDelete>                  remoteDelete;
 
   /**
    * Construct a SignalServiceDataMessage.
    *
    * @param timestamp The sent timestamp.
    * @param group The group information (or null if none).
+   * @param groupV2 The group information (or null if none).
    * @param attachments The attachments (or null if none).
    * @param body The message contents.
    * @param endSession Flag indicating whether this message should close a session.
    * @param expiresInSeconds Number of seconds in which the message should disappear after being seen.
    */
-  public SignalServiceDataMessage(long timestamp, SignalServiceGroup group,
-                                  List<SignalServiceAttachment> attachments,
-                                  String body, boolean endSession, int expiresInSeconds,
-                                  boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
-                                  Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                                  Sticker sticker, boolean viewOnce, Reaction reaction)
+  SignalServiceDataMessage(long timestamp,
+                           SignalServiceGroup group, SignalServiceGroupV2 groupV2,
+                           List<SignalServiceAttachment> attachments,
+                           String body, boolean endSession, int expiresInSeconds,
+                           boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
+                           Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
+                           Sticker sticker, boolean viewOnce, Reaction reaction, RemoteDelete remoteDelete)
   {
+    try {
+      this.group = SignalServiceGroupContext.createOptional(group, groupV2);
+    } catch (InvalidMessageException e) {
+      throw new AssertionError(e);
+    }
+
     this.timestamp             = timestamp;
-    this.body                  = Optional.fromNullable(body);
-    this.group                 = Optional.fromNullable(group);
+    this.body                  = OptionalUtil.absentIfEmpty(body);
     this.endSession            = endSession;
     this.expiresInSeconds      = expiresInSeconds;
     this.expirationUpdate      = expirationUpdate;
@@ -138,6 +73,7 @@ public class SignalServiceDataMessage {
     this.sticker               = Optional.fromNullable(sticker);
     this.viewOnce              = viewOnce;
     this.reaction              = Optional.fromNullable(reaction);
+    this.remoteDelete          = Optional.fromNullable(remoteDelete);
 
     if (attachments != null && !attachments.isEmpty()) {
       this.attachments = Optional.of(attachments);
@@ -184,9 +120,9 @@ public class SignalServiceDataMessage {
   }
 
   /**
-   * @return The message group info (if any).
+   * @return The message group context (if any).
    */
-  public Optional<SignalServiceGroup> getGroupInfo() {
+  public Optional<SignalServiceGroupContext> getGroupContext() {
     return group;
   }
 
@@ -202,8 +138,10 @@ public class SignalServiceDataMessage {
     return profileKeyUpdate;
   }
 
-  public boolean isGroupUpdate() {
-    return group.isPresent() && group.get().getType() != SignalServiceGroup.Type.DELIVER;
+  public boolean isGroupV1Update() {
+    return group.isPresent() &&
+           group.get().getGroupV1().isPresent() &&
+           group.get().getGroupV1().get().getType() != SignalServiceGroup.Type.DELIVER;
   }
 
   public int getExpiresInSeconds() {
@@ -238,24 +176,30 @@ public class SignalServiceDataMessage {
     return reaction;
   }
 
+  public Optional<RemoteDelete> getRemoteDelete() {
+    return remoteDelete;
+  }
+
   public static class Builder {
 
     private List<SignalServiceAttachment> attachments    = new LinkedList<>();
     private List<SharedContact>           sharedContacts = new LinkedList<>();
     private List<Preview>                 previews       = new LinkedList<>();
 
-    private long               timestamp;
-    private SignalServiceGroup group;
-    private String             body;
-    private boolean            endSession;
-    private int                expiresInSeconds;
-    private boolean            expirationUpdate;
-    private byte[]             profileKey;
-    private boolean            profileKeyUpdate;
-    private Quote              quote;
-    private Sticker            sticker;
-    private boolean            viewOnce;
-    private Reaction           reaction;
+    private long                 timestamp;
+    private SignalServiceGroup   group;
+    private SignalServiceGroupV2 groupV2;
+    private String               body;
+    private boolean              endSession;
+    private int                  expiresInSeconds;
+    private boolean              expirationUpdate;
+    private byte[]               profileKey;
+    private boolean              profileKeyUpdate;
+    private Quote                quote;
+    private Sticker              sticker;
+    private boolean              viewOnce;
+    private Reaction             reaction;
+    private RemoteDelete         remoteDelete;
 
     private Builder() {}
 
@@ -265,7 +209,18 @@ public class SignalServiceDataMessage {
     }
 
     public Builder asGroupMessage(SignalServiceGroup group) {
+      if (this.groupV2 != null) {
+        throw new AssertionError("Can not contain both V1 and V2 group contexts.");
+      }
       this.group = group;
+      return this;
+    }
+
+    public Builder asGroupMessage(SignalServiceGroupV2 group) {
+      if (this.group != null) {
+        throw new AssertionError("Can not contain both V1 and V2 group contexts.");
+      }
+      this.groupV2 = group;
       return this;
     }
 
@@ -352,12 +307,17 @@ public class SignalServiceDataMessage {
       return this;
     }
 
+    public Builder withRemoteDelete(RemoteDelete remoteDelete) {
+      this.remoteDelete = remoteDelete;
+      return this;
+    }
+
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
-      return new SignalServiceDataMessage(timestamp, group, attachments, body, endSession,
+      return new SignalServiceDataMessage(timestamp, group, groupV2, attachments, body, endSession,
                                           expiresInSeconds, expirationUpdate, profileKey,
                                           profileKeyUpdate, quote, sharedContacts, previews,
-                                          sticker, viewOnce, reaction);
+                                          sticker, viewOnce, reaction, remoteDelete);
     }
   }
 
@@ -492,6 +452,18 @@ public class SignalServiceDataMessage {
 
     public SignalServiceAddress getTargetAuthor() {
       return targetAuthor;
+    }
+
+    public long getTargetSentTimestamp() {
+      return targetSentTimestamp;
+    }
+  }
+
+  public static class RemoteDelete {
+    private final long targetSentTimestamp;
+
+    public RemoteDelete(long targetSentTimestamp) {
+      this.targetSentTimestamp = targetSentTimestamp;
     }
 
     public long getTargetSentTimestamp() {

@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -44,6 +45,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public class PushMediaSendJob extends PushSendJob {
 
@@ -71,12 +73,11 @@ public class PushMediaSendJob extends PushSendJob {
         throw new AssertionError();
       }
 
-      MmsDatabase          database                    = DatabaseFactory.getMmsDatabase(context);
-      OutgoingMediaMessage message                     = database.getOutgoingMessage(messageId);
-      JobManager.Chain     compressAndUploadAttachment = createCompressingAndUploadAttachmentsChain(jobManager, message);
+      MmsDatabase          database            = DatabaseFactory.getMmsDatabase(context);
+      OutgoingMediaMessage message             = database.getOutgoingMessage(messageId);
+      Set<String>          attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      compressAndUploadAttachment.then(new PushMediaSendJob(messageId, recipient))
-                                 .enqueue();
+      jobManager.add(new PushMediaSendJob(messageId, recipient), attachmentUploadIds);
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
@@ -117,7 +118,9 @@ public class PushMediaSendJob extends PushSendJob {
     try {
       log(TAG, "Sending message: " + messageId);
 
-      Recipient              recipient  = message.getRecipient().resolve();
+      RecipientUtil.shareProfileIfFirstSecureMessage(context, message.getRecipient());
+
+      Recipient              recipient  = message.getRecipient().fresh();
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
 
@@ -190,11 +193,12 @@ public class PushMediaSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
+      Recipient                                  messageRecipient   = message.getRecipient().fresh();
       SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-      SignalServiceAddress                       address            = getPushAddress(message.getRecipient());
+      SignalServiceAddress                       address            = getPushAddress(messageRecipient);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
-      Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
+      Optional<byte[]>                           profileKey         = getProfileKey(messageRecipient);
       Optional<SignalServiceDataMessage.Quote>   quote              = getQuoteFor(message);
       Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
@@ -220,7 +224,7 @@ public class PushMediaSendJob extends PushSendJob {
         messageSender.sendMessage(syncMessage, syncAccess);
         return syncAccess.isPresent();
       } else {
-        return messageSender.sendMessage(address, UnidentifiedAccessUtil.getAccessFor(context, message.getRecipient()), mediaMessage).getSuccess().isUnidentified();
+        return messageSender.sendMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), mediaMessage).getSuccess().isUnidentified();
       }
     } catch (UnregisteredUserException e) {
       warn(TAG, e);

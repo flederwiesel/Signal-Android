@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.thoughtcrime.securesms.util.DynamicIntroTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -164,7 +165,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void handleLogSubmit() {
-    Intent intent = new Intent(this, LogSubmitActivity.class);
+    Intent intent = new Intent(this, SubmitDebugLogActivity.class);
     startActivity(intent);
   }
 
@@ -237,7 +238,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
                                      EditorInfo.IME_ACTION_DONE);
 
     fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-    fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
+    fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.core_ultramarine), PorterDuff.Mode.SRC_IN);
 
     lockScreenButton.setOnClickListener(v -> resumeScreenLock());
   }
@@ -357,7 +358,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
           handleAuthenticated();
 
           fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
+          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.core_ultramarine), PorterDuff.Mode.SRC_IN);
         }
       }).start();
     }
@@ -380,7 +381,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
         @Override
         public void onAnimationEnd(Animation animation) {
           fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
+          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.core_ultramarine), PorterDuff.Mode.SRC_IN);
         }
 
         @Override

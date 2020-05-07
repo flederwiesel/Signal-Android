@@ -8,12 +8,17 @@ import androidx.annotation.WorkerThread;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.io.IOException;
 
 public class DirectoryHelper {
+
+  private static final String TAG = Log.tag(DirectoryHelper.class);
 
   @WorkerThread
   public static void refreshDirectory(@NonNull Context context, boolean notifyOfNewUsers) throws IOException {
@@ -24,9 +29,7 @@ public class DirectoryHelper {
       DirectoryHelperV1.refreshDirectory(context, notifyOfNewUsers);
     }
 
-    if (FeatureFlags.storageService()) {
-      ApplicationDependencies.getJobManager().add(new StorageSyncJob());
-    }
+    StorageSyncHelper.scheduleSyncForDataChange();
   }
 
   @WorkerThread
@@ -41,8 +44,8 @@ public class DirectoryHelper {
       newRegisteredState = DirectoryHelperV1.refreshDirectoryFor(context, recipient, notifyOfNewUsers);
     }
 
-    if (FeatureFlags.storageService() && newRegisteredState != originalRegisteredState) {
-      ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+    if (newRegisteredState != originalRegisteredState) {
+      StorageSyncHelper.scheduleSyncForDataChange();
     }
 
     return newRegisteredState;

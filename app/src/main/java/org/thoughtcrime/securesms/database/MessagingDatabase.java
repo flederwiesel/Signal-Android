@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.database.model.DatabaseProtos.ReactionList;
+import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
 import org.thoughtcrime.securesms.logging.Log;
@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 public abstract class MessagingDatabase extends Database implements MmsSmsColumns {
 
@@ -48,6 +49,9 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   public abstract void markAsSent(long messageId, boolean secure);
   public abstract void markUnidentified(long messageId, boolean unidentified);
+
+  public abstract void markAsSending(long messageId);
+  public abstract void markAsRemoteDelete(long messageId);
 
   final int getInsecureMessagesSentForThread(long threadId) {
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
@@ -72,6 +76,36 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     return getMessageCountForRecipientsAndType(getOutgoingSecureMessageClause());
   }
 
+  final int getSecureMessageCount(long threadId) {
+    SQLiteDatabase db           = databaseHelper.getReadableDatabase();
+    String[]       projection   = new String[] {"COUNT(*)"};
+    String         query        = getSecureMessageClause() + "AND " + MmsSmsColumns.THREAD_ID + " = ?";
+    String[]       args         = new String[]{String.valueOf(threadId)};
+
+    try (Cursor cursor = db.query(getTableName(), projection, query, args, null, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      } else {
+        return 0;
+      }
+    }
+  }
+
+  final int getOutgoingSecureMessageCount(long threadId) {
+    SQLiteDatabase db           = databaseHelper.getReadableDatabase();
+    String[]       projection   = new String[] {"COUNT(*)"};
+    String         query        = getOutgoingSecureMessageClause() + "AND " + MmsSmsColumns.THREAD_ID + " = ? AND" + "(" + getTypeField() + " & " + Types.GROUP_QUIT_BIT + " = 0)";
+    String[]       args         = new String[]{String.valueOf(threadId)};
+
+    try (Cursor cursor = db.query(getTableName(), projection, query, args, null, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      } else {
+        return 0;
+      }
+    }
+  }
+
   private int getMessageCountForRecipientsAndType(String typeClause) {
 
     SQLiteDatabase db           = databaseHelper.getReadableDatabase();
@@ -94,6 +128,14 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   private String getOutgoingSecureMessageClause() {
     return "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE + " AND (" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
+  }
+
+  private String getSecureMessageClause() {
+    String isSent     = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
+    String isReceived = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
+    String isSecure   = "(" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
+
+    return String.format(Locale.ENGLISH, "(%s OR %s) AND %s", isSent, isReceived, isSecure);
   }
 
   public void setReactionsSeen(long threadId) {
@@ -432,12 +474,18 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   public static class MarkedMessageInfo {
 
+    private final long           threadId;
     private final SyncMessageId  syncMessageId;
     private final ExpirationInfo expirationInfo;
 
-    public MarkedMessageInfo(SyncMessageId syncMessageId, ExpirationInfo expirationInfo) {
+    public MarkedMessageInfo(long threadId, SyncMessageId syncMessageId, ExpirationInfo expirationInfo) {
+      this.threadId       = threadId;
       this.syncMessageId  = syncMessageId;
       this.expirationInfo = expirationInfo;
+    }
+
+    public long getThreadId() {
+      return threadId;
     }
 
     public SyncMessageId getSyncMessageId() {

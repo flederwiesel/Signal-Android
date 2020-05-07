@@ -85,7 +85,7 @@ class JobController {
 
     if (chainExceedsMaximumInstances(chain)) {
       Job solo = chain.get(0).get(0);
-      jobTracker.onStateChange(solo.getId(), JobTracker.JobState.IGNORED);
+      jobTracker.onStateChange(solo, JobTracker.JobState.IGNORED);
       Log.w(TAG, JobLogger.format(solo, "Already at the max instance count of " + solo.getParameters().getMaxInstances() + ". Skipping."));
       return;
     }
@@ -101,7 +101,7 @@ class JobController {
     List<List<Job>> chain = Collections.singletonList(Collections.singletonList(job));
 
     if (chainExceedsMaximumInstances(chain)) {
-      jobTracker.onStateChange(job.getId(), JobTracker.JobState.IGNORED);
+      jobTracker.onStateChange(job, JobTracker.JobState.IGNORED);
       Log.w(TAG, JobLogger.format(job, "Already at the max instance count of " + job.getParameters().getMaxInstances() + ". Skipping."));
       return;
     }
@@ -149,7 +149,7 @@ class JobController {
     String serializedData     = dataSerializer.serialize(job.serialize());
 
     jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, nextRunAttemptTime, serializedData);
-    jobTracker.onStateChange(job.getId(), JobTracker.JobState.PENDING);
+    jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
 
     List<Constraint> constraints = Stream.of(jobStorage.getConstraintSpecs(job.getId()))
                                          .map(ConstraintSpec::getFactoryKey)
@@ -170,9 +170,19 @@ class JobController {
   }
 
   @WorkerThread
-  synchronized void onSuccess(@NonNull Job job) {
+  synchronized void onSuccess(@NonNull Job job, @Nullable Data outputData) {
+    if (outputData != null) {
+      List<JobSpec> updates = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
+                                    .map(DependencySpec::getJobId)
+                                    .map(jobStorage::getJobSpec)
+                                    .map(jobSpec -> mapToJobWithInputData(jobSpec, outputData))
+                                    .toList();
+
+      jobStorage.updateJobs(updates);
+    }
+
     jobStorage.deleteJob(job.getId());
-    jobTracker.onStateChange(job.getId(), JobTracker.JobState.SUCCESS);
+    jobTracker.onStateChange(job, JobTracker.JobState.SUCCESS);
     notifyAll();
   }
 
@@ -196,7 +206,7 @@ class JobController {
     all.addAll(dependents);
 
     jobStorage.deleteJobs(Stream.of(all).map(Job::getId).toList());
-    Stream.of(all).forEach(j -> jobTracker.onStateChange(j.getId(), JobTracker.JobState.FAILURE));
+    Stream.of(all).forEach(j -> jobTracker.onStateChange(j, JobTracker.JobState.FAILURE));
 
     return dependents;
   }
@@ -224,7 +234,7 @@ class JobController {
 
       jobStorage.updateJobRunningState(job.getId(), true);
       runningJobs.put(job.getId(), job);
-      jobTracker.onStateChange(job.getId(), JobTracker.JobState.RUNNING);
+      jobTracker.onStateChange(job, JobTracker.JobState.RUNNING);
 
       return job;
     } catch (InterruptedException e) {
@@ -321,6 +331,7 @@ class JobController {
                                   job.getParameters().getLifespan(),
                                   job.getParameters().getMaxInstances(),
                                   dataSerializer.serialize(job.serialize()),
+                                  null,
                                   false);
 
     List<ConstraintSpec> constraintSpecs = Stream.of(job.getParameters().getConstraintKeys())
@@ -402,6 +413,7 @@ class JobController {
                   .setQueue(jobSpec.getQueueKey())
                   .setConstraints(Stream.of(constraintSpecs).map(ConstraintSpec::getFactoryKey).toList())
                   .setMaxBackoff(jobSpec.getMaxBackoff())
+                  .setInputData(jobSpec.getSerializedInputData() != null ? dataSerializer.deserialize(jobSpec.getSerializedInputData()) : null)
                   .build();
   }
 
@@ -411,6 +423,22 @@ class JobController {
     long actualBackoff      = Math.min(exponentialBackoff, maxBackoff);
 
     return currentTime + actualBackoff;
+  }
+
+  private @NonNull JobSpec mapToJobWithInputData(@NonNull JobSpec jobSpec, @NonNull Data inputData) {
+    return new JobSpec(jobSpec.getId(),
+                       jobSpec.getFactoryKey(),
+                       jobSpec.getQueueKey(),
+                       jobSpec.getCreateTime(),
+                       jobSpec.getNextRunAttemptTime(),
+                       jobSpec.getRunAttempt(),
+                       jobSpec.getMaxAttempts(),
+                       jobSpec.getMaxBackoff(),
+                       jobSpec.getLifespan(),
+                       jobSpec.getMaxInstances(),
+                       jobSpec.getSerializedData(),
+                       dataSerializer.serialize(inputData),
+                       jobSpec.isRunning());
   }
 
   interface Callback {

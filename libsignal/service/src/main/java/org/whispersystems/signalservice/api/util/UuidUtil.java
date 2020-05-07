@@ -1,8 +1,13 @@
 package org.whispersystems.signalservice.api.util;
 
+import com.google.protobuf.ByteString;
+
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -42,5 +47,23 @@ public final class UuidUtil {
     buffer.putLong(uuid.getLeastSignificantBits());
 
     return buffer.array();
+  }
+
+  public static ByteString toByteString(UUID uuid) {
+    return ByteString.copyFrom(toByteArray(uuid));
+  }
+
+  public static UUID fromByteString(ByteString bytes) {
+    return parseOrThrow(bytes.toByteArray());
+  }
+
+  public static List<UUID> fromByteStrings(Collection<ByteString> byteStringCollection) {
+    ArrayList<UUID> result = new ArrayList<>(byteStringCollection.size());
+
+    for (ByteString byteString : byteStringCollection) {
+      result.add(fromByteString(byteString));
+    }
+
+    return result;
   }
 }

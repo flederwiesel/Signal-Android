@@ -5,12 +5,13 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -19,10 +20,11 @@ import java.util.List;
 public class IncomingMediaMessage {
 
   private final RecipientId from;
-  private final String      groupId;
+  private final GroupId     groupId;
   private final String      body;
   private final boolean     push;
   private final long        sentTimeMillis;
+  private final long        serverTimeMillis;
   private final int         subscriptionId;
   private final long        expiresIn;
   private final boolean     expirationUpdate;
@@ -35,9 +37,10 @@ public class IncomingMediaMessage {
   private final List<LinkPreview> linkPreviews   = new LinkedList<>();
 
   public IncomingMediaMessage(@NonNull RecipientId from,
-                              Optional<String> groupId,
+                              Optional<GroupId> groupId,
                               String body,
                               long sentTimeMillis,
+                              long serverTimeMillis,
                               List<Attachment> attachments,
                               int subscriptionId,
                               long expiresIn,
@@ -48,6 +51,7 @@ public class IncomingMediaMessage {
     this.from             = from;
     this.groupId          = groupId.orNull();
     this.sentTimeMillis   = sentTimeMillis;
+    this.serverTimeMillis = serverTimeMillis;
     this.body             = body;
     this.push             = false;
     this.subscriptionId   = subscriptionId;
@@ -62,13 +66,14 @@ public class IncomingMediaMessage {
 
   public IncomingMediaMessage(@NonNull RecipientId from,
                               long sentTimeMillis,
+                              long serverTimeMillis,
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
                               boolean viewOnce,
                               boolean unidentified,
                               Optional<String> body,
-                              Optional<SignalServiceGroup> group,
+                              Optional<SignalServiceGroupContext> group,
                               Optional<List<SignalServiceAttachment>> attachments,
                               Optional<QuoteModel> quote,
                               Optional<List<Contact>> sharedContacts,
@@ -78,6 +83,7 @@ public class IncomingMediaMessage {
     this.push             = true;
     this.from             = from;
     this.sentTimeMillis   = sentTimeMillis;
+    this.serverTimeMillis = serverTimeMillis;
     this.body             = body.orNull();
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
@@ -86,7 +92,7 @@ public class IncomingMediaMessage {
     this.quote            = quote.orNull();
     this.unidentified     = unidentified;
 
-    if (group.isPresent()) this.groupId = GroupUtil.getEncodedId(group.get().getGroupId(), false);
+    if (group.isPresent()) this.groupId = GroupUtil.idFromGroupContextOrThrow(group.get());
     else                   this.groupId = null;
 
     this.attachments.addAll(PointerAttachment.forPointers(attachments));
@@ -114,7 +120,7 @@ public class IncomingMediaMessage {
     return from;
   }
 
-  public String getGroupId() {
+  public GroupId getGroupId() {
     return groupId;
   }
 
@@ -128,6 +134,10 @@ public class IncomingMediaMessage {
 
   public long getSentTimeMillis() {
     return sentTimeMillis;
+  }
+
+  public long getServerTimeMillis() {
+    return serverTimeMillis;
   }
 
   public long getExpiresIn() {

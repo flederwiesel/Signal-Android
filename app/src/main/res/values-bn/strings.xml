@@ -73,6 +73,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">অডিও চালাতে ব্যর্থ!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">অবরূদ্ধ পরিচিতিসমূহ</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_unblock">মূক্ত করুন</string>
+  <string name="BlockUnblockDialog_block">অবরূদ্ধ</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">আজ</string>
   <string name="BucketedThreadMedia_Yesterday">গতকাল</string>
@@ -201,6 +204,8 @@
   <string name="ConversationActivity_no_results">ফলাফল শুন্য</string>
   <string name="ConversationActivity_sticker_pack_installed">স্টিকার প্যাক ইনস্টল করা হয়েছে</string>
   <string name="ConversationActivity_new_say_it_with_stickers">নতুন! স্টিকার দিয়ে বলুন</string>
+  <string name="ConversationActivity_cancel">বাতিল</string>
+  <string name="ConversationActivity_delete">মুছে দিন</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one"> %d টি অপঠিত বার্তা</item>
@@ -287,6 +292,8 @@
   <string name="CustomDefaultPreference_using_custom">প্রথা ব্যবহৃত : %s</string>
   <string name="CustomDefaultPreference_using_default">ডিফল্ট ব্যবহৃত: %s</string>
   <string name="CustomDefaultPreference_none">কেউ না</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ফটো সরান</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">এখন</string>
   <string name="DateUtils_minutes_ago">%d মি.</string>
@@ -317,34 +324,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">এই ডিভাইস প্লে সার্ভিস সমর্থন করে না। সিস্টেম ব্যাটারি অপ্টিমাইজেশন অক্ষম করতে আলতো চাপুন, যা নিষ্ক্রিয় অবস্থায় বার্তা পুনরুদ্ধার থেকে Signal -কে বাধা দেয়।</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">এর সাথে শেয়ার করুন</string>
-  <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal এ স্বাগতম।</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">টেক্সটসিকিউর এবং রেডফোন এখন প্রতিটি পরিস্থিতির জন্য একটি ব্যক্তিগত মেসেঞ্জার: Signal</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal এ স্বাগতম!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure এখন Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure এবং RedPhone এখন একটি অ্যাপঃ Signal। আরো জানতে চাপুন।</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">নিরাপদ ভিডিও কল কে হ্যালো বলুন।</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal এখন সুরক্ষিত ভিডিও কলিং সমর্থন করে। কেবল স্বাভাবিকের মতো একটি Signal কল শুরু করুন, ভিডিও বোতাম আলতো চাপুন এবং স্বাগতম জানান।</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal এখন সুরক্ষিত ভিডিও কলিং সমর্থন করে।</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal এখন সুরক্ষিত ভিডিও কলিং সমর্থন করে। অনুসন্ধান করতে আলতো চাপুন।</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">কাছে আসার জন্য প্রস্তুত?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">আপনি এখন Signal এর বন্ধুদের সাথে একটি প্রোফাইল ছবি ও নাম শেয়ার করতে পারবেন</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal প্রোফাইলগুলি এখানে</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">টাইপিং প্রদর্শক উপস্থাপন করা হচ্ছে।</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">আপনি এখন চাইলে যখন বার্তা লিখছেন সেটা শেয়ার করতে পারেন এবং অন্যরা যখন লিখছে তখন দেখতে পারেন।</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">আপনি কি তাদের এখনই সক্ষম করতে চান?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">টাইপিং প্রদর্শক এখানে বিদ্যমান</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">টাইপিং প্রদর্শক সচল করুন</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">টাইপিং নির্দেশক চালু করুন</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">না ধন্যবাদ</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">লিঙ্কের পূর্বরূপগুলি উপস্থাপন করা হচ্ছে।</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ঐচ্ছিক লিঙ্ক পূর্বরূপগুলি এখন ইন্টারনেটের বেশ কয়েকটি জনপ্রিয় সাইটের জন্য সমর্থিত।</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">আপনি আপনার Signal সেটিংসে এই বৈশিষ্ট্যটি যে কোনও সময় অক্ষম বা সক্ষম করতে পারেন (গোপনীয়তা এবং লিঙ্কের পূর্বরূপ প্রেরণ করুন)।</string>
-  <string name="ExperienceUpgradeActivity_got_it">বুঝতে পেরেছি</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">স্টিকারের সাথে পরিচিত হন</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">আপনি যখন স্টিকার ব্যবহার করতে পারেন তখন কেন শব্দ ব্যবহার করবেন?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">আপনি যখন স্টিকার ব্যবহার করতে পারেন তখন কেন শব্দ ব্যবহার করবেন? আপনার কীবোর্ডে এই আইকনটি আলতো চাপুন:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">শুরু করা যাক</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">একটি বার্তা আনয়ন করা হচ্ছে…</string>
   <!--GcmRefreshJob-->
@@ -376,7 +355,10 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">আপনি কি এই গ্রুপের বর্তমান এবং ভবিষ্যতের সকল সদস্যের কাছে নিজের প্রোফাইল নাম এবং ফটো দৃশ্যমান করতে চান?</string>
   <string name="GroupShareProfileView_make_visible">দৃশ্যমান করুন</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">আমি</string>
+  <string name="GroupMembersDialog_you">আপনি</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">গ্রুপের ছবি</string>
   <string name="CropImageActivity_profile_avatar">প্রোফাইলের ছবি</string>
@@ -405,6 +387,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">বন্ধুরা কখনোই বন্ধুদের এনক্রিপ্ট না করে চ্যাট করতে দেয় না।</string>
   <!--Job-->
   <string name="Job_working_in_the_background">নিভৃতে কাজ করা হচ্ছে …</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">আরও জানুন</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">পাঠাতে ব্যার্থ</string>
   <string name="MessageDetailsRecipient_new_safety_number">নতুন নিরাপত্তা সংখ্যা</string>
@@ -510,11 +494,36 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s অদৃশ্য হয়ে যাওয়া বার্তা অক্ষম করেছেন।</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">আপনি অদৃশ্য হয়ে যাওয়া বার্তার সময়কাল %1$s নির্ধারন করেছেন।</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s অদৃশ্য হয়ে যাওয়া বার্তার সময়কাল %2$s নির্ধারন করেছেন।</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_s_joined_the_group">%1$s গ্রুপে যোগ দিয়েছেন।</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%sএর সাথে আপনার নিরাপত্তা নাম্বার পরিবর্তিত হয়েছে।</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified"> %sএর সাথে আপনি যাচাই করে আপনার নিরাপত্তা নাম্বার চিহ্নিত করেছেন</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s এর সাথে  আপনি অন্য একটি ডিভাইস থেকে যাচাই করে আপনার নিরাপত্তা নাম্বার চিহ্নিত করেছেন</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">আপনি %sএর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">আপনি অন্য একটি ডিভাইস থেকে  %s এর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">মানছি</string>
+  <string name="MessageRequestBottomView_delete">মুছে দিন</string>
+  <string name="MessageRequestBottomView_block">অবরূদ্ধ</string>
+  <string name="MessageRequestBottomView_unblock">মূক্ত করুন</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$sএর সদস্য</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s এবং %2$s এর সদস্য</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, এবং %3$s এর সদস্য</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%dঅন্যান্য</item>
+    <item quantity="other">%d অন্যান্য</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">পাসফ্রেজ মিলছে না!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">পুরাতন পাসফ্রেজ সঠিক নয়!</string>
@@ -556,6 +565,15 @@
   <string name="PlacePickerActivity_accept_address">ঠিকানাটি মানছি</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">আপনার ইনস্টল করা গুগল প্লে পরিষেবাদির সংস্করণটি সঠিকভাবে কাজ করছে না। গুগল প্লে পরিষেবাগুলি পুনরায় ইনস্টল করুন এবং আবার চেষ্টা করুন।</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">ভুল পিন</string>
+  <string name="PinRestoreEntryFragment_contact_support">সহায়তা কেন্দ্রে যোগাযোগ</string>
+  <string name="PinRestoreEntryFragment_cancel">বাতিল</string>
+  <string name="PinRestoreEntryFragment_skip">বাদ দিয়ে যান</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">বর্ণানুক্রমিক পিন প্রবেশ করান</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">সংখ্যার পিন প্রবেশ করান</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">আপনার পিন তৈরি করুন</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">এই এপটিকে রেটিং দিন</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">আপনি যদি এই অ্যাপ ব্যবহার করে উপভোগ করেন, তবে দয়া করে এটি রেটিং দিতে কিছুক্ষণ সময় দিয়ে আমাদের সহায়তা করুন।</string>
@@ -565,17 +583,10 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ওহো, প্লে স্টোর অ্যাপ আপনার ডিভাইস এ ইনস্টল করা আছে বলে মনে হচ্ছে না।</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">আপনি</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">এই পরিচিতিটি ব্লক করবেন?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">আপনি এই পরিচিতি থেকে বার্তা এবং কল সমূহ গ্রহণ করতে পারবেন না।</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">এই গ্রুপটি ব্লক করবেন এবং ছেড়ে যাবেন?</string>
-  <string name="RecipientPreferenceActivity_block_group">এই গ্রুপটি ব্লক করতে চান?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">আপনি আর এই গ্রুপ থেকে বার্তা বা আপডেট পাবেন না।</string>
   <string name="RecipientPreferenceActivity_block">ব্লক করুন</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">এই পরিচিতিটি আনব্লক করতে চাচ্ছেন?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">আপনি এখন থেকে আবারো এই পরিচিতি থেকে বার্তা এবং কল সমূহ গ্রহণ করতে পারবেন।</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">এই গ্রুপটিকে আনব্লক করতে চাচ্ছেন?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">বিদ্যমান সদস্যরা আপনাকে আবারো গ্রুপে সংযোজিত করতে পারবে।</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">গ্রুপ ত্যাগ করতে সমস্যা হয়েছে</string>
   <string name="RecipientPreferenceActivity_unblock">আনব্লক করুন</string>
   <string name="RecipientPreferenceActivity_enabled">সক্রিয়</string>
@@ -633,6 +644,7 @@
   <string name="RegistrationActivity_phone_number_description">ফোন নাম্বার</string>
   <string name="RegistrationActivity_country_code_description">দেশ কোড</string>
   <string name="RegistrationActivity_call">কল করুন</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">ছবি দেখুন</string>
   <string name="RevealableMessageView_view_video">ভিডিও দেখুন</string>
@@ -670,7 +682,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s নিরাপদ সেশনটি পুন:স্থাপন করেছেন</string>
   <string name="SmsMessageRecord_duplicate_message">ডুপ্লিকেট বার্তা</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">এই বার্তাটি প্রক্রিয়া করা যায়নি কারণ এটি Signal এর  একটি নতুন সংস্করণ থেকে প্রেরণ করা হয়েছিল। আপনি আপডেট হওয়ার পরে আপনার পরিচিতি কে এই বার্তাটি আবার প্রেরণ করতে বলতে পারেন।</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">আগত বার্তা পরিচালনা করার সময় ত্রুটি</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">আগত বার্তা পরিচালনা করার সময় ত্রুটি।</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">স্টিকার সমূহ</string>
   <!--StickerManagementAdapter-->
@@ -688,6 +700,13 @@
   <string name="StickerPackPreviewActivity_remove">সরান</string>
   <string name="StickerPackPreviewActivity_stickers">স্টিকার সমূহ</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">স্টিকার প্যাক লোড হয়নি</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">সম্পাদনা</string>
+  <string name="SubmitDebugLogActivity_done">শেষ</string>
+  <string name="SubmitDebugLogActivity_submit">সাবমিট</string>
+  <string name="SubmitDebugLogActivity_success">সফল!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
+  <string name="SubmitDebugLogActivity_share">শেয়ার করুন</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">গ্রুপ অাপডেট হয়েছে</string>
   <string name="ThreadRecord_left_the_group">গ্রুপ ত্যাগ করেছে</string>
@@ -709,6 +728,7 @@
   <string name="ThreadRecord_you_marked_verified">আপনি যাচাইকৃত চিহ্নিত করেছেন</string>
   <string name="ThreadRecord_you_marked_unverified">আপনি অযাচাইকৃত চিহ্নিত করেছেন</string>
   <string name="ThreadRecord_message_could_not_be_processed">বার্তাটি প্রক্রিয়া করা যায়নি</string>
+  <string name="ThreadRecord_message_request">বার্তার অনুরোধ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal আপডেট</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal এর একটি নতুন ভার্সন পাওয়া যাচ্ছে, অাপডেট করতে ট্যাপ করুন</string>
@@ -1024,9 +1044,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">এই লগটি অবদানকারীদের দেখার জন্য অনলাইনে প্রকাশ্যে পোস্ট করা হবে, আপনি সাবমিট করার আগে এটি পরীক্ষা এবং সম্পাদনা করতে পারেন।</string>
   <string name="log_submit_activity__loading_logs">লগগুলি লোড হচ্ছে …</string>
   <string name="log_submit_activity__uploading_logs">লগগুলি আপলোড হচ্ছে …</string>
-  <string name="log_submit_activity__success">সফল!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">এই ইউআরএল কপি করুন এবং এটি আপনার সমস্যা প্রতিবেদন বা সাপোর্ট ইমে‌ইলে যোগ করুন:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
   <string name="log_submit_activity__choose_email_app">ইমেইল অ্যাপ বাছুন</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">আমার অ্যাপ থেকে এই লগ পর্যালোচনা করুন: %1$s</string>
   <string name="log_submit_activity__network_failure">নেটওয়ার্ক ব্যর্থতা। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
@@ -1040,7 +1057,7 @@
   <string name="import_fragment__import_system_sms_database">সিস্টেমের এসএমএস ডাটাবেস আমদানি করুন</string>
   <string name="import_fragment__import_the_database_from_the_default_system">ডিফল্ট সিস্টেম মেসেঞ্জার অ্যাপ থেকে ডাটাবেস আমদানি করুন</string>
   <string name="import_fragment__import_plaintext_backup">সাধারন লেখা ব্যাকঅাপ আমদানি করুন</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">একটি সাধারন লেখার ব্যাকআপ ফাইল আমদানি করুন। যা \'এসএমএস ব্যাকআপ &amp; amp; পুনরুদ্ধার\' এর সঙ্গে সামঞ্জস্যপূর্ণ।</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">একটি সাধারন লেখার ব্যাকআপ ফাইল আমদানি করুন। যা এসএমএস ব্যাকআপ &amp; পুনরুদ্ধার এর সঙ্গে সামঞ্জস্যপূর্ণ।</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">সম্পূর্ণ কথোপকথন দেখুন</string>
   <string name="load_more_header__loading">লোড হচ্ছে</string>
@@ -1130,6 +1147,11 @@
   <string name="AndroidManifest__invite_friends">বন্ধুদের আমন্ত্রণ</string>
   <string name="AndroidManifest_archived_conversations">আর্কাইভ করা কথোপকথন সমুহ </string>
   <string name="AndroidManifest_remove_photo">ফটো সরান</string>
+  <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">সাহায্য</string>
+  <string name="HelpFragment__next">পরবর্তী</string>
+  <string name="HelpFragment__signal_support">Signal সহায়তা</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">আমদানী</string>
   <string name="arrays__use_default">ডিফল্ট ব্যবহার করুন</string>
@@ -1208,6 +1230,7 @@
   <string name="preferences__fast">দ্রুত</string>
   <string name="preferences__normal">সাধারন</string>
   <string name="preferences__slow">ধীর</string>
+  <string name="preferences__help">সাহায্য</string>
   <string name="preferences__advanced">উন্নততর</string>
   <string name="preferences__privacy">গোপনীয়তা</string>
   <string name="preferences__mms_user_agent">এমএমএস ব্যবহারকারী এজেন্ট</string>
@@ -1428,7 +1451,6 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">পিন তৈরি ব্যর্থ হয়েছে</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">আপনার পিন সংরক্ষণ করা হয়নি। আমরা আপনাকে পরে একটি পিন তৈরি করতে অনুরোধ করব।</string>
   <string name="ConfirmKbsPinFragment__pin_created">পিন তৈরি করা হয়েছে।</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">পূনরায় পিন প্রবেশ করান</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">পিনের সাথে পরিচিত হন</string>
   <string name="KbsSplashFragment__learn_more">আরও জানুন</string>
@@ -1474,8 +1496,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ডাটাবেস ডাটাবেস স্থানান্তরিত হচ্ছে</string>
   <string name="PushDecryptJob_new_locked_message">নতুন লক্ করা বার্তা</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">মুলতুবি থাকা বার্তাগুলি দেখার জন্য লক্ খুলুন</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">আপডেট সম্পন্ন করতে লক্ খুলুন</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">দয়া করে লক্ খুলুন আপডেট সম্পন্ন করতে</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">পাসফ্রেজ ব্যাকঅাপ করুন</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ব্যাকআপগুলি বাহ্যিক স্টোরেজে সংরক্ষণ করা হবে এবং নীচের পাসফ্রেজের সাহায্যে এনক্রিপ্ট করা হবে। ব্যাকঅাপ পুনরুদ্ধার করতে আপনার অবশ্যই এই পাসফ্রেজ থাকতে হবে।</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">আমি এই পাসফ্রেজ লিখে রেখেছি। এটি ছাড়া, আমি একটি ব্যাকঅাপ পুনরুদ্ধার করতে পারব না।</string>
@@ -1519,9 +1539,7 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">অ্যানড্রয়েড স্ক্রীন এর লক্ বা ফিঙ্গারপ্রিন্ট লক দিয়ে সিগন্যাল লক্ করুন </string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">স্ক্রীন এর লক্ নিষ্ক্রিয়তার সময়সীমা</string>
   <string name="preferences_app_protection__signal_pin">Signal পিন</string>
-  <string name="preferences_app_protection__pin">পিন</string>
-  <string name="preferences_app_protection__change">পরিবর্তন</string>
-  <string name="preferences_app_protection__create">তৈরি</string>
+  <string name="preferences_app_protection__change_your_pin">আপনার পিন পরিবর্তন করুন</string>
   <string name="AppProtectionPreferenceFragment_none">কেউ না</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">রেজিস্ট্রেশন লক পিনটি আপনি সদ্য প্রাপ্ত এসএমএস যাচাইকরণ কোডের সাথে মিলছে না। আপনি পূর্বে অ্যাপ্লিকেশনটিতে কনফিগার করা পিনটি প্রবেশ করুন।</string>
   <string name="registration_activity__registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string>
@@ -1562,17 +1580,5 @@
   <string name="RegistrationLockDialog_reminder">অনুস্মারক:</string>
   <string name="recipient_preferences__about">সম্বন্ধে</string>
   <string name="Recipient_unknown">অজানা</string>
-  <string name="MessageRequestBottomView_accept">মানছি</string>
-  <string name="MessageRequestBottomView_delete">মুছে দিন</string>
-  <string name="MessageRequestBottomView_block">অবরূদ্ধ</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">আপনি কি %1$s এর নিকট থেকে বার্তা পেতে চান?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">%1$sএর সদস্য</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">%1$s এবং %2$s এর সদস্য</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, এবং %3$s এর সদস্য</string>
-  <string name="MessageRequestProfileView_members">%1$d সদস্য</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%dঅন্যান্য</item>
-    <item quantity="other">%d অন্যান্য</item>
-  </plurals>
   <!--EOF-->
 </resources>

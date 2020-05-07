@@ -10,7 +10,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobs.Argon2TestJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -40,7 +39,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 10;
+  public static final int CURRENT_VERSION = 14;
 
   private static final class Version {
     static final int LEGACY             = 1;
@@ -51,8 +50,12 @@ public class ApplicationMigrations {
     static final int UUIDS              = 6;
     static final int CACHED_ATTACHMENTS = 7;
     static final int STICKERS_LAUNCH    = 8;
-    static final int TEST_ARGON2        = 9;
+    //static final int TEST_ARGON2        = 9;
     static final int SWOON_STICKERS     = 10;
+    static final int STORAGE_SERVICE    = 11;
+    static final int STORAGE_KEY_ROTATE = 12;
+    static final int REMOVE_AVATAR_ID   = 13;
+    static final int STORAGE_CAPABILITY = 14;
   }
 
   /**
@@ -197,12 +200,30 @@ public class ApplicationMigrations {
       jobs.put(Version.STICKERS_LAUNCH, new StickerLaunchMigrationJob());
     }
 
-    if (lastSeenVersion < Version.TEST_ARGON2) {
-      jobs.put(Version.TEST_ARGON2, new Argon2TestMigrationJob());
-    }
+    // This migration only triggered a test we aren't interested in any more.
+    // if (lastSeenVersion < Version.TEST_ARGON2) {
+    // jobs.put(Version.TEST_ARGON2, new Argon2TestMigrationJob());
+    // }
 
     if (lastSeenVersion < Version.SWOON_STICKERS) {
       jobs.put(Version.SWOON_STICKERS, new StickerAdditionMigrationJob(BlessedPacks.SWOON_HANDS, BlessedPacks.SWOON_FACES));
+    }
+
+    if (lastSeenVersion < Version.STORAGE_SERVICE) {
+      jobs.put(Version.STORAGE_SERVICE, new StorageServiceMigrationJob());
+    }
+
+    // Superceded by StorageCapabilityMigrationJob
+//    if (lastSeenVersion < Version.STORAGE_KEY_ROTATE) {
+//      jobs.put(Version.STORAGE_KEY_ROTATE, new StorageKeyRotationMigrationJob());
+//    }
+
+    if (lastSeenVersion < Version.REMOVE_AVATAR_ID) {
+      jobs.put(Version.REMOVE_AVATAR_ID, new AvatarIdRemovalMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.STORAGE_CAPABILITY) {
+      jobs.put(Version.STORAGE_CAPABILITY, new StorageCapabilityMigrationJob());
     }
 
     return jobs;

@@ -17,25 +17,31 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.sync.StorageSyncHelper;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper.RecordUpdate;
+import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
+import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
+import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
@@ -62,6 +68,7 @@ public class RecipientDatabase extends Database {
   public  static final String PHONE                    = "phone";
   public  static final String EMAIL                    = "email";
           static final String GROUP_ID                 = "group_id";
+  private static final String GROUP_TYPE               = "group_type";
   private static final String BLOCKED                  = "blocked";
   private static final String MESSAGE_RINGTONE         = "message_ringtone";
   private static final String MESSAGE_VIBRATE          = "message_vibrate";
@@ -86,8 +93,9 @@ public class RecipientDatabase extends Database {
   private static final String PROFILE_SHARING          = "profile_sharing";
   private static final String UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode";
   private static final String FORCE_SMS_SELECTION      = "force_sms_selection";
-  private static final String UUID_SUPPORTED           = "uuid_supported";
-  private static final String STORAGE_SERVICE_KEY      = "storage_service_key";
+  private static final String UUID_CAPABILITY          = "uuid_supported";
+  private static final String GROUPS_V2_CAPABILITY     = "gv2_capability";
+  private static final String STORAGE_SERVICE_ID       = "storage_service_key";
   private static final String DIRTY                    = "dirty";
   private static final String PROFILE_GIVEN_NAME       = "signal_profile_name";
   private static final String PROFILE_FAMILY_NAME      = "profile_family_name";
@@ -100,13 +108,15 @@ public class RecipientDatabase extends Database {
 
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
-      UUID, USERNAME, PHONE, EMAIL, GROUP_ID,
+      UUID, USERNAME, PHONE, EMAIL, GROUP_ID, GROUP_TYPE,
       BLOCKED, MESSAGE_RINGTONE, CALL_RINGTONE, MESSAGE_VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, MESSAGE_EXPIRATION_TIME, REGISTERED,
       PROFILE_KEY, PROFILE_KEY_CREDENTIAL,
       SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
       PROFILE_GIVEN_NAME, PROFILE_FAMILY_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
-      FORCE_SMS_SELECTION, UUID_SUPPORTED, STORAGE_SERVICE_KEY, DIRTY
+      FORCE_SMS_SELECTION,
+      UUID_CAPABILITY, GROUPS_V2_CAPABILITY,
+      STORAGE_SERVICE_ID, DIRTY
   };
 
   private static final String[] RECIPIENT_FULL_PROJECTION = ArrayUtils.concat(
@@ -120,10 +130,11 @@ public class RecipientDatabase extends Database {
 
   public static final String[] CREATE_INDEXS = new String[] {
       "CREATE INDEX IF NOT EXISTS recipient_dirty_index ON " + TABLE_NAME + " (" + DIRTY + ");",
+      "CREATE INDEX IF NOT EXISTS recipient_group_type_index ON " + TABLE_NAME + " (" + GROUP_TYPE + ");",
   };
 
   private static final String[]     ID_PROJECTION              = new String[]{ID};
-  private static final String[]     SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "COALESCE(" + PROFILE_JOINED_NAME + ", " + PROFILE_GIVEN_NAME + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + SYSTEM_DISPLAY_NAME + ", " + PROFILE_JOINED_NAME + ", " + PROFILE_GIVEN_NAME + ", " + USERNAME + ") AS " + SORT_NAME};
+  private static final String[]     SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_DISPLAY_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
   public  static final String[]     SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, SEARCH_PROFILE_NAME, SORT_NAME};
           static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
                                                                        .map(columnName -> TABLE_NAME + "." + columnName)
@@ -205,7 +216,7 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  enum DirtyState {
+  public enum DirtyState {
     CLEAN(0), UPDATE(1), INSERT(2), DELETE(3);
 
     private final int id;
@@ -217,6 +228,28 @@ public class RecipientDatabase extends Database {
     int getId() {
       return id;
     }
+
+    public static DirtyState fromId(int id) {
+      return values()[id];
+    }
+  }
+
+  public enum GroupType {
+    NONE(0), MMS(1), SIGNAL_V1(2);
+
+    private final int id;
+
+    GroupType(int id) {
+      this.id = id;
+    }
+
+    int getId() {
+      return id;
+    }
+
+    public static GroupType fromId(int id) {
+      return values()[id];
+    }
   }
 
   public static final String CREATE_TABLE =
@@ -226,6 +259,7 @@ public class RecipientDatabase extends Database {
                                             PHONE                    + " TEXT UNIQUE DEFAULT NULL, " +
                                             EMAIL                    + " TEXT UNIQUE DEFAULT NULL, " +
                                             GROUP_ID                 + " TEXT UNIQUE DEFAULT NULL, " +
+                                            GROUP_TYPE               + " INTEGER DEFAULT " + GroupType.NONE.getId() +  ", " +
                                             BLOCKED                  + " INTEGER DEFAULT 0," +
                                             MESSAGE_RINGTONE         + " TEXT DEFAULT NULL, " +
                                             MESSAGE_VIBRATE          + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
@@ -253,9 +287,10 @@ public class RecipientDatabase extends Database {
                                             PROFILE_SHARING          + " INTEGER DEFAULT 0, " +
                                             UNIDENTIFIED_ACCESS_MODE + " INTEGER DEFAULT 0, " +
                                             FORCE_SMS_SELECTION      + " INTEGER DEFAULT 0, " +
-                                            UUID_SUPPORTED           + " INTEGER DEFAULT 0, " +
-                                            STORAGE_SERVICE_KEY      + " TEXT UNIQUE DEFAULT NULL, " +
-                                            DIRTY                    + " INTEGER DEFAULT 0);";
+                                            UUID_CAPABILITY          + " INTEGER DEFAULT " + Recipient.Capability.UNKNOWN.serialize() + ", " +
+                                            GROUPS_V2_CAPABILITY     + " INTEGER DEFAULT " + Recipient.Capability.UNKNOWN.serialize() + ", " +
+                                            STORAGE_SERVICE_ID       + " TEXT UNIQUE DEFAULT NULL, " +
+                                            DIRTY                    + " INTEGER DEFAULT " + DirtyState.CLEAN.getId() + ");";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
       " FROM " + TABLE_NAME +
@@ -305,19 +340,35 @@ public class RecipientDatabase extends Database {
   }
 
   public @NonNull RecipientId getOrInsertFromUuid(@NonNull UUID uuid) {
-    return getOrInsertByColumn(UUID, uuid.toString());
+    return getOrInsertByColumn(UUID, uuid.toString()).recipientId;
   }
 
   public @NonNull RecipientId getOrInsertFromE164(@NonNull String e164) {
-    return getOrInsertByColumn(PHONE, e164);
+    return getOrInsertByColumn(PHONE, e164).recipientId;
   }
 
-  public RecipientId getOrInsertFromEmail(@NonNull String email) {
-    return getOrInsertByColumn(EMAIL, email);
+  public @NonNull RecipientId getOrInsertFromEmail(@NonNull String email) {
+    return getOrInsertByColumn(EMAIL, email).recipientId;
   }
 
-  public RecipientId getOrInsertFromGroupId(@NonNull String groupId) {
-    return getOrInsertByColumn(GROUP_ID, groupId);
+  public @NonNull RecipientId getOrInsertFromGroupId(@NonNull GroupId groupId) {
+    GetOrInsertResult result = getOrInsertByColumn(GROUP_ID, groupId.toString());
+
+    if (result.neededInsert) {
+      ContentValues values = new ContentValues();
+
+      if (groupId.isMms()) {
+        values.put(GROUP_TYPE, GroupType.MMS.getId());
+      } else {
+        values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
+        values.put(DIRTY, DirtyState.INSERT.getId());
+        values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+      }
+
+      update(result.recipientId, values);
+    }
+
+    return result.recipientId;
   }
 
   public Cursor getBlocked() {
@@ -347,27 +398,48 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = database.query(table, RECIPIENT_FULL_PROJECTION, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToNext()) {
-        return getRecipientSettings(cursor);
+        return getRecipientSettings(context, cursor);
       } else {
-        throw new MissingRecipientError(id);
+        throw new MissingRecipientException(id);
       }
     }
   }
 
+  public @NonNull DirtyState getDirtyState(@NonNull RecipientId recipientId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME,  new String[] { DIRTY }, ID_WHERE, new String[] { recipientId.serialize() }, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return DirtyState.fromId(cursor.getInt(cursor.getColumnIndexOrThrow(DIRTY)));
+      }
+    }
+
+    return DirtyState.CLEAN;
+  }
+
   public @NonNull List<RecipientSettings> getPendingRecipientSyncUpdates() {
-    return getRecipientSettings(DIRTY + " = ?", new String[] { String.valueOf(DirtyState.UPDATE.getId()) });
+    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
+    String[] args  = new String[] { String.valueOf(DirtyState.UPDATE.getId()), Recipient.self().getId().serialize() };
+
+    return getRecipientSettings(query, args);
   }
 
   public @NonNull List<RecipientSettings> getPendingRecipientSyncInsertions() {
-    return getRecipientSettings(DIRTY + " = ?", new String[] { String.valueOf(DirtyState.INSERT.getId()) });
+    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
+    String[] args  = new String[] { String.valueOf(DirtyState.INSERT.getId()), Recipient.self().getId().serialize() };
+
+    return getRecipientSettings(query, args);
   }
 
   public @NonNull List<RecipientSettings> getPendingRecipientSyncDeletions() {
-    return getRecipientSettings(DIRTY + " = ?", new String[] { String.valueOf(DirtyState.DELETE.getId()) });
+    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
+    String[] args  = new String[] { String.valueOf(DirtyState.DELETE.getId()), Recipient.self().getId().serialize() };
+
+    return getRecipientSettings(query, args);
   }
 
-  public @Nullable RecipientSettings getByStorageSyncKey(@NonNull byte[] key) {
-    List<RecipientSettings> result = getRecipientSettings(STORAGE_SERVICE_KEY + " = ?", new String[] { Base64.encodeBytes(key) });
+  public @Nullable RecipientSettings getByStorageId(@NonNull byte[] storageId) {
+    List<RecipientSettings> result = getRecipientSettings(STORAGE_SERVICE_ID + " = ?", new String[] { Base64.encodeBytes(storageId) });
 
     if (result.size() > 0) {
       return result.get(0);
@@ -376,16 +448,20 @@ public class RecipientDatabase extends Database {
     return null;
   }
 
-  public void applyStorageSyncKeyUpdates(@NonNull Map<RecipientId, byte[]> keys) {
+  public void markNeedsSync(@NonNull RecipientId recipientId) {
+    markDirty(recipientId, DirtyState.UPDATE);
+  }
+
+  public void applyStorageIdUpdates(@NonNull Map<RecipientId, StorageId> storageIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     db.beginTransaction();
     try {
       String query = ID + " = ?";
 
-      for (Map.Entry<RecipientId, byte[]> entry : keys.entrySet()) {
+      for (Map.Entry<RecipientId, StorageId> entry : storageIds.entrySet()) {
         ContentValues values = new ContentValues();
-        values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(entry.getValue()));
+        values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(entry.getValue().getRaw()));
         values.put(DIRTY, DirtyState.CLEAN.getId());
 
         db.update(TABLE_NAME, values, query, new String[] { entry.getKey().serialize() });
@@ -396,51 +472,73 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public void applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord> inserts,
-                                      @NonNull Collection<StorageSyncHelper.ContactUpdate> updates)
+  public void applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord>               contactInserts,
+                                      @NonNull Collection<RecordUpdate<SignalContactRecord>> contactUpdates,
+                                      @NonNull Collection<SignalGroupV1Record>               groupV1Inserts,
+                                      @NonNull Collection<RecordUpdate<SignalGroupV1Record>> groupV1Updates)
   {
     SQLiteDatabase   db               = databaseHelper.getWritableDatabase();
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+    ThreadDatabase   threadDatabase   = DatabaseFactory.getThreadDatabase(context);
 
     db.beginTransaction();
 
     try {
-      for (SignalContactRecord insert : inserts) {
-        ContentValues values      = getValuesForStorageContact(insert);
-        long          id          = db.insertOrThrow(TABLE_NAME, null, values);
-        RecipientId   recipientId = RecipientId.from(id);
 
-        if (insert.getIdentityKey().isPresent()) {
-          try {
-            IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
+      for (SignalContactRecord insert : contactInserts) {
+        ContentValues values = getValuesForStorageContact(insert);
+        long          id     = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
 
-            DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncHelper.remoteToLocalIdentityStatus(insert.getIdentityState()));
-            IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
-          } catch (InvalidKeyException e) {
-            Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
+        if (id < 0) {
+          Log.w(TAG, "Failed to insert! It's likely that these were newly-registered users that were missed in the merge. Doing an update instead.");
+
+          if (insert.getAddress().getNumber().isPresent()) {
+            int count = db.update(TABLE_NAME, values, PHONE + " = ?", new String[] { insert.getAddress().getNumber().get() });
+            Log.w(TAG, "Updated " + count + " users by E164.");
+          } else {
+            int count = db.update(TABLE_NAME, values, UUID + " = ?", new String[] { insert.getAddress().getUuid().get().toString() });
+            Log.w(TAG, "Updated " + count + " users by UUID.");
           }
+        } else {
+          RecipientId recipientId = RecipientId.from(id);
+
+          if (insert.getIdentityKey().isPresent()) {
+            try {
+              IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
+
+              DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
+              IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
+            } catch (InvalidKeyException e) {
+              Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
+            }
+          }
+
+          threadDatabase.setArchived(recipientId, insert.isArchived());
+          Recipient.live(recipientId).refresh();
         }
       }
 
-      for (StorageSyncHelper.ContactUpdate update : updates) {
-        ContentValues values      = getValuesForStorageContact(update.getNewContact());
-        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_KEY + " = ?", new String[]{Base64.encodeBytes(update.getOldContact().getKey())});
+      for (RecordUpdate<SignalContactRecord> update : contactUpdates) {
+        ContentValues values      = getValuesForStorageContact(update.getNew());
+        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
 
         if (updateCount < 1) {
           throw new AssertionError("Had an update, but it didn't match any rows!");
         }
 
-        RecipientId recipientId = getByStorageKeyOrThrow(update.getNewContact().getKey());
+        RecipientId recipientId = getByStorageKeyOrThrow(update.getNew().getId().getRaw());
 
-        if (update.profileKeyChanged()) {
+        if (StorageSyncHelper.profileKeyChanged(update)) {
           clearProfileKeyCredential(recipientId);
         }
 
         try {
           Optional<IdentityRecord> oldIdentityRecord = identityDatabase.getIdentity(recipientId);
-          IdentityKey              identityKey       = update.getNewContact().getIdentityKey().isPresent() ? new IdentityKey(update.getNewContact().getIdentityKey().get(), 0) : null;
 
-          DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncHelper.remoteToLocalIdentityStatus(update.getNewContact().getIdentityState()));
+          if (update.getNew().getIdentityKey().isPresent()) {
+            IdentityKey identityKey = new IdentityKey(update.getNew().getIdentityKey().get(), 0);
+            DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
+          }
 
           Optional<IdentityRecord> newIdentityRecord = identityDatabase.getIdentity(recipientId);
 
@@ -456,12 +554,59 @@ public class RecipientDatabase extends Database {
         } catch (InvalidKeyException e) {
           Log.w(TAG, "Failed to process identity key during update! Skipping.", e);
         }
+
+        threadDatabase.setArchived(recipientId, update.getNew().isArchived());
+        Recipient.live(recipientId).refresh();
+      }
+
+      for (SignalGroupV1Record insert : groupV1Inserts) {
+        db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert));
+
+        Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(insert.getGroupId()));
+
+        threadDatabase.setArchived(recipient.getId(), insert.isArchived());
+        recipient.live().refresh();
+      }
+
+      for (RecordUpdate<SignalGroupV1Record> update : groupV1Updates) {
+        ContentValues values      = getValuesForStorageGroupV1(update.getNew());
+        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
+
+        if (updateCount < 1) {
+          throw new AssertionError("Had an update, but it didn't match any rows!");
+        }
+
+        Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(update.getOld().getGroupId()));
+
+        threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
+        recipient.live().refresh();
       }
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
     }
+  }
+
+  public void applyStorageSyncUpdates(@NonNull StorageId storageId, SignalAccountRecord update) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    ContentValues       values      = new ContentValues();
+    ProfileName         profileName = ProfileName.fromParts(update.getGivenName().orNull(), update.getFamilyName().orNull());
+
+    values.put(PROFILE_GIVEN_NAME, profileName.getGivenName());
+    values.put(PROFILE_FAMILY_NAME, profileName.getFamilyName());
+    values.put(PROFILE_JOINED_NAME, profileName.toString());
+    values.put(PROFILE_KEY, update.getProfileKey().transform(Base64::encodeBytes).orNull());
+    values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getId().getRaw()));
+    values.put(DIRTY, DirtyState.CLEAN.getId());
+
+    int updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(storageId.getRaw())});
+    if (updateCount < 1) {
+      throw new AssertionError("Account update didn't match any rows!");
+    }
+
+    Recipient.self().live().refresh();
   }
 
   public void updatePhoneNumbers(@NonNull Map<String, String> mapping) {
@@ -488,7 +633,7 @@ public class RecipientDatabase extends Database {
 
   private @NonNull RecipientId getByStorageKeyOrThrow(byte[] storageKey) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = STORAGE_SERVICE_KEY + " = ?";
+    String         query = STORAGE_SERVICE_ID + " = ?";
     String[]       args  = new String[]{Base64.encodeBytes(storageKey)};
 
     try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
@@ -508,17 +653,29 @@ public class RecipientDatabase extends Database {
       values.put(UUID, contact.getAddress().getUuid().get().toString());
     }
 
-    ProfileName profileName = ProfileName.fromSerialized(contact.getProfileName().orNull());
+    ProfileName profileName = ProfileName.fromParts(contact.getGivenName().orNull(), contact.getFamilyName().orNull());
+    String      username    = contact.getUsername().orNull();
 
     values.put(PHONE, contact.getAddress().getNumber().orNull());
     values.put(PROFILE_GIVEN_NAME, profileName.getGivenName());
     values.put(PROFILE_FAMILY_NAME, profileName.getFamilyName());
     values.put(PROFILE_JOINED_NAME, profileName.toString());
-    values.put(PROFILE_KEY, contact.getProfileKey().orNull());
-    // TODO [greyson] Username
+    values.put(PROFILE_KEY, contact.getProfileKey().transform(Base64::encodeBytes).orNull());
+    values.put(USERNAME, TextUtils.isEmpty(username) ? null : username);
     values.put(PROFILE_SHARING, contact.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, contact.isBlocked() ? "1" : "0");
-    values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(contact.getKey()));
+    values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(contact.getId().getRaw()));
+    values.put(DIRTY, DirtyState.CLEAN.getId());
+    return values;
+  }
+
+  private static @NonNull ContentValues getValuesForStorageGroupV1(@NonNull SignalGroupV1Record groupV1) {
+    ContentValues values = new ContentValues();
+    values.put(GROUP_ID, GroupId.v1orThrow(groupV1.getGroupId()).toString());
+    values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
+    values.put(PROFILE_SHARING, groupV1.isProfileSharingEnabled() ? "1" : "0");
+    values.put(BLOCKED, groupV1.isBlocked() ? "1" : "0");
+    values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(groupV1.getId().getRaw()));
     values.put(DIRTY, DirtyState.CLEAN.getId());
     return values;
   }
@@ -530,7 +687,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(table, RECIPIENT_FULL_PROJECTION, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        out.add(getRecipientSettings(cursor));
+        out.add(getRecipientSettings(context, cursor));
       }
     }
 
@@ -538,30 +695,32 @@ public class RecipientDatabase extends Database {
   }
 
   /**
-   * @return All storage keys, excluding the ones that need to be deleted.
+   * @return All storage ids for ContactRecords, excluding the ones that need to be deleted.
    */
-  public List<byte[]> getAllStorageSyncKeys() {
-    return new ArrayList<>(getAllStorageSyncKeysMap().values());
+  public List<StorageId> getContactStorageSyncIds() {
+    return new ArrayList<>(getContactStorageSyncIdsMap().values());
   }
 
   /**
-   * @return All storage keys, excluding the ones that need to be deleted.
+   * @return All storage IDs for ContactRecords, excluding the ones that need to be deleted.
    */
-  public Map<RecipientId, byte[]> getAllStorageSyncKeysMap() {
-    SQLiteDatabase           db    = databaseHelper.getReadableDatabase();
-    String                   query = STORAGE_SERVICE_KEY + " NOT NULL AND " + DIRTY + " != ?";
-    String[]                 args  = new String[]{String.valueOf(DirtyState.DELETE)};
-    Map<RecipientId, byte[]> out   = new HashMap<>();
+  public @NonNull Map<RecipientId, StorageId> getContactStorageSyncIdsMap() {
+    SQLiteDatabase              db    = databaseHelper.getReadableDatabase();
+    String                      query = STORAGE_SERVICE_ID + " NOT NULL AND " + DIRTY + " != ? AND " + ID + " != ?";
+    String[]                    args  = new String[]{String.valueOf(DirtyState.DELETE), Recipient.self().getId().serialize() };
+    Map<RecipientId, StorageId> out   = new HashMap<>();
 
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] { ID, STORAGE_SERVICE_KEY }, query, args, null, null, null)) {
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { ID, STORAGE_SERVICE_ID, GROUP_TYPE }, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        RecipientId id    = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
-        String      encodedKey = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_KEY));
+        RecipientId id         = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+        String      encodedKey = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_ID));
+        GroupType   groupType  = GroupType.fromId(cursor.getInt(cursor.getColumnIndexOrThrow(GROUP_TYPE)));
+        byte[]      key        = Base64.decodeOrThrow(encodedKey);
 
-        try {
-          out.put(id, Base64.decode(encodedKey));
-        } catch (IOException e) {
-          throw new AssertionError(e);
+        if (groupType == GroupType.NONE) {
+          out.put(id, StorageId.forContact(key));
+        } else {
+          out.put(id, StorageId.forGroupV1(key));
         }
       }
     }
@@ -569,13 +728,14 @@ public class RecipientDatabase extends Database {
     return out;
   }
 
-  @NonNull RecipientSettings getRecipientSettings(@NonNull Cursor cursor) {
+  private static @NonNull RecipientSettings getRecipientSettings(@NonNull Context context, @NonNull Cursor cursor) {
     long    id                         = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
     UUID    uuid                       = UuidUtil.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(UUID)));
     String  username                   = cursor.getString(cursor.getColumnIndexOrThrow(USERNAME));
     String  e164                       = cursor.getString(cursor.getColumnIndexOrThrow(PHONE));
     String  email                      = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL));
-    String  groupId                    = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
+    GroupId groupId                    = GroupId.parseNullableOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)));
+    int     groupType                  = cursor.getInt(cursor.getColumnIndexOrThrow(GROUP_TYPE));
     boolean blocked                    = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCKED))                == 1;
     String  messageRingtone            = cursor.getString(cursor.getColumnIndexOrThrow(MESSAGE_RINGTONE));
     String  callRingtone               = cursor.getString(cursor.getColumnIndexOrThrow(CALL_RINGTONE));
@@ -600,8 +760,9 @@ public class RecipientDatabase extends Database {
     String  notificationChannel        = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION_CHANNEL));
     int     unidentifiedAccessMode     = cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED_ACCESS_MODE));
     boolean forceSmsSelection          = cursor.getInt(cursor.getColumnIndexOrThrow(FORCE_SMS_SELECTION))  == 1;
-    boolean uuidSupported              = cursor.getInt(cursor.getColumnIndexOrThrow(UUID_SUPPORTED))       == 1;
-    String  storageKeyRaw              = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_KEY));
+    int     uuidCapabilityValue        = cursor.getInt(cursor.getColumnIndexOrThrow(UUID_CAPABILITY));
+    int     groupsV2CapabilityValue    = cursor.getInt(cursor.getColumnIndexOrThrow(GROUPS_V2_CAPABILITY));
+    String  storageKeyRaw              = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_ID));
     String  identityKeyRaw             = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
     int     identityStatusRaw          = cursor.getInt(cursor.getColumnIndexOrThrow(IDENTITY_STATUS));
 
@@ -634,23 +795,12 @@ public class RecipientDatabase extends Database {
       }
     }
 
-    byte[] storageKey = null;
-    try {
-      storageKey = storageKeyRaw != null ? Base64.decode(storageKeyRaw) : null;
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
-
-    byte[] identityKey = null;
-    try {
-      identityKey = identityKeyRaw != null ? Base64.decode(identityKeyRaw) : null;
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
+    byte[] storageKey  = storageKeyRaw != null ? Base64.decodeOrThrow(storageKeyRaw) : null;
+    byte[] identityKey = identityKeyRaw != null ? Base64.decodeOrThrow(identityKeyRaw) : null;
 
     IdentityDatabase.VerifiedStatus identityStatus = IdentityDatabase.VerifiedStatus.forState(identityStatusRaw);
 
-    return new RecipientSettings(RecipientId.from(id), uuid, username, e164, email, groupId, blocked, muteUntil,
+    return new RecipientSettings(RecipientId.from(id), uuid, username, e164, email, groupId, GroupType.fromId(groupType), blocked, muteUntil,
                                  VibrateState.fromId(messageVibrateState),
                                  VibrateState.fromId(callVibrateState),
                                  Util.uri(messageRingtone), Util.uri(callRingtone),
@@ -659,9 +809,13 @@ public class RecipientDatabase extends Database {
                                  profileKey, profileKeyCredential,
                                  systemDisplayName, systemContactPhoto,
                                  systemPhoneLabel, systemContactUri,
-                                 ProfileName.fromParts(profileGivenName, profileFamilyName), signalProfileAvatar, profileSharing,
+                                 ProfileName.fromParts(profileGivenName, profileFamilyName), signalProfileAvatar,
+                                 AvatarHelper.hasAvatar(context, RecipientId.from(id)), profileSharing,
                                  notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
-                                 forceSmsSelection, uuidSupported, InsightsBannerTier.fromId(insightsBannerTier),
+                                 forceSmsSelection,
+                                 Recipient.Capability.deserialize(uuidCapabilityValue),
+                                 Recipient.Capability.deserialize(groupsV2CapabilityValue),
+                                 InsightsBannerTier.fromId(insightsBannerTier),
                                  storageKey, identityKey, identityStatus);
   }
 
@@ -789,9 +943,10 @@ public class RecipientDatabase extends Database {
     Recipient.live(id).refresh();
   }
 
-  public void setUuidSupported(@NonNull RecipientId id, boolean supported) {
-    ContentValues values = new ContentValues(1);
-    values.put(UUID_SUPPORTED, supported ? "1" : "0");
+  public void setCapabilities(@NonNull RecipientId id, @NonNull SignalServiceProfile.Capabilities capabilities) {
+    ContentValues values = new ContentValues(2);
+    values.put(UUID_CAPABILITY,      Recipient.Capability.fromBoolean(capabilities.isUuid()).serialize());
+    values.put(GROUPS_V2_CAPABILITY, Recipient.Capability.fromBoolean(capabilities.isGv2()).serialize());
     update(id, values);
     Recipient.live(id).refresh();
   }
@@ -820,6 +975,7 @@ public class RecipientDatabase extends Database {
     if (update(updateQuery, valuesToSet)) {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
+      StorageSyncHelper.scheduleSyncForDataChange();
       return true;
     } else {
       return false;
@@ -865,6 +1021,7 @@ public class RecipientDatabase extends Database {
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
+      StorageSyncHelper.scheduleSyncForDataChange();
     }
   }
 
@@ -873,6 +1030,11 @@ public class RecipientDatabase extends Database {
     contentValues.put(SIGNAL_PROFILE_AVATAR, profileAvatar);
     if (update(id, contentValues)) {
       Recipient.live(id).refresh();
+
+      if (id.equals(Recipient.self().getId())) {
+        markDirty(id, DirtyState.UPDATE);
+        StorageSyncHelper.scheduleSyncForDataChange();
+      }
     }
   }
 
@@ -882,6 +1044,7 @@ public class RecipientDatabase extends Database {
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
+      StorageSyncHelper.scheduleSyncForDataChange();
     }
   }
 
@@ -899,6 +1062,7 @@ public class RecipientDatabase extends Database {
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
+      StorageSyncHelper.scheduleSyncForDataChange();
     }
   }
 
@@ -914,8 +1078,10 @@ public class RecipientDatabase extends Database {
 
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(USERNAME, username);
-    update(id, contentValues);
-    Recipient.live(id).refresh();
+    if (update(id, contentValues)) {
+      Recipient.live(id).refresh();
+      StorageSyncHelper.scheduleSyncForDataChange();
+    }
   }
 
   public void clearUsernameIfExists(@NonNull String username) {
@@ -947,7 +1113,6 @@ public class RecipientDatabase extends Database {
     ContentValues contentValues = new ContentValues(3);
     contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
     contentValues.put(UUID, uuid.toString().toLowerCase());
-    contentValues.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(StorageSyncHelper.generateKey()));
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.INSERT);
       Recipient.live(id).refresh();
@@ -962,7 +1127,6 @@ public class RecipientDatabase extends Database {
   public void markRegistered(@NonNull RecipientId id) {
     ContentValues contentValues = new ContentValues(2);
     contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
-    contentValues.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(StorageSyncHelper.generateKey()));
     if (update(id, contentValues)) {
       markDirty(id, DirtyState.INSERT);
       Recipient.live(id).refresh();
@@ -1012,8 +1176,16 @@ public class RecipientDatabase extends Database {
   public void setRegistered(@NonNull RecipientId id, RegisteredState registeredState) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(REGISTERED, registeredState.getId());
-    update(id, contentValues);
-    Recipient.live(id).refresh();
+
+    if (update(id, contentValues)) {
+      if (registeredState == RegisteredState.REGISTERED) {
+        markDirty(id, DirtyState.INSERT);
+      } else if (registeredState == RegisteredState.NOT_REGISTERED) {
+        markDirty(id, DirtyState.DELETE);
+      }
+
+      Recipient.live(id).refresh();
+    }
   }
 
   @Deprecated
@@ -1021,10 +1193,11 @@ public class RecipientDatabase extends Database {
                             @NonNull Collection<RecipientId> inactiveIds)
   {
     for (RecipientId activeId : activeIds) {
-      ContentValues contentValues = new ContentValues(1);
-      contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
+      ContentValues registeredValues = new ContentValues(1);
+      registeredValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
 
-      if (update(activeId, contentValues)) {
+      if (update(activeId, registeredValues)) {
+        markDirty(activeId, DirtyState.INSERT);
         Recipient.live(activeId).refresh();
       }
     }
@@ -1034,6 +1207,7 @@ public class RecipientDatabase extends Database {
       contentValues.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
 
       if (update(inactiveId, contentValues)) {
+        markDirty(inactiveId, DirtyState.DELETE);
         Recipient.live(inactiveId).refresh();
       }
     }
@@ -1107,9 +1281,8 @@ public class RecipientDatabase extends Database {
     String   selection = BLOCKED         + " = ? AND " +
                          REGISTERED      + " = ? AND " +
                          GROUP_ID        + " IS NULL AND " +
-                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
                          "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + SEARCH_PROFILE_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1" };
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()) };
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
@@ -1122,14 +1295,13 @@ public class RecipientDatabase extends Database {
     String   selection = BLOCKED         + " = ? AND " +
                          REGISTERED      + " = ? AND " +
                          GROUP_ID        + " IS NULL AND " +
-                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ? OR " + USERNAME + " NOT NULL) AND " +
                          "(" +
                            PHONE               + " LIKE ? OR " +
                            SYSTEM_DISPLAY_NAME + " LIKE ? OR " +
                            SEARCH_PROFILE_NAME + " LIKE ? OR " +
                            USERNAME            + " LIKE ?" +
                          ")";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query, query };
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query, query };
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
@@ -1222,6 +1394,7 @@ public class RecipientDatabase extends Database {
 
       ContentValues setBlocked = new ContentValues();
       setBlocked.put(BLOCKED, 1);
+      setBlocked.put(PROFILE_SHARING, 0);
 
       for (String e164 : blockedE164) {
         db.update(TABLE_NAME, setBlocked, PHONE + " = ?", new String[] { e164 });
@@ -1231,10 +1404,10 @@ public class RecipientDatabase extends Database {
         db.update(TABLE_NAME, setBlocked, UUID + " = ?", new String[] { uuid });
       }
 
-      List<String> groupIdStrings = Stream.of(groupIds).map(g -> GroupUtil.getEncodedId(g, false)).toList();
+      List<GroupId.V1> groupIdStrings = Stream.of(groupIds).map(GroupId::v1orThrow).toList();
 
-      for (String groupId : groupIdStrings) {
-        db.update(TABLE_NAME, setBlocked, GROUP_ID + " = ?", new String[] { groupId });
+      for (GroupId.V1 groupId : groupIdStrings) {
+        db.update(TABLE_NAME, setBlocked, GROUP_ID + " = ?", new String[] { groupId.toString() });
       }
 
       db.setTransactionSuccessful();
@@ -1252,7 +1425,7 @@ public class RecipientDatabase extends Database {
     try {
       for (Map.Entry<RecipientId, byte[]> entry : keys.entrySet()) {
         ContentValues values = new ContentValues();
-        values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(entry.getValue()));
+        values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(entry.getValue()));
         db.update(TABLE_NAME, values, ID_WHERE, new String[] { entry.getKey().serialize() });
       }
 
@@ -1281,13 +1454,28 @@ public class RecipientDatabase extends Database {
   }
 
   void markDirty(@NonNull RecipientId recipientId, @NonNull DirtyState dirtyState) {
-    if (!FeatureFlags.storageService()) return;
+    Log.d(TAG, "Attempting to mark " + recipientId + " with dirty state " + dirtyState, new Throwable());
 
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(DIRTY, dirtyState.getId());
 
-    String   query = ID + " = ? AND (" + UUID + " NOT NULL OR " + PHONE + " NOT NULL) AND " + DIRTY + " < ?";
+    String   query = ID + " = ? AND (" + UUID + " NOT NULL OR " + PHONE + " NOT NULL OR " + GROUP_ID + " NOT NULL) AND ";
     String[] args  = new String[] { recipientId.serialize(), String.valueOf(dirtyState.id) };
+
+    switch (dirtyState) {
+      case INSERT:
+        query += "(" + DIRTY + " < ? OR " + DIRTY + " = ?)";
+        args   = SqlUtil.appendArg(args, String.valueOf(DirtyState.DELETE.getId()));
+
+        contentValues.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+        break;
+      case DELETE:
+        query += "(" + DIRTY + " < ? OR " + DIRTY + " = ?)";
+        args   = SqlUtil.appendArg(args, String.valueOf(DirtyState.INSERT.getId()));
+        break;
+      default:
+        query += DIRTY + " < ?";
+    }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, query, args);
   }
@@ -1329,7 +1517,7 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  private @NonNull RecipientId getOrInsertByColumn(@NonNull String column, String value) {
+  private @NonNull GetOrInsertResult getOrInsertByColumn(@NonNull String column, String value) {
     if (TextUtils.isEmpty(value)) {
       throw new AssertionError(column + " cannot be empty.");
     }
@@ -1337,7 +1525,7 @@ public class RecipientDatabase extends Database {
     Optional<RecipientId> existing = getByColumn(column, value);
 
     if (existing.isPresent()) {
-      return existing.get();
+      return new GetOrInsertResult(existing.get(), false);
     } else {
       ContentValues values = new ContentValues();
       values.put(column, value);
@@ -1348,12 +1536,12 @@ public class RecipientDatabase extends Database {
         existing = getByColumn(column, value);
 
         if (existing.isPresent()) {
-          return existing.get();
+          return new GetOrInsertResult(existing.get(), false);
         } else {
           throw new AssertionError("Failed to insert recipient!");
         }
       } else {
-        return RecipientId.from(id);
+        return new GetOrInsertResult(RecipientId.from(id), true);
       }
     }
   }
@@ -1408,7 +1596,7 @@ public class RecipientDatabase extends Database {
     }
 
     private void markAllRelevantEntriesDirty() {
-      String   query = SYSTEM_INFO_PENDING + " = ? AND " + STORAGE_SERVICE_KEY + " NOT NULL AND " + DIRTY + " < ?";
+      String   query = SYSTEM_INFO_PENDING + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL AND " + DIRTY + " < ?";
       String[] args  = new String[] { "1", String.valueOf(DirtyState.UPDATE.getId()) };
 
       ContentValues values = new ContentValues(1);
@@ -1433,6 +1621,10 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  private static @NonNull String nullIfEmpty(String column) {
+    return "NULLIF(" + column + ", '')";
+  }
+
   public interface ColorUpdater {
     MaterialColor update(@NonNull String name, @Nullable String color);
   }
@@ -1443,7 +1635,8 @@ public class RecipientDatabase extends Database {
     private final String                          username;
     private final String                          e164;
     private final String                          email;
-    private final String                          groupId;
+    private final GroupId                         groupId;
+    private final GroupType                       groupType;
     private final boolean                         blocked;
     private final long                            muteUntil;
     private final VibrateState                    messageVibrateState;
@@ -1462,13 +1655,15 @@ public class RecipientDatabase extends Database {
     private final String                          systemContactUri;
     private final ProfileName                     signalProfileName;
     private final String                          signalProfileAvatar;
+    private final boolean                         hasProfileImage;
     private final boolean                         profileSharing;
     private final String                          notificationChannel;
     private final UnidentifiedAccessMode          unidentifiedAccessMode;
     private final boolean                         forceSmsSelection;
-    private final boolean                         uuidSupported;
+    private final Recipient.Capability            uuidCapability;
+    private final Recipient.Capability            groupsV2Capability;
     private final InsightsBannerTier              insightsBannerTier;
-    private final byte[]                          storageKey;
+    private final byte[]                          storageId;
     private final byte[]                          identityKey;
     private final IdentityDatabase.VerifiedStatus identityStatus;
 
@@ -1477,8 +1672,10 @@ public class RecipientDatabase extends Database {
                       @Nullable String username,
                       @Nullable String e164,
                       @Nullable String email,
-                      @Nullable String groupId,
-                      boolean blocked, long muteUntil,
+                      @Nullable GroupId groupId,
+                      @NonNull GroupType groupType,
+                      boolean blocked,
+                      long muteUntil,
                       @NonNull VibrateState messageVibrateState,
                       @NonNull VibrateState callVibrateState,
                       @Nullable Uri messageRingtone,
@@ -1495,13 +1692,15 @@ public class RecipientDatabase extends Database {
                       @Nullable String systemContactUri,
                       @NonNull ProfileName signalProfileName,
                       @Nullable String signalProfileAvatar,
+                      boolean hasProfileImage,
                       boolean profileSharing,
                       @Nullable String notificationChannel,
                       @NonNull UnidentifiedAccessMode unidentifiedAccessMode,
                       boolean forceSmsSelection,
-                      boolean uuidSupported,
+                      Recipient.Capability uuidCapability,
+                      Recipient.Capability groupsV2Capability,
                       @NonNull InsightsBannerTier insightsBannerTier,
-                      @Nullable byte[] storageKey,
+                      @Nullable byte[] storageId,
                       @Nullable byte[] identityKey,
                       @NonNull IdentityDatabase.VerifiedStatus identityStatus)
     {
@@ -1511,6 +1710,7 @@ public class RecipientDatabase extends Database {
       this.e164                   = e164;
       this.email                  = email;
       this.groupId                = groupId;
+      this.groupType              = groupType;
       this.blocked                = blocked;
       this.muteUntil              = muteUntil;
       this.messageVibrateState    = messageVibrateState;
@@ -1529,13 +1729,15 @@ public class RecipientDatabase extends Database {
       this.systemContactUri       = systemContactUri;
       this.signalProfileName      = signalProfileName;
       this.signalProfileAvatar    = signalProfileAvatar;
+      this.hasProfileImage        = hasProfileImage;
       this.profileSharing         = profileSharing;
       this.notificationChannel    = notificationChannel;
       this.unidentifiedAccessMode = unidentifiedAccessMode;
       this.forceSmsSelection      = forceSmsSelection;
-      this.uuidSupported          = uuidSupported;
+      this.uuidCapability         = uuidCapability;
+      this.groupsV2Capability     = groupsV2Capability;
       this.insightsBannerTier     = insightsBannerTier;
-      this.storageKey             = storageKey;
+      this.storageId              = storageId;
       this.identityKey            = identityKey;
       this.identityStatus         = identityStatus;
     }
@@ -1560,8 +1762,12 @@ public class RecipientDatabase extends Database {
       return email;
     }
 
-    public @Nullable String getGroupId() {
+    public @Nullable GroupId getGroupId() {
       return groupId;
+    }
+
+    public @NonNull GroupType getGroupType() {
+      return groupType;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -1640,6 +1846,10 @@ public class RecipientDatabase extends Database {
       return signalProfileAvatar;
     }
 
+    public boolean hasProfileImage() {
+      return hasProfileImage;
+    }
+
     public boolean isProfileSharing() {
       return profileSharing;
     }
@@ -1656,12 +1866,16 @@ public class RecipientDatabase extends Database {
       return forceSmsSelection;
     }
 
-    public boolean isUuidSupported() {
-      return uuidSupported;
+    public Recipient.Capability getUuidCapability() {
+      return uuidCapability;
     }
 
-    public @Nullable byte[] getStorageKey() {
-      return storageKey;
+    public Recipient.Capability getGroupsV2Capability() {
+      return groupsV2Capability;
+    }
+
+    public @Nullable byte[] getStorageId() {
+      return storageId;
     }
 
     public @Nullable byte[] getIdentityKey() {
@@ -1714,9 +1928,19 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public static class MissingRecipientError extends AssertionError {
-    public MissingRecipientError(@Nullable RecipientId id) {
+  public static class MissingRecipientException extends IllegalStateException {
+    public MissingRecipientException(@Nullable RecipientId id) {
       super("Failed to find recipient with ID: " + id);
+    }
+  }
+
+  private static class GetOrInsertResult {
+    final RecipientId recipientId;
+    final boolean     neededInsert;
+
+    private GetOrInsertResult(@NonNull RecipientId recipientId, boolean neededInsert) {
+      this.recipientId  = recipientId;
+      this.neededInsert = neededInsert;
     }
   }
 }

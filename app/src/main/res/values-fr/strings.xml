@@ -76,6 +76,19 @@
   <string name="AudioSlidePlayer_error_playing_audio">Erreur de lecture du son.</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacts bloqués</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">Bloquer et quitter %1$s ?</string>
+  <string name="BlockUnblockDialog_block_s">Bloquer %1$s ?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vous ne recevrez plus de message ni de mises à jour de ce groupe, les membres ne pourront plus vous ajouter de nouveau à ce groupe.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Les membres du groupe ne pourront plus vous ajouter à ce groupe.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Les membres du groupe pourront de nouveau vous ajouter à ce groupe.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vous pourrez vous envoyer des messages et vous appeler mutuellement.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les personnes bloquées ne pourront ni vous appeler ni vous envoyer de messages.</string>
+  <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
+  <string name="BlockUnblockDialog_unblock">Débloquer</string>
+  <string name="BlockUnblockDialog_block">Bloquer</string>
+  <string name="BlockUnblockDialog_block_and_leave">Bloquer et quitter</string>
+  <string name="BlockUnblockDialog_block_and_delete">Bloquer et supprimer</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Aujourd’hui</string>
   <string name="BucketedThreadMedia_Yesterday">Hier</string>
@@ -109,11 +122,14 @@
   <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
+  <string name="CommunicationActions_no_email_app_found">Aucune application de mail trouvée.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Un appel cellulaire est déjà en cours.</string>
   <string name="CommunicationActions_start_video_call">Démarrer un appel vidéo ?</string>
   <string name="CommunicationActions_start_voice_call">Démarrer un appel vocal ?</string>
   <string name="CommunicationActions_cancel">Annuler</string>
   <string name="CommunicationActions_call">Appeler</string>
+  <string name="CommunicationActions_insecure_call">Appel non sécurisé</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Des frais de communication peuvent s\'appliquer. Le numéro que vous appelez n\'est pas enregistré auprès de Signal. Cet appel sera passé par votre opérateur de téléphonie mobile et non par Internet. </string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %1$s a changé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous devriez peut-être confirmer votre numéro de sécurité avec ce contact.</string>
@@ -154,6 +170,7 @@
   <string name="ConversationItem_read_more">  En savoir plus</string>
   <string name="ConversationItem_download_more">   Télécharger plus</string>
   <string name="ConversationItem_pending">  En attente</string>
+  <string name="ConversationItem_this_message_was_deleted">Ce message a été supprimé</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous éprouvez des problèmes de chiffrement dans cette conversation. Vos messages seront conservés.</string>
@@ -204,6 +221,13 @@
   <string name="ConversationActivity_no_results">Il n’y a aucun résultat</string>
   <string name="ConversationActivity_sticker_pack_installed">Le paquet d’autocollants a été installé</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nouveauté ! Dites-le avec des autocollants</string>
+  <string name="ConversationActivity_cancel">Annuler</string>
+  <string name="ConversationActivity_delete_conversation">Supprimer la conversation ?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Supprimer et quitter le groupe ?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Cette conversation sera supprimée de tous vos appareils.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Vous quitterez ce groupe et il sera supprimé de tous vos appareils.</string>
+  <string name="ConversationActivity_delete">Supprimer</string>
+  <string name="ConversationActivity_delete_and_leave">Supprimer et quitter</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -242,6 +266,8 @@
   <string name="ConversationFragment_sms">Texto</string>
   <string name="ConversationFragment_deleting">Suppression</string>
   <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
+  <string name="ConversationFragment_delete_for_me">Supprimer pour moi</string>
+  <string name="ConversationFragment_delete_for_everyone">Supprimer pour tous</string>
   <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Échec d’ouverture du message</string>
@@ -249,6 +275,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vous pouvez faire glisser un message vers la gauche pour y répondre rapidement</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Les fichiers multimédias éphémères sortants sont supprimés automatiquement après l’envoi</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Vous avez déjà visualisé ce message</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vous pouvez ajouter des notes pour vous-même dans cette conversation. Si votre compte a des appareil reliés, les nouvelles notes seront synchronisées.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Aucun navigateur n’est installé sur votre appareil.</string>
   <!--ConversationListFragment-->
@@ -272,6 +299,8 @@
     <item quantity="one">La conversation a été déplacée vers la boîte de réception</item>
     <item quantity="other">%d conversations ont été déplacées vers la boîte de réception</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Votre nom de profil a été créé.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Votre nom de profil a été enregistré.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Message d’échange de clés</string>
   <!--ConversationListItemAction-->
@@ -290,6 +319,11 @@
   <string name="CustomDefaultPreference_using_custom">Personnalisé utilisé: %s</string>
   <string name="CustomDefaultPreference_using_default">Valeur par défaut utilisée : %s</string>
   <string name="CustomDefaultPreference_none">Aucun</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Choisissez une photo</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Prendre une photo</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Choisir depuis la galerie</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Supprimer la photo</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">À l’instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -321,34 +355,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Les fichiers joints multiples ne sont pris en charge que pour les images et les vidéos</string>
-  <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bienvenue sur Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure et RedPhone sont désormais regroupées en une seule appli de messagerie qui protège vos renseignements personnels, adaptée à toutes les situations : Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bienvenue sur Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure est désormais Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure et RedPhone sont désormais regroupées en une seule appli : Signal. Touchez pour explorer.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Bienvenue aux appels vidéo sécurisés !</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal prend désormais en charge les appels vidéo sécurisés. Lancez normalement un appel Signal, touchez le bouton Vidéo et dites bonjour.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal prend désormais en charge les appels vidéo sécurisés.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal prend désormais en charge les appels vidéo sécurisés. Touchez pour explorer.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prêt pour votre gros plan ?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Vous pouvez désormais partager une photo de profil et un nom avec des amis sur Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Les profils Signal sont arrivés</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Nous présentons les indicateurs de saisie.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Vous pouvez désormais facultativement voir et faire savoir que des messages sont en cours de saisie.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Souhaitez-vous les activer maintenant ?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Les indicateurs de saisie sont arrivés</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activer les indicateurs de saisie</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activer les indicateurs de saisie</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Non merci</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Nous présentons les aperçus de lien.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Les aperçus facultatifs de liens sont désormais pris en charge pour certains des sites les plus populaires d’Internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vous pouvez désactiver ou activer cette fonction en tout temps dans vos paramètres de Signal (Confidentialité &gt; Envoyer des aperçus de liens).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Compris</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Nous présentons les autocollants</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pourquoi utiliser des mots quand vous pouvez utiliser des autocollants ?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pourquoi utiliser des mots quand vous pouvez utiliser des autocollants ? Touchez cette icône sur votre clavier :</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Allons-y</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Récupération d’un message…</string>
   <!--GcmRefreshJob-->
@@ -375,12 +381,44 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossible d’ajouter %1$s, car cette personne n’utilise pas Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Chargement des détails du groupe…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Vous faites déjà partie de ce groupe.</string>
+  <string name="GroupCreateActivity_remove_member_description">Supprimer le membre</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partager vos nom et photo de profil avec ce groupe ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voulez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
   <string name="GroupShareProfileView_make_visible">Rendre visible</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Moi</string>
+  <string name="GroupMembersDialog_you">Vous</string>
+  <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">N\'importe qui</string>
+  <string name="GroupManagement_access_level_all_members">Tous les membres</string>
+  <string name="GroupManagement_access_level_only_admins">Seulement les administrateurs</string>
+  <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Invitations de groupe en attente</string>
+  <string name="PendingMembersActivity_people_you_invited">Les personnes que vous avez invitées</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Vous n\'avez aucune invitation en attente.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Invitations par d’autres membres du groupe</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Aucune invitation en attente d\'autres membres du groupe.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Les détails des personnes invitées par d’autres membres du groupe ne sont pas affichés. Si les personnes invitées choisissent de le rejoindre, leurs renseignements seront communiqués au groupe à ce moment-là. Elles ne verront aucun message dans le groupe avant de l’avoir rejoint.</string>
+  <string name="PendingMembersActivity_cancel_invite">Annuler l\'invitation</string>
+  <string name="PendingMembersActivity_cancel_invites">Annuler les invitations</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Annuler l\'invitation</item>
+    <item quantity="other">Annuler%1$d invitations</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Erreur lors de l\'annulation de l\'invitation</item>
+    <item quantity="other">Erreur lors de l\'annulation des invitations</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s a invité 1 personne</item>
+    <item quantity="other">%1$s a invité %2$d personnes</item>
+  </plurals>
+  <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Voulez-vous annuler l\'invitation envoyée à %1$s ?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Voulez-vous annuler l\'invitation envoyée par %1$s?</item>
+    <item quantity="other">Voulez-vous annuler %2$d invitations envoyées par %1$s ?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar du groupe</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -409,6 +447,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les amis ne laissent pas leur amis dialoguer sans chiffrement.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Travail en arrière-plan…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">En apprendre davantage</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Échec d’envoi</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nouveau numéro de sécurité</string>
@@ -519,11 +559,91 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a désactivé les messages éphémères.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini l’expiration des messages éphémères à %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Vous avez ajouté %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s a ajouté %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s vous a ajouté⋅e au groupe.</string>
+  <string name="MessageRecord_you_joined_the_group">Vous vous êtes joint au groupe.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s se sont joints au groupe.</string>
+  <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Vous avez supprimé %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s a supprimé %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s vous a supprimé du groupe.</string>
+  <string name="MessageRecord_you_left_the_group">Vous avez quitté le groupe.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s a quitté le groupe.</string>
+  <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Vous avez promu %1$s comme admin.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s a promu%2$s comme admin.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s vous a fait administrateur.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vous avez révoqué les privilèges d’admin pour %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a révoqué vos privilèges d’admin.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a retiré les privilèges d\'administration à %2$s.</string>
+  <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Vous avez invité %1$s au groupe.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s a invité 1 personne dans le groupe.</item>
+    <item quantity="other">%1$s a invité %2$d personnes dans le groupe.</item>
+  </plurals>
+  <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Vous avez révoqué une invitation au groupe.</item>
+    <item quantity="other">Vous avez refusé %1$d invitations au groupe.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s a refusé une invitation au groupe.</item>
+    <item quantity="other">%1$s a refusé %2$d invitations au groupe.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Quelqu\'un a décliné l\'invitation au groupe.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vous avez décliné l\'invitation du groupe.</string>
+  <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Vous avez accepté l\'invitation du groupe.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s a accepté l’invitation au groupe.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Vous avez invité le membre%1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s a ajouté le membre invité %2$s.</string>
+  <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Vous avez changé le nom du groupe en « %1$s ».</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a changé le nom du groupe en « %2$s ».</string>
+  <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Vous avez changé l\'avatar du groupe.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s a changé l’avatar du groupe.</string>
+  <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Vous avez changé qui peut éditer les renseignements du groupe par « %1$s ».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s a changé qui peut éditer les informations du groupe par « %2$s ».</string>
+  <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vous avez changé qui peut éditer la liste des membres du groupe par « %1$s ».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a changé qui peut éditer la liste des membres du groupe par « %2$s ».</string>
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Vous avez marqué votre numéro de sécurité avec %s comme vérifié</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme vérifié à partir d’un autre appareil</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vous avez marqué votre numéro de sécurité avec %s comme non vérifié</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme non vérifié à partir d’un autre appareil</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Accepter</string>
+  <string name="MessageRequestBottomView_delete">Supprimer</string>
+  <string name="MessageRequestBottomView_block">Bloquer</string>
+  <string name="MessageRequestBottomView_unblock">Débloquer</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous laisser %1$s vous envoyer un message ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n\'aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous rejoindre le groupe %1$s ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n\'aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Débloquez %1$s pour vous échanger des messages et des appels.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Débloquez pour permettre aux membres du groupe de vous ajouter à nouveau à ce groupe.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s et de %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Membre de %1$s, de%2$s et de %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d membre</item>
+    <item quantity="other">%1$d membres</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d membres (+%2$d invités)</item>
+    <item quantity="other">%1$d membres (+%2$d invités)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d autre</item>
+    <item quantity="other">%d autres</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">L’ancienne phrase de passe est erronée.</string>
@@ -566,6 +686,28 @@
   <string name="PlacePickerActivity_accept_address">Accepter l’adresse</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La version des services Google Play installée ne fonctionne pas correctement. Veuillez réinstaller les Services Google Play et ressayer.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">Le NIP est erroné</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Ignorer la saisie du code NIP ?</string>
+  <string name="PinRestoreEntryFragment_need_help">Besoin d’aide ?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Votre code NIP est un code à plus de %1$d chiffres que vous avez créé. Il peut être numérique ou alpha-numérique.\n\nSi vous ne vous souvenez plus de votre code, vous pouvez en créer un nouveau. Vous pourrez alors vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres sauvegardés, tels que vos informations de profil.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si vous ne vous souvenez pas de votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés comme les renseignements de votre profil.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Créer un nouveau NIP</string>
+  <string name="PinRestoreEntryFragment_contact_support">Contacter l’assistance</string>
+  <string name="PinRestoreEntryFragment_cancel">Annuler</string>
+  <string name="PinRestoreEntryFragment_skip">Ignorer</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Il vous reste%1$d essai. Si vous épuisez tous vos essais, vous pouvez créer un nouveau code NIP. Vous pourrez alors vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres sauvegardés, tels que vos informations de profil.</item>
+    <item quantity="other">Il vous reste %1$d essais. Si vous épuisez tous vos essais, vous pouvez créer un nouveau code NIP. Vous pourrez alors vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres sauvegardés, tels que vos informations de profil.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Inscription à Signal - besoin d\'aide avec le code NIP sur Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Sujet : Inscription à Signal - besoin d\'aide avec le code NIP sur Android\nInformations sur le terminal : %1$s\nVersion Android : %2$s\nVersion de Signal : %3$s\nLangue : %4$s</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Saisissez un NIP alphanumérique</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Saisissez un NIP numérique</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Créer votre NIP</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez épuisé tous vos essais de code NIP, mais vous pouvez toujours accéder à votre compte Signal en créant un nouveau code. Pour votre vie privée et votre sécurité, votre compte sera restauré exception faite de vos informations de profil et préférences.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Notez cette appli</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si vous aimez cette appli, veuillez prendre quelques instants pour nous aider la notant.</string>
@@ -577,17 +719,10 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Tous les %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Vous</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquer ce contact ?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vous ne recevrez plus ni message ni appel de ce contact.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Bloquer et quitter ce groupe ?</string>
-  <string name="RecipientPreferenceActivity_block_group">Bloquer ce groupe ?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Vous ne recevrez plus ni message ni mise à jour de ce groupe</string>
   <string name="RecipientPreferenceActivity_block">Bloquer</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vous pourrez de nouveau recevoir les messages et appels de ce contact.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Débloquer ce groupe ?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Les membres actuels pourront vous ajouter au groupe de nouveau.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Erreur en quittant le groupe</string>
   <string name="RecipientPreferenceActivity_unblock">Débloquer</string>
   <string name="RecipientPreferenceActivity_enabled">Activé</string>
@@ -642,6 +777,12 @@
   <string name="RegistrationActivity_phone_number_description">Numéro de téléphone</string>
   <string name="RegistrationActivity_country_code_description">Indicatif de pays</string>
   <string name="RegistrationActivity_call">Appeler</string>
+  <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activer le verrouillage d\'inscription ?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Désactiver le verrouillage d\'inscription ?</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vous oubliez votre NIP Signal lors de votre nouvelle inscription, Votre compte sera bloqué pendant 7 jours.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Activer</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Désactiver</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Visualiser la photo</string>
   <string name="RevealableMessageView_view_video">Visualiser la vidéo</string>
@@ -683,7 +824,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message en double.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ce message n’a pas pu être traité, car il a été envoyé à partir d’une version plus récente de Signal. Vous pourrez demander à votre contact de renvoyer ce message une fois que vous aurez mis Signal à jour.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Erreur de traitement du message entrant</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Erreur de traitement du message entrant.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Autocollants</string>
   <!--StickerManagementAdapter-->
@@ -701,6 +842,17 @@
   <string name="StickerPackPreviewActivity_remove">Supprimer</string>
   <string name="StickerPackPreviewActivity_stickers">Autocollants</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Échec de chargement du paquet d’autocollants</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Modifier</string>
+  <string name="SubmitDebugLogActivity_done">Terminé</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Touchez une ligne pour la supprimer</string>
+  <string name="SubmitDebugLogActivity_submit">Envoyer</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">L’envoi des journaux a échoué</string>
+  <string name="SubmitDebugLogActivity_success">L’exportation est réussie.</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre rapport d\'erreur ou dans votre email au support :\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Copié dans le presse-papiers</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <string name="SubmitDebugLogActivity_share">Partager</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Le groupe a été mis à jour</string>
   <string name="ThreadRecord_left_the_group">A quitté le groupe</string>
@@ -714,6 +866,7 @@
   <string name="ThreadRecord_view_once_photo">Photo éphémère</string>
   <string name="ThreadRecord_view_once_video">Vidéo éphémère</string>
   <string name="ThreadRecord_view_once_media">Média éphémère</string>
+  <string name="ThreadRecord_this_message_was_deleted">Ce message a été supprimé</string>
   <string name="ThreadRecord_s_is_on_signal">%s est sur Signal.</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Les messages éphémères sont désactivés</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">L’expiration des messages éphémères a été définie à %s</string>
@@ -722,6 +875,8 @@
   <string name="ThreadRecord_you_marked_verified">Vous avez marqué comme vérifié</string>
   <string name="ThreadRecord_you_marked_unverified">Vous avez marqué comme non vérifié</string>
   <string name="ThreadRecord_message_could_not_be_processed">Le message n’a pas pu être traité</string>
+  <string name="ThreadRecord_message_request">Demande de contact</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s vous a ajouté(e) au groupe</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est proposée, touchez pour lancer la mise à jour</string>
@@ -821,6 +976,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">A réagi %1$s à votre photo éphémère.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">A réagi %1$s à votre vidéo éphémère.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi %1$s à votre autocollant.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Valeur par défaut</string>
   <string name="NotificationChannel_calls">Appels</string>
@@ -1037,9 +1193,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Ce journal sera publié en ligne publiquement et les contributeurs pourront le consulter. Vous pouvez l’examiner et le modifier avant de l’envoyer.</string>
   <string name="log_submit_activity__loading_logs">Chargement des journaux…</string>
   <string name="log_submit_activity__uploading_logs">Téléversement des journaux…</string>
-  <string name="log_submit_activity__success">C’est réussi !</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé de problème ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Copié dans le presse-papiers</string>
   <string name="log_submit_activity__choose_email_app">Choisir un appli de courriel</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Veuillez examiner ce journal provenant de mon appli : %1$s</string>
   <string name="log_submit_activity__network_failure">Échec réseau. Veuillez ressayer.</string>
@@ -1143,6 +1296,35 @@
   <string name="AndroidManifest__invite_friends">Inviter des amis</string>
   <string name="AndroidManifest_archived_conversations">Conversations archivées</string>
   <string name="AndroidManifest_remove_photo">Supprimer la photo</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Demande de contact</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Les utilisateurs peuvent désormais choisir d\'accepter une nouvelle conversation. Les noms de profil permettent aux personnes de savoir qui leur envoie des messages.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Ajouter un nom de profil</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Nouveau : demande de contact</string>
+  <string name="MessageRequestsMegaphone__add_name">Ajouter un nom</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Vous pouvez maintenant choisir d\'accepter ou non une nouvelle conversation. Vous verrez les options « Accepter, » « Supprimer, » ou « Bloquer. »</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Aide </string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Avez-vous déjà lu notre FAQ ?</string>
+  <string name="HelpFragment__next">Suivant</string>
+  <string name="HelpFragment__contact_us">Contactez-nous</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Dites-nous ce qu\'il se passe</string>
+  <string name="HelpFragment__include_debug_log">Inclure le journal de débogage.</string>
+  <string name="HelpFragment__whats_this">Qu\'est-ce que c\'est ?</string>
+  <string name="HelpFragment__how_do_you_feel">Comment vous sentez-vous ? (Optionnel)</string>
+  <string name="HelpFragment__support_info">Information Support</string>
+  <string name="HelpFragment__subject">Sujet :</string>
+  <string name="HelpFragment__signal_android_support_request">Demande d\'assistance Signal Android</string>
+  <string name="HelpFragment__device_info">Informations de l\'appareil :</string>
+  <string name="HelpFragment__android_version">Version Android :</string>
+  <string name="HelpFragment__signal_version">Version Signal :</string>
+  <string name="HelpFragment__locale">Langue :</string>
+  <string name="HelpFragment__debug_log">Journal de débogage :</string>
+  <string name="HelpFragment__na">n/d</string>
+  <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
+  <string name="HelpFragment__signal_support">Assistance Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Merci d\'être le plus précis possible dans votre description afin que l\'on comprenne au mieux votre problème.</string>
+  <string name="HelpFragment__no_email_app_found">Aucune application email trouvée.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Valeur par défaut</string>
@@ -1221,6 +1403,7 @@
   <string name="preferences__fast">Rapide</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lent</string>
+  <string name="preferences__help">Aide </string>
   <string name="preferences__advanced">Avancés</string>
   <string name="preferences__privacy">Confidentialité</string>
   <string name="preferences__mms_user_agent">Agent utilisateur MMS</string>
@@ -1242,9 +1425,9 @@
   <string name="preferences__linked_devices">Appareils reliés</string>
   <string name="preferences__light_theme">Clair</string>
   <string name="preferences__dark_theme">Sombre</string>
-  <string name="preferences__system_theme">Valeur par défaut du système</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
+  <string name="preferences__system_default">Valeur par défaut du système</string>
   <string name="preferences__default">Valeur par défaut</string>
   <string name="preferences__language">Langue</string>
   <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
@@ -1351,6 +1534,7 @@
   <string name="conversation__menu_view_all_media">Tous les médias</string>
   <string name="conversation__menu_conversation_settings">Paramètres de la conversation</string>
   <string name="conversation__menu_add_shortcut">Ajouter à l’écran d’accueil</string>
+  <string name="conversation__menu_pending_members">Membres en attente</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Étendre la fenêtre surgissante</string>
   <!--conversation_callable_insecure-->
@@ -1443,25 +1627,21 @@
     <item quantity="other">Votre NIP doit comporter au moins %1$d chiffres</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Vous pouvez choisir un nouveau NIP, car cet appareil est inscrit. Si vous oubliez votre NIP, vous pourriez devoir attendre %1$d jour avant de vous réinscrire.</item>
-    <item quantity="other">Vous pouvez choisir un nouveau NIP, car cet appareil est inscrit. Si vous oubliez votre NIP, vous pourriez devoir attendre %1$d jours avant de vous réinscrire.</item>
-  </plurals>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vous pouvez modifier votre NIP tant que cet appareil est enregistré.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
-  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Les NIP renforcent la sécurité de votre compte et ne peuvent pas être récupérés. Vous aurez besoin de votre NIP pour vous réinscrire sur Signal.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Les codes NIP permettent à Signal de chiffrer vos informations stockées afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez ressayez.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre NIP</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Échec de création du NIP</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre NIP n’a pas été enregistré. Nous vous inviterons à en créer un ultérieurement.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Votre NIP a été créé.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">Saisissez le NIP de nouveau.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Re-saisissez votre NIP.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Création du NIP…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Les NIP ajoutent un niveau supplémentaire de sécurité à votre compte. Créez-en un maintenant.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les codes NIP permettent à Signal de chiffrer vos informations stockées afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
   <string name="KbsSplashFragment__learn_more">En savoir plus</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/fr/articles/360007059792-Verrouillage-d-inscription</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage de l’inscription = NIP</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP et il accomplit encore plus. Mettez-le à jour maintenant.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Apprenez-en davantage sur les NIP.</string>
@@ -1479,7 +1659,6 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre NIP. Tout le contenu sera supprimé.</string>
   <string name="AccountLockedFragment__next">Suivant</string>
   <string name="AccountLockedFragment__learn_more">En savoir plus</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/fr/articles/360007059792-Verrouillage-d-inscription</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Saisissez votre NIP</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le NIP que vous avez créé pour votre compte. Il est différent de votre code de vérification reçu par texto.</string>
@@ -1513,10 +1692,9 @@
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Créer un NIP</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Les NIP ajoutent une couche supplémentaire de sécurité à votre compte Signal.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Les codes NIP permettent de chiffrer les informations enregistrées avec Signal.</string>
   <string name="KbsMegaphone__create_pin">Créer un NIP</string>
   <string name="KbsMegaphone__introducing_pins">Nous présentons les NIP</string>
-  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP. Le mettre à jour ne prendra que quelques secondes.</string>
   <string name="KbsMegaphone__update_pin">Mettre le NIP à jour</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nous vous le rappellerons ultérieurement. La création d’un NIP deviendra obligatoire dans %1$d jours.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nous vous le rappellerons ultérieurement. La confirmation de votre NIP deviendra obligatoire dans %1$d jours.</string>
@@ -1540,8 +1718,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migration de la base de données de Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nouveau message verrouillé</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour visualiser les messages en attente</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Déverrouiller pour terminer la mise à jour</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Veuillez déverrouillez Signal pour terminer la mise à jour</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Phrase de passe de la sauvegarde</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans la mémoire externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai noté cette phrase de passe. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>
@@ -1591,10 +1767,12 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Verrouiller l’accès à Signal avec le verrouillage de l’écran d’Android ou une empreinte</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Délai d’inactivité avant verrouillage de l’écran</string>
   <string name="preferences_app_protection__signal_pin">NIP de Signal</string>
-  <string name="preferences_app_protection__pin">NIP</string>
-  <string name="preferences_app_protection__change">Changer</string>
-  <string name="preferences_app_protection__create">Créer</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Votre NIP ajoute une couche supplémentaire de sécurité à votre compte. Il vous sera demandé quand vous inscrirez votre numéro de téléphone auprès de Signal. Si vous oubliez votre NIP, votre compte sera verrouillé pendant sept jours.</string>
+  <string name="preferences_app_protection__create_a_pin">Créer un NIP</string>
+  <string name="preferences_app_protection__change_your_pin">Changer de NIP</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les codes NIP permettent à Signal de chiffrer vos informations stockées afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Ajoutez un niveau de sécurité en exigeant une nouvelle inscription de votre NIP Signal avec votre numéro de téléphone.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Impossible d\'activer le verrouillage d\'enregistrement.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Échec de désactivation du verrou d’enregistrement.</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Le NIP de blocage de l’inscription ne correspond pas au code de vérification que vous venez de recevoir par texto. Veuillez saisir le NIP que vous avez précédemment défini dans l’application.</string>
   <string name="registration_activity__registration_lock_pin">NIP de blocage de l’inscription</string>
@@ -1636,17 +1814,5 @@
   <string name="RegistrationLockDialog_reminder">Rappel :</string>
   <string name="recipient_preferences__about">À propos</string>
   <string name="Recipient_unknown">Inconnu</string>
-  <string name="MessageRequestBottomView_accept">Accepter</string>
-  <string name="MessageRequestBottomView_delete">Supprimer</string>
-  <string name="MessageRequestBottomView_block">Bloquer</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Voulez-vous recevoir des messages de %1$s ?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s et de %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Membre de %1$s, de%2$s et de %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d membres </string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d autre</item>
-    <item quantity="other">%d autres</item>
-  </plurals>
   <!--EOF-->
 </resources>

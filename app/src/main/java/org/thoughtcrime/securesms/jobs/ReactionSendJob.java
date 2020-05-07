@@ -28,7 +28,6 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
@@ -217,7 +216,7 @@ public class ReactionSendJob extends BaseJob {
                                                                                         .withReaction(buildReaction(context, reaction, remove, targetAuthor, targetSentTimestamp));
 
     if (conversationRecipient.isGroup()) {
-      dataMessage.asGroupMessage(new SignalServiceGroup(GroupUtil.getDecodedId(conversationRecipient.requireGroupId())));
+      GroupUtil.setDataMessageGroupContext(context, dataMessage, conversationRecipient.requireGroupId().requirePush());
     }
 
 

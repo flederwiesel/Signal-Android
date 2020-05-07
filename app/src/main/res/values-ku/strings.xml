@@ -275,22 +275,22 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Li gel parve bike</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bi xêr hatî Signalê.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure û RedPhone peyambereke taybet e, ji bo her rewşê: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bi xêr hatî Signalê!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure niha Signal e.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure û RedPhone niha yek sepan e: Signal. Ji bo gerînê bitepîne.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ji bo bangên vîdyoyî biparêze silav bide.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal niha piştgiriya banga vîdyoyî ya ewle dike. Tenê bangeke Signalê ya asayî bike, bişkoka vîdyo bitepîne û silav bide.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal niha piştgiriya banga vîdyoyî ya ewle dike.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal niha piştgiriya banga vîdyoyî ya ewle dike. Ji bo gerînê bitepîne.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ji bo wêneyê xwe amade yî?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Êdî tu dikarî li ser Signalê bi hevalên xwe re nav û wêneyê profîlê parve bikî.</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê li vir in</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Niha tu dikarî bibînî û parvebikî, dema peyam tên nivîsandin.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Tu dixwazî aniha rê bidî wan?</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Na, sipas</string>
-  <string name="ExperienceUpgradeActivity_got_it">Temam</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bi xêr hatî Signalê.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure û RedPhone peyambereke taybet e, ji bo her rewşê: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bi xêr hatî Signalê!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure niha Signal e.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure û RedPhone niha yek sepan e: Signal. Ji bo gerînê bitepîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ji bo bangên vîdyoyî biparêze silav bide.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal niha piştgiriya banga vîdyoyî ya ewle dike. Tenê bangeke Signalê ya asayî bike, bişkoka vîdyo bitepîne û silav bide.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal niha piştgiriya banga vîdyoyî ya ewle dike.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal niha piştgiriya banga vîdyoyî ya ewle dike. Ji bo gerînê bitepîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ji bo wêneyê xwe amade yî?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Êdî tu dikarî li ser Signalê bi hevalên xwe re nav û wêneyê profîlê parve bikî.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê li vir in</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Niha tu dikarî bibînî û parvebikî, dema peyam tên nivîsandin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Tu dixwazî aniha rê bidî wan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Na, sipas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Temam</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">…Peyamek tê wergirtin</string>
   <!--GcmRefreshJob-->
@@ -322,7 +322,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Dixwazî ku hemû endamên vê komê yên aniha û yên wê paşê tevlî bibin nav û wêneyê profîla te bibînin?</string>
   <string name="GroupShareProfileView_make_visible">Bide xwiyakirin</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Ez</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Ez</string> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatara komê</string>
   <!--InputPanel-->
@@ -458,15 +458,15 @@
   <string name="RatingManager_later">Piştre</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Weyla! Wek sepana Play Storeê di amûra te de ne sazkirî ye! </string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Vî berdengî asteng bikin?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ji vî berdengî dê êdî peyam û bang neyên wergirtin.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Vê komê asteng bike û jê derkeve?</string>
-  <string name="RecipientPreferenceActivity_block_group">Vê komê asteng bike?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">Vî berdengî asteng bikin?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ji vî berdengî dê êdî peyam û bang neyên wergirtin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_and_leave_group">Vê komê asteng bike û jê derkeve?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_group">Vê komê asteng bike?</string> -->
   <string name="RecipientPreferenceActivity_block">Astengkirin</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Astenga vî berdengî rake?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu yê dîsa bikaribî ji vî berdengî peyam û bangan wer bigrî.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Bila astenga vê komê rabe?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Endamên amade ewê dîsa bikaribin te tevlî komê bikin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_contact_question">Astenga vî berdengî rake?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu yê dîsa bikaribî ji vî berdengî peyam û bangan wer bigrî.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_question">Bila astenga vê komê rabe?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_description">Endamên amade ewê dîsa bikaribin te tevlî komê bikin.</string> -->
   <string name="RecipientPreferenceActivity_error_leaving_group">Derketina ji komê pêk nehat</string>
   <string name="RecipientPreferenceActivity_unblock">Astengê rakirin</string>
   <string name="RecipientPreferenceActivity_enabled">Çalakkirî</string>
@@ -837,9 +837,9 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Ev tomar ji bo ku tevkar bibînin dê bi eşkereyî bihê weşandin, Berî ku bişînî dikarî biceribînî û serast bikî.</string>
   <string name="log_submit_activity__loading_logs">Tomar têne barkirin…</string>
   <string name="log_submit_activity__uploading_logs">Tomar têne hilbarkirin…</string>
-  <string name="log_submit_activity__success">Serkeftin!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Vê URLê ji ber bigire û wê li raporta xwe ya pirsgirêkan zêde bike an jî piştgiriyê bide e-peyamê:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Li rûnûsgehê hate kopîkirin</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Serkeftin!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Vê URLê ji ber bigire û wê li raporta xwe ya pirsgirêkan zêde bike an jî piştgiriyê bide e-peyamê:\n\n<b>%1$s</b>\n</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Li rûnûsgehê hate kopîkirin</string> -->
   <string name="log_submit_activity__choose_email_app">Sepana epeyamê bibijêre</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Xêra xwe vê tomarê kontrol bike ji sepana min: %1$s</string>
   <string name="log_submit_activity__network_failure">Tor xirab e. Xêra xwe dîsa biceribîne.</string>
@@ -1201,8 +1201,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Agahîdanka Signalê tê barkirin</string>
   <string name="PushDecryptJob_new_locked_message">Peyama nû ya qufilandî</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ji bo peyamên hilawîstî quflê veke</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ji bo hildemandin bi dawî bibe quflê veke</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ji bo hildemandin bi dawî bibe ji kerema xwe qufla Signalê veke</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ji bo hildemandin bi dawî bibe quflê veke</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ji bo hildemandin bi dawî bibe ji kerema xwe qufla Signalê veke</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Pêborîna paşekeftê</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Dê paşekeft li ser bîrbara derveyî werin tomarkirin û bi pêborîna li jêr werin şîfrekirin. Ji bo paşkeftekê paşê vegerînî divê ev pêborîn bi te re hebe.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Min vê pêborînê li cihekî nivîsî. Bê wê ezê nikaribim paşekeftê vegerînim.</string>
