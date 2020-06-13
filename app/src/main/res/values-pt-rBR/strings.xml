@@ -80,7 +80,6 @@
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e sair %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear %1$s ?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membros do grupo poderão adicionar você ao grupo novamente</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vocês poderão enfiar mensagem e ligar um para o outro.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s ?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
@@ -300,13 +299,13 @@
   <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificado</string>
+  <string name="ConversationTitleView_you">Você</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir foto do perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema ao definir perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto do perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Os perfis do Signal são criptografados de ponta a ponta, e o Signal jamais tem acesso a estas informações.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
@@ -374,6 +373,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque o grupo não é usuário do Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Carregando detalhes do grupo…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Você já faz parte do grupo.</string>
+  <!--AddToGroupActivity-->
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartilhar seu nome e foto do perfil com este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Você quer tornar seu nome e foto do perfil visíveis para todos os membros atuais e futuros deste grupo?</string>
@@ -382,7 +382,10 @@
   <string name="GroupMembersDialog_you">Você</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <!--AddMembersActivity-->
+  <string name="AddMembersActivity__done">Pronto</string>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create_group">Criar grupo</string>
   <string name="AddGroupDetailsFragment__create">Criar</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nome do grupo (obrigatório)</string>
@@ -396,6 +399,7 @@
   <string name="ManageGroupActivity_on">Ligado</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
+  <string name="ManageGroupActivity_none">Nenhum</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Personalizar notificações</string>
   <string name="CustomNotificationsDialogFragment__messages">Mensagens</string>
@@ -405,6 +409,7 @@
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toque e segure para gravar uma mensagem de voz e solte para enviá-la</string>
   <!--InviteActivity-->
@@ -570,10 +575,6 @@
   <string name="MessageRequestBottomView_delete">Excluir</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Quer permitir que o usuário %1$slhe mande mensagens ? Ele não sabe que você viu as mensagens dele, a menos que você aceite. </string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Quer entrar no grupo %1$s? Eles não sabem que você viu as mensagens deles, a menos que você aceite.</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Desbloquear o usuário %1$spara lhe enviar mensagens e ligar um para o outro.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desbloquear para permitir que os membros voltem a lhe adicionar no grupo.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s </string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
@@ -821,6 +822,12 @@
   <string name="ThreadRecord_message_could_not_be_processed">A mensagem não pôde ser processada</string>
   <string name="ThreadRecord_message_request">Solicitação de mensagem</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$sfoi adicionado ao grupo</string>
+  <string name="ThreadRecord_photo">Foto</string>
+  <string name="ThreadRecord_gif">GIF</string>
+  <string name="ThreadRecord_voice_message">Mensagem de voz</string>
+  <string name="ThreadRecord_contact">Contato</string>
+  <string name="ThreadRecord_file">Arquivo</string>
+  <string name="ThreadRecord_video">Vídeo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, toque para atualizar</string>
@@ -862,6 +869,7 @@
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal precisa da permissão Câmera para escanear um código QR, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível escanear código QR sem a permissão Câmera</string>
   <!--ViewOnceMessageActivity-->
+  <!--AudioView-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem com erro de criptografia </string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem criptografada para sessão inexistente </string>
@@ -973,7 +981,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Atender</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefone</string>
   <string name="WebRtcAudioOutputToggle__speaker">Auto falante</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1011,6 +1018,7 @@
   <string name="contact_selection_activity__enter_name_or_number">Digite o nome ou número</string>
   <string name="contact_selection_activity__invite_to_signal">Convidar para o Signal</string>
   <string name="contact_selection_activity__new_group">Novo grupo</string>
+  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Limpar texto inserido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostrar teclado</string>
@@ -1031,6 +1039,7 @@
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">O Signal precisa de acesso aos seus contatos para poder exibi-los.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostrar contatos</string>
+  <!--contact_selection_list_item-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mensagem no Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS inseguro</string>
@@ -1458,6 +1467,8 @@
   <string name="conversation_list_batch__menu_select_all">Selecionar todas</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arquivar seleção</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Restaurar seleção</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Restaurar seleção</string>
+  <string name="conversation_list_batch__menu_mark_as_read">Marcar como lida</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atalho de configurações</string>
   <string name="conversation_list_search_description">Buscar</string>
@@ -1479,6 +1490,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adicionar anexo</string>
   <string name="conversation__menu_edit_group">Editar grupo</string>
+  <string name="conversation__menu_group_settings">Configurações de grupo</string>
   <string name="conversation__menu_leave_group">Sair do grupo</string>
   <string name="conversation__menu_view_all_media">Todas as mídias</string>
   <string name="conversation__menu_conversation_settings">Configurações de conversa</string>
@@ -1714,6 +1726,9 @@
   <string name="preferences_app_protection__signal_pin">PIN do Signal</string>
   <string name="preferences_app_protection__create_a_pin">Crie um PIN</string>
   <string name="preferences_app_protection__change_your_pin">Troque o seu PIN</string>
+  <string name="preferences_app_protection__confirm_pin">Confirme o PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de Cadastro não é igual ao código de verificação que você acabou de receber. Por favor, insira o PIN definido anteriormente por meio do aplicativo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
@@ -1740,7 +1755,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Desbloqueio de Cadastro ajuda a proteger seu número de telefone de tentativas de cadastro não autorizadas. Esse recurso pode ser desativado a qualquer instante nas configurações de privacidade do Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Desbloqueio de Cadastro</string>
   <string name="RegistrationLockDialog_enable">Habilitar</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de Desbloqueio de Cadastro deve ter pelo menos %d dígitos.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os PINs inseridos não correspondem.</string>
@@ -1760,8 +1774,10 @@
   <string name="RecipientBottomSheet_call">Ligar</string>
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Adicionar aos contatos</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver número de segurança</string>
   <string name="RecipientBottomSheet_remove">Remover</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--EOF-->
 </resources>

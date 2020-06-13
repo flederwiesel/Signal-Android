@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -193,7 +194,11 @@ public class Recipient {
 
         return resolved(id);
       } else {
-        throw new UuidRecipientError();
+        if (!FeatureFlags.uuids() && FeatureFlags.groupsV2()) {
+          throw new RuntimeException(new UuidRecipientError());
+        } else {
+          throw new UuidRecipientError();
+        }
       }
     } else if (e164 != null) {
       Recipient recipient = resolved(db.getOrInsertFromE164(e164));
@@ -272,7 +277,11 @@ public class Recipient {
         if (possibleId.isPresent()) {
           id = possibleId.get();
         } else {
-          throw new UuidRecipientError();
+          if (!FeatureFlags.uuids() && FeatureFlags.groupsV2()) {
+            throw new RuntimeException(new UuidRecipientError());
+          } else {
+            throw new UuidRecipientError();
+          }
         }
       }
     } else if (GroupId.isEncodedGroup(identifier)) {
@@ -410,6 +419,15 @@ public class Recipient {
     else                               return Optional.fromNullable(getName(context)).or(getSmsAddress()).or("");
   }
 
+  /**
+   * False iff it {@link #getDisplayName} would fall back to e164, email or unknown.
+   */
+  public boolean hasAUserSetDisplayName(@NonNull Context context) {
+    return !TextUtils.isEmpty(getName(context))            ||
+           !TextUtils.isEmpty(getProfileName().toString()) ||
+           !TextUtils.isEmpty(getDisplayUsername());
+  }
+
   public @NonNull String getDisplayName(@NonNull Context context) {
     return Util.getFirstNonEmpty(getName(context),
                                  getProfileName().toString(),
@@ -430,10 +448,13 @@ public class Recipient {
       return MaterialColor.GROUP;
     } else if (color != null) {
       return color;
-     } else if (name != null) {
-      Log.i(TAG, "Saving color for " + id);
-      MaterialColor color = ContactColors.generateFor(name);
-      DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).setColor(id, color);
+     } else if (name != null || profileSharing) {
+      Log.w(TAG, "Had no color for " + id + "! Saving a new one.");
+
+      Context       context = ApplicationDependencies.getApplication();
+      MaterialColor color   = ContactColors.generateFor(getDisplayName(context));
+
+      SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getRecipientDatabase(context).setColorIfNotSet(id, color));
       return color;
     } else {
       return ContactColors.UNKNOWN_COLOR;

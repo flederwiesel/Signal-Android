@@ -32,7 +32,10 @@ import androidx.loader.content.Loader;
 
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
+
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,7 +55,6 @@ import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -133,13 +135,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     assert getSupportActionBar() != null;
     getSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
 
-    MessageNotifier.setVisibleThread(threadId);
+    ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    MessageNotifier.setVisibleThread(-1L);
+    ApplicationDependencies.getMessageNotifier().clearVisibleThread();
   }
 
   @Override
@@ -270,7 +272,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
     toFrom.setText(toFromRes);
     conversationItem.bind(messageRecord, Optional.absent(), Optional.absent(), glideRequests, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient, null, false);
+    Parcelable state = recipientsList.onSaveInstanceState();
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, glideRequests, messageRecord, recipients, isPushGroup));
+    recipientsList.onRestoreInstanceState(state);
   }
 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {
@@ -278,9 +282,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       if (messageRecord.isGroupAction()) {
         conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_update, itemParent, false);
       } else if (messageRecord.isOutgoing()) {
-        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_sent, itemParent, false);
+        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_sent_multimedia, itemParent, false);
       } else {
-        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_received, itemParent, false);
+        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_received_multimedia, itemParent, false);
       }
       itemParent.addView(conversationItem);
     }

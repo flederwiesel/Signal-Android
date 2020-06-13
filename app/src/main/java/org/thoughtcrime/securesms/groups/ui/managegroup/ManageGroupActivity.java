@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.groups.ui.managegroup;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
@@ -19,10 +22,18 @@ public class ManageGroupActivity extends PassphraseRequiredActionBarActivity {
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
-  public static Intent newIntent(@NonNull Context context, @NonNull GroupId groupId) {
+  public static Intent newIntent(@NonNull Context context, @NonNull GroupId.Push groupId) {
     Intent intent = new Intent(context, ManageGroupActivity.class);
     intent.putExtra(GROUP_ID, groupId.toString());
     return intent;
+  }
+
+  public static @Nullable Bundle createTransitionBundle(@NonNull Context activityContext, @NonNull View from) {
+    if (activityContext instanceof Activity) {
+      return ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) activityContext, from, "avatar").toBundle();
+    } else {
+      return null;
+    }
   }
 
   @Override
@@ -39,21 +50,11 @@ public class ManageGroupActivity extends PassphraseRequiredActionBarActivity {
                                  .replace(R.id.container, ManageGroupFragment.newInstance(getIntent().getStringExtra(GROUP_ID)))
                                  .commitNow();
     }
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
-    //noinspection ConstantConditions
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 
   @Override
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-  }
-
-  @Override
-  public boolean onSupportNavigateUp() {
-    onBackPressed();
-    return true;
   }
 }

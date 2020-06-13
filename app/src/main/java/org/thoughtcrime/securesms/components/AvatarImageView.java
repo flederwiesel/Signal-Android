@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -20,10 +21,13 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;
@@ -147,9 +151,22 @@ public final class AvatarImageView extends AppCompatImageView {
     }
   }
 
-  private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
+  private void setAvatarClickHandler(@NonNull final Recipient recipient, boolean quickContactEnabled) {
     if (quickContactEnabled) {
-      super.setOnClickListener(v -> getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId())));
+      super.setOnClickListener(v -> {
+        Context context = getContext();
+        if (FeatureFlags.newGroupUI() && recipient.isPushGroup()) {
+          context.startActivity(ManageGroupActivity.newIntent(context, recipient.requireGroupId().requirePush()),
+                                ManageGroupActivity.createTransitionBundle(context, this));
+        } else {
+          if (context instanceof FragmentActivity) {
+            RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
+                                              .show(((FragmentActivity) context).getSupportFragmentManager(), "BOTTOM");
+          } else {
+            context.startActivity(RecipientPreferenceActivity.getLaunchIntent(context, recipient.getId()));
+          }
+        }
+      });
     } else {
       super.setOnClickListener(listener);
       setClickable(listener != null);

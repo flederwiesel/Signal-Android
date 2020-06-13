@@ -9,10 +9,8 @@ package org.whispersystems.signalservice.api;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
-import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -37,6 +35,8 @@ import org.whispersystems.signalservice.internal.push.SignalServiceEnvelopeEntit
 import org.whispersystems.signalservice.internal.sticker.StickerProtos;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
+import org.whispersystems.signalservice.internal.util.concurrent.FutureTransformers;
+import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 
 import java.io.ByteArrayOutputStream;
@@ -122,20 +122,29 @@ public class SignalServiceMessageReceiver {
     return retrieveAttachment(pointer, destination, maxSizeBytes, null);
   }
 
-  public ProfileAndCredential retrieveProfile(SignalServiceAddress address,
-                                              Optional<ProfileKey> profileKey,
-                                              Optional<UnidentifiedAccess> unidentifiedAccess,
-                                              SignalServiceProfile.RequestType requestType)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, VerificationFailedException
+  public ListenableFuture<ProfileAndCredential> retrieveProfile(SignalServiceAddress address,
+                                                                 Optional<ProfileKey> profileKey,
+                                                                 Optional<UnidentifiedAccess> unidentifiedAccess,
+                                                                 SignalServiceProfile.RequestType requestType)
   {
     Optional<UUID> uuid = address.getUuid();
 
-    if (FeatureFlags.VERSIONED_PROFILES && requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL && uuid.isPresent() && profileKey.isPresent()) {
-      return socket.retrieveProfile(uuid.get(), profileKey.get(), unidentifiedAccess);
+    if (uuid.isPresent() && profileKey.isPresent()) {
+      if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
+        return socket.retrieveVersionedProfileAndCredential(uuid.get(), profileKey.get(), unidentifiedAccess);
+      } else {
+        return FutureTransformers.map(socket.retrieveVersionedProfile(uuid.get(), profileKey.get(), unidentifiedAccess), profile -> {
+          return new ProfileAndCredential(profile,
+                                          SignalServiceProfile.RequestType.PROFILE,
+                                          Optional.absent());
+        });
+      }
     } else {
-      return new ProfileAndCredential(socket.retrieveProfile(address, unidentifiedAccess),
-                                      SignalServiceProfile.RequestType.PROFILE,
-                                      Optional.<ProfileKeyCredential>absent());
+      return FutureTransformers.map(socket.retrieveProfile(address, unidentifiedAccess), profile -> {
+        return new ProfileAndCredential(profile,
+                                        SignalServiceProfile.RequestType.PROFILE,
+                                        Optional.absent());
+      });
     }
   }
 
