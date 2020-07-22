@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups.ui.managegroup;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -16,13 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PushContactSelectionActivity;
@@ -53,7 +54,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class ManageGroupFragment extends Fragment {
+public class ManageGroupFragment extends LoggingFragment {
   private static final String GROUP_ID = "GROUP_ID";
 
   private static final String TAG = Log.tag(ManageGroupFragment.class);
@@ -362,7 +363,7 @@ public class ManageGroupFragment extends Fragment {
   }
 
   private void handleSnackbarEvent(@NonNull ManageGroupViewModel.SnackbarEvent snackbarEvent) {
-    Snackbar.make(requireView(), buildSnackbarString(snackbarEvent), Snackbar.LENGTH_SHORT).show();
+    Snackbar.make(requireView(), buildSnackbarString(snackbarEvent), Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
   }
 
   private @NonNull String buildSnackbarString(@NonNull ManageGroupViewModel.SnackbarEvent snackbarEvent) {

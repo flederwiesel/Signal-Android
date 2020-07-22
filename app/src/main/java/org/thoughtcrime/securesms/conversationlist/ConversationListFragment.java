@@ -88,6 +88,7 @@ import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
+import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
@@ -99,6 +100,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -142,8 +144,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                                       MegaphoneActionController
 {
   public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
-  public static final short PROFILE_NAMES_REQUEST_CODE_CREATE_NAME    = 18473;
-  public static final short PROFILE_NAMES_REQUEST_CODE_CONFIRM_NAME   = 19563;
 
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
@@ -268,8 +268,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onStart() {
     super.onStart();
-    // TODO [greyson] Re-enable when we figure out how to invalidate the cache after a system theme change
-//    ConversationFragment.prepare(requireContext());
+    ConversationFragment.prepare(requireContext());
   }
 
   @Override
@@ -331,20 +330,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       return;
     }
 
-    boolean isProfileCreatedRequestCode = requestCode == MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME ||
-                                          requestCode ==PROFILE_NAMES_REQUEST_CODE_CREATE_NAME;
-
     if (requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN) {
-      Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show();
+      Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).setTextColor(Color.WHITE).show();
       viewModel.onMegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL);
-    } else if (isProfileCreatedRequestCode) {
-      Snackbar.make(fab, R.string.ConversationListFragment__your_profile_name_has_been_created, Snackbar.LENGTH_LONG).show();
-
-      if (requestCode == MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME) {
-        viewModel.onMegaphoneCompleted(Megaphones.Event.MESSAGE_REQUESTS);
-      }
-    } else if (requestCode == PROFILE_NAMES_REQUEST_CODE_CONFIRM_NAME) {
-      Snackbar.make(fab, R.string.ConversationListFragment__your_profile_name_has_been_saved, Snackbar.LENGTH_LONG).show();
     }
   }
 
@@ -401,7 +389,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onMegaphoneToastRequested(@NonNull String string) {
-    Snackbar.make(fab, string, Snackbar.LENGTH_LONG).show();
+    Snackbar.make(fab, string, Snackbar.LENGTH_LONG)
+            .setTextColor(Color.WHITE)
+            .show();
   }
 
   @Override
@@ -968,11 +958,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     @Override
     public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-      if (viewHolder.itemView instanceof ConversationListItemAction) {
-        return 0;
-      }
-
-      if (actionMode != null) {
+      if (viewHolder.itemView instanceof ConversationListItemAction ||
+          actionMode != null                                        ||
+          activeAdapter == searchAdapter)
+      {
         return 0;
       }
 

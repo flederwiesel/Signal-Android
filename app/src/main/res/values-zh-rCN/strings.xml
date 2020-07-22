@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">屏幕锁定：%1$s，注册锁定：%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">屏幕锁定 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主题：%1$s，语言：%2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN 已创建。</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分钟</item>
@@ -148,7 +149,7 @@
   <string name="ContactShareEditActivity_type_missing">其他</string>
   <string name="ContactShareEditActivity_invalid_contact">所选联系人无效</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">发送失败，点击查看详情</string>
+  <string name="ConversationItem_error_network_not_delivered">发送失败</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">已收到密钥交换消息，点击处理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已经离开该群组。</string>
   <string name="ConversationItem_click_to_approve_unencrypted">发送失败，点击使用不安全的方式发送</string>
@@ -276,8 +277,6 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已将 %d 个对话移至收件箱</item>
   </plurals>
-  <string name="ConversationListFragment__your_profile_name_has_been_created">您的配置文件名已经创建。</string>
-  <string name="ConversationListFragment__your_profile_name_has_been_saved">您的配置文件名已经保存。</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
   <!--ConversationListItemAction-->
@@ -525,6 +524,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 已禁用阅后即焚。</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">设置阅后即焚消失时间为 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 设置阅后即焚消失时间为 %2$s。</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">您创建了群组</string>
   <string name="MessageRecord_group_updated">群组更新完成。</string>
@@ -533,8 +533,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$s 加入群组。</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">你被设置为管理员。</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">你被邀请加入此群</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">对你的入群邀请已失效。</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -569,7 +572,6 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">输入新的密码！</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">关联该设备？</string>
-  <string name="DeviceProvisioningActivity_cancel">取消</string>
   <string name="DeviceProvisioningActivity_continue">继续</string>
   <string name="DeviceProvisioningActivity_content_intro">这将可以：</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -616,6 +618,8 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">输入数字 PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">创建 PIN</string>
+  <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">警告</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
@@ -766,7 +770,6 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">复制此 URL 并将其添加到问题报告或支持电子邮件:\n\n<b>%1$s</b>
 </string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">已复制到剪切板</string>
-  <string name="SubmitDebugLogActivity_ok">好</string>
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">主题 :</string>
@@ -830,7 +833,6 @@
   <string name="UsernameEditFragment_encountered_a_network_error">网络出错。</string>
   <string name="UsernameEditFragment_this_username_is_taken">该用户名已有人使用。</string>
   <string name="UsernameEditFragment_this_username_is_available">该用户名可用。</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">用户名仅支持字母、数字和下划线。</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用户名不能以数字开头。</string>
   <string name="UsernameEditFragment_username_is_invalid">用户名无效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用户名所含字符数量必须在 %1$d 与 %2$d 之间。</string>
@@ -994,7 +996,6 @@
   <string name="contact_selection_activity__enter_name_or_number">请输入名称或号码</string>
   <string name="contact_selection_activity__invite_to_signal">邀请使用 Signal</string>
   <string name="contact_selection_activity__new_group">新群组</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">清除已输入文字</string>
   <string name="contact_filter_toolbar__show_keyboard_description">显示键盘</string>
@@ -1057,6 +1058,8 @@
   <string name="QuoteView_original_missing">未找到原始消息</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">滚动到底部</string>
+  <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__view">查看</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">正在加载国家…</string>
   <string name="country_selection_fragment__search">搜索</string>
@@ -1391,6 +1394,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">允许来自任何人</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">对于非联系人和未与其分享个人资料的其他人，启用传入消息的加密发送人功能。</string>
   <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1542,7 +1546,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">新建 PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只有该设备已注册，你可以更改你的 PIN。</string>
   <string name="CreateKbsPinFragment__create_your_pin">创建 PIN 密码</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN 令信息以 Signal 加密方式保存，这样只有你可以访问它。重新安装 Signal 时，可恢复你的个人资料、设置和联系人。</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">选择更安全 PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 不匹配，请重试。</string>
@@ -1553,13 +1556,13 @@
   <string name="ConfirmKbsPinFragment__creating_pin">正在创建 PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">新推出 PIN 密码功能</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 令信息以 Signal 加密方式保存，这样只有你可以访问它。重新安装 Signal 时，可恢复你的个人资料、设置和联系人。</string>
   <string name="KbsSplashFragment__learn_more">了解更多</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">注册锁定 = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">注册锁定现在改名为 PIN，功能更强大，马上更新。</string>
   <string name="KbsSplashFragment__read_more_about_pins">了解更多 PIN 信息。</string>
   <string name="KbsSplashFragment__update_pin">更新 PIN</string>
   <string name="KbsSplashFragment__create_your_pin">创建 PIN</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">了解更多关于 PIN 的信息</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">请输入 Signal 的 PIN 密码</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">为了便于记住 PIN，我们将定期提示输入该密码。提示次数将逐渐减少。</string>
@@ -1607,13 +1610,6 @@
   <string name="KbsMegaphone__update_pin">更新 PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">稍后您会被提示。在%1$d天内会强制要求创建PIN码。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">稍后您会被提示。在%1$d天内会强制要求确认你的PIN码。</string>
-  <!--Profile Names Megaphone-->
-  <string name="ProfileNamesMegaphone__add_a_profile_name">添加一个用户名</string>
-  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">当您开始新的对话或分享时，将显示此内容。</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">添加用户名</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">确认您的用户名</string>
-  <string name="ProfileNamesMegaphone__your_profile_can_now_include">您的个人资料现在可以包含可选的姓氏。</string>
-  <string name="ProfileNamesMegaphone__confirm_name">确认姓名</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">正在加载…</string>

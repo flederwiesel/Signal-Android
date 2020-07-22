@@ -41,7 +41,6 @@ import android.provider.Browser;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -63,6 +62,7 @@ import android.widget.Toast;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
@@ -73,6 +73,7 @@ import androidx.core.graphics.drawable.IconCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
@@ -85,7 +86,7 @@ import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.GroupMembersDialog;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.MuteDialog;
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
@@ -108,9 +109,7 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.components.identity.UntrustedSendDialog;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
-import org.thoughtcrime.securesms.components.identity.UnverifiedSendDialog;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
@@ -125,6 +124,7 @@ import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.conversation.ConversationGroupViewModel.GroupActiveState;
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -173,11 +173,13 @@ import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult;
+import org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -246,7 +248,10 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -262,7 +267,7 @@ import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
  *
  */
 @SuppressLint("StaticFieldLeak")
-public class ConversationActivity extends PassphraseRequiredActionBarActivity
+public class ConversationActivity extends PassphraseRequiredActivity
     implements ConversationFragment.ConversationFragmentListener,
                AttachmentManager.AttachmentListener,
                OnKeyboardShownListener,
@@ -273,18 +278,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                StickerKeyboardProvider.StickerEventListener,
                AttachmentKeyboard.Callback,
                ConversationReactionOverlay.OnReactionSelectedListener,
-               ReactWithAnyEmojiBottomSheetDialogFragment.Callback
+               ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
+               SafetyNumberChangeDialog.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
 
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
+  public static final String SAFETY_NUMBER_DIALOG = "SAFETY_NUMBER";
+
   public static final String RECIPIENT_EXTRA                   = "recipient_id";
   public static final String THREAD_ID_EXTRA                   = "thread_id";
   public static final String TEXT_EXTRA                        = "draft_text";
   public static final String MEDIA_EXTRA                       = "media_list";
   public static final String STICKER_EXTRA                     = "sticker_extra";
+  public static final String BORDERLESS_EXTRA                  = "borderless_extra";
   public static final String DISTRIBUTION_TYPE_EXTRA           = "distribution_type";
   public static final String STARTING_POSITION_EXTRA           = "starting_position";
 
@@ -608,7 +617,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       setMedia(data.getData(),
                MediaType.GIF,
                data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
-               data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
+               data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0),
+               data.getBooleanExtra(GiphyActivity.EXTRA_BORDERLESS, false));
       break;
     case SMS_DEFAULT:
       initializeSecurity(isSecureText, isDefaultSms);
@@ -632,9 +642,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
           slideDeck.addSlide(new VideoSlide(this, mediaItem.getUri(), 0, mediaItem.getCaption().orNull(), mediaItem.getTransformProperties().orNull()));
         } else if (MediaUtil.isGif(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
+          slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orNull()));
         } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull(), null));
+          slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), mediaItem.getMimeType(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orNull(), null));
         } else {
           Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.getMimeType() + "'. Skipping.");
         }
@@ -1306,50 +1316,28 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivity(intent);
   }
 
-  private void handleUnverifiedRecipients() {
-    List<Recipient>      unverifiedRecipients = identityRecords.getUnverifiedRecipients();
-    List<IdentityRecord> unverifiedRecords    = identityRecords.getUnverifiedRecords();
-    String               message              = IdentityUtil.getUnverifiedSendDialogDescription(this, unverifiedRecipients);
-
-    if (message == null) return;
-
-    //noinspection CodeBlock2Expr
-    new UnverifiedSendDialog(this, message, unverifiedRecords, () -> {
-      initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          sendMessage();
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          throw new AssertionError(e);
-        }
-      });
-    }).show();
+  private void handleRecentSafetyNumberChange() {
+    List<IdentityRecord> records = identityRecords.getUnverifiedRecords();
+    records.addAll(identityRecords.getUntrustedRecords());
+    SafetyNumberChangeDialog.create(records).show(getSupportFragmentManager(), SAFETY_NUMBER_DIALOG);
   }
 
-  private void handleUntrustedRecipients() {
-    List<Recipient>      untrustedRecipients = identityRecords.getUntrustedRecipients();
-    List<IdentityRecord> untrustedRecords    = identityRecords.getUntrustedRecords();
-    String               untrustedMessage    = IdentityUtil.getUntrustedSendDialogDescription(this, untrustedRecipients);
+  @Override
+  public void onSendAnywayAfterSafetyNumberChange() {
+    initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        sendMessage();
+      }
+    });
+  }
 
-    if (untrustedMessage == null) return;
-
-    //noinspection CodeBlock2Expr
-    new UntrustedSendDialog(this, untrustedMessage, untrustedRecords, () -> {
-      initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          sendMessage();
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          throw new AssertionError(e);
-        }
-      });
-    }).show();
+  @Override
+  public void onMessageResentAfterSafetyNumberChange() {
+    initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) { }
+    });
   }
 
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
@@ -1383,15 +1371,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private ListenableFuture<Boolean> initializeDraft() {
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
-    final String         draftText      = getIntent().getStringExtra(TEXT_EXTRA);
-    final Uri            draftMedia     = getIntent().getData();
-    final MediaType      draftMediaType = MediaType.from(getIntent().getType());
-    final List<Media>    mediaList      = getIntent().getParcelableArrayListExtra(MEDIA_EXTRA);
-    final StickerLocator stickerLocator = getIntent().getParcelableExtra(STICKER_EXTRA);
+    final String         draftText        = getIntent().getStringExtra(TEXT_EXTRA);
+    final Uri            draftMedia       = getIntent().getData();
+    final String         draftContentType = getIntent().getType();
+    final MediaType      draftMediaType   = MediaType.from(draftContentType);
+    final List<Media>    mediaList        = getIntent().getParcelableArrayListExtra(MEDIA_EXTRA);
+    final StickerLocator stickerLocator   = getIntent().getParcelableExtra(STICKER_EXTRA);
+    final boolean        borderless       = getIntent().getBooleanExtra(BORDERLESS_EXTRA, false);
 
     if (stickerLocator != null && draftMedia != null) {
       Log.d(TAG, "Handling shared sticker.");
       sendSticker(stickerLocator, draftMedia, 0, true);
+      return new SettableFuture<>(false);
+    }
+
+    if (draftMedia != null && draftContentType != null && borderless) {
+      SimpleTask.run(getLifecycle(),
+                     () -> getKeyboardImageDetails(draftMedia),
+                     details -> sendKeyboardImage(draftMedia, draftContentType, details));
       return new SettableFuture<>(false);
     }
 
@@ -2003,10 +2000,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   //////// Helper Methods
 
   private ListenableFuture<Boolean> setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
-    return setMedia(uri, mediaType, 0, 0);
+    return setMedia(uri, mediaType, 0, 0, false);
   }
 
-  private ListenableFuture<Boolean> setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, int width, int height) {
+  private ListenableFuture<Boolean> setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, int width, int height, boolean borderless) {
     if (uri == null) {
       return new SettableFuture<>(false);
     }
@@ -2015,7 +2012,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       openContactShareEditor(uri);
       return new SettableFuture<>(false);
     } else if (MediaType.IMAGE.equals(mediaType) || MediaType.GIF.equals(mediaType) || MediaType.VIDEO.equals(mediaType)) {
-      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, 0, 0, Optional.absent(), Optional.absent(), Optional.absent());
+      String mimeType = MediaUtil.getMimeType(this, uri);
+      if (mimeType == null) {
+        mimeType = mediaType.toFallbackMimeType();
+      }
+
+      Media media = new Media(uri, mimeType, 0, width, height, 0, 0, borderless, Optional.absent(), Optional.absent(), Optional.absent());
       startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
@@ -2329,10 +2331,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         handleManualMmsRequired();
-      } else if (!forceSms && identityRecords.isUnverified()) {
-        handleUnverifiedRecipients();
-      } else if (!forceSms && identityRecords.isUntrusted()) {
-        handleUntrustedRecipients();
+      } else if (!forceSms && (identityRecords.isUnverified() || identityRecords.isUntrusted())) {
+        handleRecentSafetyNumberChange();
       } else if (isMediaMessage) {
         sendMediaMessage(forceSms, expiresIn, false, subscriptionId, initiating);
       } else {
@@ -2383,7 +2383,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private ListenableFuture<Void> sendMediaMessage(final boolean forceSms,
-                                                  String body,
+                                                  @NonNull String body,
                                                   SlideDeck slideDeck,
                                                   QuoteModel quote,
                                                   List<Contact> contacts,
@@ -2671,10 +2671,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onMediaSelected(@NonNull Uri uri, String contentType) {
-    if (!TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif")) {
-      setMedia(uri, MediaType.GIF);
-    } else if (MediaUtil.isImageType(contentType)) {
-      setMedia(uri, MediaType.IMAGE);
+    if (MediaUtil.isGif(contentType) || MediaUtil.isImageType(contentType)) {
+      SimpleTask.run(getLifecycle(),
+                     () -> getKeyboardImageDetails(uri),
+                     details -> sendKeyboardImage(uri, contentType, details));
     } else if (MediaUtil.isVideoType(contentType)) {
       setMedia(uri, MediaType.VIDEO);
     } else if (MediaUtil.isAudioType(contentType)) {
@@ -2709,7 +2709,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull Uri uri, long size, boolean clearCompose) {
     if (sendButton.getSelectedTransport().isSms()) {
-      Media  media  = new Media(uri, MediaUtil.IMAGE_WEBP, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, Optional.absent(), Optional.absent(), Optional.absent());
+      Media  media  = new Media(uri, MediaUtil.IMAGE_WEBP, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, Optional.absent(), Optional.absent(), Optional.absent());
       Intent intent = MediaSendActivity.buildEditorIntent(this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
       startActivityForResult(intent, MEDIA_SENDER);
       return;
@@ -2884,6 +2884,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onListVerticalTranslationChanged(float translationY) {
     reactionOverlay.setListVerticalTranslation(translationY);
+  }
+
+  @Override
+  public void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.hasFailedWithNetworkFailures()) {
+      new AlertDialog.Builder(this)
+                     .setMessage(R.string.conversation_activity__message_could_not_be_sent)
+                     .setNegativeButton(android.R.string.cancel, null)
+                     .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> MessageSender.resend(this, messageRecord))
+                     .show();
+    } else if (messageRecord.isIdentityMismatchFailure()) {
+      SafetyNumberChangeDialog.create(this, messageRecord).show(getSupportFragmentManager(), SAFETY_NUMBER_DIALOG);
+    } else {
+      startActivity(MessageDetailsActivity.getIntentForMessageDetails(this, messageRecord, messageRecord.getRecipient().getId(), messageRecord.getThreadId()));
+    }
   }
 
   @Override
@@ -3071,6 +3086,55 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  @WorkerThread
+  private @Nullable KeyboardImageDetails getKeyboardImageDetails(@NonNull Uri uri) {
+    try {
+      Bitmap bitmap = glideRequests.asBitmap()
+                                   .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
+                                   .skipMemoryCache(true)
+                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                   .submit()
+                                   .get(1000, TimeUnit.MILLISECONDS);
+      int topLeft = bitmap.getPixel(0, 0);
+      return new KeyboardImageDetails(bitmap.getWidth(), bitmap.getHeight(), Color.alpha(topLeft) < 255);
+    } catch (InterruptedException | ExecutionException | TimeoutException e) {
+      return null;
+    }
+  }
+
+  private void sendKeyboardImage(@NonNull Uri uri, @NonNull String contentType, @Nullable KeyboardImageDetails details) {
+    if (details == null || !details.hasTransparency) {
+      setMedia(uri, Objects.requireNonNull(MediaType.from(contentType)));
+      return;
+    }
+
+    long       expiresIn      = recipient.get().getExpireMessages() * 1000L;
+    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+    boolean    initiating     = threadId == -1;
+    QuoteModel quote          = inputPanel.getQuote().orNull();
+    SlideDeck  slideDeck      = new SlideDeck();
+
+    if (MediaUtil.isGif(contentType)) {
+      slideDeck.addSlide(new GifSlide(this, uri, 0, details.width, details.height, details.hasTransparency, null));
+    } else if (MediaUtil.isImageType(contentType)) {
+      slideDeck.addSlide(new ImageSlide(this, uri, contentType, 0, details.width, details.height, details.hasTransparency, null, null));
+    } else {
+      throw new AssertionError("Only images are supported!");
+    }
+
+    sendMediaMessage(isSmsForced(),
+                     "",
+                     slideDeck,
+                     quote,
+                     Collections.emptyList(),
+                     Collections.emptyList(),
+                     expiresIn,
+                     false,
+                     subscriptionId,
+                     initiating,
+                     true);
+  }
+
   private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {
     @Override
     public void onDismissed(final List<IdentityRecord> unverifiedIdentities) {
@@ -3159,5 +3223,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (recipient == null) return;
 
     messageRequestBottomView.setRecipient(recipient);
+  }
+
+  private static class KeyboardImageDetails {
+    private final int     width;
+    private final int     height;
+    private final boolean hasTransparency;
+
+    private KeyboardImageDetails(int width, int height, boolean hasTransparency) {
+      this.width           = width;
+      this.height          = height;
+      this.hasTransparency = hasTransparency;
+    }
   }
 }
