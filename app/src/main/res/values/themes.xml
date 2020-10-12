@@ -132,6 +132,11 @@
         <item name="android:windowExitAnimation">@anim/slide_to_top</item>
     </style>
 
+    <style name="FadeScale" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
+    </style>
+
     <style name="StickerPopupAnimation" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/fade_in</item>
         <item name="android:windowExitAnimation">@anim/fade_out</item>
@@ -172,6 +177,7 @@
 
         <item name="title_text_color_primary">@color/core_grey_90</item>
         <item name="title_text_color_secondary">@color/core_white</item>
+        <item name="title_text_color_disabled">@color/core_grey_25</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
@@ -197,7 +203,12 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
 
+        <item name="radio_theme">@style/Widget.Signal.CompoundButton.RadioButton.Light</item>
+
         <item name="kbs_splash_image">@drawable/ic_kbs_splash_light_svg</item>
+        <item name="kbs_confirm_lottie_loading">@raw/lottie_kbs_loading_light</item>
+        <item name="kbs_confirm_lottie_success">@raw/lottie_kbs_success_light</item>
+        <item name="kbs_confirm_lottie_failure">@raw/lottie_kbs_fail_light</item>
 
         <item name="attachment_type_selector_background">@color/white</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_light</item>
@@ -224,6 +235,8 @@
         <item name="conversation_list_camera_icon_tint">@color/core_grey_60</item>
         <item name="conversation_list_compose_icon_tint">@color/core_white</item>
         <item name="conversation_list_camera_button_background">@color/core_white</item>
+
+        <item name="camera_icon_background_tint">@color/core_grey_02</item>
 
         <item name="fab_color">@color/core_ultramarine</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
@@ -259,6 +272,11 @@
         <item name="conversation_popup_theme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="conversation_title_color">@color/signal_primary</item>
         <item name="conversation_subtitle_color">@color/transparent_white_90</item>
+        <item name="conversation_mention_background_color">@color/core_grey_20</item>
+
+        <item name="low_priority_button_text_color">@color/core_grey_70</item>
+
+        <item name="mention_picker_background_color">@color/core_white</item>
 
         <item name="safety_number_change_dialog_button_background">@color/core_grey_05</item>
         <item name="safety_number_change_dialog_button_text_color">@color/core_ultramarine</item>
@@ -295,8 +313,12 @@
         <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_light_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
-        <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
-        <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
+        <item name="reactions_overlay_toolbar_icon_tint">?icon_tint</item>
+        <item name="reactions_overlay_toolbar_overflow_style">@style/Signal.Toolbar.Overflow.Light</item>
+        <item name="reactions_overlay_toolbar_background_color">@color/core_white</item>
+        <item name="reactions_overlay_custom_emoji_icon">@drawable/ic_any_emoji_32_light</item>
+        <item name="reactions_overlay_old_background">@drawable/reactions_old_background_light</item>
+        <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_light</item>
         <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_light</item>
         <item name="reactions_pill_background">@drawable/reaction_pill_background_light</item>
         <item name="reactions_pill_selected_background">@drawable/reaction_pill_background_selected_light</item>
@@ -322,6 +344,7 @@
         <item name="conversation_item_image_outline_color">@color/transparent_black_20</item>
         <item name="conversation_item_reveal_viewed_background_color">?conversation_background</item>
         <item name="conversation_item_delete_for_everyone_text_color">@color/core_grey_90</item>
+        <item name="conversation_item_mention_pulse_color">@color/transparent_black</item>
         <item name="conversation_scroll_to_bottom_background">@drawable/scroll_to_bottom_background_light</item>
         <item name="conversation_scroll_to_bottom_foreground_color">@color/grey_600</item>
 
@@ -367,13 +390,15 @@
         <item name="menu_accept_icon">@drawable/ic_check_24</item>
         <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
         <item name="menu_copy_icon">@drawable/ic_copy_outline_24</item>
-        <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
+        <item name="menu_info_icon">@drawable/ic_info_outline_white_24</item>
         <item name="menu_forward_icon">@drawable/ic_forward_outline_24</item>
         <item name="menu_save_icon">@drawable/ic_save_24</item>
         <item name="menu_reply_icon">@drawable/ic_reply_outline_24</item>
         <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
         <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
         <item name="menu_edit_icon">@drawable/ic_compose_outline_tinted_24</item>
+        <item name="menu_pin_icon">@drawable/ic_pin_outline_24</item>
+        <item name="menu_unpin_icon">@drawable/ic_unpin_outline_24</item>
 
         <item name="message_icon">@drawable/ic_message_outline_tinted_bitmap_24</item>
         <item name="notifications_icon">@drawable/ic_bell_outline_24</item>
@@ -385,6 +410,7 @@
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_outline_24</item>
         <item name="help_icon">@drawable/ic_help_outline_24</item>
+        <item name="donate_icon">@drawable/ic_heart_outline_24</item>
         <item name="message_request_dialog_button_background">@drawable/message_request_button_background_light</item>
         <item name="message_request_text_color_primary">@color/core_grey_90</item>
         <item name="message_request_text_color_secondary">@color/core_grey_60</item>
@@ -418,6 +444,8 @@
 
         <item name="pref_divider">@drawable/preference_divider_light</item>
 
+        <item name="preference_username_background">@drawable/preference_username_background_light</item>
+
         <item name="quote_missing_icon_color">@color/core_grey_60</item>
         <item name="quote_dismiss_button_tint">@color/core_grey_70</item>
 
@@ -430,6 +458,11 @@
         <item name="search_background">@color/white</item>
         <item name="invite_edit_text_background">@drawable/invite_edit_text_background_light</item>
         <item name="invite_share_icon">@drawable/ic_share_outline_24</item>
+
+        <item name="share_icon">@drawable/ic_share_outline_24_tinted</item>
+        <item name="copy_icon">@drawable/ic_copy_outline_24_tinted</item>
+        <item name="qr_icon">@drawable/ic_qrcode_24_tinted</item>
+        <item name="reset_link_icon">@drawable/ic_reset_24_tinted</item>
 
         <item name="shared_contact_details_header_background">@color/grey_100</item>
         <item name="shared_contact_details_titlebar">@color/grey_400</item>
@@ -476,8 +509,14 @@
         <item name="invite_edit_text_background">@drawable/invite_edit_text_background_dark</item>
         <item name="invite_share_icon">@drawable/ic_share_solid_24_dark</item>
 
+        <item name="share_icon">@drawable/ic_share_solid_24_tinted</item>
+        <item name="copy_icon">@drawable/ic_copy_solid_24_tinted</item>
+        <item name="qr_icon">@drawable/ic_qrcode_24_tinted</item>
+        <item name="reset_link_icon">@drawable/ic_reset_24_tinted</item>
+
         <item name="title_text_color_primary">@color/core_grey_05</item>
         <item name="title_text_color_secondary">@color/core_grey_25</item>
+        <item name="title_text_color_disabled">@color/core_grey_60</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
@@ -502,9 +541,14 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
 
+        <item name="radio_theme">@style/Widget.Signal.CompoundButton.RadioButton</item>
+
         <item name="tinted_circle_background">@drawable/tinted_circle_dark</item>
 
         <item name="kbs_splash_image">@drawable/ic_kbs_splash_dark_svg</item>
+        <item name="kbs_confirm_lottie_loading">@raw/lottie_kbs_loading_dark</item>
+        <item name="kbs_confirm_lottie_success">@raw/lottie_kbs_success_dark</item>
+        <item name="kbs_confirm_lottie_failure">@raw/lottie_kbs_fail_dark</item>
 
         <item name="attachment_type_selector_background">@color/core_grey_95</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>
@@ -532,6 +576,8 @@
         <item name="conversation_list_compose_icon_tint">@color/core_white</item>
         <item name="conversation_list_camera_button_background">@color/core_grey_85</item>
 
+        <item name="camera_icon_background_tint">@color/core_grey_75</item>
+
         <item name="conversation_group_member_name">#99ffffff</item>
 
         <item name="conversation_item_bubble_background">@color/core_grey_75</item>
@@ -553,6 +599,7 @@
         <item name="conversation_item_image_outline_color">@color/transparent_white_20</item>
         <item name="conversation_item_reveal_viewed_background_color">?conversation_background</item>
         <item name="conversation_item_delete_for_everyone_text_color">@color/core_grey_15</item>
+        <item name="conversation_item_mention_pulse_color">@color/transparent</item>
 
         <item name="safety_number_change_dialog_button_background">@color/core_grey_75</item>
         <item name="safety_number_change_dialog_button_text_color">@color/core_grey_05</item>
@@ -610,9 +657,18 @@
         <item name="conversation_popup_theme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="conversation_title_color">@color/transparent_white_90</item>
         <item name="conversation_subtitle_color">@color/transparent_white_80</item>
+        <item name="conversation_mention_background_color">@color/core_grey_60</item>
         <item name="conversation_scroll_to_bottom_background">@drawable/scroll_to_bottom_background_dark</item>
         <item name="conversation_scroll_to_bottom_foreground_color">@color/core_white</item>
 
+        <item name="low_priority_button_text_color">@color/core_grey_50</item>
+
+        <item name="mention_picker_background_color">@color/core_grey_90</item>
+
+        <item name="reactions_overlay_toolbar_icon_tint">@color/core_white</item>
+        <item name="reactions_overlay_toolbar_overflow_style">@style/Signal.Toolbar.Overflow</item>
+        <item name="reactions_overlay_toolbar_background_color">@color/action_mode_status_bar</item>
+        <item name="reactions_overlay_custom_emoji_icon">@drawable/ic_any_emoji_32_dark</item>
         <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
         <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
         <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_dark</item>
@@ -678,6 +734,8 @@
         <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
         <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
         <item name="menu_edit_icon">@drawable/ic_compose_solid_tinted_24</item>
+        <item name="menu_pin_icon">@drawable/ic_pin_solid_24</item>
+        <item name="menu_unpin_icon">@drawable/ic_unpin_solid_24</item>
 
         <item name="message_icon">@drawable/ic_message_solid_tinted_bitmap_24</item>
         <item name="notifications_icon">@drawable/ic_bell_solid_24</item>
@@ -689,6 +747,7 @@
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_solid_24</item>
         <item name="help_icon">@drawable/ic_help_solid_24</item>
+        <item name="donate_icon">@drawable/ic_heart_solid_24</item>
         <item name="message_request_dialog_button_background">@drawable/message_request_button_background_dark</item>
         <item name="message_request_text_color_primary">@color/core_grey_05</item>
         <item name="message_request_text_color_secondary">@color/core_grey_25</item>
@@ -722,6 +781,8 @@
 
         <item name="pref_divider">@drawable/preference_divider_dark</item>
 
+        <item name="preference_username_background">@drawable/preference_username_background_dark</item>
+
         <item name="quote_missing_icon_color">@color/core_grey_05</item>
         <item name="quote_dismiss_button_tint">@color/core_white</item>
 
@@ -753,13 +814,8 @@
         <item name="recipient_contact_button_color">@color/core_grey_80</item>
     </style>
 
-<!--<<<<<< HEAD
-    <style name="RationaleDialogLight" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
-=======-->
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/dialog_corners_light</item>
-<!-->>>>>>> master-->
     </style>
 
     <style name="Theme.Signal.AlertDialog.Dark.Cornered" parent="Theme.AppCompat.Dialog.Alert">
@@ -860,6 +916,14 @@
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny.Light</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+    </style>
+
+    <style name="TextSecure.DarkTheme.AnimatedDialog">
+        <item name="android:windowAnimationStyle">@style/FadeScale</item>
+    </style>
+
+    <style name="TextSecure.LightTheme.AnimatedDialog">
+        <item name="android:windowAnimationStyle">@style/FadeScale</item>
     </style>
 
     <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">

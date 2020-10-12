@@ -41,7 +41,8 @@
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
     <dimen name="media_bubble_default_dimens">210dp</dimen>
-    <dimen name="media_bubble_min_width">150dp</dimen>
+    <dimen name="media_bubble_min_width_solo">150dp</dimen>
+    <dimen name="media_bubble_min_width_with_content">240dp</dimen>
     <dimen name="media_bubble_max_width">240dp</dimen>
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
@@ -77,6 +78,8 @@
     <dimen name="quote_corner_radius_bottom">4dp</dimen>
     <dimen name="quote_corner_radius_preview">18dp</dimen>
     <dimen name="quote_thumb_size">60dp</dimen>
+
+    <dimen name="mention_corner_radius">4dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">8dp</dimen>
@@ -145,12 +148,12 @@
 
     <dimen name="debug_log_text_size">12sp</dimen>
 
-    <dimen name="picture_in_picture_gesture_helper_frame_padding">12dp</dimen>
+    <dimen name="picture_in_picture_gesture_helper_frame_padding">16dp</dimen>
     <dimen name="picture_in_picture_gesture_helper_pip_width">90dp</dimen>
     <dimen name="picture_in_picture_gesture_helper_pip_height">160dp</dimen>
 
     <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_min_height">340dp</dimen>
-    <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">36dp</dimen>
+    <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">40dp</dimen>
 
     <dimen name="group_manage_fragment_card_vertical_padding">12dp</dimen>
     <dimen name="group_manage_fragment_row_height">52dp</dimen>

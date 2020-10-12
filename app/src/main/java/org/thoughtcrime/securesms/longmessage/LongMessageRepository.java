@@ -6,7 +6,9 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -25,8 +27,8 @@ class LongMessageRepository {
 
   private final static String TAG = LongMessageRepository.class.getSimpleName();
 
-  private final MmsDatabase mmsDatabase;
-  private final SmsDatabase smsDatabase;
+  private final MessageDatabase mmsDatabase;
+  private final MessageDatabase smsDatabase;
 
   LongMessageRepository(@NonNull Context context) {
     this.mmsDatabase = DatabaseFactory.getMmsDatabase(context);
@@ -38,22 +40,22 @@ class LongMessageRepository {
       if (isMms) {
         callback.onComplete(getMmsLongMessage(context, mmsDatabase, messageId));
       } else {
-        callback.onComplete(getSmsLongMessage(smsDatabase, messageId));
+        callback.onComplete(getSmsLongMessage(context, smsDatabase, messageId));
       }
     });
   }
 
   @WorkerThread
-  private Optional<LongMessage> getMmsLongMessage(@NonNull Context context, @NonNull MmsDatabase mmsDatabase, long messageId) {
+  private Optional<LongMessage> getMmsLongMessage(@NonNull Context context, @NonNull MessageDatabase mmsDatabase, long messageId) {
     Optional<MmsMessageRecord> record = getMmsMessage(mmsDatabase, messageId);
 
     if (record.isPresent()) {
       TextSlide textSlide = record.get().getSlideDeck().getTextSlide();
 
       if (textSlide != null && textSlide.getUri() != null) {
-        return Optional.of(new LongMessage(record.get(), readFullBody(context, textSlide.getUri())));
+        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), readFullBody(context, textSlide.getUri())));
       } else {
-        return Optional.of(new LongMessage(record.get(), ""));
+        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), ""));
       }
     } else {
       return Optional.absent();
@@ -61,11 +63,11 @@ class LongMessageRepository {
   }
 
   @WorkerThread
-  private Optional<LongMessage> getSmsLongMessage(@NonNull SmsDatabase smsDatabase, long messageId) {
+  private Optional<LongMessage> getSmsLongMessage(@NonNull Context context, @NonNull MessageDatabase smsDatabase, long messageId) {
     Optional<MessageRecord> record = getSmsMessage(smsDatabase, messageId);
 
     if (record.isPresent()) {
-      return Optional.of(new LongMessage(record.get(), ""));
+      return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), ""));
     } else {
       return Optional.absent();
     }
@@ -73,16 +75,16 @@ class LongMessageRepository {
 
 
   @WorkerThread
-  private Optional<MmsMessageRecord> getMmsMessage(@NonNull MmsDatabase mmsDatabase, long messageId) {
-    try (Cursor cursor = mmsDatabase.getMessage(messageId)) {
-      return Optional.fromNullable((MmsMessageRecord) mmsDatabase.readerFor(cursor).getNext());
+  private Optional<MmsMessageRecord> getMmsMessage(@NonNull MessageDatabase mmsDatabase, long messageId) {
+    try (Cursor cursor = mmsDatabase.getMessageCursor(messageId)) {
+      return Optional.fromNullable((MmsMessageRecord) MmsDatabase.readerFor(cursor).getNext());
     }
   }
 
   @WorkerThread
-  private Optional<MessageRecord> getSmsMessage(@NonNull SmsDatabase smsDatabase, long messageId) {
+  private Optional<MessageRecord> getSmsMessage(@NonNull MessageDatabase smsDatabase, long messageId) {
     try (Cursor cursor = smsDatabase.getMessageCursor(messageId)) {
-      return Optional.fromNullable(smsDatabase.readerFor(cursor).getNext());
+      return Optional.fromNullable(SmsDatabase.readerFor(cursor).getNext());
     }
   }
 

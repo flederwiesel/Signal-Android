@@ -10,8 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +34,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FullscreenHelper;
 
 /**
  * Activity for displaying avatars full screen.
@@ -72,18 +71,12 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
       getWindow().setSharedElementReturnTransition(inflater.inflateTransition(R.transition.full_screen_avatar_image_return_transition_set));
     }
 
-   Toolbar toolbar = findViewById(R.id.toolbar);
-
-    ImageView avatar = findViewById(R.id.avatar);
+    Toolbar   toolbar = findViewById(R.id.toolbar);
+    ImageView avatar  = findViewById(R.id.avatar);
 
     setSupportActionBar(toolbar);
 
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                         WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-    showSystemUI();
-
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    requireSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Context     context     = getApplicationContext();
     RecipientId recipientId = RecipientId.from(getIntent().getStringExtra(RECIPIENT_ID_EXTRA));
@@ -132,47 +125,13 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
       toolbar.setTitle(recipient.getDisplayName(context));
     });
 
-    avatar.setOnClickListener(v -> toggleUiVisibility());
+    FullscreenHelper fullscreenHelper = new FullscreenHelper(this);
 
-    showAndHideWithSystemUI(getWindow(), findViewById(R.id.toolbar_layout));
-  }
+    findViewById(android.R.id.content).setOnClickListener(v -> fullscreenHelper.toggleUiVisibility());
 
-  private static void showAndHideWithSystemUI(@NonNull Window window, @NonNull View... views) {
-    window.getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
-      boolean hide = (visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
+    fullscreenHelper.configureToolbarSpacer(findViewById(R.id.toolbar_cutout_spacer));
 
-      for (View view : views) {
-        view.animate()
-            .alpha(hide ? 0 : 1)
-            .start();
-      }
-    });
-  }
-
-  private void toggleUiVisibility() {
-    int systemUiVisibility = getWindow().getDecorView().getSystemUiVisibility();
-    if ((systemUiVisibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0) {
-      showSystemUI();
-    } else {
-      hideSystemUI();
-    }
-  }
-
-  private void hideSystemUI() {
-    getWindow().getDecorView().setSystemUiVisibility(
-        View.SYSTEM_UI_FLAG_IMMERSIVE              |
-        View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
-        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN      |
-        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION        |
-        View.SYSTEM_UI_FLAG_FULLSCREEN              );
-  }
-
-  private void showSystemUI() {
-    getWindow().getDecorView().setSystemUiVisibility(
-        View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
-        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN       );
+    fullscreenHelper.showAndHideWithSystemUI(getWindow(), findViewById(R.id.toolbar_layout));
   }
 
   @Override

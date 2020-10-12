@@ -178,13 +178,13 @@
   <string name="ConversationActivity_added_to_home_screen"> ಹೋಮ್‌ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
   <string name="ConversationActivity_calls_not_supported">ಕರೆಗಳ ಬೆಂಬಲವಿರುವುದಿಲ್ಲ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನವು ಡಯಲ್ ಕ್ರಮಗಳನ್ನು ಬೆಂಬಲಿಸುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
-  <string name="ConversationActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯುವುದೇ?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ಈ ಗುಂಪನ್ನು ಬಿಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯುವುದೇ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ಈ ಗುಂಪನ್ನು ಬಿಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ</string> -->
   <string name="ConversationActivity_transport_insecure_sms">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ </string>
   <string name="ConversationActivity_transport_insecure_mms">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ </string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ಗೆ ಬದಲಾಯಿಸೋಣ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">ಗುಂಪನ್ನು ಬಿಡುವಾಗ ದೋಷವಾಯಿತು</string> -->
   <string name="ConversationActivity_specify_recipient">ದಯವಿಟ್ಟು ಒಂದು ಸಂಪರ್ಕವನ್ನು ಆರಿಸಿಕೊಳ್ಳಿ</string>
   <string name="ConversationActivity_unblock_this_contact_question">ಈ ಸಂಪರ್ಕವನ್ನು ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
   <string name="ConversationActivity_unblock_this_group_question">ಈ ಗುಂಪಿನ ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
@@ -298,6 +298,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
   <string name="ConversationTitleView_you">ನೀವು</string>
+  <!--CreateGroupActivity-->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ಪ್ರೊಫೈಲ್</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ</string>
@@ -353,6 +354,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFಗಳು</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ಸ್ಟಿಕ್ಕರುಗಳು</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ</string>
+  <string name="ChooseNewAdminActivity_done">ಮುಗಿದಿದೆ</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವಿರಾ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ನೀವು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ಮಾಡಲು ಹಾಗೂ ಎಲ್ಲ ಸದ್ಯದ ಮತ್ತು ಭವಿಷ್ಯದ ಸದಸ್ಯರುಗಳಿಗೆ ಈ ಗುಂಪಿನಲ್ಲಿ ಫೋಟೊವನ್ನು ಕಾಣುವಂತೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?</string>
@@ -360,6 +364,11 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">ನೀವು</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+  <!--LinkPreviewsMegaphone-->
+  <string name="LinkPreviewsMegaphone_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">ನೀವು ಆಹ್ವಾನಿಸಿದ ಜನರು</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">ಗುಂಪಿನ ಇತರ ಸದಸ್ಯರು ಆಹ್ವಾನಿಸಿದ ಜನರು</string>
@@ -371,16 +380,18 @@
   <string name="AddGroupDetailsFragment__members">ಸದಸ್ಯರು</string>
   <string name="AddGroupDetailsFragment__group_name_required">ಗುಂಪಿನ ಹೆಸರು (ಅಗತ್ಯವಿದೆ)</string>
   <string name="AddGroupDetailsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
+  <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
+  <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
   <string name="ManageGroupActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯಿರಿ </string>
   <string name="ManageGroupActivity_mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="ManageGroupActivity_custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <string name="ManageGroupActivity_off">ಆಫ಼್</string>
   <string name="ManageGroupActivity_on">ಆನ್</string>
-  <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
   <string name="ManageGroupActivity_view_all_members">ಎಲ್ಲಾ ಸದಸ್ಯರನ್ನು ವೀಕ್ಷಿಸಿ</string>
   <string name="ManageGroupActivity_none">ಯಾವುದೂ ಇಲ್ಲ</string>
+  <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <string name="ManageRecipientActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
@@ -401,7 +412,9 @@
   <string name="CustomNotificationsDialogFragment__enabled">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="CustomNotificationsDialogFragment__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="CustomNotificationsDialogFragment__default">ಡೀಫಾಲ್ಟ್</string>
-  <!--GV2 Invite cancellation confirmation-->
+  <!--GV2 Invite Revoke confirmation dialog-->
+  <!--GroupJoinBottomSheetDialogFragment-->
+  <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ಗುಂಪಿನ ಅವತಾರ್</string>
   <string name="CropImageActivity_profile_avatar">ಅವತಾರ್</string>
@@ -554,7 +567,6 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_were_invited_to_the_group">ನಿಮ್ಮನ್ನು ಗುಂಪಿಗೆ ಆಹ್ವಾನಿಸಲಾಗಿದೆ.</string>
   <!--GV2 invitation revokes-->
-  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">ಗುಂಪಿಗೆ ನಿಮ್ಮ ಆಹ್ವಾನವನ್ನು ಹಿಂತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -577,10 +589,6 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d ಸದಸ್ಯರು</item>
     <item quantity="other">%1$d ಸದಸ್ಯರುಗಳು</item>
-  </plurals>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d ಇತರ</item>
-    <item quantity="other">%d ಇತರರು</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ಪಾಸ್‌ಫ್ರೇಸ್‌ ಗಳು ಹೊಂದಿಕೆಯಾಗುತಿಲ್ಲ</string>
@@ -830,7 +838,7 @@
   <string name="UnverifiedSendDialog_send">ಕಳುಹಿಸು</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">ಬಳಕೆದಾರ ಹೆಸರು</string>
-  <string name="UsernameEditFragment_submit">ಸಲ್ಲಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_submit">ಸಲ್ಲಿಸಿ</string> -->
   <string name="UsernameEditFragment_delete">ಅಳಿಸಿ</string>
   <string name="UsernameEditFragment_successfully_set_username">ಬಳಕೆದಾರ ಹೆಸರು ಯಶಸ್ವಿಯಾಗಿ ಹೊಂದಿಸಲಾಗಿದೆ.</string>
   <string name="UsernameEditFragment_successfully_removed_username">ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಯಶಸ್ವಿಯಾಗಿ ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</string>
@@ -840,7 +848,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ಬಳಕೆದಾರ ಹೆಸರುಗಳು ಸಂಖ್ಯೆಯಿಂದ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.</string>
   <string name="UsernameEditFragment_username_is_invalid">ಬಳಕೆದಾರ ಹೆಸರು ಅಮಾನ್ಯವಾಗಿದೆ.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ಬಳಕೆದಾರ ಹೆಸರುಗಳ  %1$d ಮತ್ತು %2$d ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">ಇತರ Signal ಬಳಕೆದಾರರು ಸಂದೇಶ ವಿನಂತಿಗಳನ್ನು ನಿಮ್ಮ ದೂರವಾಣಿ ಸಂಖ್ಯೆ ತಿಳಿಯದೆ ನಿಮ್ಮ ಅನನ್ಯ ಬಳಕೆದಾರ ಹೆಸರಿಗೆ ಕಳುಹಿಸಬಹುದು. ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡುವುದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">ಇತರ Signal ಬಳಕೆದಾರರು ಸಂದೇಶ ವಿನಂತಿಗಳನ್ನು ನಿಮ್ಮ ದೂರವಾಣಿ ಸಂಖ್ಯೆ ತಿಳಿಯದೆ ನಿಮ್ಮ ಅನನ್ಯ ಬಳಕೆದಾರ ಹೆಸರಿಗೆ ಕಳುಹಿಸಬಹುದು. ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡುವುದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string> -->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ನಿಮ್ಮ ಸಂಪರ್ಕವು ಹಳೆಯ Signal ಆವೃತ್ತಿಯನ್ನು ಚಲಾಯಿಸುತ್ತಿದ್ದಾರೆ. ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ  ಪರಿಶೀಲಿಸುವ ಮೊದಲು ದಯವಿಟ್ಟು ಅವರನ್ನು ನವೀಕರಿಸಲು ಕೇಳಿ.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ನಿಮ್ಮ ಸಂಪರ್ಕವು QR ಕೋಡ್ ಫಾರ್ಮ್ಯಾಟ್‌ಗೆ ಹೊಂದಿಕೊಳ್ಳದ Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ರನ್ ಮಾಡುತ್ತಿದೆ. ಹೋಲಿಕೆ ಮಾಡಲು ದಯವಿಟ್ಟು ನವೀಕರಿಸಿ.</string>
@@ -861,8 +869,6 @@
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲದ ಅವಧಿಗಾಗಿ ಎಂಎಂಎಸ್ ಸಂದೇಶ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿದೆ</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
-  <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್ ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ಇಂಪೋರ್ಟ್ ಪ್ರಗತಿಯಲ್ಲಿದೆ</string>
   <string name="ApplicationMigrationService_importing_text_messages">ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ಇಂಪೋರ್ಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
@@ -1107,6 +1113,7 @@
     <item quantity="other">%d ವಾರಗಳು</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dವಾ</string>
+  <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%s ನೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಗಿದೆ ಮತ್ತು ಇನ್ನು ಮುಂದೆ ದೃಢೀಕರಿಸಲಾಗುವುದಿಲ್ಲ</string>
   <string name="IdentityUtil_unverified_banner_two">%1$sಮತ್ತು  %2$sನೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಗಳು ಬದಲಾಗಿವೆ ಮತ್ತು ಇನ್ನು ಮುಂದೆ ದೃಢೀಕರಿಸಲಾಗುವುದಿಲ್ಲ</string>
@@ -1280,8 +1287,6 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ಎಲ್ಲಾ ಒಳಬರುವ ಮಲ್ಟಿಮೀಡಿಯಾ ಸಂದೇಶಗಳಿಗಾಗಿ Signal ಬಳಸಿ</string>
   <string name="preferences__pref_enter_sends_title">ಎಂಟರ್ ಕೀ ಕಳುಹಿಸುತ್ತದೆ </string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ಎಂಟರ್ ಕೀಯನ್ನು ಒತ್ತಿದರೆ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ</string>
-  <string name="preferences__send_link_previews">ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಕಳುಹಿಸಿ</string>
-  <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit, ಮತ್ತು YouTube ಲಿಂಕ್‌ಗಳಿಗಾಗಿ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಬೆಂಬಲಿಸಲಾಗಿದೆ</string>
   <string name="preferences__choose_identity">ಗುರುತನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯಿಂದ ನಿಮ್ಮ ಸಂಪರ್ಕ ನಮೂದನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ.</string>
   <string name="preferences__change_passphrase">ಪಾಸ್‌‌ಫ್ರೇಸ್ ಬದಲಾಯಿಸಿ</string>
@@ -1331,13 +1336,13 @@
   <string name="preferences__mmsc_password">ಎಂಎಂಎಸ್‌ಸಿ ಪಾಸ್ವರ್ಡ್</string>
   <string name="preferences__sms_delivery_reports">ಎಸ್‌ಎಂಎಸ್ ಡೆಲಿವರಿ ವರದಿಗಳು</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ನೀವು ಕಳುಹಿಸುವ ಪ್ರತಿ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶಕ್ಕೂ ವಿತರಣಾ ವರದಿಯನ್ನು ವಿನಂತಿಸಿ</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">ಸಂಭಾಷಣೆಯು ನಿಗದಿತ ಉದ್ದವನ್ನು ಮೀರಿದ ನಂತರ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅಳಿಸಿ</string>
-  <string name="preferences__delete_old_messages">ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">ಸಂಭಾಷಣೆಯು ನಿಗದಿತ ಉದ್ದವನ್ನು ಮೀರಿದ ನಂತರ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅಳಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ</string> -->
   <string name="preferences__chats">ಚಾಟ್‌‌ ಗಳು ಹಾಗೂ ಮೀಡಿಯಾ</string>
   <string name="preferences__storage">ಸ್ಟೊರೇಜ್</string>
   <string name="preferences__conversation_length_limit">ಸಂಭಾಷಣೆಯ ಉದ್ದ ಮಿತಿ</string>
-  <string name="preferences__trim_all_conversations_now">ಎಲ್ಲಾ ಸಂಭಾಷಣೆಗಳನ್ನೂ ಈಗ ಟ್ರಿಮ್ ಮಾಡಿ  </string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">ಎಲ್ಲ ಸಂಭಾಷಣೆಗಳನ್ನೂ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಸಂಭಾಷಣೆಯ ಉದ್ದದ ಮಿತಿಗಳನ್ನು ಜಾರಿಗೊಳಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">ಎಲ್ಲಾ ಸಂಭಾಷಣೆಗಳನ್ನೂ ಈಗ ಟ್ರಿಮ್ ಮಾಡಿ  </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">ಎಲ್ಲ ಸಂಭಾಷಣೆಗಳನ್ನೂ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಸಂಭಾಷಣೆಯ ಉದ್ದದ ಮಿತಿಗಳನ್ನು ಜಾರಿಗೊಳಿಸಿ</string> -->
   <string name="preferences__linked_devices">ಲಿಂಕ್ ಮಾಡಿರುವ ಸಾಧನಗಳು</string>
   <string name="preferences__light_theme">ತಿಳಿ</string>
   <string name="preferences__dark_theme">ಗಾಢ</string>
@@ -1362,7 +1367,7 @@
   <string name="preferences_chats__when_using_wifi">ವೈಫೈ ಬಳಸುತ್ತಿರುವಾಗ</string>
   <string name="preferences_chats__when_roaming">ರೋಮಿಂಗ್-ನಲ್ಲಿರುವಾಗ</string>
   <string name="preferences_chats__media_auto_download">ಮೀಡಿಯಾ ಆಟೋ ಡೌನ್‌ಲೋಡ್</string>
-  <string name="preferences_chats__message_trimming">ಸಂದೇಶದ ಟ್ರಿಮ್ಮಿಂಗ್</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">ಸಂದೇಶದ ಟ್ರಿಮ್ಮಿಂಗ್</string> -->
   <string name="preferences_storage__storage_usage">ಸ್ಟೊರೇಜ್ ಬಳಕೆ</string>
   <string name="preferences_storage__photos">ಫೋಟೋಗಳು</string>
   <string name="preferences_storage__videos">ವೀಡಿಯೊಗಳು</string>
@@ -1430,6 +1435,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಶಾರ್ಟ್‌‌ಕಟ್</string>
   <string name="conversation_list_search_description">ಹುಡುಕಿ</string>
+  <string name="conversation_list__chats">ಚಾಟ್‌‌ ಗಳು</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">ಸಂಪರ್ಕದ ಫೋಟೊ ಇಮೇಜ್</string>
   <string name="conversation_list_item_view__archived">ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ</string>
@@ -1472,14 +1478,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಗೆ ನಕಲಿಸಿ</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಜೊತೆ ಹೋಲಿಸಿ</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">ನಿಮ್ಮ Signal ನ ಆವೃತ್ತಿ ಹಳೆಯದು</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">ನಿಮ್ಮ Signal ನ ಆವೃತ್ತಿ ಹಳೆಯದು</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">ನಿಮ್ಮ ನ ಆವೃತ್ತಿ Signal ರಲ್ಲಿ ಮುಕ್ತಾಯಗೊಳ್ಳುತ್ತದೆ %d ದಿನ. ಟ್ಯಾಪ್ ಮಾಡಿ ಗೆ ನವೀಕರಿಸಿ ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ.</item>
     <item quantity="other">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯು %d ದಿನಗಳಲ್ಲಿ ಮುಕ್ತಾಯಗೊಳ್ಳುತ್ತದೆ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯು ಇಂದು ವಾಯಿದೆ ಮೀರಲಿದೆ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-  <string name="reminder_header_expired_build">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯ ವಾಯಿದೆ ಮುಗಿದಿದೆ!</string>
-  <string name="reminder_header_expired_build_details">ಸಂದೇಶಗಳನ್ನು ಇನ್ನು ಮುಂದೆ ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯು ಇಂದು ವಾಯಿದೆ ಮೀರಲಿದೆ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯ ವಾಯಿದೆ ಮುಗಿದಿದೆ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">ಸಂದೇಶಗಳನ್ನು ಇನ್ನು ಮುಂದೆ ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string> -->
   <string name="reminder_header_sms_default_title">ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿ ಬಳಸಿ </string>
   <string name="reminder_header_sms_default_text">Signal ಅನ್ನು ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <string name="reminder_header_sms_import_title">ಸಿಸ್ಟಂ ಎಸ್‌ಎಂಎಸ್ ಇಂಪೋರ್ಟ್ ಮಾಡಿ</string>
@@ -1615,6 +1621,7 @@
   <string name="KbsMegaphone__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">ನಾವು ನಿಮಗೆ ನಂತರ ನೆನಪಿಸುತ್ತೇವೆ. %1$d ದಿನಗಳಲ್ಲಿ ಪಿನ್ ರಚಿಸುವುದು ಕಡ್ಡಾಯವಾಗಲಿದೆ.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">ನಾವು ನಿಮಗೆ ನಂತರ ನೆನಪಿಸುತ್ತೇವೆ. ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ದೃಢೀಕರಿಸುವುದು %1$dದಿನಗಳಲ್ಲಿ ಕಡ್ಡಾಯವಾಗಲಿದೆ. </string>
+  <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ಸಾರಿಗೆ ಐಕನ್</string>
   <string name="ConversationListFragment_loading">ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
@@ -1731,5 +1738,6 @@
   <string name="RecipientBottomSheet_remove">ತೆಗೆದುಹಾಕಿ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
   <string name="GroupRecipientListItem_admin">ಅಡ್ಮಿನ್‌‌</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>

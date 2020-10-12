@@ -49,6 +49,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext.Type.DELIVER;
 
@@ -344,9 +345,11 @@ public final class SignalServiceContent {
     boolean                                endSession       = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.END_SESSION_VALUE            ) != 0);
     boolean                                expirationUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0);
     boolean                                profileKeyUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE     ) != 0);
-    SignalServiceDataMessage.Quote         quote            = createQuote(content);
+    boolean                                isGroupV2        = groupInfoV2 != null;
+    SignalServiceDataMessage.Quote         quote            = createQuote(content, isGroupV2);
     List<SharedContact>                    sharedContacts   = createSharedContacts(content);
     List<SignalServiceDataMessage.Preview> previews         = createPreviews(content);
+    List<SignalServiceDataMessage.Mention> mentions         = createMentions(content.getBodyRangesList(), content.getBody(), isGroupV2);
     SignalServiceDataMessage.Sticker       sticker          = createSticker(content);
     SignalServiceDataMessage.Reaction      reaction         = createReaction(content);
     SignalServiceDataMessage.RemoteDelete  remoteDelete     = createRemoteDelete(content);
@@ -381,6 +384,7 @@ public final class SignalServiceContent {
                                         quote,
                                         sharedContacts,
                                         previews,
+                                        mentions,
                                         sticker,
                                         content.getIsViewOnce(),
                                         reaction,
@@ -591,15 +595,15 @@ public final class SignalServiceContent {
 
     if (content.hasOffer()) {
       SignalServiceProtos.CallMessage.Offer offerContent = content.getOffer();
-      return SignalServiceCallMessage.forOffer(new OfferMessage(offerContent.getId(), offerContent.getDescription(), OfferMessage.Type.fromProto(offerContent.getType())), isMultiRing, destinationDeviceId);
+      return SignalServiceCallMessage.forOffer(new OfferMessage(offerContent.getId(), offerContent.hasSdp() ? offerContent.getSdp() : null, OfferMessage.Type.fromProto(offerContent.getType()), offerContent.hasOpaque() ? offerContent.getOpaque().toByteArray() : null), isMultiRing, destinationDeviceId);
     } else if (content.hasAnswer()) {
       SignalServiceProtos.CallMessage.Answer answerContent = content.getAnswer();
-      return SignalServiceCallMessage.forAnswer(new AnswerMessage(answerContent.getId(), answerContent.getDescription()), isMultiRing, destinationDeviceId);
+      return SignalServiceCallMessage.forAnswer(new AnswerMessage(answerContent.getId(), answerContent.hasSdp() ? answerContent.getSdp() : null, answerContent.hasOpaque() ? answerContent.getOpaque().toByteArray() : null), isMultiRing, destinationDeviceId);
     } else if (content.getIceUpdateCount() > 0) {
       List<IceUpdateMessage> iceUpdates = new LinkedList<>();
 
       for (SignalServiceProtos.CallMessage.IceUpdate iceUpdate : content.getIceUpdateList()) {
-        iceUpdates.add(new IceUpdateMessage(iceUpdate.getId(), iceUpdate.getSdpMid(), iceUpdate.getSdpMLineIndex(), iceUpdate.getSdp()));
+        iceUpdates.add(new IceUpdateMessage(iceUpdate.getId(), iceUpdate.hasOpaque() ? iceUpdate.getOpaque().toByteArray() : null, iceUpdate.hasSdp() ? iceUpdate.getSdp() : null));
       }
 
       return SignalServiceCallMessage.forIceUpdates(iceUpdates, isMultiRing, destinationDeviceId);
@@ -645,7 +649,7 @@ public final class SignalServiceContent {
                                                                  Optional.<byte[]>absent());
   }
 
-  private static SignalServiceDataMessage.Quote createQuote(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+  private static SignalServiceDataMessage.Quote createQuote(SignalServiceProtos.DataMessage content, boolean isGroupV2) throws ProtocolInvalidMessageException {
     if (!content.hasQuote()) return null;
 
     List<SignalServiceDataMessage.Quote.QuotedAttachment> attachments = new LinkedList<>();
@@ -662,7 +666,8 @@ public final class SignalServiceContent {
       return new SignalServiceDataMessage.Quote(content.getQuote().getId(),
                                                 address,
                                                 content.getQuote().getText(),
-                                                attachments);
+                                                attachments,
+                                                createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText(), isGroupV2));
     } else {
       Log.w(TAG, "Quote was missing an author! Returning null.");
       return null;
@@ -682,11 +687,48 @@ public final class SignalServiceContent {
       }
 
       results.add(new SignalServiceDataMessage.Preview(preview.getUrl(),
-                              preview.getTitle(),
-                              Optional.fromNullable(attachment)));
+                                                       preview.getTitle(),
+                                                       preview.getDescription(),
+                                                       preview.getDate(),
+                                                       Optional.fromNullable(attachment)));
     }
 
     return results;
+  }
+
+  private static List<SignalServiceDataMessage.Mention> createMentions(List<SignalServiceProtos.DataMessage.BodyRange> bodyRanges, String body, boolean isGroupV2) throws ProtocolInvalidMessageException {
+    if (bodyRanges == null || bodyRanges.isEmpty() || body == null) {
+      return null;
+    }
+
+    List<SignalServiceDataMessage.Mention> mentions = new LinkedList<>();
+
+    for (SignalServiceProtos.DataMessage.BodyRange bodyRange : bodyRanges) {
+      if (bodyRange.hasMentionUuid()) {
+        try {
+          validateBodyRange(body, bodyRange);
+          mentions.add(new SignalServiceDataMessage.Mention(UuidUtil.parseOrThrow(bodyRange.getMentionUuid()), bodyRange.getStart(), bodyRange.getLength()));
+        } catch (IllegalArgumentException e) {
+          throw new ProtocolInvalidMessageException(new InvalidMessageException(e), null, 0);
+        }
+      }
+    }
+
+    if (mentions.size() > 0 && !isGroupV2) {
+      throw new ProtocolInvalidMessageException(new InvalidMessageException("Mentions received in non-GV2 message"), null, 0);
+    }
+
+    return mentions;
+  }
+
+  private static void validateBodyRange(String body, SignalServiceProtos.DataMessage.BodyRange bodyRange) throws ProtocolInvalidMessageException {
+    int incomingBodyLength = body != null ? body.length() : -1;
+    int start              = bodyRange.hasStart() ? bodyRange.getStart() : -1;
+    int length             = bodyRange.hasLength() ? bodyRange.getLength() : -1;
+
+    if (start < 0 || length < 0 || (start + length) > incomingBodyLength) {
+      throw new ProtocolInvalidMessageException(new InvalidMessageException("Incoming body range has out-of-bound range"), null, 0);
+    }
   }
 
   private static SignalServiceDataMessage.Sticker createSticker(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
@@ -702,25 +744,32 @@ public final class SignalServiceContent {
     SignalServiceProtos.DataMessage.Sticker sticker = content.getSticker();
 
     return new SignalServiceDataMessage.Sticker(sticker.getPackId().toByteArray(),
-                       sticker.getPackKey().toByteArray(),
-                       sticker.getStickerId(),
-                       createAttachmentPointer(sticker.getData()));
+                                                sticker.getPackKey().toByteArray(),
+                                                sticker.getStickerId(),
+                                                sticker.getEmoji(),
+                                                createAttachmentPointer(sticker.getData()));
   }
 
   private static SignalServiceDataMessage.Reaction createReaction(SignalServiceProtos.DataMessage content) {
-    if (!content.hasReaction()                                                                        ||
-        !content.getReaction().hasEmoji()                                                             ||
-        !(content.getReaction().hasTargetAuthorE164() || content.getReaction().hasTargetAuthorUuid()) ||
+    if (!content.hasReaction()                           ||
+        !content.getReaction().hasEmoji()                ||
+        !content.getReaction().hasTargetAuthorUuid()     ||
         !content.getReaction().hasTargetSentTimestamp())
     {
       return null;
     }
 
     SignalServiceProtos.DataMessage.Reaction reaction = content.getReaction();
+    UUID                                     uuid     = UuidUtil.parseOrNull(reaction.getTargetAuthorUuid());
+
+    if (uuid == null) {
+      Log.w(TAG, "Cannot parse author UUID on reaction");
+      return null;
+    }
 
     return new SignalServiceDataMessage.Reaction(reaction.getEmoji(),
                         reaction.getRemove(),
-                        new SignalServiceAddress(UuidUtil.parseOrNull(reaction.getTargetAuthorUuid()), reaction.getTargetAuthorE164()),
+                        new SignalServiceAddress(uuid, null),
                         reaction.getTargetSentTimestamp());
   }
 
@@ -873,8 +922,8 @@ public final class SignalServiceContent {
         members = new ArrayList<>(content.getGroup().getMembersCount());
 
         for (SignalServiceProtos.GroupContext.Member member : content.getGroup().getMembersList()) {
-          if (SignalServiceAddress.isValidAddress(member.getUuid(), member.getE164())) {
-            members.add(new SignalServiceAddress(UuidUtil.parseOrNull(member.getUuid()), member.getE164()));
+          if (SignalServiceAddress.isValidAddress(null, member.getE164())) {
+            members.add(new SignalServiceAddress(null, member.getE164()));
           } else {
             throw new ProtocolInvalidMessageException(new InvalidMessageException("GroupContext.Member had no address!"), null, 0);
           }

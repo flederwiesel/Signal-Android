@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
@@ -23,10 +25,12 @@ import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMi
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RetrieveProfileJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.SendReadReceiptsJobMigration;
+import org.thoughtcrime.securesms.migrations.AttributesMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarIdRemovalMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarMigrationJob;
 import org.thoughtcrime.securesms.migrations.CachedAttachmentsMigrationJob;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
+import org.thoughtcrime.securesms.migrations.KbsEnclaveMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 import org.thoughtcrime.securesms.migrations.PassingMigrationJob;
@@ -39,6 +43,7 @@ import org.thoughtcrime.securesms.migrations.StickerAdditionMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerLaunchMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageCapabilityMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageServiceMigrationJob;
+import org.thoughtcrime.securesms.migrations.TrimByLengthSettingsMigrationJob;
 import org.thoughtcrime.securesms.migrations.UuidMigrationJob;
 
 import java.util.Arrays;
@@ -58,9 +63,11 @@ public final class JobManagerFactories {
       put(AvatarGroupsV1DownloadJob.KEY,             new AvatarGroupsV1DownloadJob.Factory());
       put(AvatarGroupsV2DownloadJob.KEY,             new AvatarGroupsV2DownloadJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
+      put(ClearFallbackKbsEnclaveJob.KEY,            new ClearFallbackKbsEnclaveJob.Factory());
       put(CreateSignedPreKeyJob.KEY,                 new CreateSignedPreKeyJob.Factory());
       put(DirectoryRefreshJob.KEY,                   new DirectoryRefreshJob.Factory());
       put(FcmRefreshJob.KEY,                         new FcmRefreshJob.Factory());
+      put(KbsEnclaveMigrationWorkerJob.KEY,          new KbsEnclaveMigrationWorkerJob.Factory());
       put(LeaveGroupJob.KEY,                         new LeaveGroupJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(MmsDownloadJob.KEY,                        new MmsDownloadJob.Factory());
@@ -100,7 +107,6 @@ public final class JobManagerFactories {
       put(StorageAccountRestoreJob.KEY,              new StorageAccountRestoreJob.Factory());
       put(RequestGroupV2InfoWorkerJob.KEY,           new RequestGroupV2InfoWorkerJob.Factory());
       put(RequestGroupV2InfoJob.KEY,                 new RequestGroupV2InfoJob.Factory());
-      put(WakeGroupV2Job.KEY,                        new WakeGroupV2Job.Factory());
       put(GroupV2UpdateSelfProfileKeyJob.KEY,        new GroupV2UpdateSelfProfileKeyJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory());
@@ -124,10 +130,12 @@ public final class JobManagerFactories {
       put(ProfileUploadJob.KEY,                      new ProfileUploadJob.Factory());
 
       // Migrations
+      put(AttributesMigrationJob.KEY,                new AttributesMigrationJob.Factory());
       put(AvatarIdRemovalMigrationJob.KEY,           new AvatarIdRemovalMigrationJob.Factory());
       put(AvatarMigrationJob.KEY,                    new AvatarMigrationJob.Factory());
       put(CachedAttachmentsMigrationJob.KEY,         new CachedAttachmentsMigrationJob.Factory());
       put(DatabaseMigrationJob.KEY,                  new DatabaseMigrationJob.Factory());
+      put(KbsEnclaveMigrationJob.KEY,                new KbsEnclaveMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                    new LegacyMigrationJob.Factory());
       put(MigrationCompleteJob.KEY,                  new MigrationCompleteJob.Factory());
       put(PinOptOutMigration.KEY,                    new PinOptOutMigration.Factory());
@@ -139,6 +147,7 @@ public final class JobManagerFactories {
       put(StickerAdditionMigrationJob.KEY,           new StickerAdditionMigrationJob.Factory());
       put(StorageCapabilityMigrationJob.KEY,         new StorageCapabilityMigrationJob.Factory());
       put(StorageServiceMigrationJob.KEY,            new StorageServiceMigrationJob.Factory());
+      put(TrimByLengthSettingsMigrationJob.KEY,      new TrimByLengthSettingsMigrationJob.Factory());
       put(UuidMigrationJob.KEY,                      new UuidMigrationJob.Factory());
 
       // Dead jobs
@@ -151,11 +160,13 @@ public final class JobManagerFactories {
       put("Argon2TestJob",                           new FailingJob.Factory());
       put("Argon2TestMigrationJob",                  new PassingMigrationJob.Factory());
       put("StorageKeyRotationMigrationJob",          new PassingMigrationJob.Factory());
+      put("WakeGroupV2Job",                          new FailingJob.Factory());
     }};
   }
 
   public static Map<String, Constraint.Factory> getConstraintFactories(@NonNull Application application) {
     return new HashMap<String, Constraint.Factory>() {{
+      put(ChargingConstraint.KEY,                    new ChargingConstraint.Factory());
       put(NetworkConstraint.KEY,                     new NetworkConstraint.Factory(application));
       put(NetworkOrCellServiceConstraint.KEY,        new NetworkOrCellServiceConstraint.Factory(application));
       put(NetworkOrCellServiceConstraint.LEGACY_KEY, new NetworkOrCellServiceConstraint.Factory(application));
@@ -166,6 +177,7 @@ public final class JobManagerFactories {
 
   public static List<ConstraintObserver> getConstraintObservers(@NonNull Application application) {
     return Arrays.asList(CellServiceConstraintObserver.getInstance(application),
+                         new ChargingConstraintObserver(application),
                          new NetworkConstraintObserver(application),
                          new SqlCipherMigrationConstraintObserver(),
                          new WebsocketDrainedConstraintObserver());

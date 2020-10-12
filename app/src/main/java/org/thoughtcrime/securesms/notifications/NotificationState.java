@@ -8,6 +8,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.contacts.TurnOffContactJoinedNotificationsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.conversation.ConversationPopupActivity;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -101,14 +102,26 @@ public class NotificationState {
     return list;
   }
 
+  public PendingIntent getTurnOffTheseNotificationsIntent(Context context) {
+    long threadId = threads.iterator().next();
+
+    return PendingIntent.getActivity(context,
+                                     0,
+                                     TurnOffContactJoinedNotificationsActivity.newIntent(context, threadId),
+                                     PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
   public PendingIntent getMarkAsReadIntent(Context context, int notificationId) {
-    long[] threadArray = new long[threads.size()];
-    int    index       = 0;
+    long[]        threadArray  = new long[threads.size()];
+    int           index        = 0;
+    StringBuilder threadString = new StringBuilder();
 
     for (long thread : threads) {
-      Log.i(TAG, "Added thread: " + thread);
+      threadString.append(thread).append(" ");
       threadArray[index++] = thread;
     }
+
+    Log.i(TAG, "Added threads: " + threadString.toString());
 
     Intent intent = new Intent(MarkReadReceiver.CLEAR_ACTION);
     intent.setClass(context, MarkReadReceiver.class);
@@ -195,5 +208,8 @@ public class NotificationState {
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
+  public boolean canReply() {
+    return notifications.size() >= 1 && notifications.get(0).canReply();
+  }
 
 }

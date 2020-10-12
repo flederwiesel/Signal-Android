@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -60,21 +61,22 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
+  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
     if (recipientId.isPresent()) {
       launch(Recipient.resolved(recipientId.get()));
     } else {
       Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
-      if (FeatureFlags.cds() && NetworkConstraint.isMet(this)) {
-        Log.i(TAG, "[onContactSelected] CDS enabled. Doing contact refresh.");
+
+      if (TextSecurePreferences.isPushRegistered(this) && NetworkConstraint.isMet(this)) {
+        Log.i(TAG, "[onContactSelected] Doing contact refresh.");
 
         AlertDialog progress = SimpleProgressDialog.show(this);
 
         SimpleTask.run(getLifecycle(), () -> {
           Recipient resolved = Recipient.external(this, number);
 
-          if (!resolved.isRegistered()) {
-            Log.i(TAG, "[onContactSelected] Not registered. Doing a directory refresh.");
+          if (!resolved.isRegistered() || !resolved.hasUuid()) {
+            Log.i(TAG, "[onContactSelected] Not registered or no UUID. Doing a directory refresh.");
             try {
               DirectoryHelper.refreshDirectoryFor(this, resolved, false);
               resolved = Recipient.resolved(resolved.getId());
@@ -92,6 +94,8 @@ public class NewConversationActivity extends ContactSelectionActivity
         launch(Recipient.external(this, number));
       }
     }
+
+    return true;
   }
 
   private void launch(Recipient recipient) {
@@ -100,7 +104,7 @@ public class NewConversationActivity extends ContactSelectionActivity
     intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
     intent.setDataAndType(getIntent().getData(), getIntent().getType());
 
-    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
+    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient.getId());
 
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -136,11 +140,11 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
+  public boolean onCreateOptionsMenu(Menu menu) {
     menu.clear();
     getMenuInflater().inflate(R.menu.new_conversation_activity, menu);
 
-    super.onPrepareOptionsMenu(menu);
+    super.onCreateOptionsMenu(menu);
     return true;
   }
 

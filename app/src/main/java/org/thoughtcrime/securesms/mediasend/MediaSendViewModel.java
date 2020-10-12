@@ -17,6 +17,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -453,15 +454,16 @@ class MediaSendViewModel extends ViewModel {
     savedDrawState.putAll(state);
   }
 
-  @NonNull LiveData<MediaSendActivityResult> onSendClicked(Map<Media, MediaTransform> modelsToTransform, @NonNull List<Recipient> recipients) {
+  @NonNull LiveData<MediaSendActivityResult> onSendClicked(Map<Media, MediaTransform> modelsToTransform, @NonNull List<Recipient> recipients, @NonNull List<Mention> mentions) {
     if (isSms && recipients.size() > 0) {
       throw new IllegalStateException("Provided recipients to send to, but this is SMS!");
     }
 
-    MutableLiveData<MediaSendActivityResult> result         = new MutableLiveData<>();
-    Runnable                                 dialogRunnable = () -> event.postValue(Event.SHOW_RENDER_PROGRESS);
-    String                                   trimmedBody    = isViewOnce() ? "" : body.toString().trim();
-    List<Media>                              initialMedia   = getSelectedMediaOrDefault();
+    MutableLiveData<MediaSendActivityResult> result          = new MutableLiveData<>();
+    Runnable                                 dialogRunnable  = () -> event.postValue(Event.SHOW_RENDER_PROGRESS);
+    String                                   trimmedBody     = isViewOnce() ? "" : body.toString().trim();
+    List<Media>                              initialMedia    = getSelectedMediaOrDefault();
+    List<Mention>                            trimmedMentions = isViewOnce() ? Collections.emptyList() : mentions;
 
     Preconditions.checkState(initialMedia.size() > 0, "No media to send!");
 
@@ -476,7 +478,7 @@ class MediaSendViewModel extends ViewModel {
 
       if (isSms || MessageSender.isLocalSelfSend(application, recipient, isSms)) {
         Log.i(TAG, "SMS or local self-send. Skipping pre-upload.");
-        result.postValue(MediaSendActivityResult.forTraditionalSend(updatedMedia, trimmedBody, transport, isViewOnce()));
+        result.postValue(MediaSendActivityResult.forTraditionalSend(updatedMedia, trimmedBody, transport, isViewOnce(), trimmedMentions));
         return;
       }
 
@@ -493,12 +495,12 @@ class MediaSendViewModel extends ViewModel {
       uploadRepository.updateDisplayOrder(updatedMedia);
       uploadRepository.getPreUploadResults(uploadResults -> {
         if (recipients.size() > 0) {
-          sendMessages(recipients, splitBody, uploadResults);
+          sendMessages(recipients, splitBody, uploadResults, trimmedMentions);
           uploadRepository.deleteAbandonedAttachments();
         }
 
         Util.cancelRunnableOnMain(dialogRunnable);
-        result.postValue(MediaSendActivityResult.forPreUpload(uploadResults, splitBody, transport, isViewOnce()));
+        result.postValue(MediaSendActivityResult.forPreUpload(uploadResults, splitBody, transport, isViewOnce(), trimmedMentions));
       });
     });
 
@@ -632,7 +634,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   @WorkerThread
-  private void sendMessages(@NonNull List<Recipient> recipients, @NonNull String body, @NonNull Collection<PreUploadResult> preUploadResults) {
+  private void sendMessages(@NonNull List<Recipient> recipients, @NonNull String body, @NonNull Collection<PreUploadResult> preUploadResults, @NonNull List<Mention> mentions) {
     List<OutgoingSecureMediaMessage> messages = new ArrayList<>(recipients.size());
 
     for (Recipient recipient : recipients) {
@@ -647,6 +649,7 @@ class MediaSendViewModel extends ViewModel {
                                                                 null,
                                                                 Collections.emptyList(),
                                                                 Collections.emptyList(),
+                                                                mentions,
                                                                 Collections.emptyList(),
                                                                 Collections.emptyList());
 

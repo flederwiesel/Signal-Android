@@ -27,6 +27,8 @@ public class NotificationItem {
             private final long         messageReceivedTimestamp;
   @Nullable private final SlideDeck    slideDeck;
             private final boolean      jumpToMessage;
+            private final boolean      isJoin;
+            private final boolean      canReply;
 
   public NotificationItem(long id,
                           boolean mms,
@@ -38,7 +40,9 @@ public class NotificationItem {
                           long notificationTimestamp,
                           long messageReceivedTimestamp,
                           @Nullable SlideDeck slideDeck,
-                          boolean jumpToMessage)
+                          boolean jumpToMessage,
+                          boolean isJoin,
+                          boolean canReply)
   {
     this.id                       = id;
     this.mms                      = mms;
@@ -51,6 +55,8 @@ public class NotificationItem {
     this.messageReceivedTimestamp = messageReceivedTimestamp;
     this.slideDeck                = slideDeck;
     this.jumpToMessage            = jumpToMessage;
+    this.isJoin                   = isJoin;
+    this.canReply                 = canReply;
   }
 
   public @NonNull  Recipient getRecipient() {
@@ -98,11 +104,19 @@ public class NotificationItem {
     return mms;
   }
 
+  public boolean isJoin() {
+    return isJoin;
+  }
+
   private static int getStartingPosition(@NonNull Context context, long threadId, long receivedTimestampMs) {
     return DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionInConversation(threadId, receivedTimestampMs);
   }
 
   private static void makeIntentUniqueToPreventMerging(@NonNull Intent intent) {
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+  }
+
+  public boolean canReply() {
+    return canReply;
   }
 }

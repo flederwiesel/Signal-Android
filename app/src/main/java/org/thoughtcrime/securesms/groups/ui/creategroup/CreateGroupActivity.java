@@ -8,6 +8,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
 
@@ -30,6 +31,8 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CreateGroupActivity extends ContactSelectionActivity {
@@ -52,8 +55,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
                                                                   : ContactsCursorLoader.DisplayMode.FLAG_PUSH;
 
     intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
-    intent.putExtra(ContactSelectionListFragment.TOTAL_CAPACITY, FeatureFlags.groupsV2create() ? FeatureFlags.gv2GroupCapacity() - 1
-                                                                                               : ContactSelectionListFragment.NO_LIMIT);
+    intent.putExtra(ContactSelectionListFragment.SELECTION_LIMIT, FeatureFlags.groupsV2create() ? FeatureFlags.gv2GroupCapacity() - 1
+                                                                                                : ContactSelectionListFragment.NO_LIMIT);
 
     return intent;
   }
@@ -90,14 +93,14 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   }
 
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
+  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
     if (contactsFragment.hasQueryFilter()) {
       getToolbar().clear();
     }
 
-    if (contactsFragment.getSelectedContactsCount() >= MINIMUM_GROUP_SIZE) {
-      enableNext();
-    }
+    enableNext();
+
+    return true;
   }
 
   @Override
@@ -126,13 +129,11 @@ public class CreateGroupActivity extends ContactSelectionActivity {
     SimpleProgressDialog.DismissibleDialog dismissibleDialog = SimpleProgressDialog.showDelayed(this);
 
     SimpleTask.run(getLifecycle(), () -> {
-      RecipientId[] ids = Stream.of(contactsFragment.getSelectedContacts())
-                                .map(selectedContact -> selectedContact.getOrCreateRecipientId(this))
-                                .toArray(RecipientId[]::new);
+      List<RecipientId> ids = Stream.of(contactsFragment.getSelectedContacts())
+                                    .map(selectedContact -> selectedContact.getOrCreateRecipientId(this))
+                                    .toList();
 
-      List<Recipient> resolved = Stream.of(ids)
-                                       .map(Recipient::resolved)
-                                       .toList();
+      List<Recipient> resolved = Recipient.resolvedList(ids);
 
       stopwatch.split("resolve");
 
@@ -152,9 +153,12 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       stopwatch.split("registered");
 
-      if (FeatureFlags.groupsV2()) {
+      List<Recipient> recipientsAndSelf = new ArrayList<>(resolved);
+      recipientsAndSelf.add(Recipient.self().resolve());
+
+      if (FeatureFlags.groupsV2create()) {
         try {
-          new GroupsV2CapabilityChecker().refreshCapabilitiesIfNecessary(resolved);
+          GroupsV2CapabilityChecker.refreshCapabilitiesIfNecessary(recipientsAndSelf);
         } catch (IOException e) {
           Log.w(TAG, "Failed to refresh all recipient capabilities.", e);
         }
@@ -162,13 +166,31 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       stopwatch.split("capabilities");
 
+      resolved = Recipient.resolvedList(ids);
+
+      boolean gv2 = Stream.of(recipientsAndSelf).allMatch(r -> r.getGroupsV2Capability() == Recipient.Capability.SUPPORTED);
+      if (!gv2 && Stream.of(resolved).anyMatch(r -> !r.hasE164()))
+      {
+        Log.w(TAG, "Invalid GV1 group...");
+        ids = Collections.emptyList();
+      }
+
+      stopwatch.split("gv1-check");
+
       return ids;
     }, ids -> {
       dismissibleDialog.dismiss();
 
       stopwatch.stop(TAG);
 
-      startActivityForResult(AddGroupDetailsActivity.newIntent(this, ids), REQUEST_CODE_ADD_DETAILS);
+      if (ids.isEmpty()) {
+        new AlertDialog.Builder(this)
+                       .setMessage(R.string.CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups)
+                       .setPositiveButton(android.R.string.ok, (d, w) -> d.dismiss())
+                       .show();
+      } else {
+        startActivityForResult(AddGroupDetailsActivity.newIntent(this, ids), REQUEST_CODE_ADD_DETAILS);
+      }
     });
   }
 }

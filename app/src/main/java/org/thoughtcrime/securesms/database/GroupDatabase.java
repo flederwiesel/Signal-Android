@@ -129,6 +129,15 @@ public final class GroupDatabase extends Database {
     }
   }
 
+  public boolean findGroup(@NonNull GroupId groupId) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
+                                                                    new String[] {groupId.toString()},
+                                                                    null, null, null))
+    {
+      return cursor.moveToNext();
+    }
+  }
+
   Optional<GroupRecord> getGroup(Cursor cursor) {
     Reader reader = new Reader(cursor);
     return Optional.fromNullable(reader.getCurrent());
@@ -228,17 +237,26 @@ public final class GroupDatabase extends Database {
     return getGroupsContainingMember(recipientId, true);
   }
 
-  @WorkerThread
   public @NonNull List<GroupRecord> getGroupsContainingMember(@NonNull RecipientId recipientId, boolean pushOnly) {
+    return getGroupsContainingMember(recipientId, pushOnly, false);
+  }
+
+  @WorkerThread
+  public @NonNull List<GroupRecord> getGroupsContainingMember(@NonNull RecipientId recipientId, boolean pushOnly, boolean includeInactive) {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
     String         table      = TABLE_NAME + " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
     String         query      = MEMBERS + " LIKE ?";
-    String[]       args       = new String[]{"%" + recipientId.serialize() + "%"};
+    String[]       args       = SqlUtil.buildArgs("%" + recipientId.serialize() + "%");
     String         orderBy    = ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
 
     if (pushOnly) {
       query += " AND " + MMS + " = ?";
       args = SqlUtil.appendArg(args, "0");
+    }
+
+    if (!includeInactive) {
+      query += " AND " + ACTIVE + " = ?";
+      args = SqlUtil.appendArg(args, "1");
     }
 
     List<GroupRecord> groups = new LinkedList<>();
@@ -286,8 +304,9 @@ public final class GroupDatabase extends Database {
       List<Recipient>   recipients     = new ArrayList<>(currentMembers.size());
 
       for (RecipientId member : currentMembers) {
-        if (memberSet.includeSelf || !Recipient.resolved(member).isLocalNumber()) {
-          recipients.add(Recipient.resolved(member));
+        Recipient resolved = Recipient.resolved(member);
+        if (memberSet.includeSelf || !resolved.isLocalNumber()) {
+          recipients.add(resolved);
         }
       }
 
@@ -354,7 +373,13 @@ public final class GroupDatabase extends Database {
 
     contentValues.put(AVATAR_RELAY, relay);
     contentValues.put(TIMESTAMP, System.currentTimeMillis());
-    contentValues.put(ACTIVE, 1);
+
+    if (groupId.isV2()) {
+      contentValues.put(ACTIVE, groupState != null && gv2GroupActive(groupState) ? 1 : 0);
+    } else {
+      contentValues.put(ACTIVE, 1);
+    }
+
     contentValues.put(MMS, groupId.isMms());
 
     if (groupMasterKey != null) {
@@ -418,14 +443,12 @@ public final class GroupDatabase extends Database {
     RecipientId       groupRecipientId  = recipientDatabase.getOrInsertFromGroupId(groupId);
     String            title             = decryptedGroup.getTitle();
     ContentValues     contentValues     = new ContentValues();
-    UUID              uuid              = Recipient.self().getUuid().get();
 
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getRevision());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
     contentValues.put(MEMBERS, serializeV2GroupMembers(decryptedGroup));
-    contentValues.put(ACTIVE, DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid).isPresent() ||
-                              DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid).isPresent() ? 1 : 0);
+    contentValues.put(ACTIVE, gv2GroupActive(decryptedGroup) ? 1 : 0);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
@@ -490,6 +513,13 @@ public final class GroupDatabase extends Database {
 
     RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
     Recipient.live(groupRecipient).refresh();
+  }
+
+  private static boolean gv2GroupActive(@NonNull DecryptedGroup decryptedGroup) {
+    UUID uuid = Recipient.self().getUuid().get();
+
+    return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid).isPresent() ||
+           DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid).isPresent();
   }
 
   private List<RecipientId> getCurrentMembers(@NonNull GroupId groupId) {
@@ -596,7 +626,7 @@ public final class GroupDatabase extends Database {
     }
 
     public @Nullable GroupRecord getCurrent() {
-      if (cursor == null || cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)) == null) {
+      if (cursor == null || cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)) == null || cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)) == 0) {
         return null;
       }
 
@@ -738,6 +768,15 @@ public final class GroupDatabase extends Database {
       return isV2Group() && requireV2GroupProperties().isAdmin(recipient);
     }
 
+    public MemberLevel memberLevel(@NonNull Recipient recipient) {
+      if (isV2Group()) {
+        return requireV2GroupProperties().memberLevel(recipient);
+      } else {
+        return members.contains(recipient.getId()) ? MemberLevel.FULL_MEMBER
+                                                   : MemberLevel.NOT_A_MEMBER;
+      }
+    }
+
     /**
      * Who is allowed to add to the membership of this group.
      */
@@ -811,15 +850,39 @@ public final class GroupDatabase extends Database {
     }
 
     public boolean isAdmin(@NonNull Recipient recipient) {
-      return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), recipient.getUuid().get())
+      Optional<UUID> uuid = recipient.getUuid();
+
+      if (!uuid.isPresent()) {
+        return false;
+      }
+
+      return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), uuid.get())
                                .transform(t -> t.getRole() == Member.Role.ADMINISTRATOR)
                                .or(false);
     }
 
+    public MemberLevel memberLevel(@NonNull Recipient recipient) {
+      Optional<UUID> uuid = recipient.getUuid();
+
+      if (!uuid.isPresent()) {
+        return MemberLevel.NOT_A_MEMBER;
+      }
+
+      DecryptedGroup decryptedGroup = getDecryptedGroup();
+
+      return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid.get())
+                               .transform(member -> member.getRole() == Member.Role.ADMINISTRATOR
+                                                    ? MemberLevel.ADMINISTRATOR
+                                                    : MemberLevel.FULL_MEMBER)
+                               .or(() -> DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid.get())
+                                                           .transform(m -> MemberLevel.PENDING_MEMBER)
+                                                           .or(() -> DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.getRequestingMembersList(), uuid.get())
+                                                                                       .transform(m -> MemberLevel.REQUESTING_MEMBER)
+                                                                                       .or(MemberLevel.NOT_A_MEMBER)));
+    }
+
     public List<Recipient> getMemberRecipients(@NonNull MemberSet memberSet) {
-      return Stream.of(getMemberRecipientIds(memberSet))
-                   .map(Recipient::resolved)
-                   .toList();
+      return Recipient.resolvedList(getMemberRecipientIds(memberSet));
     }
 
     public List<RecipientId> getMemberRecipientIds(@NonNull MemberSet memberSet) {
@@ -867,6 +930,24 @@ public final class GroupDatabase extends Database {
     MemberSet(boolean includeSelf, boolean includePending) {
       this.includeSelf    = includeSelf;
       this.includePending = includePending;
+    }
+  }
+
+  public enum MemberLevel {
+    NOT_A_MEMBER(false),
+    PENDING_MEMBER(false),
+    REQUESTING_MEMBER(false),
+    FULL_MEMBER(true),
+    ADMINISTRATOR(true);
+
+    private final boolean inGroup;
+
+    MemberLevel(boolean inGroup){
+      this.inGroup = inGroup;
+    }
+
+    public boolean isInGroup() {
+      return inGroup;
     }
   }
 }

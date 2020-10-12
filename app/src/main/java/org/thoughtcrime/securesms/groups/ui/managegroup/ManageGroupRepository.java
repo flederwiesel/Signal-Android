@@ -12,6 +12,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
@@ -19,18 +20,19 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupProtoUtil;
 import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
-import org.thoughtcrime.securesms.groups.ui.AddMembersResultCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -128,14 +130,16 @@ final class ManageGroupRepository {
     });
   }
 
-  void addMembers(@NonNull List<RecipientId> selected, @NonNull AddMembersResultCallback addMembersResultCallback, @NonNull GroupChangeErrorCallback error) {
+  void addMembers(@NonNull List<RecipientId> selected,
+                  @NonNull AsynchronousCallback.WorkerThread<ManageGroupViewModel.AddMembersResult, GroupChangeFailureReason> callback)
+  {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         GroupManager.GroupActionResult groupActionResult = GroupManager.addMembers(context, groupId.requirePush(), selected);
-        addMembersResultCallback.onMembersAdded(groupActionResult.getAddedMemberCount(), groupActionResult.getInvitedMembers());
+        callback.onComplete(new ManageGroupViewModel.AddMembersResult(groupActionResult.getAddedMemberCount(), Recipient.resolvedList(groupActionResult.getInvitedMembers())));
       } catch (GroupChangeException | MembershipNotSuitableForV2Exception | IOException e) {
         Log.w(TAG, e);
-        error.onError(GroupChangeFailureReason.fromException(e));
+        callback.onError(GroupChangeFailureReason.fromException(e));
       }
     });
   }
@@ -149,6 +153,13 @@ final class ManageGroupRepository {
         Log.w(TAG, e);
         error.onError(GroupChangeFailureReason.fromException(e));
       }
+    });
+  }
+
+  void setMentionSetting(RecipientDatabase.MentionSetting mentionSetting) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      RecipientId recipientId = Recipient.externalGroup(context, groupId).getId();
+      DatabaseFactory.getRecipientDatabase(context).setMentionSetting(recipientId, mentionSetting);
     });
   }
 
@@ -188,6 +199,33 @@ final class ManageGroupRepository {
 
     public int getTotalCapacity() {
       return totalCapacity;
+    }
+
+    public int getSelectionLimit() {
+      if (totalCapacity == ContactSelectionListFragment.NO_LIMIT) {
+        return totalCapacity;
+      }
+
+      boolean containsSelf = members.indexOf(Recipient.self().getId()) != -1;
+
+      return totalCapacity - (containsSelf ? 1 : 0);
+    }
+
+    public int getRemainingCapacity() {
+      return totalCapacity - members.size();
+    }
+
+    public @NonNull ArrayList<RecipientId> getMembersWithoutSelf() {
+      ArrayList<RecipientId> recipientIds = new ArrayList<>(members.size());
+      RecipientId            selfId       = Recipient.self().getId();
+
+      for (RecipientId recipientId : members) {
+        if (!recipientId.equals(selfId)) {
+          recipientIds.add(recipientId);
+        }
+      }
+
+      return recipientIds;
     }
   }
 

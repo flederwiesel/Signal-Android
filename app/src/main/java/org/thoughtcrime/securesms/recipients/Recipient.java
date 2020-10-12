@@ -26,19 +26,19 @@ import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientIdResult;
+import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -58,10 +58,11 @@ import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBann
 
 public class Recipient {
 
+  private static final String TAG = Log.tag(Recipient.class);
+
   public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails(), true);
 
-  private static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
-  private static final String                TAG = Log.tag(Recipient.class);
+  public static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
 
   private final RecipientId            id;
   private final boolean                resolving;
@@ -101,8 +102,7 @@ public class Recipient {
   private final Capability             groupsV2Capability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
-  private final byte[]                 identityKey;
-  private final VerifiedStatus         identityStatus;
+  private final MentionSetting         mentionSetting;
 
 
   /**
@@ -159,6 +159,20 @@ public class Recipient {
 
   /**
    * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
+   * creating one in the database if necessary. We special-case GV1 members because we want to
+   * prioritize E164 addresses and not use the UUIDs if possible.
+   */
+  @WorkerThread
+  public static @NonNull Recipient externalGV1Member(@NonNull Context context, @NonNull SignalServiceAddress address) {
+    if (address.getNumber().isPresent()) {
+      return externalPush(context, null, address.getNumber().get(), false);
+    } else {
+      return externalPush(context, address.getUuid().orNull(), null, false);
+    }
+  }
+
+  /**
+   * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
    * creating one in the database if necessary. This should only used for high-trust sources,
    * which are limited to:
    * - Envelopes
@@ -208,7 +222,7 @@ public class Recipient {
     RecipientId       id = null;
 
     if (UuidUtil.isUuid(identifier)) {
-      throw new UuidRecipientError();
+      throw new AssertionError("UUIDs are not valid system contact identifiers!");
     } else if (NumberUtil.isValidEmail(identifier)) {
       id = db.getOrInsertFromEmail(identifier);
     } else {
@@ -301,8 +315,7 @@ public class Recipient {
     this.uuidCapability         = Capability.UNKNOWN;
     this.groupsV2Capability     = Capability.UNKNOWN;
     this.storageId              = null;
-    this.identityKey            = null;
-    this.identityStatus         = VerifiedStatus.DEFAULT;
+    this.mentionSetting         = MentionSetting.ALWAYS_NOTIFY;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -344,8 +357,7 @@ public class Recipient {
     this.uuidCapability         = details.uuidCapability;
     this.groupsV2Capability     = details.groupsV2Capability;
     this.storageId              = details.storageId;
-    this.identityKey            = details.identityKey;
-    this.identityStatus         = details.identityStatus;
+    this.mentionSetting         = details.mentionSetting;
   }
 
   public @NonNull RecipientId getId() {
@@ -380,24 +392,47 @@ public class Recipient {
    * False iff it {@link #getDisplayName} would fall back to e164, email or unknown.
    */
   public boolean hasAUserSetDisplayName(@NonNull Context context) {
-    return !TextUtils.isEmpty(getName(context))            ||
-           !TextUtils.isEmpty(getProfileName().toString()) ||
-           !TextUtils.isEmpty(getDisplayUsername());
+    return !TextUtils.isEmpty(getName(context)) ||
+           !TextUtils.isEmpty(getProfileName().toString());
   }
 
   public @NonNull String getDisplayName(@NonNull Context context) {
-    return Util.getFirstNonEmpty(getName(context),
-                                 getProfileName().toString(),
-                                 getDisplayUsername(),
-                                 e164,
-                                 email,
-                                 context.getString(R.string.Recipient_unknown));
+    String name = Util.getFirstNonEmpty(getName(context),
+                                        getProfileName().toString(),
+                                        e164,
+                                        email,
+                                        context.getString(R.string.Recipient_unknown));
+
+    return StringUtil.isolateBidi(name);
+  }
+
+  public @NonNull String getDisplayNameOrUsername(@NonNull Context context) {
+    String name = Util.getFirstNonEmpty(getName(context),
+                                        getProfileName().toString(),
+                                        e164,
+                                        email,
+                                        username,
+                                        context.getString(R.string.Recipient_unknown));
+
+    return StringUtil.isolateBidi(name);
+  }
+
+  public @NonNull String getMentionDisplayName(@NonNull Context context) {
+    String name = Util.getFirstNonEmpty(localNumber ? getProfileName().toString() : getName(context),
+                                        localNumber ? getName(context) : getProfileName().toString(),
+                                        e164,
+                                        email,
+                                        context.getString(R.string.Recipient_unknown));
+
+    return StringUtil.isolateBidi(name);
   }
 
   public @NonNull String getShortDisplayName(@NonNull Context context) {
-    return Util.getFirstNonEmpty(getName(context),
-                                 getProfileName().getGivenName(),
-                                 getDisplayName(context));
+    String name = Util.getFirstNonEmpty(getName(context),
+                                        getProfileName().getGivenName(),
+                                        getDisplayName(context));
+
+    return StringUtil.isolateBidi(name);
   }
 
   public @NonNull MaterialColor getColor() {
@@ -741,14 +776,6 @@ public class Recipient {
     return storageId;
   }
 
-  public @NonNull VerifiedStatus getIdentityVerifiedStatus() {
-    return identityStatus;
-  }
-
-  public @Nullable byte[] getIdentityKey() {
-    return identityKey;
-  }
-
   public @NonNull UnidentifiedAccessMode getUnidentifiedAccessMode() {
     return unidentifiedAccessMode;
   }
@@ -784,12 +811,8 @@ public class Recipient {
     return ApplicationDependencies.getRecipientCache().getLive(id);
   }
 
-  private @Nullable String getDisplayUsername() {
-    if (!TextUtils.isEmpty(username)) {
-      return "@" + username;
-    } else {
-      return null;
-    }
+  public @NonNull MentionSetting getMentionSetting() {
+    return mentionSetting;
   }
 
   @Override
@@ -857,8 +880,5 @@ public class Recipient {
   }
 
   private static class MissingAddressError extends AssertionError {
-  }
-
-  private static class UuidRecipientError extends AssertionError {
   }
 }

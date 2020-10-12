@@ -56,7 +56,7 @@ public class ProfileKeySendJob extends BaseJob {
       throw new AssertionError("Do not send profile keys directly for GV2");
     }
 
-    List<RecipientId> recipients = conversationRecipient.isGroup() ? Stream.of(conversationRecipient.getParticipants()).map(Recipient::getId).toList()
+    List<RecipientId> recipients = conversationRecipient.isGroup() ? Stream.of(RecipientUtil.getEligibleForSending(conversationRecipient.getParticipants())).map(Recipient::getId).toList()
                                                                    : Stream.of(conversationRecipient.getId()).toList();
 
     recipients.remove(Recipient.self().getId());
@@ -124,8 +124,8 @@ public class ProfileKeySendJob extends BaseJob {
 
   private List<Recipient> deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations) throws IOException, UntrustedIdentityException {
     SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = Stream.of(destinations).map(t -> RecipientUtil.toSignalServiceAddress(context, t)).toList();
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations).map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient)).toList();
+    List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
+    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);
     SignalServiceDataMessage.Builder       dataMessage        = SignalServiceDataMessage.newBuilder()
                                                                                         .asProfileKeyUpdate(true)
                                                                                         .withTimestamp(System.currentTimeMillis())

@@ -32,18 +32,21 @@ public final class KeyBackupService {
 
   private final KeyStore          iasKeyStore;
   private final String            enclaveName;
+  private final byte[]            serviceId;
   private final String            mrenclave;
   private final PushServiceSocket pushServiceSocket;
   private final int               maxTries;
 
   KeyBackupService(KeyStore iasKeyStore,
                    String enclaveName,
+                   byte[] serviceId,
                    String mrenclave,
                    PushServiceSocket pushServiceSocket,
                    int maxTries)
   {
     this.iasKeyStore       = iasKeyStore;
     this.enclaveName       = enclaveName;
+    this.serviceId         = serviceId;
     this.mrenclave         = mrenclave;
     this.pushServiceSocket = pushServiceSocket;
     this.maxTries          = maxTries;
@@ -158,7 +161,7 @@ public final class KeyBackupService {
       try {
         final int               remainingTries    = token.getTries();
         final RemoteAttestation remoteAttestation = getAndVerifyRemoteAttestation();
-        final KeyBackupRequest  request           = KeyBackupCipher.createKeyRestoreRequest(hashedPin.getKbsAccessKey(), token, remoteAttestation, Hex.fromStringCondensed(enclaveName));
+        final KeyBackupRequest  request           = KeyBackupCipher.createKeyRestoreRequest(hashedPin.getKbsAccessKey(), token, remoteAttestation, serviceId);
         final KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
         final RestoreResponse   status            = KeyBackupCipher.getKeyRestoreResponse(response, remoteAttestation);
 
@@ -214,6 +217,21 @@ public final class KeyBackupService {
     }
 
     @Override
+    public void removePin()
+        throws IOException, UnauthenticatedResponseException
+    {
+      try {
+        RemoteAttestation remoteAttestation = getAndVerifyRemoteAttestation();
+        KeyBackupRequest  request           = KeyBackupCipher.createKeyDeleteRequest(currentToken, remoteAttestation, serviceId);
+        KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
+
+        KeyBackupCipher.getKeyDeleteResponseStatus(response, remoteAttestation);
+      } catch (InvalidCiphertextException e) {
+        throw new UnauthenticatedResponseException(e);
+      }
+    }
+
+    @Override
     public void enableRegistrationLock(MasterKey masterKey) throws IOException {
       pushServiceSocket.setRegistrationLockV2(masterKey.deriveRegistrationLock());
     }
@@ -228,7 +246,7 @@ public final class KeyBackupService {
     {
       try {
         RemoteAttestation     remoteAttestation = getAndVerifyRemoteAttestation();
-        KeyBackupRequest      request           = KeyBackupCipher.createKeyBackupRequest(kbsAccessKey, kbsData, token, remoteAttestation, Hex.fromStringCondensed(enclaveName), maxTries);
+        KeyBackupRequest      request           = KeyBackupCipher.createKeyBackupRequest(kbsAccessKey, kbsData, token, remoteAttestation, serviceId, maxTries);
         KeyBackupResponse     response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
         BackupResponse        backupResponse    = KeyBackupCipher.getKeyBackupResponse(response, remoteAttestation);
         BackupResponse.Status status            = backupResponse.getStatus();
@@ -263,6 +281,9 @@ public final class KeyBackupService {
   public interface PinChangeSession extends HashSession {
     /** Creates a PIN. Does nothing to registration lock. */
     KbsPinData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException;
+
+    /** Removes the PIN data from KBS. */
+    void removePin() throws IOException, UnauthenticatedResponseException;
 
     /** Enables registration lock. This assumes a PIN is set. */
     void enableRegistrationLock(MasterKey masterKey) throws IOException;

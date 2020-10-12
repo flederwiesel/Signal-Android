@@ -30,14 +30,15 @@ import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Telephony;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.CharacterSets;
@@ -48,6 +49,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.ComposeText;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -75,6 +77,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Util {
   private static final String TAG = Util.class.getSimpleName();
+
+  private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(90);
 
   private static volatile Handler handler;
 
@@ -110,6 +114,18 @@ public class Util {
     }
 
     return join(boxed, delimeter);
+  }
+
+  @SafeVarargs
+  public static @NonNull <E> List<E> join(@NonNull List<E>... lists) {
+    int     totalSize = Stream.of(lists).reduce(0, (sum, list) -> sum + list.size());
+    List<E> joined    = new ArrayList<>(totalSize);
+
+    for (List<E> list : lists) {
+      joined.addAll(list);
+    }
+
+    return joined;
   }
 
   public static String join(List<Long> list, String delimeter) {
@@ -155,8 +171,16 @@ public class Util {
     return value == null || value.getText() == null || TextUtils.isEmpty(value.getTextTrimmed());
   }
 
-  public static boolean isEmpty(Collection collection) {
+  public static boolean isEmpty(Collection<?> collection) {
     return collection == null || collection.isEmpty();
+  }
+
+  public static boolean isEmpty(@Nullable String value) {
+    return value == null || value.length() == 0;
+  }
+
+  public static boolean hasItems(@Nullable Collection<?> collection) {
+    return collection != null && !collection.isEmpty();
   }
 
   public static <K, V> V getOrDefault(@NonNull Map<K, V> map, K key, V defaultValue) {
@@ -165,7 +189,7 @@ public class Util {
 
   public static String getFirstNonEmpty(String... values) {
     for (String value : values) {
-      if (!TextUtils.isEmpty(value)) {
+      if (!Util.isEmpty(value)) {
         return value;
       }
     }
@@ -173,6 +197,10 @@ public class Util {
   }
 
   public static @NonNull String emptyIfNull(@Nullable String value) {
+    return value != null ? value : "";
+  }
+
+  public static @NonNull CharSequence emptyIfNull(@Nullable CharSequence value) {
     return value != null ? value : "";
   }
 
@@ -327,6 +355,10 @@ public class Util {
     return Optional.fromNullable(simCountryIso != null ? simCountryIso.toUpperCase() : null);
   }
 
+  public static @NonNull <T> T firstNonNull(@Nullable T optional, @NonNull T fallback) {
+    return optional != null ? optional : fallback;
+  }
+
   @SafeVarargs
   public static @NonNull <T> T firstNonNull(T ... ts) {
     for (T t : ts) {
@@ -441,9 +473,25 @@ public class Util {
     return secret;
   }
 
-  public static int getDaysTillBuildExpiry() {
-    int age = (int) TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP);
-    return 90 - age;
+  /**
+   * @return The amount of time (in ms) until this build of Signal will be considered 'expired'.
+   *         Takes into account both the build age as well as any remote deprecation values.
+   */
+  public static long getTimeUntilBuildExpiry() {
+    if (SignalStore.misc().isClientDeprecated()) {
+      return 0;
+    }
+
+    long buildAge                   = System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP;
+    long timeUntilBuildDeprecation  = BUILD_LIFESPAN - buildAge;
+    long timeUntilRemoteDeprecation = RemoteDeprecation.getTimeUntilDeprecation();
+
+    if (timeUntilRemoteDeprecation != -1) {
+      long timeUntilDeprecation = Math.min(timeUntilBuildDeprecation, timeUntilRemoteDeprecation);
+      return Math.max(timeUntilDeprecation, 0);
+    } else {
+      return Math.max(timeUntilBuildDeprecation, 0);
+    }
   }
 
   @TargetApi(VERSION_CODES.LOLLIPOP)
@@ -625,6 +673,14 @@ public class Util {
       return true;
     } catch (NumberFormatException e) {
       return false;
+    }
+  }
+
+  public static int parseInt(String integer, int defaultValue) {
+    try {
+      return Integer.parseInt(integer);
+    } catch (NumberFormatException e) {
+      return defaultValue;
     }
   }
 

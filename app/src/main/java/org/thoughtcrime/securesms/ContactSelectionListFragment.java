@@ -70,7 +70,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.UsernameUtil;
@@ -107,7 +106,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   public static final String MULTI_SELECT      = "multi_select";
   public static final String REFRESHABLE       = "refreshable";
   public static final String RECENTS           = "recents";
-  public static final String TOTAL_CAPACITY    = "total_capacity";
+  public static final String SELECTION_LIMIT   = "selection_limit";
   public static final String CURRENT_SELECTION = "current_selection";
 
   private ConstraintLayout            constraintLayout;
@@ -209,7 +208,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
     swipeRefresh.setEnabled(requireActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
 
-    selectionLimit   = requireActivity().getIntent().getIntExtra(TOTAL_CAPACITY, NO_LIMIT);
+    selectionLimit   = requireActivity().getIntent().getIntExtra(SELECTION_LIMIT, NO_LIMIT);
     currentSelection = getCurrentSelection();
 
     updateGroupLimit(getChipCount());
@@ -473,11 +472,15 @@ public final class ContactSelectionListFragment extends LoggingFragment
             if (uuid.isPresent()) {
               Recipient recipient = Recipient.externalUsername(requireContext(), uuid.get(), contact.getNumber());
               SelectedContact selected = SelectedContact.forUsername(recipient.getId(), contact.getNumber());
-              markContactSelected(selected);
-              cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
 
               if (onContactSelectedListener != null) {
-                onContactSelectedListener.onContactSelected(Optional.of(recipient.getId()), null);
+                if (onContactSelectedListener.onBeforeContactSelected(Optional.of(recipient.getId()), null)) {
+                  markContactSelected(selected);
+                  cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
+                }
+              } else {
+                markContactSelected(selected);
+                cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
               }
             } else {
               new AlertDialog.Builder(requireContext())
@@ -488,11 +491,14 @@ public final class ContactSelectionListFragment extends LoggingFragment
             }
           });
         } else {
-          markContactSelected(selectedContact);
-          cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
-
           if (onContactSelectedListener != null) {
-            onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber());
+            if (onContactSelectedListener.onBeforeContactSelected(contact.getRecipientId(), contact.getNumber())) {
+              markContactSelected(selectedContact);
+              cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
+            }
+          } else {
+            markContactSelected(selectedContact);
+            cursorRecyclerViewAdapter.notifyItemChanged(recyclerView.getChildAdapterPosition(contact), ContactSelectionListAdapter.PAYLOAD_SELECTION_CHANGE);
           }
         }
       } else {
@@ -506,7 +512,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   private boolean selectionLimitReached() {
-    return getChipCount() >= selectionLimit;
+    return getChipCount() + currentSelection.size() >= selectionLimit;
   }
 
   private void markContactSelected(@NonNull SelectedContact selectedContact) {
@@ -624,7 +630,8 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   public interface OnContactSelectedListener {
-    void onContactSelected(Optional<RecipientId> recipientId, String number);
+    /** @return True if the contact is allowed to be selected, otherwise false. */
+    boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number);
     void onContactDeselected(Optional<RecipientId> recipientId, String number);
   }
 

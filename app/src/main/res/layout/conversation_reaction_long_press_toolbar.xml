@@ -8,6 +8,6 @@
     app:contentInsetStart="0dp"
     app:contentInsetStartWithNavigation="48sp"
     app:menu="@menu/conversation_reactions_long_press_menu"
-    app:navigationIcon="@drawable/ic_x_conversation">
+    app:navigationIcon="@drawable/ic_x_tinted">
 
 </org.thoughtcrime.securesms.util.views.AdaptiveActionsToolbar>

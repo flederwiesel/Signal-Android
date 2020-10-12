@@ -26,8 +26,8 @@ import android.os.Bundle;
 import androidx.core.app.RemoteInput;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -75,7 +75,20 @@ public class AndroidAutoReplyReceiver extends BroadcastReceiver {
 
           if (recipient.resolve().isGroup()) {
             Log.w(TAG, "GroupRecipient, Sending media message");
-            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<>(), System.currentTimeMillis(), subscriptionId, expiresIn, false, 0, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
+            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient,
+                                                                  responseText.toString(),
+                                                                  new LinkedList<>(),
+                                                                  System.currentTimeMillis(),
+                                                                  subscriptionId,
+                                                                  expiresIn,
+                                                                  false,
+                                                                  0,
+                                                                  null,
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList());
             replyThreadId = MessageSender.send(context, reply, threadId, false, null);
           } else {
             Log.w(TAG, "Sending regular message ");

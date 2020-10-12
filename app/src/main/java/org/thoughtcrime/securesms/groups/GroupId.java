@@ -19,6 +19,7 @@ public abstract class GroupId {
   private static final String ENCODED_MMS_GROUP_PREFIX       = "__signal_mms_group__!";
   private static final int    MMS_BYTE_LENGTH                = 16;
   private static final int    V1_MMS_BYTE_LENGTH             = 16;
+  private static final int    V1_BYTE_LENGTH                 = 16;
   private static final int    V2_BYTE_LENGTH                 = GroupIdentifier.SIZE;
 
   private final String encodedId;
@@ -40,7 +41,14 @@ public abstract class GroupId {
   }
 
   public static @NonNull GroupId.V1 v1(byte[] gv1GroupIdBytes) throws BadGroupIdException {
-    if (gv1GroupIdBytes.length != MMS_BYTE_LENGTH) {
+    if (gv1GroupIdBytes.length == V2_BYTE_LENGTH) {
+      throw new BadGroupIdException();
+    }
+    return new GroupId.V1(gv1GroupIdBytes);
+  }
+
+  public static @NonNull GroupId.V1 v1Exact(byte[] gv1GroupIdBytes) throws BadGroupIdException {
+    if (gv1GroupIdBytes.length != V1_BYTE_LENGTH) {
       throw new BadGroupIdException();
     }
     return new GroupId.V1(gv1GroupIdBytes);
@@ -54,15 +62,11 @@ public abstract class GroupId {
     return mms(Util.getSecretBytes(secureRandom, MMS_BYTE_LENGTH));
   }
 
-  public static GroupId.V2 v2orThrow(@NonNull byte[] bytes) {
-    try {
-      return v2(bytes);
-    } catch (BadGroupIdException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  public static GroupId.V2 v2(@NonNull byte[] bytes) throws BadGroupIdException {
+  /**
+   * Private because it's too easy to pass the {@link GroupMasterKey} bytes directly to this as they
+   * are the same length as the {@link GroupIdentifier}.
+   */
+  private static GroupId.V2 v2(@NonNull byte[] bytes) throws BadGroupIdException {
     if (bytes.length != V2_BYTE_LENGTH) {
       throw new BadGroupIdException();
     }
@@ -70,7 +74,11 @@ public abstract class GroupId {
   }
 
   public static GroupId.V2 v2(@NonNull GroupIdentifier groupIdentifier) {
-    return v2orThrow(groupIdentifier.serialize());
+    try {
+      return v2(groupIdentifier.serialize());
+    } catch (BadGroupIdException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public static GroupId.V2 v2(@NonNull GroupMasterKey masterKey) {
