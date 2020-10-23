@@ -47,7 +47,7 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام لازم هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
   <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
-  <string name="ApplicationPreferencesActivity_hide">مخفی سازی</string>
+  <string name="ApplicationPreferencesActivity_hide">پنهان کردن</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">پنهان کردن یادآور؟</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -127,7 +127,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">حذف عکس پروفایل؟</string>
   <string name="ClearProfileActivity_remove_group_photo">حذف عکس گروه؟</string>
   <!--ClientDeprecatedActivity-->
-  <string name="ClientDeprecatedActivity_update_signal">بروزرسانی Signal</string>
+  <string name="ClientDeprecatedActivity_update_signal">به‌روزرسانی Signal</string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">این نسخهٔ برنامه دیگر پشتیبانی نمی‌شود. برای ادامهٔ ارسال و دریافت پیام‌ها، به آخرین نسخه به‌روزرسانی کنید.</string>
   <string name="ClientDeprecatedActivity_update">به‌روزرسانی</string>
   <string name="ClientDeprecatedActivity_dont_update">به‌روزرسانی نکن</string>
@@ -217,7 +217,7 @@
   <string name="ConversationActivity_unable_to_record_audio">امکان ضبط صدا وجود ندارد!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">نمی‌توانید به این گروه پیام ارسال کنید، چون دیگر عضو نیستید.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">درخواست شما برای پیوستن به مدیر گروه ارسال شد. هنگامی که به درخواست‌ شما پاسخ دهند، مطلع خواهید شد.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">درخواست شما برای پیوستن به مدیر گروه ارسال شد. هنگامی که به درخواست شما پاسخ دهند مطلع خواهید شد.</string>
   <string name="ConversationActivity_cancel_request">لغو درخواست</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال پیام‌ های صوتی، به Signal اجازه دهید تا به میکروفون شما دسترسی داشته باشد.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal به منظور ارسال پیام های صوتی Signal نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «میکروفون» را فعال کنید.</string>
@@ -245,7 +245,7 @@
   <string name="ConversationActivity_delete_and_leave">حذف و ترک گروه</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">برای تماس با %1$s، Signal به دسترسی میکروفون شما نیاز دارد.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">برای تماس با %1$s، سیگنال به دسترسی میکروفون و دوربین شما نیاز دارد.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">امکانات بیشتر هم اکنون در «تنظیمات گروه»</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">امکانات بیشتر هم‌اکنون در «تنظیمات گروه»</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d پیام خوانده نشده</item>
@@ -393,8 +393,8 @@
   <string name="AddToGroupActivity_add_member">افزودن عضو؟</string>
   <string name="AddToGroupActivity_add_s_to_s">افزودن «%1$s» به «%2$s»؟</string>
   <string name="AddToGroupActivity_s_added_to_s">«%1$s» به «%2$s» افزوده شد.</string>
-  <string name="AddToGroupActivity_add_to_group">اضافه کردن به گروه</string>
-  <string name="AddToGroupActivity_add_to_groups">اضافه کردن به گروه‌ها</string>
+  <string name="AddToGroupActivity_add_to_group">افزودن به گروه</string>
+  <string name="AddToGroupActivity_add_to_groups">افزودن به گروه‌ها</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
   <string name="AddToGroupActivity_add">افزودن</string>
   <!--ChooseNewAdminActivity-->
@@ -474,7 +474,7 @@
   </plurals>
   <string name="AddMembersActivity__add">افزودن</string>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">برای گروه نامی انتخاب کنید</string>
+  <string name="AddGroupDetailsFragment__name_this_group">نامی برای گروه انتخاب کنید</string>
   <string name="AddGroupDetailsFragment__create_group">ایجاد گروه</string>
   <string name="AddGroupDetailsFragment__create">ایجاد</string>
   <string name="AddGroupDetailsFragment__members">اعضا</string>
@@ -515,7 +515,7 @@
   <string name="ManageGroupActivity_until_s">تا %1$s</string>
   <string name="ManageGroupActivity_off">خاموش</string>
   <string name="ManageGroupActivity_on">روشن</string>
-  <string name="ManageGroupActivity_view_all_members">نمایش همه اعضا</string>
+  <string name="ManageGroupActivity_view_all_members">نمایش همهٔ اعضا</string>
   <string name="ManageGroupActivity_see_all">مشاهدهٔ همه</string>
   <string name="ManageGroupActivity_none">هیچکدام</string>
   <plurals name="ManageGroupActivity_invited">
@@ -621,7 +621,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">دریافت اطلاعات گروه ممکن نبود. لطفاً‌ دوباره امتحان کنید</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">آیا می‌خواهید به این گروه بپیوندید و شماره و عکس خود را با اعضای آن به اشتراک بگذارید؟</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">یک مدیر از این گروه باید با درخواست شما را قبل از اینکه به آن بپیوندید، موافقت کند. هنگامی که درخواست عضویت می‌دهید، نام و عکس شما با اعضای گروه به اشتراک گذاشته خواهد شد.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">یک مدیر از این گروه باید با درخواست شما قبل از پیوستن به گروه، موافقت کند. هنگامی که درخواست عضویت می‌دهید، نام و عکس شما با اعضای گروه به اشتراک گذاشته خواهد شد.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">گروه · %1$d عضو</item>
     <item quantity="other">گروه · %1$d عضو</item>
@@ -771,13 +771,13 @@
   <string name="MessageRecord_left_group">شما گروه را ترک کردید.</string>
   <string name="MessageRecord_you_updated_group">شما گروه را به‌روزرسانی کردید.</string>
   <string name="MessageRecord_the_group_was_updated">گروه به‌روزرسانی شد.</string>
-  <string name="MessageRecord_you_called">شما تماس گرفتید</string>
-  <string name="MessageRecord_called_you">مخاطب تماس گرفت</string>
-  <string name="MessageRecord_missed_call">تماس از دست رفته</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">شما تماس گرفتید</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">مخاطب تماس گرفت</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">تماس از دست رفته</string> -->
   <string name="MessageRecord_s_updated_group">%s گروه را به‌روزرسانی کرد.</string>
-  <string name="MessageRecord_s_called_you">%s با شما تماس گرفت</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s با شما تماس گرفت</string> -->
   <string name="MessageRecord_called_s">با %s تماس گرفته شد</string>
-  <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s در Signal است!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام‌های ناپدید شونده را غیر فعال کردید.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام‌های ناپدید شونده را غیرفعال کرد.</string>
@@ -789,7 +789,7 @@
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام پروفایل خود را از %2$s  به %3$s تغییر داد.</string>
   <string name="MessageRecord_changed_their_profile">%1$s پروفایل خود را تغییر داد.</string>
   <!--GV2 specific-->
-  <string name="MessageRecord_you_created_the_group">شما گروه رو خلق کردی</string>
+  <string name="MessageRecord_you_created_the_group">شما گروه را ایجاد کردید.</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">شما %1$s را اضافه کردید.</string>
@@ -924,8 +924,8 @@
   <string name="MessageRequestProfileView_member_of_two_groups">عضو %1$s و %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">عضو %1$s، %2$s و %3$s </string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="one">عضو %1$d</item>
-    <item quantity="other">اعضای %1$d</item>
+    <item quantity="one">%1$d عضو</item>
+    <item quantity="other">%1$d عضو</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d عضو (+%2$d دعوت شدند)</item>
@@ -1431,8 +1431,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبین، اتصال اینترنت خود را بررسی کنید</string>
   <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
-  <string name="ContactSelectionListFragment_okay">خوب</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">گروه پر است</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">خوب</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">گروه پر است</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">نیازی نیست که خود را به گروه اضافه کنید</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">هیچ مخاطب مسدود شده‌ای وجود ندارد</string>
@@ -1888,7 +1888,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">پیام جدید به …</string>
-  <string name="contact_selection_list__unknown_contact_add_to_group">اضافه کردن به گروه</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">افزودن به گروه</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">تماس</string>
   <!--conversation_callable_secure-->
@@ -2121,7 +2121,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ما به حریم خصوصی باور داریم.</b></p><p>Signal شما را دنبال و اطلاعات شما را جمع‌آوری نمی‌کند. برای بهبود Signal برای همه، ما به بازخورد کاربران متکی هستیم، <b>و دوست داریم بازخورد شما را داشته باشیم.</b></p><p>ما در حال ترتیب یک نظرسنجی برای فهمیدن اینکه شما چگونه از Signal استفاده می‌کنید هستیم. نظرسنجی ما هیچ‌گونه اطلاعاتی را که موجب شناسایی شما بشود، جمع‌آوری نمی‌کند. اگر مایل به اشتراک بازخورد بیشتری هستید، گزینهٔ افزودن اطلاعات تماس خود را خواهید داشت.</p><p>اگر چند دقیقه فرصت و بازخوردی برای ارائه دارید، ما دوست داریم که از شما بشنویم.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">شرکت در نظرسنجی</string>
   <string name="ResearchMegaphoneDialog_no_thanks">نه ممنون</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">این نظرسنجی از سوی Surveygizmo در دامنهٔ امن surveys.signalusers.org میزبانی می‌شود.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">این نظرسنجی از سوی Surveygizmo در دامنهٔ امن surveys.signalusers.org میزبانی می‌شود.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
@@ -2195,7 +2195,7 @@
   <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
   <string name="preferences_app_protection__pin_reminders">یاد‌آورهای پین</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ Signal بازگردانی می‌شوند.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">امنیت بیشتر با افزودن درخواست پین Signal برای ثبت‌نام دوباره</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">یک لایهٔ امنیتی بیشتر با درخواست پین Signal برای ثبت‌نام دوباره با شمارهٔ خود در Signal اضافه کنید.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به‌خاطرسپردن پین‌ کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. در طول زمان کمتر از شما پرسیده خواهد شد.</string>
   <string name="preferences_app_protection__turn_off">خاموش</string>
   <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
@@ -2250,8 +2250,8 @@
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
   <string name="RecipientBottomSheet_add_to_contacts">افزودن به مخاطبین</string>
-  <string name="RecipientBottomSheet_add_to_a_group">اضافه کردن به گروه</string>
-  <string name="RecipientBottomSheet_add_to_another_group">اضافه کردن به گروهی دیگر</string>
+  <string name="RecipientBottomSheet_add_to_a_group">افزودن به گروه</string>
+  <string name="RecipientBottomSheet_add_to_another_group">افزودن به گروهی دیگر</string>
   <string name="RecipientBottomSheet_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
   <string name="RecipientBottomSheet_make_group_admin">ارتقا به مدیر گروه</string>
   <string name="RecipientBottomSheet_remove_as_admin">حذف بعنوان مدیر</string>
