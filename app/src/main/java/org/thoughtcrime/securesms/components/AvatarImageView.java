@@ -197,7 +197,6 @@ public final class AvatarImageView extends AppCompatImageView {
             .fallback(fallback)
             .error(fallback)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .circleCrop()
             .into(this);
   }
 
