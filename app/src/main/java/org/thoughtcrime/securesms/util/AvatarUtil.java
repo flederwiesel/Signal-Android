@@ -102,7 +102,7 @@ public final class AvatarUtil {
   }
 
   private static <T> GlideRequest<T> requestCircle(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
-    return request(glideRequest, context, recipient).circleCrop();
+    return request(glideRequest, context, recipient);
   }
 
   private static <T> GlideRequest<T> requestSquare(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {

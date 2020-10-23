@@ -131,7 +131,6 @@ public class AddGroupDetailsFragment extends LoggingFragment {
       } else {
         GlideApp.with(this)
                 .load(avatarBytes)
-                .circleCrop()
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(avatar);

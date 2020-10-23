@@ -62,7 +62,6 @@ public final class ContactChip extends Chip {
                       .fallback(fallbackContactPhotoDrawable)
                       .error(fallbackContactPhotoDrawable)
                       .diskCacheStrategy(DiskCacheStrategy.ALL)
-                      .circleCrop()
                       .into(new CustomTarget<Drawable>() {
                         @Override
                         public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
