@@ -52,6 +52,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -60,7 +61,6 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.google.android.collect.Sets;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.LoggingFragment;
@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationScrollToView;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.TooltipPopup;
+import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
@@ -82,14 +83,14 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationM
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
+import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -105,7 +106,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
-import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -114,22 +114,26 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
-import org.thoughtcrime.securesms.sharing.ShareActivity;
+import org.thoughtcrime.securesms.sharing.ShareIntents;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
+import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -144,6 +148,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+@Trace
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends LoggingFragment {
   private static final String TAG = ConversationFragment.class.getSimpleName();
@@ -167,7 +172,6 @@ public class ConversationFragment extends LoggingFragment {
   private ViewSwitcher                topLoadMoreView;
   private ViewSwitcher                bottomLoadMoreView;
   private ConversationTypingView      typingView;
-  private UnknownSenderView           unknownSenderView;
   private View                        composeDivider;
   private ConversationScrollToView    scrollToBottomButton;
   private ConversationScrollToView    scrollToMentionButton;
@@ -348,7 +352,7 @@ public class ConversationFragment extends LoggingFragment {
   @Override
   public void onStop() {
     super.onStop();
-    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
+    ApplicationDependencies.getTypingStatusRepository().getTypists(threadId).removeObservers(this);
   }
 
   public void onNewIntent() {
@@ -385,7 +389,7 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private int getStartPosition() {
-    return requireActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
+    return conversationViewModel.getArgs().getStartingPosition();
   }
 
   private void initializeMessageRequestViewModel() {
@@ -477,10 +481,9 @@ public class ConversationFragment extends LoggingFragment {
 
     int startingPosition  = getStartPosition();
 
-    this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
-    this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
-    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId, () -> clearHeaderIfNotTyping(getListAdapter()));
-    this.markReadHelper    = new MarkReadHelper(threadId, requireContext());
+    this.recipient      = Recipient.live(conversationViewModel.getArgs().getRecipientId());
+    this.threadId       = conversationViewModel.getArgs().getThreadId();
+    this.markReadHelper = new MarkReadHelper(threadId, requireContext());
 
     conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
     messageCountsViewModel.setThreadId(threadId);
@@ -495,7 +498,7 @@ public class ConversationFragment extends LoggingFragment {
     list.addOnScrollListener(conversationScrollListener);
 
     if (oldThreadId != threadId) {
-      ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(oldThreadId).removeObservers(this);
+      ApplicationDependencies.getTypingStatusRepository().getTypists(oldThreadId).removeObservers(this);
     }
   }
 
@@ -529,8 +532,10 @@ public class ConversationFragment extends LoggingFragment {
       return;
     }
 
-    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
-    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).observe(this, typingState ->  {
+    LiveData<TypingStatusRepository.TypingState> typists = ApplicationDependencies.getTypingStatusRepository().getTypists(threadId);
+
+    typists.removeObservers(this);
+    typists.observe(this, typingState ->  {
       List<Recipient> recipients;
       boolean         replacedByIncomingMessage;
 
@@ -768,8 +773,8 @@ public class ConversationFragment extends LoggingFragment {
     listener.onForwardClicked();
 
     SimpleTask.run(getLifecycle(), () -> {
-      Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
-      composeIntent.putExtra(Intent.EXTRA_TEXT, conversationMessage.getDisplayBody(requireContext()));
+      ShareIntents.Builder shareIntentBuilder = new ShareIntents.Builder(requireActivity());
+      shareIntentBuilder.setText(conversationMessage.getDisplayBody(requireContext()));
 
       if (conversationMessage.getMessageRecord().isMms()) {
         MmsMessageRecord mediaMessage = (MmsMessageRecord) conversationMessage.getMessageRecord();
@@ -805,31 +810,24 @@ public class ConversationFragment extends LoggingFragment {
           }
 
           if (!mediaList.isEmpty()) {
-            composeIntent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaList);
+            shareIntentBuilder.setMedia(mediaList);
           }
         } else if (mediaMessage.containsMediaSlide()) {
           Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
-          composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
-          composeIntent.setType(slide.getContentType());
-          composeIntent.putExtra(ConversationActivity.BORDERLESS_EXTRA, slide.isBorderless());
-
-          if (slide.hasSticker()) {
-            composeIntent.putExtra(ConversationActivity.STICKER_EXTRA, slide.asAttachment().getSticker());
-            composeIntent.setType(slide.asAttachment().getContentType());
-          }
+          shareIntentBuilder.setSlide(slide);
         }
 
         if (mediaMessage.getSlideDeck().getTextSlide() != null && mediaMessage.getSlideDeck().getTextSlide().getUri() != null) {
           try (InputStream stream = PartAuthority.getAttachmentStream(requireContext(), mediaMessage.getSlideDeck().getTextSlide().getUri())) {
             String fullBody = Util.readFullyAsString(stream);
-            composeIntent.putExtra(Intent.EXTRA_TEXT, fullBody);
+            shareIntentBuilder.setText(fullBody);
           } catch (IOException e) {
             Log.w(TAG, "Failed to read long message text when forwarding.");
           }
         }
       }
 
-      return composeIntent;
+      return shareIntentBuilder.build();
     }, this::startActivity);
   }
 
@@ -945,15 +943,7 @@ public class ConversationFragment extends LoggingFragment {
 
       setLastSeen(conversation.getLastSeen());
 
-      if (!conversation.hasPreMessageRequestMessages()) {
-        clearHeaderIfNotTyping(adapter);
-      } else {
-        if (!conversation.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-          adapter.setHeaderView(unknownSenderView);
-        } else {
-          clearHeaderIfNotTyping(adapter);
-        }
-      }
+      clearHeaderIfNotTyping(adapter);
 
       listener.onCursorChanged();
 
@@ -1420,8 +1410,13 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     @Override
-    public void onGroupMigrationLearnMoreClicked(@NonNull List<RecipientId> pendingRecipients) {
-      GroupsV1MigrationBottomSheetDialogFragment.showForLearnMore(requireFragmentManager(), pendingRecipients);
+    public void onGroupMigrationLearnMoreClicked(@NonNull GroupMigrationMembershipChange membershipChange) {
+      GroupsV1MigrationInfoBottomSheetDialogFragment.show(requireFragmentManager(), membershipChange);
+    }
+
+    @Override
+    public void onJoinGroupCallClicked() {
+      CommunicationActions.startVideoCall(requireActivity(), recipient.get());
     }
   }
 
@@ -1502,8 +1497,8 @@ public class ConversationFragment extends LoggingFragment {
     public boolean onMenuItemClick(MenuItem item) {
       switch (item.getItemId()) {
         case R.id.action_info:        handleDisplayDetails(conversationMessage);                                            return true;
-        case R.id.action_delete:      handleDeleteMessages(Sets.newHashSet(conversationMessage));                           return true;
-        case R.id.action_copy:        handleCopyMessage(Sets.newHashSet(conversationMessage));                              return true;
+        case R.id.action_delete:      handleDeleteMessages(SetUtil.newHashSet(conversationMessage));                        return true;
+        case R.id.action_copy:        handleCopyMessage(SetUtil.newHashSet(conversationMessage));                           return true;
         case R.id.action_reply:       handleReplyMessage(conversationMessage);                                              return true;
         case R.id.action_multiselect: handleEnterMultiSelect(conversationMessage);                                          return true;
         case R.id.action_forward:     handleForwardMessage(conversationMessage);                                            return true;
@@ -1527,7 +1522,11 @@ public class ConversationFragment extends LoggingFragment {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = getActivity().getWindow();
         statusBarColor = window.getStatusBarColor();
-        window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+        WindowUtil.setStatusBarColor(window, getResources().getColor(R.color.action_mode_status_bar));
+      }
+
+      if (!ThemeUtil.isDarkTheme(getContext())) {
+        WindowUtil.setLightStatusBar(getActivity().getWindow());
       }
 
       setCorrectMenuVisibility(menu);
@@ -1547,9 +1546,10 @@ public class ConversationFragment extends LoggingFragment {
       list.getAdapter().notifyDataSetChanged();
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        getActivity().getWindow().setStatusBarColor(statusBarColor);
+        WindowUtil.setStatusBarColor(requireActivity().getWindow(), statusBarColor);
       }
 
+      WindowUtil.clearLightStatusBar(getActivity().getWindow());
       actionMode = null;
     }
 

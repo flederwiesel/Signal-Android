@@ -3,7 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms">
 
-    <uses-sdk tools:overrideLibrary="androidx.camera.core,androidx.camera.camera2,androidx.camera.lifecycle" />
+    <uses-sdk tools:overrideLibrary="androidx.camera.core,androidx.camera.camera2,androidx.camera.lifecycle,androidx.camera.view" />
 
     <permission android:name="${applicationId}.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -35,6 +35,7 @@
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.WRITE_SMS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
                      android:maxSdkVersion="28" />
@@ -258,6 +259,11 @@
                 android:value="org.thoughtcrime.securesms.MainActivity" />
     </activity>
 
+    <activity android:name=".conversation.BubbleConversationActivity"
+              android:theme="@style/Signal.DayNight"
+              android:allowEmbedded="true"
+              android:resizeableActivity="true" />
+
     <activity android:name=".longmessage.LongMessageActivity" />
 
     <activity android:name=".conversation.ConversationPopupActivity"
@@ -273,10 +279,6 @@
               android:windowSoftInputMode="stateHidden"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".groups.ui.pendingmemberinvites.PendingMemberInvitesActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
 
     <activity android:name=".groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
@@ -443,7 +445,7 @@
               android:theme="@style/TextSecure.FullScreenMedia"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".BlockedContactsActivity"
+    <activity android:name=".blocked.BlockedUsersActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
