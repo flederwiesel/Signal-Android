@@ -27,16 +27,6 @@
     <color name="device_link_item_background_light">#ffffffff</color>
     <color name="device_link_item_background_dark">#ff333333</color>
 
-<!--<<<<<< HEAD
-    <color name="import_export_item_background_light">#ffeeeeee</color>
-    <color name="import_export_item_background_dark">#ff333333</color>
-    <color name="import_export_item_background_shadow_light">#ffd5d5d5</color>
-    <color name="import_export_item_background_shadow_dark">#ff222222</color>
-    <color name="import_export_touch_highlight_light">@color/signal_primary_dark</color>
-    <color name="import_export_touch_highlight_dark">#40ffffff</color>
-
-=======
->>>>>>> master -->
     <color name="StickerPreviewActivity_remove_button_color">@color/conversation_crimson</color>
     <color name="StickerPreviewActivity_install_button_color">@color/signal_primary</color>
 
