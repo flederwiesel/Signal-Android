@@ -11,14 +11,12 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ContextUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public class ResourceContactPhoto implements FallbackContactPhoto {
 
@@ -61,7 +59,7 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
     return buildDrawable(context, smallResourceId, color, inverted);
   }
 
-  private Drawable buildDrawable(Context context, int resourceId, int color, boolean inverted) {
+  private @NonNull Drawable buildDrawable(@NonNull Context context, int resourceId, int color, boolean inverted) {
     Drawable        background = TextDrawable.builder().buildRect(" ", inverted ? Color.WHITE : color);
     RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));
 
