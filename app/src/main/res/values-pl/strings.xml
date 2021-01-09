@@ -1437,6 +1437,7 @@
   <string name="SearchFragment_header_conversations">Rozmowy</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Wiadomości</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj do kontaktów</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Zaproś do używania Signal</string>
@@ -2288,7 +2289,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nowa konwersacja</string>
   <string name="conversation_list_fragment__open_camera_description">Otwórz aparat</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Daj coś swojej skrzynce na początek. Zacznij od wysłania wiadomości do znajomego.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Daj coś swojej skrzynce na początek. Zacznij od wysłania wiadomości do znajomego.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reset bezpiecznej sesji</string>
   <!--conversation_muted-->
@@ -2325,8 +2326,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Skopiuj do schowka </string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porównaj ze schowkiem</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Ustaw jako domyślną aplikację SMS</string>
-  <string name="reminder_header_sms_default_text">Dotknij, aby Signal był Twoją domyślną aplikacją SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Ustaw jako domyślną aplikację SMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Dotknij, aby Signal był Twoją domyślną aplikacją SMS.</string> -->
   <string name="reminder_header_sms_import_title">Importuj bazę SMS</string>
   <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS z telefonu do zaszyfrowanej bazy danych Signal.</string>
   <string name="reminder_header_push_title">Włącz wiadomości i połączenia Signal</string>
@@ -2536,6 +2537,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Wybierz folder, aby włączyć kopie zapasowe. Nowe kopie będą zapisywane w wybranym miejscu.</string>
   <string name="BackupDialog_choose_folder">Wybierz folder</string>
   <string name="BackupDialog_copied_to_clipboard">Skopiowane do schowka</string>
+  <string name="BackupDialog_no_file_picker_available">Brak dostępnej aplikacji do wyboru plików.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Wprowadź hasło kopii zapasowej, aby je zweryfikować</string>
   <string name="BackupDialog_verify">Zweryfikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Podałeś(aś) poprawne hasło kopii zapasowej</string>

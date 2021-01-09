@@ -258,7 +258,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal necesita acceder a tu micrófono y cámara para llamar a %1$s.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Ahora con más opciones en «Ajustes del grupo»</string>
   <string name="ConversationActivity_join">Unirse</string>
-  <string name="ConversationActivity_full">Lleno</string>
+  <string name="ConversationActivity_full">Completa</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -1312,6 +1312,7 @@ número de teléfono
   <string name="SearchFragment_header_conversations">Chats</string>
   <string name="SearchFragment_header_contacts">Personas</string>
   <string name="SearchFragment_header_messages">Mensajes</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Añadir a Contactos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitar a Signal</string>
@@ -2145,7 +2146,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nuevo chat</string>
   <string name="conversation_list_fragment__open_camera_description">Abrir cámara</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dale a tu buzón de entrada una razón de ser. Comienza a chatear con tus amistades.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dale a tu buzón de entrada una razón de ser. Comienza a chatear con tus amistades.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sesión segura</string>
   <!--conversation_muted-->
@@ -2182,8 +2183,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar al portapapeles</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar con el portapapeles</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Usar como aplicación de SMS predeterminada</string>
-  <string name="reminder_header_sms_default_text">Toca para hacer de Signal tu aplicación de SMS predeterminada.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Usar como aplicación de SMS predeterminada</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Toca para hacer de Signal tu aplicación de SMS predeterminada.</string> -->
   <string name="reminder_header_sms_import_title">Importar SMS del sistema</string>
   <string name="reminder_header_sms_import_text">Toca para copiar los mensajes SMS de tu teléfono a la base de datos cifrada de Signal.</string>
   <string name="reminder_header_push_title">Activa mensajes y llamadas de Signal</string>
@@ -2379,6 +2380,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Selecciona una carpeta para activar las copias de seguridad. Las copias se guardarán en esta carpeta.</string>
   <string name="BackupDialog_choose_folder">Seleccionar carpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado al portapapeles</string>
+  <string name="BackupDialog_no_file_picker_available">Aplicación de archivos no disponible.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce la clave de la copia de seguridad para verificar</string>
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">La clave es correcta</string>

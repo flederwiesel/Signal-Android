@@ -1318,6 +1318,7 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="SearchFragment_header_conversations">Samtalar</string>
   <string name="SearchFragment_header_contacts">Kontaktar</string>
   <string name="SearchFragment_header_messages">Meldingar</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Legg til som kontakt</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Inviter til Signal</string>
@@ -2151,7 +2152,7 @@ Du er à jour!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Opna kamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gje innboksen din noko å skriva heim om. Kom i gang ved å melda med ein venn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gje innboksen din noko å skriva heim om. Kom i gang ved å melda med ein venn.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>
   <!--conversation_muted-->
@@ -2188,8 +2189,8 @@ Du er à jour!</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera til utklippstavle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Samanlikn med utklippstavla</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Bruk som standard SMS-program</string>
-  <string name="reminder_header_sms_default_text">Trykk for å gjera Signal til standard SMS-program.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Bruk som standard SMS-program</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Trykk for å gjera Signal til standard SMS-program.</string> -->
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
   <string name="reminder_header_sms_import_text">Trykk for å kopiera telefonen sin SMS-meldingar til Signal sin krypterte database.</string>
   <string name="reminder_header_push_title">Slå på Signal-meldingar og -samtalar</string>
@@ -2385,6 +2386,7 @@ Du er à jour!</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">For å skru på reservekopiar må du velja ei mappe. Kopiar blir lagra der.</string>
   <string name="BackupDialog_choose_folder">Vel mappe</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavla</string>
+  <string name="BackupDialog_no_file_picker_available">Fann ingen filveljar</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Skriv inn passordfrasen for reservekopiane dine for å stadfesta</string>
   <string name="BackupDialog_verify">Stadfest</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du skreiv inn rett passordfrase for reservekopiane dine</string>

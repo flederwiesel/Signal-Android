@@ -1314,6 +1314,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SearchFragment_header_conversations">Biseda</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
   <string name="SearchFragment_header_messages">Mesazhe</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Shtoje te Kontaktet</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Ftoje në Signal</string>
@@ -2146,7 +2147,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Bisedë e re</string>
   <string name="conversation_list_fragment__open_camera_description">Hape Kamerën</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Sajoni diçka për shkrim në shtëpi. Fillojani duke shkruar një mesazh për një shok.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Sajoni diçka për shkrim në shtëpi. Fillojani duke shkruar një mesazh për një shok.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Rikthe te parazgjedhjen sesionin e sigurt</string>
   <!--conversation_muted-->
@@ -2183,8 +2184,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopjoje në të papastër</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahasoje me lëndën në të papastër</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
-  <string name="reminder_header_sms_default_text">Prekeni për ta bërë Signal-in aplikacionin tuaj parazgjedhje për SMS-të.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Përdoresi aplikacionin parazgjedhje për SMS-të</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Prekeni për ta bërë Signal-in aplikacionin tuaj parazgjedhje për SMS-të.</string> -->
   <string name="reminder_header_sms_import_title">Importo SMS sistemi</string>
   <string name="reminder_header_sms_import_text">Prekeni që të kopjohen mesazhet SMS të telefonit tuaj te baza e fshehtëzuar e të dhënave të Signal-it.</string>
   <string name="reminder_header_push_title">Aktivizo mesazhe dhe thirrje Signal</string>
@@ -2382,6 +2383,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Që të aktivizohen kopjeruajtje, zgjidhni një dosje. Kopjeruajtjet do të ruhen te kjo vendndodhje.</string>
   <string name="BackupDialog_choose_folder">Zgjidhni dosje</string>
   <string name="BackupDialog_copied_to_clipboard">U kopjua në të papastër</string>
+  <string name="BackupDialog_no_file_picker_available">S’ka zgjedhës kartelash.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Jepni frazëkalimin tuaj të kopjeruajtjes që duhet verifikuar</string>
   <string name="BackupDialog_verify">Verifikoje</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">E dhatë me sukses frazëkalimin tuaj të kopjeruajtjes</string>
