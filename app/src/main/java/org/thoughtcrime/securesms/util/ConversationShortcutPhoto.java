@@ -153,7 +153,7 @@ public final class ConversationShortcutPhoto implements Key {
     }
 
     private @NonNull Bitmap getShortcutInfoBitmap(@NonNull Context context) throws ExecutionException, InterruptedException {
-      return DrawableUtil.wrapBitmapForShortcutInfo(request(GlideApp.with(context).asBitmap(), context, false).circleCrop().submit().get());
+      return DrawableUtil.wrapBitmapForShortcutInfo(request(GlideApp.with(context).asBitmap(), context, false).submit().get());
     }
 
     private @NonNull Bitmap getFallbackForShortcut(@NonNull Context context) {
