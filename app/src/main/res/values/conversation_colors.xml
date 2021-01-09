@@ -49,8 +49,8 @@
     <color name="conversation_steel_shade">#5a5a63</color>
 
     <color name="conversation_ultramarine">@color/core_ultramarine</color>
-    <color name="conversation_ultramarine_tint">#b0c8f9</color>
-    <color name="conversation_ultramarine_shade">#1851b4</color>
+    <color name="conversation_ultramarine_tint">@color/signal_primary_alpha33</color>
+    <color name="conversation_ultramarine_shade">@color/signal_primary_light</color>
 
     <color name="conversation_group">@color/core_ultramarine</color>
     <color name="conversation_group_tint">@color/white</color>
