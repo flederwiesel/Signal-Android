@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_check_white_24dp"
-                    android:tint="@color/blue_400"
+                    android:tint="@color/signal_primary"
                     android:clickable="false"/>
 
                 <TextView
