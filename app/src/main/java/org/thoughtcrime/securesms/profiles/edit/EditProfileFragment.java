@@ -27,6 +27,7 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
 
+import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
@@ -63,7 +64,6 @@ public class EditProfileFragment extends LoggingFragment {
 
   private static final String TAG                        = Log.tag(EditProfileFragment.class);
   private static final short  REQUEST_CODE_SELECT_AVATAR = 31726;
-  private static final int    MAX_GROUP_NAME_LENGTH      = 32;
 
   private Toolbar                toolbar;
   private View                   title;
@@ -212,15 +212,12 @@ public class EditProfileFragment extends LoggingFragment {
 
     this.avatar.setOnClickListener(v -> startAvatarSelection());
 
-    this.givenName.addTextChangedListener(new AfterTextChanged(s -> {
-                                                                      trimInPlace(s, isEditingGroup);
-                                                                      viewModel.setGivenName(s.toString());
-                                                                    }));
-
     view.findViewById(R.id.mms_group_hint)
         .setVisibility(isEditingGroup && groupId.isMms() ? View.VISIBLE : View.GONE);
 
     if (isEditingGroup) {
+      EditTextUtil.addGraphemeClusterLimitFilter(givenName, FeatureFlags.getMaxGroupNameGraphemeLength());
+      givenName.addTextChangedListener(new AfterTextChanged(s -> viewModel.setGivenName(s.toString())));
       givenName.setHint(R.string.EditProfileFragment__group_name);
       givenName.requestFocus();
       toolbar.setTitle(R.string.EditProfileFragment__edit_group_name_and_photo);
@@ -230,8 +227,12 @@ public class EditProfileFragment extends LoggingFragment {
       view.findViewById(R.id.description_text).setVisibility(View.GONE);
       view.<ImageView>findViewById(R.id.avatar_placeholder).setImageResource(R.drawable.ic_group_outline_40);
     } else {
+      this.givenName.addTextChangedListener(new AfterTextChanged(s -> {
+                                                                        trimInPlace(s);
+                                                                        viewModel.setGivenName(s.toString());
+                                                                      }));
       this.familyName.addTextChangedListener(new AfterTextChanged(s -> {
-                                                                         trimInPlace(s, false);
+                                                                         trimInPlace(s);
                                                                          viewModel.setFamilyName(s.toString());
                                                                        }));
       LearnMoreTextView descriptionText = view.findViewById(R.id.description_text);
@@ -333,7 +334,7 @@ public class EditProfileFragment extends LoggingFragment {
     controller.onProfileNameUploadCompleted();
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+  @RequiresApi(api = 21)
   private void handleFinishedLollipop() {
     int[] finishButtonLocation = new int[2];
     int[] revealLocation       = new int[2];
@@ -372,9 +373,8 @@ public class EditProfileFragment extends LoggingFragment {
     animation.start();
   }
 
-  private static void trimInPlace(Editable s, boolean isGroup) {
-    int trimmedLength = isGroup ? StringUtil.trimToFit(s.toString(), MAX_GROUP_NAME_LENGTH).length()
-                                : StringUtil.trimToFit(s.toString(), ProfileName.MAX_PART_LENGTH).length();
+  private static void trimInPlace(Editable s) {
+    int trimmedLength = StringUtil.trimToFit(s.toString(), ProfileName.MAX_PART_LENGTH).length();
 
     if (s.length() > trimmedLength) {
       s.delete(trimmedLength, s.length());
