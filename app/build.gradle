@@ -480,7 +480,7 @@ def getLastCommitTimestamp() {
     new ByteArrayOutputStream().withStream { os ->
         def result = exec {
             executable = 'git'
-            args = ['log', '-1', '--pretty=format:%ct']
+            args = ['log', '-1', '--pretty=format:%ct', '--no-show-signature']
             standardOutput = os
         }
 
