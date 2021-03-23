@@ -12,14 +12,19 @@ grep -FRHn -f <(cat <<"EOF"
 blue_400
 circleCrop
 core_blue
+conversation_blue
 ff2d00
 EOF
 ) | # Accept a few expections; of course, don't search .git
 grep -Ev -f <(cat <<"EOF"
 ^\.git/
+^app/src/main/java/org/thoughtcrime/securesms/color/MaterialColor.java:25
 ^app/src/main/java/org/thoughtcrime/securesms/insights/InsightsUserAvatar\.java:35
 ^app/src/main/res/values/material_colors\.xml:37
 ^app/src/main/res/values/material_colors\.xml:209
+^app/src/main/res/values/conversation_colors.xml:27
+^app/src/main/res/values/conversation_colors.xml:28
+^app/src/main/res/values/conversation_colors.xml:29
 ^blacklist\.sh:
 EOF
 )
