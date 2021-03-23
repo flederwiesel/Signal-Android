@@ -64,18 +64,18 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
-        tools:backgroundTint="@color/conversation_blue">
+        tools:backgroundTint="@color/conversation_ultramarine">
 
         <LinearLayout
             android:id="@+id/group_sender_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:paddingStart="@dimen/message_bubble_horizontal_padding"
-            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:orientation="horizontal"
+            android:paddingStart="@dimen/message_bubble_horizontal_padding"
+            android:paddingTop="3dp"
+            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+            android:paddingBottom="3dp"
             android:visibility="gone"
             tools:visibility="visible">
 
@@ -199,15 +199,15 @@
             android:id="@+id/conversation_item_sticker_footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
-            android:paddingStart="@dimen/message_bubble_horizontal_padding"
-            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
+            android:layout_marginTop="3dp"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:gravity="start"
+            android:paddingStart="@dimen/message_bubble_horizontal_padding"
+            android:paddingTop="3dp"
+            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+            android:paddingBottom="3dp"
             android:visibility="gone"
             app:footer_icon_color="@color/signal_icon_tint_secondary"
             app:footer_text_color="@color/signal_text_secondary" />
