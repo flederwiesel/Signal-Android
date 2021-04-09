@@ -1616,6 +1616,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ନିମ୍ନଲିଖିତ ଲୋକମାନେ ହୁଏତ ପୁନଃସଂସ୍ଥାପନ କିମ୍ବା ଉପକରଣ ପରିବର୍ତ୍ତନ କରିଥିବେ | ଗୋପନୀୟତା ନିଶ୍ଚିତ କରିବାକୁ ସେମାନଙ୍କ ସହିତ ଆପଣଙ୍କର ସୁରକ୍ଷା ନମ୍ବର ଯାଞ୍ଚ କରନ୍ତୁ</string>
   <string name="safety_number_change_dialog__view">ଦେଖନ୍ତୁ</string>
   <string name="safety_number_change_dialog__previous_verified">ପୂର୍ବ ଯାଞ୍ଚ ହୋଇଛି</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">ସେଟିଂସମୂହ</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ଦେଶ ଲୋଡ୍ ହେଉଛି…</string>
   <string name="country_selection_fragment__search">ସନ୍ଧାନ କରନ୍ତୁ</string>
@@ -1803,10 +1805,8 @@
   <string name="arrays__use_default">ଡିଫଲ୍ଟ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__use_custom">କଷ୍ଟମ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__mute_for_one_hour">1ଟେ ଘଣ୍ଟା ପାଇଁ ନୀରବ କରନ୍ତୁ</string>
-  <string name="arrays__mute_for_two_hours">2 ଘଣ୍ଟା ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
   <string name="arrays__mute_for_one_day">1ଟେ ଦିନ ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
   <string name="arrays__mute_for_seven_days">7 ଦିନ ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
-  <string name="arrays__mute_for_one_year">1ଟେ ବର୍ଷ ପାଇଁ ନୀରବ କରନ୍ତୁ</string>
   <string name="arrays__settings_default">ଡିଫଲ୍ଟ ସେଟିଂ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__enabled">ସକ୍ଷମ</string>
   <string name="arrays__disabled">ଅକ୍ଷମ</string>
@@ -1858,6 +1858,7 @@
   <string name="preferences__pref_led_blink_title">LED ଝିଲିମିଲି ପ୍ରତିରୂପ</string>
   <string name="preferences__sound">ଧ୍ୱନି</string>
   <string name="preferences__silent">ନୀରବ</string>
+  <string name="preferences__default">ଡିଫଲ୍ଟ</string>
   <string name="preferences__repeat_alerts">ପୁନରାବୃତ୍ତି ସତର୍କତା</string>
   <string name="preferences__never">କଦାପି ନୁହେଁ</string>
   <string name="preferences__one_time">ଗୋଟିଏ ଥର</string>
@@ -1998,6 +1999,28 @@
   <string name="preferences_enter_proxy_address">ପ୍ରକ୍ସି ଠିକଣା ପ୍ରବେଶ କରନ୍ତୁ</string>
   <string name="configurable_single_select__customize_option">ବିକଳ୍ପ କଷ୍ଟମାଇଜ୍ କରନ୍ତୁ</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">ସବୁକିଛି</string>
+  <string name="PaymentsAllActivityFragment__sent">ପଠାଗଲା</string>
+  <string name="PaymentsAllActivityFragment__received">ପ୍ରାପ୍ତ</string>
+  <string name="PaymentsHomeFragment__see_all">ସମସ୍ତ ଦେଖନ୍ତୁ</string>
+  <string name="PaymentsHomeFragment__send">ପଠାନ୍ତୁ</string>
+  <string name="PaymentsHomeFragment__help">ସାହାଯ୍ୟ</string>
+  <string name="PaymentsHomeFragment__continue">ଜାରି ରଖନ୍ତୁ</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">ନକଲ ବନାନ୍ତୁ</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">କ୍ଲିପବୋର୍ଡରେ ନକଲ କରାଯାଇଛି</string>
+  <!--PaymentsDetailsFragment-->
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__next">ପରବର୍ତ୍ତୀ</string>
+  <string name="PaymentsTransferFragment__settings">ସେଟିଂସମୂହ</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">ଅନୁରୋଧ</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2329,6 +2352,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">ହେଇଗଲା</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ବ୍ଲକ୍ କରନ୍ତୁ</string>
   <string name="RecipientBottomSheet_unblock">ଅଣବ୍ଲକ୍ କରନ୍ତୁ</string>
@@ -2475,5 +2499,25 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s ପାଇଁ କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">କାନ୍ଥଛବି ସେଟ୍ କରିବାରେ ତ୍ରୁଟି</string>
   <string name="WallpaperCropActivity__blur_photo">ଛବି ଅସ୍ପଷ୍ଟ କରନ୍ତୁ</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">ଲୁଚାନ୍ତୁ</string>
+  <string name="payment_info_card_update_pin">ପିନ୍ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">ପରବର୍ତ୍ତୀ</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">ପରବର୍ତ୍ତୀ</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">ସମ୍ପାଦନ</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">ନକଲ ବନାନ୍ତୁ</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">ହେଇଗଲା</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">ପରବର୍ତ୍ତୀ</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">ଦେଖନ୍ତୁ</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
   <!--EOF-->
 </resources>
