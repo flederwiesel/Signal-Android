@@ -603,7 +603,7 @@
   <string name="ManageGroupActivity_block_group">مسدود کردن گروه</string>
   <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
   <string name="ManageGroupActivity_leave_group">ترک گروه</string>
-  <string name="ManageGroupActivity_mute_notifications">صامت کردن اعلان‌ها</string>
+  <string name="ManageGroupActivity_mute_notifications">بستن اعلان‌ها</string>
   <string name="ManageGroupActivity_custom_notifications">اعلان‌‌های سفارشی</string>
   <string name="ManageGroupActivity_mentions">اشاره‌ها</string>
   <string name="ManageGroupActivity_chat_wallpaper">کاغذدیواری گفتگو</string>
@@ -636,7 +636,7 @@
   <string name="ManageGroupActivity_invite_now">همین حالا دعوت کنید</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">به من در مورد اشاره‌ها خبر بده</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">دریافت اعلان وقتی به شما در گفت‌گو‌های صامت شده اشاره می‌شود؟</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">دریافت اعلان وقتی به شما در گفتگو‌ها با اعلان‌های بسته شده اشاره می‌شود؟</string>
   <string name="GroupMentionSettingDialog_always_notify_me">همیشه به من اطلاع بده</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">به من اطلاع نده</string>
   <!--ManageProfileFragment-->
@@ -656,7 +656,7 @@
   <string name="ManageRecipientActivity_block">مسدود کردن</string>
   <string name="ManageRecipientActivity_unblock">رفع مسدودیت</string>
   <string name="ManageRecipientActivity_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
-  <string name="ManageRecipientActivity_mute_notifications">صامت کردن اعلان‌ها</string>
+  <string name="ManageRecipientActivity_mute_notifications">بستن اعلان‌ها</string>
   <string name="ManageRecipientActivity_custom_notifications">اعلان‌‌های سفارشی</string>
   <string name="ManageRecipientActivity_until_s">تا %1$s</string>
   <string name="ManageRecipientActivity_always">همیشه</string>
@@ -697,7 +697,7 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">بازنشانی پیوند</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">درخواست‌های عضویت</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">تأیید اعضای جدید</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">نیاز به یک مدیر برای تأیید اعضای جدید که از طریق پیوند گروه می‌پیوندند.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">نیاز به یک مدیر برای تأیید اعضای جدیدی که از طریق پیوند گروه می‌پیوندند.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">آیا از بازنشانی پیوند گروه اطمینان دارید؟ افراد دیگر نمی‌توانند با استفاده از پیوند فعلی به گروه بپیوندند.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">کد QR</string>
@@ -1420,7 +1420,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">فراپیام بد رمزگذاری شده</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">فراپیام برای نشست ناموجود رمزنگاری شد</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">صامت کردن اعلان‌‌ها</string>
+  <string name="MuteDialog_mute_notifications">بستن اعلان‌‌ها</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">در حال وارد کردن</string>
   <string name="ApplicationMigrationService_importing_text_messages">در حال وارد کردن پیام‌های متنی</string>
@@ -1470,16 +1470,17 @@
   <string name="MessageNotifier_this_message_was_deleted">این پیام حذف شد</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به سیگنال را خاموش کنید؟ می‌توانید آن‌ها را دوباره در سیگنال &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">پیش‌فرض</string>
+  <string name="NotificationChannel_channel_messages">پیام‌ها</string>
   <string name="NotificationChannel_calls">تماس‌ها</string>
   <string name="NotificationChannel_failures">خرابی‌ها</string>
   <string name="NotificationChannel_backups">پشتیبان‌ها</string>
   <string name="NotificationChannel_locked_status">وضعیت قفل</string>
   <string name="NotificationChannel_app_updates">به‌روزرسانی‌های برنامه</string>
   <string name="NotificationChannel_other">سایر</string>
-  <string name="NotificationChannel_group_messages">پیام‌ها</string>
+  <string name="NotificationChannel_group_chats">گفتگوها</string>
   <string name="NotificationChannel_missing_display_name">ناشناخته</string>
   <string name="NotificationChannel_voice_notes">یادداشت‌های صوتی</string>
+  <string name="NotificationChannel_contact_joined_signal">مخاطب به سیگنال پیوست</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">هیچ فعالیتی برای باز کردن تنظیمات کانال اعلان‌ها در دسترس نیست.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
@@ -1824,10 +1825,10 @@
   <!--arrays.xml-->
   <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
-  <string name="arrays__mute_for_one_hour">صامت برای ۱ ساعت</string>
-  <string name="arrays__mute_for_eight_hours">صامت برای ۸ ساعت</string>
-  <string name="arrays__mute_for_one_day">صامت برای ۱ روز</string>
-  <string name="arrays__mute_for_seven_days">صامت برای ۷ روز</string>
+  <string name="arrays__mute_for_one_hour">بستن برای ۱ ساعت</string>
+  <string name="arrays__mute_for_eight_hours">بستن برای ۸ ساعت</string>
+  <string name="arrays__mute_for_one_day">بستن برای ۱ روز</string>
+  <string name="arrays__mute_for_seven_days">بستن برای ۷ روز</string>
   <string name="arrays__always">همیشه</string>
   <string name="arrays__settings_default">تنظیمات پیش‌فرض سیستم</string>
   <string name="arrays__enabled">فعال</string>
@@ -2116,7 +2117,7 @@
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">باز کردن صدا</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">صامت کردن اعلان‌ها</string>
+  <string name="conversation_unmuted__mute_notifications">بستن اعلان‌ها</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">تنظیمات گروه</string>
   <string name="conversation__menu_leave_group">ترک گروه</string>
@@ -2613,7 +2614,7 @@
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">پاک کردن کاغذدیواری برای این گفتگو؟</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">پاک کردن کاغذ دیواری؟ این کار کاغذدیواری‌های سفارشی دیگر را که جداگانه برای گفتگوهای‌تان انتخاب کردید پاک نمی‌کند.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">بازنشانی همهٔ کاغذدیواری‌ها</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی تمامی کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای‌تان انتخاب کردید؟</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی همهٔ کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای‌تان انتخاب کردید؟</string>
   <string name="ChatWallpaperFragment__contact_name">نام مخاطب</string>
   <string name="ChatWallpaperFragment__reset">بازنشانی</string>
   <string name="ChatWallpaperFragment__clear">پاک کردن</string>
