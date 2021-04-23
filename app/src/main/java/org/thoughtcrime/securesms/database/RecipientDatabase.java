@@ -2600,10 +2600,70 @@ public class RecipientDatabase extends Database {
       pattern.append("[");
       pattern.append(point.toLowerCase());
       pattern.append(point.toUpperCase());
+      pattern.append(getAccentuatedCharRegex(point.toLowerCase()));
       pattern.append("]");
     }
 
     return "*" + pattern.toString() + "*";
+  }
+
+  private static @NonNull String getAccentuatedCharRegex(@NonNull String query) {
+    switch (query) {
+      case "a" :
+        return "À-Åà-åĀ-ąǍǎǞ-ǡǺ-ǻȀ-ȃȦȧȺɐ-ɒḀḁẚẠ-ặ";
+      case "b" :
+        return "ßƀ-ƅɃɓḂ-ḇ";
+      case "c" :
+        return "çÇĆ-čƆ-ƈȻȼɔḈḉ";
+      case "d" :
+        return "ÐðĎ-đƉ-ƍȡɖɗḊ-ḓ";
+      case "e" :
+        return "È-Ëè-ëĒ-ěƎ-ƐǝȄ-ȇȨȩɆɇɘ-ɞḔ-ḝẸ-ệ";
+      case "f" :
+        return "ƑƒḞḟ";
+      case "g" :
+        return "Ĝ-ģƓǤ-ǧǴǵḠḡ";
+      case "h" :
+        return "Ĥ-ħƕǶȞȟḢ-ḫẖ";
+      case "i" :
+        return "Ì-Ïì-ïĨ-ıƖƗǏǐȈ-ȋɨɪḬ-ḯỈ-ị";
+      case "j" :
+        return "ĴĵǰȷɈɉɟ";
+      case "k" :
+        return "Ķ-ĸƘƙǨǩḰ-ḵ";
+      case "l" :
+        return "Ĺ-łƚȴȽɫ-ɭḶ-ḽ";
+      case "m" :
+        return "Ɯɯ-ɱḾ-ṃ";
+      case "n" :
+        return "ÑñŃ-ŋƝƞǸǹȠȵɲ-ɴṄ-ṋ";
+      case "o" :
+        return "Ò-ÖØò-öøŌ-őƟ-ơǑǒǪ-ǭǾǿȌ-ȏȪ-ȱṌ-ṓỌ-ợ";
+      case "p" :
+        return "ƤƥṔ-ṗ";
+      case "q" :
+        return "";
+      case "r" :
+        return "Ŕ-řƦȐ-ȓɌɍṘ-ṟ";
+      case "s" :
+        return "Ś-šƧƨȘșȿṠ-ṩ";
+      case "t" :
+        return "Ţ-ŧƫ-ƮȚțȾṪ-ṱẗ";
+      case "u" :
+        return "Ù-Üù-üŨ-ųƯ-ƱǓ-ǜȔ-ȗɄṲ-ṻỤ-ự";
+      case "v" :
+        return "ƲɅṼ-ṿ";
+      case "w" :
+        return "ŴŵẀ-ẉẘ";
+      case "x" :
+        return "Ẋ-ẍ";
+      case "y" :
+        return "ÝýÿŶ-ŸƔƳƴȲȳɎɏẎẏỲ-ỹỾỿẙ";
+      case "z" :
+        return "Ź-žƵƶɀẐ-ẕ";
+      default :
+        return "";
+    }
   }
 
   public @NonNull List<Recipient> getRecipientsForMultiDeviceSync() {
@@ -2716,12 +2776,16 @@ public class RecipientDatabase extends Database {
     ApplicationDependencies.getRecipientCache().clear();
   }
 
-  public void updateStorageKeys(@NonNull Map<RecipientId, byte[]> keys) {
+  public void updateStorageId(@NonNull RecipientId recipientId, byte[] id) {
+    updateStorageIds(Collections.singletonMap(recipientId, id));
+  }
+
+  public void updateStorageIds(@NonNull Map<RecipientId, byte[]> ids) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.beginTransaction();
 
     try {
-      for (Map.Entry<RecipientId, byte[]> entry : keys.entrySet()) {
+      for (Map.Entry<RecipientId, byte[]> entry : ids.entrySet()) {
         ContentValues values = new ContentValues();
         values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(entry.getValue()));
         db.update(TABLE_NAME, values, ID_WHERE, new String[] { entry.getKey().serialize() });
@@ -2732,7 +2796,7 @@ public class RecipientDatabase extends Database {
       db.endTransaction();
     }
 
-    for (RecipientId id : keys.keySet()) {
+    for (RecipientId id : ids.keySet()) {
       Recipient.live(id).refresh();
     }
   }

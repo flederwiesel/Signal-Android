@@ -1501,6 +1501,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ný skilaboð</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Beiðni um skilaboð</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Spila myndskeið</string>
   <string name="ThumbnailView_Has_a_caption_description">Er með skýringartexta</string>
@@ -1696,7 +1697,7 @@
     <item quantity="other">%d til viðbótar</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Leit að GIF-myndum og límmerkjum</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Leit að GIF-myndum og límmerkjum</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ekkert fannst</string>
   <!--log_submit_activity-->

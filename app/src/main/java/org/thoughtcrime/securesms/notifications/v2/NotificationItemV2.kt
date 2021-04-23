@@ -39,7 +39,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
   val id: Long = record.id
   val threadId: Long = record.threadId
   val isMms: Boolean = record.isMms
-  val slideDeck: SlideDeck? = (record as? MmsMessageRecord)?.slideDeck
+  val slideDeck: SlideDeck? = if (record.isViewOnce) null else (record as? MmsMessageRecord)?.slideDeck
   val isJoined: Boolean = record.isJoined
 
   protected val notifiedTimestamp: Long = record.notifiedTimestamp
@@ -52,6 +52,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
   abstract fun getStartingPosition(context: Context): Int
   abstract fun getLargeIconUri(): Uri?
   abstract fun getBigPictureUri(): Uri?
+  abstract fun getThumbnailInfo(context: Context): ThumbnailInfo
   abstract fun canReply(context: Context): Boolean
 
   protected fun getMessageContentType(messageRecord: MmsMessageRecord): String {
@@ -125,12 +126,6 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     }
   }
 
-  fun getThumbnailInfo(): ThumbnailInfo {
-    val thumbnailSlide: Slide? = slideDeck?.thumbnailSlide
-
-    return ThumbnailInfo(thumbnailSlide?.publicUri, thumbnailSlide?.contentType)
-  }
-
   fun getInboxLine(context: Context): CharSequence? {
     return when {
       TextSecurePreferences.getNotificationPrivacy(context).isDisplayNothing -> null
@@ -147,7 +142,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     }
   }
 
-  data class ThumbnailInfo(val uri: Uri?, val contentType: String?)
+  data class ThumbnailInfo(val uri: Uri? = null, val contentType: String? = null)
 }
 
 /**
@@ -155,7 +150,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
  */
 class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : NotificationItemV2(threadRecipient, record) {
   override val timestamp: Long = record.timestamp
-  override val individualRecipient: Recipient = record.individualRecipient.resolve()
+  override val individualRecipient: Recipient = if (record.isOutgoing) Recipient.self() else record.individualRecipient.resolve()
   override val isNewNotification: Boolean = notifiedTimestamp == 0L
 
   override fun getPrimaryTextActual(context: Context): CharSequence {
@@ -197,6 +192,15 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     val slide: Slide? = slideDeck?.thumbnailSlide
 
     return if (slide?.isInProgress == false) slide.uri else null
+  }
+
+  override fun getThumbnailInfo(context: Context): ThumbnailInfo {
+    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage && !KeyCachingService.isLocked(context)) {
+      val thumbnailSlide: Slide? = slideDeck?.thumbnailSlide
+      ThumbnailInfo(thumbnailSlide?.publicUri, thumbnailSlide?.contentType)
+    } else {
+      ThumbnailInfo()
+    }
   }
 
   override fun canReply(context: Context): Boolean {
@@ -284,6 +288,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
 
   override fun getLargeIconUri(): Uri? = null
   override fun getBigPictureUri(): Uri? = null
+  override fun getThumbnailInfo(context: Context): ThumbnailInfo = ThumbnailInfo()
   override fun canReply(context: Context): Boolean = false
 
   override fun toString(): String {

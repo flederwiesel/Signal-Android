@@ -1618,6 +1618,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Prośba o kontakt</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Odtwórz wideo</string>
   <string name="ThumbnailView_Has_a_caption_description">Posiada opis</string>
@@ -1831,7 +1832,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="other">%d innych</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Szukaj gifów i naklejek</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Szukaj gifów i naklejek</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nic nie znaleziono</string>
   <!--log_submit_activity-->

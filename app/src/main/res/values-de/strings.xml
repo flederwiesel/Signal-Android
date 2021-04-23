@@ -1474,7 +1474,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationChannel_group_chats">Unterhaltungen</string>
   <string name="NotificationChannel_missing_display_name">Unbekannt</string>
   <string name="NotificationChannel_voice_notes">Sprachnachrichten</string>
-  <string name="NotificationChannel_contact_joined_signal">Neue Signal-Kontakte</string>
+  <string name="NotificationChannel_contact_joined_signal">Neuer Signal-Kontakt</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Keine Aktivität verfügbar, um die Einstellungen für den Benachrichtigungskanal zu öffnen.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
@@ -1491,6 +1491,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Unterhaltungsanfrage</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Video abspielen</string>
   <string name="ThumbnailView_Has_a_caption_description">Hat eine Beschriftung</string>
@@ -1686,7 +1687,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">%d weitere</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs und Sticker suchen</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs und Sticker suchen</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nichts gefunden</string>
   <!--log_submit_activity-->
@@ -1866,7 +1867,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__pref_use_address_book_photos">Fotos aus Adressbuch verwenden</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Kontaktfotos aus deinem Adressbuch anzeigen, falls verfügbar</string>
   <string name="preferences__generate_link_previews">Link-Vorschau erzeugen</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Rufe für zu versendende Nachrichten Link-Vorschauen direkt von Webseiten ab.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Für zu versendende Nachrichten Link-Vorschauen direkt von den verlinkten Webseiten abrufen</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wähle deinen Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passphrase ändern</string>

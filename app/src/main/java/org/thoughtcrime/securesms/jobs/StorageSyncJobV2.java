@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
-import org.thoughtcrime.securesms.database.StorageKeyDatabase;
+import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -25,16 +25,17 @@ import org.thoughtcrime.securesms.storage.AccountRecordProcessor;
 import org.thoughtcrime.securesms.storage.ContactRecordProcessor;
 import org.thoughtcrime.securesms.storage.GroupV1RecordProcessor;
 import org.thoughtcrime.securesms.storage.GroupV2RecordProcessor;
-import org.thoughtcrime.securesms.storage.StorageRecordProcessor;
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyDifferenceResult;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper.IdDifferenceResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.LocalWriteResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SetUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -83,7 +84,7 @@ import java.util.concurrent.TimeUnit;
  *   fall out of sync if the network request fails. However, because of how the sync works, as long
  *   as we don't update our local manifest version until after the network request succeeds, it
  *   should all sort itself out in the retry. Because if our network request failed, then we
- *   wouldn't have written all of the new keys, and we'll still see a bunch of remote-only keys that
+ *   wouldn't have written all of the new IDs, and we'll still see a bunch of remote-only IDs that
  *   we'll merge with local data to generate another equally-valid set of remote changes.
  *
  *
@@ -205,38 +206,48 @@ public class StorageSyncJobV2 extends BaseJob {
   }
 
   private boolean performSync() throws IOException, RetryLaterException, InvalidKeyException {
-    Recipient                   self               = Recipient.self();
+    Stopwatch                   stopwatch          = new Stopwatch("StorageSync");
+    Recipient                   self               = Recipient.self().fresh();
+    SQLiteDatabase              db                 = DatabaseFactory.getInstance(context).getRawDatabase();
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
-    StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
+    UnknownStorageIdDatabase    storageIdDatabase  = DatabaseFactory.getUnknownStorageIdDatabase(context);
     StorageKey                  storageServiceKey  = SignalStore.storageServiceValues().getOrCreateStorageKey();
 
     boolean                         needsMultiDeviceSync  = false;
     boolean                         needsForcePush        = false;
     long                            localManifestVersion  = TextSecurePreferences.getStorageManifestVersion(context);
-    Optional<SignalStorageManifest> remoteManifest        = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifestVersion);
+    Optional<SignalStorageManifest> remoteManifest        = FeatureFlags.internalUser() ? accountManager.getStorageManifest(storageServiceKey) : accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifestVersion);
     long                            remoteManifestVersion = remoteManifest.transform(SignalStorageManifest::getVersion).or(localManifestVersion);
+
+    stopwatch.split("remote-manifest");
 
     Log.i(TAG, "Our version: " + localManifestVersion + ", their version: " + remoteManifestVersion);
 
     if (remoteManifest.isPresent() && remoteManifestVersion > localManifestVersion) {
       Log.i(TAG, "[Remote Sync] Newer manifest version found!");
 
-      List<StorageId>     localStorageIdsBeforeMerge = getAllLocalStorageIds(context, Recipient.self().fresh());
-      KeyDifferenceResult keyDifference              = StorageSyncHelper.findKeyDifference(remoteManifest.get().getStorageIds(), localStorageIdsBeforeMerge);
+      List<StorageId>    localStorageIdsBeforeMerge = getAllLocalStorageIds(context, Recipient.self().fresh());
+      IdDifferenceResult idDifference               = StorageSyncHelper.findIdDifference(remoteManifest.get().getStorageIds(), localStorageIdsBeforeMerge);
 
-      if (keyDifference.hasTypeMismatches()) {
-        Log.w(TAG, "[Remote Sync] Found type mismatches in the key sets! Scheduling a force push after this sync completes.");
+      if (idDifference.hasTypeMismatches()) {
+        Log.w(TAG, "[Remote Sync] Found type mismatches in the ID sets! Scheduling a force push after this sync completes.");
         needsForcePush = true;
       }
 
-      if (!keyDifference.isEmpty()) {
-        Log.i(TAG, "[Remote Sync] Retrieving records for key difference: " + keyDifference);
+      Log.i(TAG, "[Remote Sync] Pre-Merge ID Difference :: " + idDifference);
 
-        List<SignalStorageRecord> remoteOnly = accountManager.readStorageRecords(storageServiceKey, keyDifference.getRemoteOnlyKeys());
+      stopwatch.split("remote-id-diff");
 
-        if (remoteOnly.size() != keyDifference.getRemoteOnlyKeys().size()) {
-          Log.w(TAG, "[Remote Sync] Could not find all remote-only records! Requested: " + keyDifference.getRemoteOnlyKeys().size() + ", Found: " + remoteOnly.size() + ". Scheduling a force push after this sync completes.");
+      if (!idDifference.isEmpty()) {
+        Log.i(TAG, "[Remote Sync] Retrieving records for key difference.");
+
+        List<SignalStorageRecord> remoteOnly = accountManager.readStorageRecords(storageServiceKey, idDifference.getRemoteOnlyIds());
+
+        stopwatch.split("remote-records");
+
+        if (remoteOnly.size() != idDifference.getRemoteOnlyIds().size()) {
+          Log.w(TAG, "[Remote Sync] Could not find all remote-only records! Requested: " + idDifference.getRemoteOnlyIds().size() + ", Found: " + remoteOnly.size() + ". Scheduling a force push after this sync completes.");
           needsForcePush = true;
         }
 
@@ -262,71 +273,55 @@ public class StorageSyncJobV2 extends BaseJob {
 
         WriteOperationResult mergeWriteOperation;
 
-        SQLiteDatabase db = DatabaseFactory.getInstance(context).getRawDatabase();
-
         db.beginTransaction();
         try {
-          StorageRecordProcessor.Result<SignalContactRecord> contactResult = new ContactRecordProcessor(context, self).process(remoteContacts, StorageSyncHelper.KEY_GENERATOR);
-          StorageRecordProcessor.Result<SignalGroupV1Record> gv1Result     = new GroupV1RecordProcessor(context).process(remoteGv1, StorageSyncHelper.KEY_GENERATOR);
-          StorageRecordProcessor.Result<SignalGroupV2Record> gv2Result     = new GroupV2RecordProcessor(context).process(remoteGv2, StorageSyncHelper.KEY_GENERATOR);
-          StorageRecordProcessor.Result<SignalAccountRecord> accountResult = new AccountRecordProcessor(context, self).process(remoteAccount, StorageSyncHelper.KEY_GENERATOR);
+          new ContactRecordProcessor(context, self).process(remoteContacts, StorageSyncHelper.KEY_GENERATOR);
+          new GroupV1RecordProcessor(context).process(remoteGv1, StorageSyncHelper.KEY_GENERATOR);
+          new GroupV2RecordProcessor(context).process(remoteGv2, StorageSyncHelper.KEY_GENERATOR);
+          new AccountRecordProcessor(context, self).process(remoteAccount, StorageSyncHelper.KEY_GENERATOR);
+
+          self = Recipient.self().fresh();
 
           List<SignalStorageRecord> unknownInserts = remoteUnknown;
-          List<StorageId>           unknownDeletes = Stream.of(keyDifference.getLocalOnlyKeys()).filter(StorageId::isUnknown).toList();
+          List<StorageId>           unknownDeletes = Stream.of(idDifference.getLocalOnlyIds()).filter(StorageId::isUnknown).toList();
 
-          storageKeyDatabase.insert(unknownInserts);
-          storageKeyDatabase.delete(unknownDeletes);
+          storageIdDatabase.insert(unknownInserts);
+          storageIdDatabase.delete(unknownDeletes);
+
+          Log.i(TAG, "[Remote Sync] Unknowns :: " + unknownInserts.size() + " inserts, " + unknownDeletes.size() + " deletes");
 
           List<StorageId> localStorageIdsAfterMerge = getAllLocalStorageIds(context, Recipient.self().fresh());
+          Set<StorageId>  localIdsAdded             = SetUtil.difference(localStorageIdsAfterMerge, localStorageIdsBeforeMerge);
+          Set<StorageId>  localIdsRemoved           = SetUtil.difference(localStorageIdsBeforeMerge, localStorageIdsAfterMerge);
 
-          if (contactResult.isLocalOnly() && gv1Result.isLocalOnly() && gv2Result.isLocalOnly() && accountResult.isLocalOnly() && unknownInserts.isEmpty() && unknownDeletes.isEmpty()) {
-            Log.i(TAG, "Result: No remote updates/deletes");
-            Log.i(TAG, "IDs   : " + localStorageIdsBeforeMerge.size() + " IDs before merge, " + localStorageIdsAfterMerge.size() + " IDs after merge");
-          } else {
-            Log.i(TAG, "Contacts: " + contactResult.toString());
-            Log.i(TAG, "GV1     : " + gv1Result.toString());
-            Log.i(TAG, "GV2     : " + gv2Result.toString());
-            Log.i(TAG, "Account : " + accountResult.toString());
-            Log.i(TAG, "Unknowns: " + unknownInserts.size() + " Inserts, " + unknownDeletes.size() + " Deletes");
-            Log.i(TAG, "IDs     : " + localStorageIdsBeforeMerge.size() + " IDs before merge, " + localStorageIdsAfterMerge.size() + " IDs after merge");
-          }
+          Log.i(TAG, "[Remote Sync] Local ID Changes :: " + localIdsAdded.size() + " inserts, " + localIdsRemoved.size() + " deletes");
 
-          //noinspection unchecked Stop yelling at my beautiful method signatures
-          mergeWriteOperation = StorageSyncHelper.createWriteOperation(remoteManifest.get().getVersion(), localStorageIdsAfterMerge, contactResult, gv1Result, gv2Result, accountResult);
+          IdDifferenceResult        postMergeIdDifference = StorageSyncHelper.findIdDifference(remoteManifest.get().getStorageIds(), localStorageIdsAfterMerge);
+          List<SignalStorageRecord> remoteInserts         = buildLocalStorageRecords(context, self, postMergeIdDifference.getLocalOnlyIds());
+          List<byte[]>              remoteDeletes         = Stream.of(postMergeIdDifference.getRemoteOnlyIds()).map(StorageId::getRaw).toList();
 
-          List<StorageId> postMergeLocalOnlyIds = StorageSyncHelper.findKeyDifference(remoteManifest.get().getStorageIds(), mergeWriteOperation.getManifest().getStorageIds()).getLocalOnlyKeys();
-          List<StorageId> remoteInsertIds       = Stream.of(mergeWriteOperation.getInserts()).map(SignalStorageRecord::getId).toList();
-          Set<StorageId>  unhandledLocalOnlyIds = SetUtil.difference(postMergeLocalOnlyIds, remoteInsertIds);
+          Log.i(TAG, "[Remote Sync] Post-Merge ID Difference :: " + postMergeIdDifference);
 
-          if (unhandledLocalOnlyIds.size() > 0) {
-            Log.i(TAG, "[Remote Sync] After the conflict resolution, there are " + unhandledLocalOnlyIds.size() + " local-only records remaining that weren't otherwise inserted. Adding them as inserts.");
+          mergeWriteOperation = new WriteOperationResult(new SignalStorageManifest(remoteManifestVersion + 1, localStorageIdsAfterMerge),
+                                                         remoteInserts,
+                                                         remoteDeletes);
 
-            List<SignalStorageRecord> localOnly = buildLocalStorageRecords(context, self, unhandledLocalOnlyIds);
+          recipientDatabase.clearDirtyStateForStorageIds(Util.concatenatedList(localIdsAdded, localIdsRemoved));
 
-            mergeWriteOperation = new WriteOperationResult(mergeWriteOperation.getManifest(),
-                                                           Util.concatenatedList(mergeWriteOperation.getInserts(), localOnly),
-                                                           mergeWriteOperation.getDeletes());
-
-            recipientDatabase.clearDirtyStateForStorageIds(unhandledLocalOnlyIds);
-          } else {
-            Log.i(TAG, "[Remote Sync] After the conflict resolution, there are no local-only records remaining.");
-          }
-
-          StorageSyncValidations.validate(mergeWriteOperation, remoteManifest, needsForcePush);
           db.setTransactionSuccessful();
         } finally {
           db.endTransaction();
           ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
         }
 
+        stopwatch.split("remote-merge-transaction");
+
+        Log.i(TAG, "[Remote Sync] WriteOperationResult :: " + mergeWriteOperation);
+
         if (!mergeWriteOperation.isEmpty()) {
-          Log.i(TAG, "[Remote Sync] WriteOperationResult :: " + mergeWriteOperation);
           Log.i(TAG, "[Remote Sync] We have something to write remotely.");
 
-          if (mergeWriteOperation.getManifest().getStorageIds().size() != remoteManifest.get().getStorageIds().size() + mergeWriteOperation.getInserts().size() - mergeWriteOperation.getDeletes().size()) {
-            Log.w(TAG, String.format(Locale.US, "[Remote Sync] Bad storage key management! originalRemoteKeys: %d, newRemoteKeys: %d, insertedKeys: %d, deletedKeys: %d",
-                                                 remoteManifest.get().getStorageIds().size(), mergeWriteOperation.getManifest().getStorageIds().size(), mergeWriteOperation.getInserts().size(), mergeWriteOperation.getDeletes().size()));
-          }
+          StorageSyncValidations.validate(mergeWriteOperation, remoteManifest, needsForcePush, self);
 
           Optional<SignalStorageManifest> conflict = accountManager.writeStorageRecords(storageServiceKey, mergeWriteOperation.getManifest(), mergeWriteOperation.getInserts(), mergeWriteOperation.getDeletes());
 
@@ -334,6 +329,8 @@ public class StorageSyncJobV2 extends BaseJob {
             Log.w(TAG, "[Remote Sync] Hit a conflict when trying to resolve the conflict! Retrying.");
             throw new RetryLaterException();
           }
+
+          stopwatch.split("remote-merge-write");
 
           remoteManifestVersion = mergeWriteOperation.getManifest().getVersion();
           remoteManifest        = Optional.of(mergeWriteOperation.getManifest());
@@ -346,39 +343,59 @@ public class StorageSyncJobV2 extends BaseJob {
         Log.i(TAG, "[Remote Sync] Updating local manifest version to: " + remoteManifestVersion);
         TextSecurePreferences.setStorageManifestVersion(context, remoteManifestVersion);
       } else {
-        Log.i(TAG, "[Remote Sync] Remote version was newer, there were no remote-only keys.");
+        Log.i(TAG, "[Remote Sync] Remote version was newer, there were no remote-only IDs.");
         Log.i(TAG, "[Remote Sync] Updating local manifest version to: " + remoteManifest.get().getVersion());
         TextSecurePreferences.setStorageManifestVersion(context, remoteManifest.get().getVersion());
       }
+    } else if (remoteManifest.isPresent() && remoteManifestVersion < localManifestVersion) {
+      Log.w(TAG, "[Remote Sync] Remote version was older. User might have switched accounts. Making our version match.");
+      TextSecurePreferences.setStorageManifestVersion(context, remoteManifestVersion);
     }
 
     localManifestVersion = TextSecurePreferences.getStorageManifestVersion(context);
 
-    List<StorageId>               allLocalStorageKeys  = getAllLocalStorageIds(context, self);
-    List<RecipientSettings>       pendingUpdates       = recipientDatabase.getPendingRecipientSyncUpdates();
-    List<RecipientSettings>       pendingInsertions    = recipientDatabase.getPendingRecipientSyncInsertions();
-    List<RecipientSettings>       pendingDeletions     = recipientDatabase.getPendingRecipientSyncDeletions();
-    Optional<SignalAccountRecord> pendingAccountInsert = StorageSyncHelper.getPendingAccountSyncInsert(context, self);
-    Optional<SignalAccountRecord> pendingAccountUpdate = StorageSyncHelper.getPendingAccountSyncUpdate(context, self);
-    Optional<LocalWriteResult>    localWriteResult     = StorageSyncHelper.buildStorageUpdatesForLocal(localManifestVersion,
-                                                                                                       allLocalStorageKeys,
-                                                                                                       pendingUpdates,
-                                                                                                       pendingInsertions,
-                                                                                                       pendingDeletions,
-                                                                                                       pendingAccountUpdate,
-                                                                                                       pendingAccountInsert);
+    List<StorageId>               allLocalStorageIds;
+    List<RecipientSettings>       pendingUpdates;
+    List<RecipientSettings>       pendingInsertions;
+    List<RecipientSettings>       pendingDeletions;
+    Optional<SignalAccountRecord> pendingAccountInsert;
+    Optional<SignalAccountRecord> pendingAccountUpdate;
+    Optional<LocalWriteResult>    localWriteResult;
+
+    db.beginTransaction();
+    try {
+      allLocalStorageIds   = getAllLocalStorageIds(context, self);
+      pendingUpdates       = recipientDatabase.getPendingRecipientSyncUpdates();
+      pendingInsertions    = recipientDatabase.getPendingRecipientSyncInsertions();
+      pendingDeletions     = recipientDatabase.getPendingRecipientSyncDeletions();
+      pendingAccountInsert = StorageSyncHelper.getPendingAccountSyncInsert(context, self);
+      pendingAccountUpdate = StorageSyncHelper.getPendingAccountSyncUpdate(context, self);
+      localWriteResult     = StorageSyncHelper.buildStorageUpdatesForLocal(localManifestVersion,
+                                                                           allLocalStorageIds,
+                                                                           pendingUpdates,
+                                                                           pendingInsertions,
+                                                                           pendingDeletions,
+                                                                           pendingAccountUpdate,
+                                                                           pendingAccountInsert);
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    stopwatch.split("local-changes-transaction");
 
     if (localWriteResult.isPresent()) {
       Log.i(TAG, String.format(Locale.ENGLISH, "[Local Changes] Local changes present. %d updates, %d inserts, %d deletes, account update: %b, account insert: %b.", pendingUpdates.size(), pendingInsertions.size(), pendingDeletions.size(), pendingAccountUpdate.isPresent(), pendingAccountInsert.isPresent()));
 
       WriteOperationResult localWrite = localWriteResult.get().getWriteResult();
-      StorageSyncValidations.validate(localWrite, remoteManifest, needsForcePush);
 
       Log.i(TAG, "[Local Changes] WriteOperationResult :: " + localWrite);
 
       if (localWrite.isEmpty()) {
         throw new AssertionError("Decided there were local writes, but our write result was empty!");
       }
+
+      StorageSyncValidations.validate(localWrite, FeatureFlags.internalUser() ? remoteManifest : Optional.absent(), needsForcePush, self);
 
       Optional<SignalStorageManifest> conflict = accountManager.writeStorageRecords(storageServiceKey, localWrite.getManifest(), localWrite.getInserts(), localWrite.getDeletes());
 
@@ -387,15 +404,24 @@ public class StorageSyncJobV2 extends BaseJob {
         throw new RetryLaterException();
       }
 
-      List<RecipientId> clearIds = new ArrayList<>(pendingUpdates.size() + pendingInsertions.size() + pendingDeletions.size() + 1);
+      stopwatch.split("remote-change-write");
 
-      clearIds.addAll(Stream.of(pendingUpdates).map(RecipientSettings::getId).toList());
-      clearIds.addAll(Stream.of(pendingInsertions).map(RecipientSettings::getId).toList());
-      clearIds.addAll(Stream.of(pendingDeletions).map(RecipientSettings::getId).toList());
-      clearIds.add(Recipient.self().getId());
+      List<RecipientId> clearIds = Util.concatenatedList(Stream.of(pendingUpdates).map(RecipientSettings::getId).toList(),
+                                                         Stream.of(pendingInsertions).map(RecipientSettings::getId).toList(),
+                                                         Stream.of(pendingDeletions).map(RecipientSettings::getId).toList(),
+                                                         Collections.singletonList(Recipient.self().getId()));
 
-      recipientDatabase.clearDirtyState(clearIds);
-      recipientDatabase.updateStorageKeys(localWriteResult.get().getStorageKeyUpdates());
+      db.beginTransaction();
+      try {
+        recipientDatabase.clearDirtyState(clearIds);
+        recipientDatabase.updateStorageIds(localWriteResult.get().getStorageKeyUpdates());
+
+        db.setTransactionSuccessful();
+      } finally {
+        db.endTransaction();
+      }
+
+      stopwatch.split("local-db-clean");
 
       needsMultiDeviceSync = true;
 
@@ -410,13 +436,14 @@ public class StorageSyncJobV2 extends BaseJob {
       ApplicationDependencies.getJobManager().add(new StorageForcePushJob());
     }
 
+    stopwatch.stop(TAG);
     return needsMultiDeviceSync;
   }
 
   private static @NonNull List<StorageId> getAllLocalStorageIds(@NonNull Context context, @NonNull Recipient self) {
     return Util.concatenatedList(DatabaseFactory.getRecipientDatabase(context).getContactStorageSyncIds(),
                                  Collections.singletonList(StorageId.forAccount(self.getStorageServiceId())),
-                                 DatabaseFactory.getStorageKeyDatabase(context).getAllKeys());
+                                 DatabaseFactory.getUnknownStorageIdDatabase(context).getAllIds());
   }
 
   private static @NonNull List<SignalStorageRecord> buildLocalStorageRecords(@NonNull Context context, @NonNull Recipient self, @NonNull Collection<StorageId> ids) {
@@ -424,8 +451,8 @@ public class StorageSyncJobV2 extends BaseJob {
       return Collections.emptyList();
     }
 
-    RecipientDatabase  recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
-    StorageKeyDatabase storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
+    RecipientDatabase        recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    UnknownStorageIdDatabase storageIdDatabase = DatabaseFactory.getUnknownStorageIdDatabase(context);
 
     List<SignalStorageRecord> records = new ArrayList<>(ids.size());
 
@@ -452,7 +479,7 @@ public class StorageSyncJobV2 extends BaseJob {
           records.add(StorageSyncHelper.buildAccountRecord(context, self));
           break;
         default:
-          SignalStorageRecord unknown = storageKeyDatabase.getById(id.getRaw());
+          SignalStorageRecord unknown = storageIdDatabase.getById(id.getRaw());
           if (unknown != null) {
             records.add(unknown);
           } else {

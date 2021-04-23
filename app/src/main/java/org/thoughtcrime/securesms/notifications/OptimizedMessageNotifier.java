@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.notifications;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
@@ -25,10 +26,10 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   private final MessageNotifierV2      messageNotifierV2;
 
   @MainThread
-  public OptimizedMessageNotifier() {
+  public OptimizedMessageNotifier(@NonNull Application context) {
     this.limiter           = new LeakyBucketLimiter(5, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier").getLooper()));
     this.messageNotifierV1 = new DefaultMessageNotifier();
-    this.messageNotifierV2 = new MessageNotifierV2();
+    this.messageNotifierV2 = new MessageNotifierV2(context);
   }
 
   @Override
@@ -89,6 +90,16 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   @Override
   public void clearReminder(@NonNull Context context) {
     getNotifier().clearReminder(context);
+  }
+
+  @Override
+  public void addStickyThread(long threadId, long earliestTimestamp) {
+    getNotifier().addStickyThread(threadId, earliestTimestamp);
+  }
+
+  @Override
+  public void removeStickyThread(long threadId) {
+    getNotifier().removeStickyThread(threadId);
   }
 
   private void runOnLimiter(@NonNull Runnable runnable) {

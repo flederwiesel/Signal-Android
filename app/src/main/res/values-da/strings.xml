@@ -1502,6 +1502,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Beskedanmodning</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Afspil video</string>
   <string name="ThumbnailView_Has_a_caption_description">Har en billedtekst</string>
@@ -1697,7 +1698,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
     <item quantity="other">%d mere</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg GIF\'s og animationer</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg GIF\'s og animationer</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Fandt ingenting</string>
   <!--log_submit_activity-->
@@ -1839,7 +1840,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="arrays__use_default">Brug standard</string>
   <string name="arrays__use_custom">Brug tilpasset</string>
   <string name="arrays__mute_for_one_hour">Udsæt 1 time</string>
-  <string name="arrays__mute_for_eight_hours">Udsæt 8 timer</string>
+  <string name="arrays__mute_for_eight_hours">Udsæt i 8 timer</string>
   <string name="arrays__mute_for_one_day">Udsæt 1 dag</string>
   <string name="arrays__mute_for_seven_days">Udsæt 7 dage</string>
   <string name="arrays__always">Altid</string>

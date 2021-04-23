@@ -1502,6 +1502,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesazh i ri</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Kërkesë mesazhi</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Luaje videon</string>
   <string name="ThumbnailView_Has_a_caption_description">Ka përshkrim</string>
@@ -1697,7 +1698,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="other">%d të tjerë</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIF-e dhe ngjitës</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIF-e dhe ngjitës</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">S\’u gjet gjë</string>
   <!--log_submit_activity-->
@@ -2105,6 +2106,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsDetailsFragment__to">Për</string>
   <string name="PaymentsDetailsFragment__from">Nga</string>
   <string name="PaymentsDetailsFragment__information">Hollësi transaksioni, përfshi llogari pagesash dhe kohë transaksioni, janë pjesë e MobileCoin Ledger.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Tarifë Coin Cleanup</string>
   <string name="PaymentsDetailsFragment__no_details_available">S’ka hollësi të mëtejshme për këtë transaksion</string>
   <string name="PaymentsDetailsFragment__sent_payment">Pagesë e dërguar</string>
   <string name="PaymentsDetailsFragment__received_payment">Pagesë e marrë</string>
