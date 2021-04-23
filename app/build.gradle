@@ -71,7 +71,10 @@ def abiPostFix = ['universal'   : 0,
                   'x86'         : 3,
                   'x86_64'      : 4]
 
-def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
+def keystores = [
+        'debug'  : loadKeystoreProperties('keystore.debug.properties'),
+        'release': loadKeystoreProperties('keystore.release.properties')
+]
 
 android {
     buildToolsVersion BUILD_TOOL_VERSION
@@ -91,6 +94,14 @@ android {
                 storePassword keystores.debug.storePassword
                 keyAlias keystores.debug.keyAlias
                 keyPassword keystores.debug.keyPassword
+            }
+        }
+        release {
+            if (keystores.release != null) {
+                storeFile file("${keystores.release.storeFile}")
+                storePassword keystores.release.storePassword
+                keyAlias keystores.release.keyAlias
+                keyPassword keystores.release.keyPassword
             }
         }
     }
@@ -206,6 +217,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles = buildTypes.debug.proguardFiles
+            signingConfig signingConfigs.release
         }
         perf {
             initWith debug

@@ -2,7 +2,8 @@
 captures/
 project.properties
 keystore.debug.properties
-keystore.staging.properties
+keystore.release.properties
+#keystore.staging.properties
 .project
 .settings
 bin/
