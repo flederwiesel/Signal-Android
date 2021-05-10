@@ -412,39 +412,56 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public @Nullable MarkedMessageInfo setIncomingMessageViewed(long messageId) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    String[]       columns  = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID};
-    String         where    = ID_WHERE + " AND " + VIEWED_RECEIPT_COUNT + " = 0";
-    String[]       args     = SqlUtil.buildArgs(messageId);
+    List<MarkedMessageInfo> results = setIncomingMessagesViewed(Collections.singletonList(messageId));
+
+    if (results.isEmpty()) {
+      return null;
+    } else {
+      return results.get(0);
+    }
+  }
+
+  @Override
+  public @NonNull List<MarkedMessageInfo> setIncomingMessagesViewed(@NonNull List<Long> messageIds) {
+    if (messageIds.isEmpty()) {
+      return Collections.emptyList();
+    }
+
+    SQLiteDatabase          database    = databaseHelper.getWritableDatabase();
+    String[]                columns     = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID};
+    String                  where       = ID + " IN (" + Util.join(messageIds, ",") + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
+    List<MarkedMessageInfo> results     = new LinkedList<>();
 
     database.beginTransaction();
-    try (Cursor cursor = database.query(TABLE_NAME, columns, where, args, null, null, null)) {
-      if (cursor == null || !cursor.moveToFirst()) {
-        return null;
+    try (Cursor cursor = database.query(TABLE_NAME, columns, where, null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        long type = CursorUtil.requireLong(cursor, MESSAGE_BOX);
+        if (Types.isSecureType(type) && Types.isInboxType(type)) {
+          long          threadId      = CursorUtil.requireLong(cursor, THREAD_ID);
+          RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
+          long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
+          SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
+
+          results.add(new MarkedMessageInfo(threadId, syncMessageId, null));
+
+          ContentValues contentValues = new ContentValues();
+          contentValues.put(VIEWED_RECEIPT_COUNT, 1);
+
+          database.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(CursorUtil.requireLong(cursor, ID)));
+        }
       }
-
-      long type = CursorUtil.requireLong(cursor, MESSAGE_BOX);
-      if (Types.isSecureType(type) && Types.isInboxType(type)) {
-        long           threadId       = CursorUtil.requireLong(cursor, THREAD_ID);
-        RecipientId    recipientId    = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
-        long           dateSent       = CursorUtil.requireLong(cursor, DATE_SENT);
-        SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
-
-        MarkedMessageInfo result = new MarkedMessageInfo(threadId, syncMessageId, null);
-
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(VIEWED_RECEIPT_COUNT, 1);
-
-        database.update(TABLE_NAME, contentValues, where, args);
-        database.setTransactionSuccessful();
-
-        return result;
-      } else {
-        return null;
-      }
+      database.setTransactionSuccessful();
     } finally {
       database.endTransaction();
     }
+
+    Set<Long> threadsUpdated = Stream.of(results)
+                                     .map(MarkedMessageInfo::getThreadId)
+                                     .collect(Collectors.toSet());
+
+    notifyConversationListeners(threadsUpdated);
+
+    return results;
   }
 
   @Override
@@ -769,6 +786,30 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void markAsRateLimited(long messageId) {
+    long threadId = getThreadIdForMessage(messageId);
+    updateMailboxBitmask(messageId, 0, Types.MESSAGE_RATE_LIMITED_BIT, Optional.of(threadId));
+    notifyConversationListeners(threadId);
+  }
+
+  @Override
+  public void clearRateLimitStatus(@NonNull Collection<Long> ids) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      for (long id : ids) {
+        long threadId = getThreadIdForMessage(id);
+        updateMailboxBitmask(id, Types.MESSAGE_RATE_LIMITED_BIT, 0, Optional.of(threadId));
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
+  @Override
   public void markAsPendingInsecureSmsFallback(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK, Optional.of(threadId));
@@ -889,6 +930,7 @@ public class MmsDatabase extends MessageDatabase {
     ContentValues  contentValues = new ContentValues();
 
     contentValues.put(NOTIFIED, 1);
+    contentValues.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
 
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
   }
@@ -1688,6 +1730,22 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp) {
     throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Set<Long> getAllRateLimitedMessageIds() {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         where = "(" + MESSAGE_BOX + " & " + Types.TOTAL_MASK + " & " + Types.MESSAGE_RATE_LIMITED_BIT + ") > 0";
+
+    Set<Long> ids = new HashSet<>();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { ID }, where, null, null, null, null)) {
+      while (cursor.moveToNext()) {
+        ids.add(CursorUtil.requireLong(cursor, ID));
+      }
+    }
+
+    return ids;
   }
 
   @Override

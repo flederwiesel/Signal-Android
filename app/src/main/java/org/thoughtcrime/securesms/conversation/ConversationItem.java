@@ -97,6 +97,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -117,6 +118,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SearchUtil;
@@ -1053,6 +1055,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       alertView.setFailed();
     } else if (messageRecord.isPendingInsecureSmsFallback()) {
       alertView.setPendingApproval();
+    } else if (messageRecord.isRateLimited()) {
+      alertView.setRateLimited();
     } else {
       alertView.setNone();
     }
@@ -1164,8 +1168,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(context, locale, next.get().getTimestamp(), current.getTimestamp());
 
-    if (current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
-        current.isFailed() || differentTimestamps || isEndOfMessageCluster(current, next, isGroupThread))
+    if (forceFooter(messageRecord) || current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
+        current.isFailed() || current.isRateLimited() || differentTimestamps || isEndOfMessageCluster(current, next, isGroupThread))
     {
       ConversationItemFooter activeFooter = getActiveFooter(current);
       activeFooter.setVisibility(VISIBLE);
@@ -1189,6 +1193,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
+  private boolean forceFooter(@NonNull MessageRecord messageRecord) {
+    return FeatureFlags.viewedReceipts() && hasAudio(messageRecord) && messageRecord.getViewedReceiptCount() == 0;
+  }
+
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
     if (hasNoBubble(messageRecord)) {
       return stickerFooter;
@@ -1206,10 +1214,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean shouldInterceptClicks(MessageRecord messageRecord) {
-    return batchSelected.isEmpty() &&
-            ((messageRecord.isFailed() && !messageRecord.isMmsNotification()) ||
-            messageRecord.isPendingInsecureSmsFallback() ||
-            messageRecord.isBundleKeyExchange());
+    return batchSelected.isEmpty()                                                     &&
+           ((messageRecord.isFailed() && !messageRecord.isMmsNotification())           ||
+           (messageRecord.isRateLimited() && SignalStore.rateLimit().needsRecaptcha()) ||
+           messageRecord.isPendingInsecureSmsFallback()                                ||
+           messageRecord.isBundleKeyExchange());
   }
 
   @SuppressLint("SetTextI18n")
@@ -1676,6 +1685,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       } else if (messageRecord.isFailed()) {
         if (eventListener != null) {
           eventListener.onMessageWithErrorClicked(messageRecord);
+        }
+      } else if (messageRecord.isRateLimited() && SignalStore.rateLimit().needsRecaptcha()) {
+        if (eventListener != null) {
+          eventListener.onMessageWithRecaptchaNeededClicked(messageRecord);
         }
       } else if (!messageRecord.isOutgoing() && messageRecord.isIdentityMismatchFailure()) {
         handleApproveIdentity();

@@ -1011,6 +1011,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组并与之分享您的名字和头像？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">是否解除对该群组的屏蔽并与之分享您的名字和头像？解除屏蔽前您将不会收到其发来的消息。</string>
+  <string name="MessageRequestProfileView_view">查看</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 和 %2$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s 和 %3$s 的成员</string>
@@ -1106,6 +1107,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">您</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">屏蔽</string>
   <string name="RecipientPreferenceActivity_unblock">取消屏蔽</string>
@@ -1162,6 +1164,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">是否使用该代理地址？</string>
   <string name="ProxyBottomSheetFragment_use_proxy">使用代理</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">成功连接代理。</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">选择国家</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">必须指定
@@ -1442,6 +1445,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新消息</string>
   <string name="SingleRecipientNotificationBuilder_message_request">消息请求</string>
+  <string name="SingleRecipientNotificationBuilder_you">您</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">播放视频</string>
   <string name="ThumbnailView_Has_a_caption_description">带有描述</string>
@@ -1628,7 +1632,7 @@
     <item quantity="other">%d 个其他人</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜索 GIF 图片与表情</string> -->
+  <string name="giphy_activity_toolbar__search_gifs">搜索 GIF 图片</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">未找到</string>
   <!--log_submit_activity-->
@@ -2747,5 +2751,7 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">无法发送付款</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">为了发送付款，该用户需接受您的消息请求。请向他们发送消息，来创建消息请求。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">发送消息</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">好的</string>
   <!--EOF-->
 </resources>
