@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Fallo al enviar</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Se recibió un mensaje de intercambio de claves, toca para proceder.</string>
   <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
+  <string name="ConversationItem_send_paused">Envío pausado</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Fallo al enviar. Toca para enviar sin cifrar</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">¿Enviar como SMS no cifrado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">¿Enviar como MMS no cifrado?</string>
@@ -637,6 +638,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualiza este grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este es un grupo de MMS sin cifrar. Para chatear en privado, invita a tus amistades a usar Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invitar ahora</string>
+  <string name="ManageGroupActivity_more">… más</string>
+  <string name="ManageGroupActivity_add_group_description">Añade la descripción del grupo …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar cuando alguien me mencione</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">¿Deseas recibir notificationes si te mencionan en un chat silenciado?</string>
@@ -973,6 +976,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Has modificado el nombre del grupo a «%1$s».</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ha modificado el nombre del grupo a «%2$s».</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">El nombre del grupo ha cambiado a «%1$s».</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Has actualizado la descripción del grupo</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ha actualizado la descripción del grupo.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Se ha actualizado la descripción del grupo.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Has modificado la imagen del grupo.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ha modificado la imagen del grupo.</string>
@@ -1166,6 +1173,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Tú</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verificar para continuar chateando</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Para prevenir el spam en Signal, completa por favor la verificación.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Tras la verificación, podrás seguir enviando mensajes. Todos los mensajes pausados se enviarán.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
@@ -1225,6 +1235,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Usar proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Proxy conectado.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Fallo al enviar</string>
+  <string name="RecaptchaProofActivity_complete_verification">Completar verificación</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecciona tu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Debes especificar el
@@ -1344,6 +1356,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubmitDebugLogActivity_success">¡Completado!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y añádela a tu correo para el soporte o informe de incidencia:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este registro se publicará online para que l@s colaborador@s de Signal tengan acceso. Puedes examinarlo y editarlo antes de enviarlo.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Información de dispositivo:</string>
@@ -1456,6 +1469,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_message_delivery_failed">Fallo al entregar mensaje.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Fallo al entregar mensaje.</string>
   <string name="MessageNotifier_error_delivering_message">Fallo al entregar el mensaje.</string>
+  <string name="MessageNotifier_message_delivery_paused">Entrega de mensajes pausada.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verificar para continuar chateando en Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
   <string name="MessageNotifier_mark_read">Marcar como leído</string>
   <string name="MessageNotifier_turn_off_these_notifications">Desactivar estas notificaciones</string>
@@ -1615,6 +1630,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_enable_call_notifications">Habilitar notificaciones de llamada</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sin grupos en común. Revisar solicitud.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sin participantes conocid@s. Revisar solicitud.</string>
+  <string name="ConversationUpdateItem_view">Ver</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -1742,6 +1758,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CreateProfileActivity__username">Alias (nombre de usuari@)</string>
   <string name="CreateProfileActivity__create_a_username">Crear alias (nombre de usuari@)</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Los nombres e imágenes de grupos MMS sólo son visibles para ti.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">La descripción del grupo será visible para participantes en este grupo y gente que ha sido invitada.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Biografía</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti …</string>
@@ -1756,6 +1773,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen del grupo</string>
   <string name="EditProfileFragment__group_name">Nombre del grupo</string>
+  <string name="EditProfileFragment__group_description">Descripción del grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Tu nombre</string>
   <string name="EditProfileNameFragment_first_name">Nombre</string>
@@ -1823,10 +1841,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
   <string-array name="HelpFragment__categories">
+    <item> -- Selecciona una opción --</item>
     <item>Algo no funciona</item>
     <item>Solicitar una nueva función</item>
     <item>Pregunta</item>
-    <item>Información</item>
+    <item>Crítica/opinión</item>
     <item>Otras</item>
     <item>Pagos</item>
   </string-array>
@@ -1966,7 +1985,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás comprobar cuándo se han leído tus mensajes.</string>
   <string name="preferences__typing_indicators">Indicadores de tecleo</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otr@s participantes están tecleando. </string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Evitar el aprendizaje predictivo del teclado. Activar esta opción no garantiza que tu teclado no analice tus mensajes. </string>
+  <string name="preferences__request_keyboard_to_disable">Solicitar al teclado deshabilitar el aprendizaje personalizado.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Activar esta opción no garantiza que tu teclado no analice tus mensajes. </string>
   <string name="preferences_app_protection__blocked_users">Personas bloqueadas</string>
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
   <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
@@ -2506,7 +2526,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toca sobre tu foto de perfil en la parte superior izquierda para abrir los ajustes</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Toca en «Chats»</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Toca en «Cuenta»</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toca en «Transferir cuenta» y en «Adelante» en ambos dispositivos</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2839,5 +2859,49 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nadie en este grupo ha chateado nunca contigo. Revisa siempre cuidadosamente solicitudes de chat antes de aceptarlas para evitar mensajes indeseados.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Más sobre solicitudes de chat</string>
   <string name="GroupsInCommonMessageRequest__okay">De acuerdo</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Descripción del grupo</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Normal</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Rápida, menos datos</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lenta, más datos</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Calidad de la foto</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">¡Invita a tus amistades!</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Cuenta</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Te lo solicitaremos menos a menudo con el pasar del tiempo</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Requerir tu PIN de Signal al volver a registrar tu número con Signal</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Teclado</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Enviar al tocar «Intro»</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Usar como aplicación de SMS predeterminada</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Mensajes</string>
+  <string name="NotificationsSettingsFragment__calls">Llamadas</string>
+  <string name="NotificationsSettingsFragment__notify_when">Notificarme cuando …</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Alguien comienza a usar Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Personas bloqueadas</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d contactos</string>
+  <string name="PrivacySettingsFragment__messaging">Mensajería</string>
+  <string name="PrivacySettingsFragment__app_security">Seguridad de la aplicación</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquea capturas de pantalla en la lista de aplicaciones recientes y dentro de la aplicación</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Los mensajes y llamadas de Signal siempre usan remitente confidencial y las llamadas se desvían</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostrar el icono de estado</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Con esta opción activa se muestra un icono en los detalles del mensaje, si éste ha sido entregado como «remitente confidencial». El «remitente confidencial» es una función del protocolo de Signal que impide saber a nuestro servidor quién envía el mensaje. La persona que lo recibe sí lo sabrá.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Centro de soporte</string>
+  <string name="HelpSettingsFragment__contact_us">Contáctanos</string>
+  <string name="HelpSettingsFragment__version">Versión</string>
+  <string name="HelpSettingsFragment__debug_log">Registro de depuración (log)</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Términos y política de privacidad</string>
+  <string name="HelpFragment__copyright_signal_messenger">Derechos de Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">App liberada bajo GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Llamadas</string>
   <!--EOF-->
 </resources>
