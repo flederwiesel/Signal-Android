@@ -612,7 +612,6 @@
   <string name="ManageGroupActivity_mute_notifications">Értesítések némítása</string>
   <string name="ManageGroupActivity_custom_notifications">Egyedi értesítések</string>
   <string name="ManageGroupActivity_mentions">Említések</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Beszélgetés háttérkép</string>
   <string name="ManageGroupActivity_until_s">%1$s-ig</string>
   <string name="ManageGroupActivity_always">Végleg</string>
   <string name="ManageGroupActivity_off">Ki</string>
@@ -640,7 +639,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">frissítsd a csoportot!</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ez egy nem biztonságos MMS-csoport. A biztonságos társalgáshoz hívd meg kontaktjaidat Signalra.</string>
   <string name="ManageGroupActivity_invite_now">Meghívás most</string>
-  <string name="ManageGroupActivity_more">…tovább</string>
+  <string name="ManageGroupActivity_more">tovább</string>
   <string name="ManageGroupActivity_add_group_description">Csoportleírás hozzáadása…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Értesítsen említés esetén</string>
@@ -840,6 +839,7 @@
   <string name="Megaphones_new_group">Új csoport</string>
   <string name="Megaphones_invite_friends">Barátok meghívása</string>
   <string name="Megaphones_use_sms">SMS használata</string>
+  <string name="Megaphones_appearance">Megjelenés</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal hívás folyamatban</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal hívás létesítése</string>
@@ -1113,10 +1113,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Úgy tűnik, hogy egy harmadik féltől származó vonalkódolvasóval próbálsz Signal eszközt társítani. A saját védelmed érdekében kérlek szkenneld újra a kódot Signal-on belül!</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">A Signal-nak szüksége van a Kamera engedélyre, hogy QR kódot szkennelhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nem lehet QR kódot szkennelni Kamera hozzáférési engedély nélkül</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Eltűnő üzenetek</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Üzeneteid nem fognak eltűnni.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ebben a beszélgetésben a kimenő és bejövő üzenetek el fognak tűnni a megtekintést követő %s után.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Frissítés most</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">A Signal jelenleg telepített verziója ma lejár. Frissíts a legújabb verzióra!</string>
@@ -1231,6 +1227,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Sikertelen hang és kép fogadás %1$s irányából</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Sikertelen hang és kép fogadás %1$s irányából</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ennek oka lehet, hogy esetleg nem ellenőrizte le a biztonsági azonosítód megváltozását, készülék problémája van, vagy letiltott téged.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy szerver</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxy cím</string>
@@ -1775,7 +1772,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="EditAboutFragment_taking_a_break">Lazulok pár percet</string>
   <string name="EditAboutFragment_working_on_something_new">Valami izgalmas újdonságon dolgozom</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Csoport nevének és képének szerkesztése</string>
+  <string name="EditProfileFragment__edit_group">Csoport szerkesztése</string>
   <string name="EditProfileFragment__group_name">Csoport neve</string>
   <string name="EditProfileFragment__group_description">Csoportleírás</string>
   <!--EditProfileNameFragment-->
@@ -2751,17 +2748,15 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Beszélgetés háttérkép</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Beszélgetés színe</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Háttérkép beállítása</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">A sötét téma elsötétíti a háttérképet is</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Háttérkép eltávolítása</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Háttérkép levétele a beszélgetésről?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Általános háttérkép eltávolítása? Ennek nem lesz hatása az egyedi beszélgetésekhez rendelt képekre.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Összes háttérkép alaphelyzetbe állítása</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Az összes háttérképet - egyedi beszélgetés függő képeket is - alaphelyzetbe állítod?</string>
   <string name="ChatWallpaperFragment__contact_name">Kontakt neve</string>
   <string name="ChatWallpaperFragment__reset">Alaphelyzetbe állítás</string>
   <string name="ChatWallpaperFragment__clear">Törlés</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Háttérkép előnézete</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Felülírod az összes színbeállítást?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Felülírod az összes háttérképet?</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Összes háttérkép alaphelyzetbe állítása</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Választás fotók közül</string>
   <string name="ChatWallpaperSelectionFragment__presets">Gyári profilok</string>
@@ -2863,6 +2858,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Egy kontaktod, vagy beszélgetőpartnered sem tagja ennek a csoportnak. Ellenőrizd a kérelmet figyelmesen elfogadás előtt, hogy elkerüld a nem kívánt üzeneteket!</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Az csevegési felkérésekről</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ezt a színbeállítást csak te látod.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Csoportleírás</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2913,11 +2909,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ExpireTimerSettingsFragment__custom_time">Egyedi érték</string>
   <string name="ExpireTimerSettingsFragment__set">Beállítás</string>
   <string name="ExpireTimerSettingsFragment__save">Mentés</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Másodperc</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Perc</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Óra</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Nap</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Hét</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">mp</string>
+  <string name="CustomExpireTimerSelectorView__minutes">perc</string>
+  <string name="CustomExpireTimerSelectorView__hours">óra</string>
+  <string name="CustomExpireTimerSelectorView__days">nap</string>
+  <string name="CustomExpireTimerSelectorView__weeks">hét</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Támogatási központ</string>
   <string name="HelpSettingsFragment__contact_us">Kapcsolat</string>
@@ -2928,5 +2924,29 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__licenced_under_the_gplv3">Szoftverlicenc: GPLv3 </string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Hívások</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Beszélgetés színe</string>
+  <string name="ChatColorSelectionFragment__edit">Szerkesztés</string>
+  <string name="ChatColorSelectionFragment__duplicate">Megkettőzés</string>
+  <string name="ChatColorSelectionFragment__delete">Törlés</string>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Alap</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradiens</string>
+  <string name="CustomChatColorCreatorFragment__hue">árnyalat</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Szaturáció</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Mentés</string>
+  <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Alaphelyzetbe állítás</string>
+  <string name="EditReactionsFragment_save">Mentés</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Megjelenés</string>
+  <string name="ChatColorsMegaphone__not_now">Később</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Matricák</string>
+  <string name="KeyboardPagerFragment_backspace">Visszatörlés</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

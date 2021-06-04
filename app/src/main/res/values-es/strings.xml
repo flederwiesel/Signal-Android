@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificaciones</string>
   <string name="ManageGroupActivity_custom_notifications">Notificaciones personalizadas</string>
   <string name="ManageGroupActivity_mentions">Menciones</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Fondo de chat</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Color y fondo de chat</string>
   <string name="ManageGroupActivity_until_s">Hasta %1$s</string>
   <string name="ManageGroupActivity_always">Para siempre</string>
   <string name="ManageGroupActivity_off">Inactivo</string>
@@ -639,7 +639,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualiza este grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este es un grupo de MMS sin cifrar. Para chatear en privado, invita a tus amistades a usar Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invitar ahora</string>
-  <string name="ManageGroupActivity_more">… más</string>
+  <string name="ManageGroupActivity_more">más</string>
   <string name="ManageGroupActivity_add_group_description">Añade la descripción del grupo …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar cuando alguien me mencione</string>
@@ -839,6 +839,7 @@
   <string name="Megaphones_new_group">Nuevo grupo</string>
   <string name="Megaphones_invite_friends">Invitar amistades</string>
   <string name="Megaphones_use_sms">Usar SMS</string>
+  <string name="Megaphones_appearance">Apariencia</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Llamada de Signal en curso</string>
   <string name="NotificationBarManager__establishing_signal_call">Estableciendo llamada de Signal</string>
@@ -1112,10 +1113,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando enlazar un dispositivo Signal usando una aplicación de escáner desconocida. Para tu protección, escanea el código otra vez desde Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal necesita acceso a la cámara para escanear el código QR. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Cámara».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No se puede escanear un código QR sin acceso a la cámara.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Desaparición de mensajes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Los mensajes no caducarán.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Los mensajes enviados y recibidos en este chat desaparecerán %s después de ser vistos.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Actualizar ahora</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Esta versión de Signal caduca hoy. Actualiza a la versión más reciente.</string>
@@ -1213,6 +1210,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">No hay nadie más</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s en esta llamada</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s y %2$s en esta llamada</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s está presentando</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s y %3$d más en esta llamada</item>
     <item quantity="other">%1$s, %2$s y %3$d más en esta llamada</item>
@@ -1229,6 +1227,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto se puede deber a que no han verificado el cambio de tus cifras de seguridad, hay un problema con su dispositivo, o te han bloqueado.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Desliza para ver la pantalla compartida</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Servidor proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Dirección del proxy</string>
@@ -1632,7 +1632,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sin grupos en común. Revisar solicitud.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sin participantes conocid@s. Revisar solicitud.</string>
   <string name="ConversationUpdateItem_view">Ver</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">El tiempo de desaparición de mensajes será de %1$s cuando inicies un chat.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">El tiempo de desaparición de mensajes será de %1$s cuando inicies un chat con alguien.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -1773,7 +1773,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="EditAboutFragment_taking_a_break">Tomando un descanso</string>
   <string name="EditAboutFragment_working_on_something_new">Trabajando en cosas nuevas</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen del grupo</string>
+  <string name="EditProfileFragment__edit_group">Modificar grupo</string>
   <string name="EditProfileFragment__group_name">Nombre del grupo</string>
   <string name="EditProfileFragment__group_description">Descripción del grupo</string>
   <!--EditProfileNameFragment-->
@@ -1969,6 +1969,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__appearance">Apariencia</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Fondo de chat</string>
+  <string name="preferences__chat_color_and_wallpaper">Color y fondo de chat</string>
   <string name="preferences__disable_pin">Desactivar PIN</string>
   <string name="preferences__enable_pin">Activar PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Al desactivar el PIN perderás todos los datos de tu cuenta al volver a instalar Signal, a menos que hagas una copia de seguridad manual y la restaures. No puedes activar el bloqueo se registro mientras el PIN esté desactivado.</string>
@@ -2749,17 +2750,25 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Fondo de chat</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Color del chat</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Restaurar colores de chats</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Restaurar color de chat</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">¿Deseas restaurar el color del chat?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Establecer fondo de chat</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Con tema oscuro se oscurece el fondo</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Eliminar fondo</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">¿Elimiar el fondo de este chat?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">¿Eliminar fondo? Esto no modificará los fondos individuales de tus chats.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Eliminar todos los fondos</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">¿Deseas eliminar todos los fondos de chat, incluidos los que has seleccionado para chats individuales?</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Con tema oscuro se oscurece el fondo</string>
   <string name="ChatWallpaperFragment__contact_name">Nombre</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
   <string name="ChatWallpaperFragment__clear">Eliminar</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">¿Deseas restaurar los colores de todos tus chats?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">¿Deseas restaurar los fondos de todos los chats?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Restaurar colores por defecto</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Restaurar todos los colores</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Restaurar fondo por defecto</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Eliminar todos los fondos</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Restaurar fondos de chats</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Restaurar fondo de chat</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">¿Deseas restaurar el fondo de chat?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Seleccionar desde fotos</string>
   <string name="ChatWallpaperSelectionFragment__presets">Incluidos</string>
@@ -2861,6 +2870,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nadie en este grupo ha chateado nunca contigo. Revisa siempre cuidadosamente solicitudes de chat antes de aceptarlas para evitar mensajes indeseados.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Más sobre solicitudes de chat</string>
   <string name="GroupsInCommonMessageRequest__okay">De acuerdo</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Aquí puedes ver el color del chat.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Este color sólo es visible para ti.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Descripción del grupo</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2912,11 +2923,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpireTimerSettingsFragment__custom_time">Tiempo personalizado</string>
   <string name="ExpireTimerSettingsFragment__set">Fijar</string>
   <string name="ExpireTimerSettingsFragment__save">Guardar</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">segundo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">minuto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">hora</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">día</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">semana</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">segundos</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minutos</string>
+  <string name="CustomExpireTimerSelectorView__hours">horas</string>
+  <string name="CustomExpireTimerSelectorView__days">días</string>
+  <string name="CustomExpireTimerSelectorView__weeks">semanas</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centro de soporte</string>
   <string name="HelpSettingsFragment__contact_us">Contáctanos</string>
@@ -2927,5 +2938,60 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__licenced_under_the_gplv3">App liberada bajo GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Llamadas</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Usar colores personalizados</string>
+  <string name="ChatColorSelectionFragment__chat_color">Color del chat</string>
+  <string name="ChatColorSelectionFragment__edit">Editar</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplicar</string>
+  <string name="ChatColorSelectionFragment__delete">Eliminar</string>
+  <string name="ChatColorSelectionFragment__delete_color">Eliminar color</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Este color personalizado se está usando en %1$d chat. ¿Deseas eliminarlo?</item>
+    <item quantity="other">Este color personalizado se está usando en %1$d chats. ¿Deseas eliminarlo para todos los chats?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Sólido</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradiente</string>
+  <string name="CustomChatColorCreatorFragment__hue">Tinte</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturación</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Guardar</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Modificar color</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Este color personalizado se está usando en %1$d chat. ¿Deseas modificarlo?</item>
+    <item quantity="other">Este color personalizado se está usando en %1$d chats. ¿Deseas modificarlo en todos esos chats?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Selector límite superior</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Selector límite inferior</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personalizar reacciones</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Toca para reemplazar un emoji</string>
+  <string name="EditReactionsFragment__reset">Reiniciar</string>
+  <string name="EditReactionsFragment_save">Guardar</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">«Auto» combina el color de las burbujas con el del fondo del chat</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Desliza para cambiar la dirección del gradiente</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nuevos colores en chats</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Hemos cambiado las burbujas coloreadas de chat para darte más opciones y que los chats sean más fáciles de leer.</string>
+  <string name="ChatColorsMegaphone__appearance">Apariencia</string>
+  <string name="ChatColorsMegaphone__not_now">Ahora no</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoticonos y personas</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Abrir búsqueda de emojis</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Abrir búsqueda de stickers</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Abrir búsqueda de GIFs</string>
+  <string name="KeyboardPagerFragment_stickers">Stickers</string>
+  <string name="KeyboardPagerFragment_backspace">Atrás</string>
+  <string name="KeyboardPagerFragment_gifs">GIFs</string>
+  <string name="KeyboardPagerFragment_search_emoji">Buscar emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Volver a emojis</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Eliminar término de búsqueda</string>
+  <string name="KeyboardPagerFragment_search_giphy">Buscar en GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Buscar stickers</string>
+  <string name="StickerSearchDialogFragment_no_results_found">No se encontraron resultados</string>
+  <string name="EmojiSearchFragment__no_results_found">No se encontraron resultados</string>
   <!--EOF-->
 </resources>

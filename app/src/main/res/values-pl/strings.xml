@@ -141,7 +141,7 @@
   <string name="CommunicationActions_insecure_call">Niezaszyfrowane połączenie</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Mogą obowiązywać opłaty operatora sieci. Numer, do którego dzwonisz, nie jest zarejestrowany w Signal. Połączenie zostanie nawiązane przez Twojego operatora sieci, a nie przez internet.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa dla %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po prostu %2$s przeinstalował Signal. </string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa dla %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub że po prostu %2$s przeinstalował Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Możesz zweryfikować numer bezpieczeństwa dla tego kontaktu.</string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
   <!--ContactsCursorLoader-->
@@ -308,7 +308,7 @@
   <string name="ConversationFragment_verify">Zweryfikuj</string>
   <string name="ConversationFragment_not_now">Nie teraz</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Twój numer bezpieczeństwa dla %s zmienił się</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Twój numer bezpieczeństwa dla %s zmienił się. Ten kontakt prawdopodobnie ponownie zainstalował Signal, lub zmienił urządzenie. Stuknij Zweryfikuj, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Twój numer bezpieczeństwa dla %s zmienił się. Ten kontakt prawdopodobnie ponownie zainstalował Signal lub zmienił urządzenie. Stuknij Zweryfikuj, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Usunąć wybraną rozmowę?</item>
     <item quantity="few">Usunąć wybrane rozmowy?</item>
@@ -648,12 +648,12 @@
     <item quantity="other">%d członków nie ma wsparcia dla Nowych grup, więc nie można utworzyć tej grupy.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Zostanie utworzona Stara grupa, gdyż “%1$s” używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal, lub usunąć go przed utworzeniem grupy.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Zostanie utworzona Stara grupa, gdyż “%1$s” używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal lub usunąć go przed utworzeniem grupy.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Zostanie utworzona Stara grupa, gdyż %1$d członek używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal, lub usunąć go przed utworzeniem grupy.</item>
-    <item quantity="few">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
-    <item quantity="many">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
-    <item quantity="other">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal, lub usunąć je przed utworzeniem grupy.</item>
+    <item quantity="one">Zostanie utworzona Stara grupa, gdyż %1$d członek używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal lub usunąć go przed utworzeniem grupy.</item>
+    <item quantity="few">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal lub usunąć je przed utworzeniem grupy.</item>
+    <item quantity="many">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal lub usunąć je przed utworzeniem grupy.</item>
+    <item quantity="other">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal lub usunąć je przed utworzeniem grupy.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ta grupa nie może zostać utworzona, gdyż \"%1$s\" używa starej wersji Signal. Musisz usunąć go przed utworzeniem grupy.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
@@ -675,7 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">Wycisz powiadomienia</string>
   <string name="ManageGroupActivity_custom_notifications">Niestandardowe powiadomienia</string>
   <string name="ManageGroupActivity_mentions">Wzmianki</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Tapeta czatu</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Kolor i tapeta czatu</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Zawsze</string>
   <string name="ManageGroupActivity_off">Wyłączone</string>
@@ -705,7 +705,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">zaktualizuj tę grupę.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To niezabezpieczona grupa MMS. Zaproś swoje kontakty do używania z Signal, aby korzystać z prywatnych rozmów.</string>
   <string name="ManageGroupActivity_invite_now">Zaproś teraz</string>
-  <string name="ManageGroupActivity_more">…więcej</string>
+  <string name="ManageGroupActivity_more">więcej</string>
   <string name="ManageGroupActivity_add_group_description">Dodaj opis grupy…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Powiadom mnie o wzmiankach</string>
@@ -925,6 +925,7 @@
   <string name="Megaphones_new_group">Nowa grupa</string>
   <string name="Megaphones_invite_friends">Zaproś znajomych</string>
   <string name="Megaphones_use_sms">Użyj SMS</string>
+  <string name="Megaphones_appearance">Wygląd</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal w toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
@@ -1223,10 +1224,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal używając skanera nieznanego dostawy. Dla Twojego bezpieczeństwa prosimy, abyś zeskanował(a) kod używając Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal wymaga pozwolenia na dostęp do aparatu w celu zeskanowania kodu QR, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nie można zeskanować kodu QR bez zezwolenia na dostęp do aparatu</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Znikające wiadomości</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Twoje wiadomości nie wygasną.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Wiadomości wysłane i odebrane w tej rozmowie znikną %s po odczytaniu.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Aktualizuj teraz</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Twoja wersja Signal wygaśnie dzisiaj. Zaktualizuj do najnowszej wersji.</string>
@@ -1328,6 +1325,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Brak innych uczestników rozmowy</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s uczestniczy w rozmowie</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s i %2$s uczestniczą w rozmowie</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s udostępnia</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s i %3$d inny uczestniczy w rozmowie</item>
     <item quantity="few">%1$s, %2$s i %3$d innych uczestniczy w rozmowie</item>
@@ -1348,6 +1346,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nie można odebrać audio i wideo od %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nie można odebrać audio i wideo od %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">To może być spowodowane tym, że ta osoba nie zweryfikowała Twojego numeru bezpieczeństwa, problemu z urządzeniem, albo Cię zablokowała.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Przesuń, aby zobaczyć udostępniony ekran</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Serwer proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Adres proxy</string>
@@ -1370,7 +1370,7 @@
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Czy powyższy numer jest poprawny?</string>
   <string name="RegistrationActivity_edit_number">Edytuj numer</string>
   <string name="RegistrationActivity_missing_google_play_services">Brak Usług Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Brak Usług Google Play na tym urządzeniu. Nadal możesz używać Signal, lecz ta konfiguracja może powodować mniejszą niezawodność i wydajność\n\nJeśli nie jesteś zaawansowanym użytkownikiem, nie korzystasz ze zmodyfikowanego systemu Android, lub sądzisz, że to błąd, wyślij e-mail na adres support@signal.org, aby otrzymać pomoc.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Brak Usług Google Play na tym urządzeniu. Nadal możesz używać Signal, lecz ta konfiguracja może powodować mniejszą niezawodność i wydajność\n\nJeśli nie jesteś zaawansowanym użytkownikiem, nie korzystasz ze zmodyfikowanego systemu Android lub sądzisz, że to błąd, wyślij e-mail na adres support@signal.org, aby otrzymać pomoc.</string>
   <string name="RegistrationActivity_i_understand">Rozumiem</string>
   <string name="RegistrationActivity_play_services_error">Błąd Usług Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Trwa aktualizacja Usług Sklepu Google Play lub są one niedostępne. Spróbuj ponownie.</string>
@@ -1754,7 +1754,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Brak wspólnych grup. Uważnie sprawdzaj wszystkie prośby o kontakt.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Brak kontaktów w tej grupie. Uważnie sprawdzaj wszystkie prośby o kontakt.</string>
   <string name="ConversationUpdateItem_view">Zobacz</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Czas znikania wiadomości zostanie ustawiony na %1$s, gdy wyślesz wiadomość.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Czas znikania wiadomości będzie ustawiony na %1$s, gdy wyślesz wiadomość.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
@@ -1909,7 +1909,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="EditAboutFragment_taking_a_break">Robię przerwę</string>
   <string name="EditAboutFragment_working_on_something_new">Pracuję nad czymś nowym</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Edytuj nazwę i zdjęcie grupy</string>
+  <string name="EditProfileFragment__edit_group">Edytuj grupę</string>
   <string name="EditProfileFragment__group_name">Nazwa grupy</string>
   <string name="EditProfileFragment__group_description">Opis grupy</string>
   <!--EditProfileNameFragment-->
@@ -2107,6 +2107,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__appearance">Wygląd</string>
   <string name="preferences__theme">Motyw</string>
   <string name="preferences__chat_wallpaper">Tapeta</string>
+  <string name="preferences__chat_color_and_wallpaper">Kolor i tapeta czatu</string>
   <string name="preferences__disable_pin">Wyłącz PIN</string>
   <string name="preferences__enable_pin">Włącz PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jeśli wyłączysz PIN, przy ponownej rejestracji Signal stracisz wszystkie dane, chyba że ręcznie wykonasz i przywrócisz kopię zapasową. Gdy PIN jest wyłączony, nie możesz włączyć blokady rejestracji.</string>
@@ -2118,8 +2119,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__free_private_messages_and_calls">Darmowe oraz prywatne wiadomości i połączenia do użytkowników Signal</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
   <string name="preferences__delete_account">Usuń konto</string>
-  <string name="preferences__support_wifi_calling">Tryb zgodności \"WiFi Calling\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \"WiFi Calling\" jest włączone na Twoim urządzeniu)</string>
+  <string name="preferences__support_wifi_calling">Tryb zgodności \"Wi-Fi Calling\"</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez Wi-Fi (włącz tylko wtedy gdy \"Wi-Fi Calling\" jest włączone na Twoim urządzeniu)</string>
   <string name="preferences__incognito_keyboard">Klawiatura w trybie prywatnym</string>
   <string name="preferences__read_receipts">Potwierdzenia przeczytania</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Gdy potwierdzenia przeczytania są wyłączone, Ty również nie będziesz otrzymywać potwierdzeń od innych użytkowników.</string>
@@ -2905,17 +2906,25 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Tapeta czatu</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Kolor czatu</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Zresetuj kolory czatów</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Zresetuj kolor czatu</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Zresetować kolor czatu?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Ustaw tapetę</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Ciemny motyw przyciemnia tapetę</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Usuń tapetę</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Usunąć tapetę dla tej rozmowy?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Usunąć tapetę? To działanie nie usunie tapet, ustawionych przez Ciebie, dla poszczególnych rozmów.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Zresetuj wszystkie tapety</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Zresetować wszystkie tapety, łącznie z ustawionymi przez Ciebie, dla poszczególnych rozmów?</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Ciemny motyw przyciemnia tapetę</string>
   <string name="ChatWallpaperFragment__contact_name">Imię kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Zresetuj</string>
   <string name="ChatWallpaperFragment__clear">Usuń</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Podgląd tapety</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Czy chcesz zastąpić kolory wszystkich czatów?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Czy chcesz zastąpić wszystkie tapety?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Zresetuj domyślne kolory</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Zresetuj wszystkie kolory</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Zresetuj domyślną tapetę</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Zresetuj wszystkie tapety</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Zresetuj tapety</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Zresetuj tapetę</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Zresetować tapetę?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Wybierz ze zdjęć</string>
   <string name="ChatWallpaperSelectionFragment__presets">Domyślne</string>
@@ -3017,6 +3026,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Żaden z Twoich kontaktów lub osób, z którymi rozmawiasz, nie znajduje się w tej grupie. Uważnie sprawdzaj wszystkie prośby o kontakt, przed ich akceptacją, aby uniknąć niechcianych wiadomości</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O prośbach o kontakt</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Oto podgląd koloru czatu.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ten kolor jest widoczny tylko dla Ciebie.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Opis grupy</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3068,11 +3079,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ExpireTimerSettingsFragment__custom_time">Własny</string>
   <string name="ExpireTimerSettingsFragment__set">Ustaw</string>
   <string name="ExpireTimerSettingsFragment__save">Zapisz</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekunda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minuta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Godzina</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dzień</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Tydzień</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">sekundy</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuty</string>
+  <string name="CustomExpireTimerSelectorView__hours">godziny</string>
+  <string name="CustomExpireTimerSelectorView__days">dni</string>
+  <string name="CustomExpireTimerSelectorView__weeks">tygodnie</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centrum pomocy</string>
   <string name="HelpSettingsFragment__contact_us">Skontaktuj się z nami</string>
@@ -3083,5 +3094,64 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Oprogramowanie udostępniane na licencji GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Połączenia</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Automatyczny</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Użyj własnych kolorów</string>
+  <string name="ChatColorSelectionFragment__chat_color">Kolor czatu</string>
+  <string name="ChatColorSelectionFragment__edit">Edytuj</string>
+  <string name="ChatColorSelectionFragment__duplicate">Skopiuj</string>
+  <string name="ChatColorSelectionFragment__delete">Usuń</string>
+  <string name="ChatColorSelectionFragment__delete_color">Usuń kolor</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Ten własny kolor jest używany w %1$d rozmowie. Czy chcesz usunąć go ze wszystkich rozmów?</item>
+    <item quantity="few">Ten własny kolor jest używany w %1$d rozmowach. Czy chcesz usunąć go ze wszystkich rozmów?</item>
+    <item quantity="many">Ten własny kolor jest używany w %1$d rozmowach. Czy chcesz usunąć go ze wszystkich rozmów?</item>
+    <item quantity="other">Ten własny kolor jest używany w %1$d rozmowach. Czy chcesz usunąć go ze wszystkich rozmów?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Kolor</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+  <string name="CustomChatColorCreatorFragment__hue">Barwa</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Nasycenie</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Zapisz</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Edytuj kolor</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Ten kolor jest używany w %1$d rozmowie. Czy chcesz usunąć go ze wszystkich rozmów?</item>
+    <item quantity="few">Ten kolor jest używany w %1$d rozmowach. Czy chcesz usunąć go ze wszystkich rozmów?</item>
+    <item quantity="many">Ten kolor jest używany w %1$d rozmowach. Czy chcesz usunąć go ze wszystkich rozmów?</item>
+    <item quantity="other">Ten kolor jest używany w %1$d rozmowach. Czy chcesz usunąć go ze wszystkich rozmów?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Górny selektor</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Dolny selektor</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Dostosuj reakcje</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Stuknij, aby zastąpić emotikonę</string>
+  <string name="EditReactionsFragment__reset">Zresetuj</string>
+  <string name="EditReactionsFragment_save">Zapisz</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">\"Automatyczny\" dopasowuje kolor do tapety</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Przeciągnij, aby zmienić kierunek gradientu</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nowe kolory czatów</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Zamieniliśmy kolory czatów, aby dać Ci więcej opcji i zwiększyć czytelność rozmów.</string>
+  <string name="ChatColorsMegaphone__appearance">Wygląd</string>
+  <string name="ChatColorsMegaphone__not_now">Nie teraz</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emotikony</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Otwórz wyszukiwarkę emotikon</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Otwórz wyszukiwarkę naklejek</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Otwórz wyszukiwarkę GIF-ów</string>
+  <string name="KeyboardPagerFragment_stickers">Naklejki</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">GIF-y</string>
+  <string name="KeyboardPagerFragment_search_emoji">Szukaj emotikon</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Wróć do emotikon</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Wyczyść wyszukiwanie</string>
+  <string name="KeyboardPagerFragment_search_giphy">Szukaj w GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Szukaj naklejek</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Brak wyników</string>
+  <string name="EmojiSearchFragment__no_results_found">Brak wyników</string>
   <!--EOF-->
 </resources>

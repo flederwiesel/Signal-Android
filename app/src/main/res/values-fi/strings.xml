@@ -609,7 +609,6 @@
   <string name="ManageGroupActivity_mute_notifications">Mykistä ilmoitukset</string>
   <string name="ManageGroupActivity_custom_notifications">Mukautetut ilmoitukset</string>
   <string name="ManageGroupActivity_mentions">Maininnat</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Keskustelunäkymän taustakuva</string>
   <string name="ManageGroupActivity_until_s">%1$s asti</string>
   <string name="ManageGroupActivity_always">Aina</string>
   <string name="ManageGroupActivity_off">pois päältä</string>
@@ -835,6 +834,7 @@
   <string name="Megaphones_new_group">Uusi ryhmä</string>
   <string name="Megaphones_invite_friends">Kutsu ystäviä</string>
   <string name="Megaphones_use_sms">Käytä tekstiviestiä</string>
+  <string name="Megaphones_appearance">Ulkonäkö</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-puhelu käynnissä</string>
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
@@ -974,6 +974,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s muutti ryhmän nimeksi \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Ryhmän nimeksi asetettiin \"%1$s\".</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Vaihdoit ryhmän kuvauksen.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Muutit ryhmän kuvakkeen.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s muutti ryhmän kuvakkeen.</string>
@@ -1104,10 +1105,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vaikuttaa siltä, että yrität yhdistää laitetta käyttämällä Signalin ulkopuolista skannaussovellusta. Oman turvallisuutesi vuoksi skannaa QR-koodi uudelleen Signalilla itsellään.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Katoavat viestit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät vanhene.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Päivitä nyt</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tämä Signal-versio vanhenee tänään. Päivitä viimeisimpään versioon.</string>
@@ -1218,6 +1215,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Ei voida vastaanottaa ääntä &amp; videota lähettäjältä %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ei voida vastaanottaa ääntä tai videota lähettäjältä %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Tämä saattaa johtua siitä että he eivät ole varmentaneet turvanumerosi muutosta, heidän laitteessaan olevasta ongelmasta, tai siitä että he ovat blokanneet sinut.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxyserveri</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxyn osoite</string>
@@ -1740,6 +1738,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreateProfileActivity__username">Käyttäjätunnus</string>
   <string name="CreateProfileActivity__create_a_username">Luo käyttäjätunnus</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Multimediaviestiryhmien mukautetut nimet ja kuvat näkyvät vain sinulle.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Ryhmän kuvaus näkyy ryhmän jäsenille ja siihen kutsutuille henkilöille.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Tiedot</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Kuvaile itseäsi muutamalla sanalla…</string>
@@ -1752,7 +1751,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="EditAboutFragment_taking_a_break">Tauolla</string>
   <string name="EditAboutFragment_working_on_something_new">Luomassa uutta</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Muokkaa nimeä ja kuvaa</string>
+  <string name="EditProfileFragment__edit_group">Muokkaa ryhmää</string>
   <string name="EditProfileFragment__group_name">Ryhmän nimi</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Nimesi</string>
@@ -2693,17 +2692,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Keskustelunäkymän taustakuva</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Keskustelun väri</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Aseta taustakuva</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Himmennä tummassa teemassa</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Poista taustakuva</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Haluatko poistaa tämän keskustelun taustakuvan?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Haluatko poistaa taustakuvan? Yksittäisille keskusteluille asetettuja taustakuvia ei poisteta.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Poista kaikki taustakuvat</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Poistetaanko kaikki taustakuvat yhteystietokohtaiset mukaan lukien?</string>
   <string name="ChatWallpaperFragment__contact_name">Yhteystiedon nimi</string>
   <string name="ChatWallpaperFragment__reset">Nollaa</string>
   <string name="ChatWallpaperFragment__clear">Tyhjennä</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Taustakuvan esikatselu</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Poista kaikki taustakuvat</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Valitse valokuvista</string>
   <string name="ChatWallpaperSelectionFragment__presets">Esiasennetut</string>
@@ -2816,6 +2811,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ExpireTimerSettingsFragment__30_seconds">30 sekuntia</string>
   <string name="ExpireTimerSettingsFragment__set">Aseta</string>
   <string name="ExpireTimerSettingsFragment__save">Tallenna</string>
+  <string name="CustomExpireTimerSelectorView__seconds">sekuntia</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuuttia</string>
+  <string name="CustomExpireTimerSelectorView__hours">tuntia</string>
+  <string name="CustomExpireTimerSelectorView__days">päivää</string>
+  <string name="CustomExpireTimerSelectorView__weeks">viikkoa</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Ota yhteyttä</string>
   <string name="HelpSettingsFragment__version">Versio</string>
@@ -2823,5 +2823,23 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Käyttöehdot ja yksityisyydensuoja</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Puhelut</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Keskustelun väri</string>
+  <string name="ChatColorSelectionFragment__edit">Muokkaa</string>
+  <string name="ChatColorSelectionFragment__delete">Poista</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Tallenna</string>
+  <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Nollaa</string>
+  <string name="EditReactionsFragment_save">Tallenna</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Ulkonäkö</string>
+  <string name="ChatColorsMegaphone__not_now">Ei nyt</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emojit</string>
+  <string name="KeyboardPagerFragment_stickers">Tarrat</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

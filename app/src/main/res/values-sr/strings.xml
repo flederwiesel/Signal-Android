@@ -643,7 +643,7 @@
   <string name="ManageGroupActivity_mute_notifications">Утишај обавештења</string>
   <string name="ManageGroupActivity_custom_notifications">Прилагођена обавештења</string>
   <string name="ManageGroupActivity_mentions">Помињања</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Позадина за ћаскање</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Боја ћаскања и позадина</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_always">Увек</string>
   <string name="ManageGroupActivity_off">Искључено</string>
@@ -672,7 +672,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">надогради ову групу.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ово је несигурна ММС група. Да бисте приватно ћаскали, позовите своје контакте у Signal.</string>
   <string name="ManageGroupActivity_invite_now">Позови сада</string>
-  <string name="ManageGroupActivity_more">…више</string>
+  <string name="ManageGroupActivity_more">више</string>
   <string name="ManageGroupActivity_add_group_description">Додај опис групи…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Обавести ме за помињања</string>
@@ -882,6 +882,7 @@
   <string name="Megaphones_new_group">Нова група</string>
   <string name="Megaphones_invite_friends">Позивница пријатељима</string>
   <string name="Megaphones_use_sms">Користи СМС</string>
+  <string name="Megaphones_appearance">Изглед</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Signal-a у току</string>
   <string name="NotificationBarManager__establishing_signal_call">Успостављам Signal позив</string>
@@ -1168,10 +1169,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа да покушавате повезати Signal уређај користећи спољашњи читач бар-кôда. Због сопствене заштите, очитајте кôд поново помоћу Signal-a.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal захтева приступ камери да би скенирао QR кôд, али су му дозволе трајно забрањене. Молимо вас да у апликацији за подешавање телефона Signal-у дозволите пруиступ камери.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Није могуће скенирати QR кôд без дозволе камере</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Нестајуће поруке</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Ваше поруке неће истећи.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Примљене и послате поруке ове преписке ће нестати %s након што су погледане.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ажурирај сада</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ваша верзија Signal-а истиче данас. Ажурирате на најновију верзију.</string>
@@ -1271,6 +1268,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Нема никога овде</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s је у овом позиву</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s су у овом позиву</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s презентира</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, и још %3$d су у овом позиву</item>
     <item quantity="few">%1$s, %2$s, и још %3$d су у овом позиву</item>
@@ -1289,6 +1287,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Не може да се прими звук &amp; видео од %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не може да се прими звук и видео од %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">То је можда зато што нису потврдили промену вашег сигурносног броја, постоји проблем са њиховим уређајем или су вас блокирали.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Превуците да бисте видели дељење екрана</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Прокси сервер</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Адреса проксија</string>
@@ -1844,7 +1844,7 @@
   <string name="EditAboutFragment_taking_a_break">Правим паузу</string>
   <string name="EditAboutFragment_working_on_something_new">Радим на нешто ново</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Уреди име и слику групе</string>
+  <string name="EditProfileFragment__edit_group">Уређивање групе</string>
   <string name="EditProfileFragment__group_name">Назив групе</string>
   <string name="EditProfileFragment__group_description">Опис групе</string>
   <!--EditProfileNameFragment-->
@@ -2041,6 +2041,7 @@
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Тема</string>
   <string name="preferences__chat_wallpaper">Позадина за ћаскање</string>
+  <string name="preferences__chat_color_and_wallpaper">Боја ћаскања и позадина</string>
   <string name="preferences__disable_pin">Искључи PIN</string>
   <string name="preferences__enable_pin">Укључи PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако онемогућите PIN, изгубићете све податке када поново региструјете Signal, осим ако ручно направите резервне копије и вратите податке. Не можете укључити закључавање регистрације док је PIN онемогућен.</string>
@@ -2831,17 +2832,25 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Позадина за ћаскање</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Боја ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Рисетовати боје ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Рисетовати боје ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Рисетовати боје ћаскања?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Поставити позадину</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Тамна тема затамњује позадину</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Уклони позадину</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Уклонити позадину за овај чет?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Уклонити позадину? Ово неће уклонити посебне позадине које сте поставили за ћаскање.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Рисетуј све позадине</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ресетујте све позадине, укључујући посебне позадине које сте поставили за ћаскање?</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Тамни режим затамњује позадину</string>
   <string name="ChatWallpaperFragment__contact_name">Име контакта</string>
   <string name="ChatWallpaperFragment__reset">Ресетуј</string>
   <string name="ChatWallpaperFragment__clear">Очистити</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед позадине</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Да ли желите да надјачате све боје за ћаскање?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Да ли желите да надјачате све позадине?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Рисетовати подразумеване боје</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Рисетовати све боје</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Рисетовати подразумевану позадину</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Рисетуј све позадине</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Рисетовати позадине</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Рисетовати позадину</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Рисетовати позадину?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Одабери из фотографије</string>
   <string name="ChatWallpaperSelectionFragment__presets">Предефинисано</string>
@@ -2943,6 +2952,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ниједан од ваших контаката или људи са којима разговарате су у овој групи. Пажљиво прегледајте захтеве пре него што прихватите тако да бисте избегли нежељене поруке.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">О захтеву за разговор</string>
   <string name="GroupsInCommonMessageRequest__okay">У реду</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Ево прегледа боје ћаскања.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Само ви видите боју.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Опис групе</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2974,6 +2985,7 @@
   <string name="PrivacySettingsFragment__disappearing_messages">Самонестајуће поруке</string>
   <string name="PrivacySettingsFragment__app_security">Безбедност апликације</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Поруке и позиви преко Signal-а, увек преузмеравај позиве, запечаћени пошиљалац</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Подразумевани тајмер за нове преписке</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Подесите подразумевани тајмер нестајања поруке за све нове преписке које сте започели.</string>
   <!--AdvancedPrivacySettingsFragment-->
@@ -2993,11 +3005,11 @@
   <string name="ExpireTimerSettingsFragment__custom_time">Прилагодити време</string>
   <string name="ExpireTimerSettingsFragment__set">Поставити</string>
   <string name="ExpireTimerSettingsFragment__save">Сачувај</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Секунд</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Минут</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Сат</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Дан</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Недеља</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">секунд(и)</string>
+  <string name="CustomExpireTimerSelectorView__minutes">минута</string>
+  <string name="CustomExpireTimerSelectorView__hours">сати</string>
+  <string name="CustomExpireTimerSelectorView__days">дан(а)</string>
+  <string name="CustomExpireTimerSelectorView__weeks">недељ(а)</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Центар за подршку</string>
   <string name="HelpSettingsFragment__contact_us">Контактирај нас</string>
@@ -3008,5 +3020,62 @@
   <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Позиви</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Ауто</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Користити посебне боје</string>
+  <string name="ChatColorSelectionFragment__chat_color">Боја ћаскања</string>
+  <string name="ChatColorSelectionFragment__edit">Уреди</string>
+  <string name="ChatColorSelectionFragment__duplicate">Дупликат</string>
+  <string name="ChatColorSelectionFragment__delete">Избриши</string>
+  <string name="ChatColorSelectionFragment__delete_color">Обрисати боју</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Ова прилагођена боја користи се у %1$d ћаскање. Да ли желите да је избришете из ћаскања?</item>
+    <item quantity="few">Ова прилагођена боја користи се у %1$d ћаскања. Да ли желите да је избришете из свих ћаскања?</item>
+    <item quantity="other">Ова прилагођена боја користи се у %1$d ћаскања. Да ли желите да је избришете из свих ћаскања?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Солидно</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Градијент</string>
+  <string name="CustomChatColorCreatorFragment__hue">Нијанса</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Засићење боје</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Сачувај</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Променити боју</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Ова боја користи се у %1$d ћаскање. Да ли желите да сачувате промене за ово ћаскање?</item>
+    <item quantity="few">Ова боја користи се у %1$d ћаскања. Да ли желите да сачувате промене за свих ћаскања?</item>
+    <item quantity="other">Ова боја користи се у %1$d ћаскања. Да ли желите да сачувате промене за свих ћаскања?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Селектор горње ивице</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Селектор доње ивице</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Прилагодите реакције</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Пипните за промену емоџиа</string>
+  <string name="EditReactionsFragment__reset">Ресетуј</string>
+  <string name="EditReactionsFragment_save">Сачувај</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Се подудара према бојом позадине</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Превуците да бисте променили смер градијента</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Нове боје ћаскања</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Пребацили смо боје ћаскања да вам дају више опција и олакшавају читање ћаскања.</string>
+  <string name="ChatColorsMegaphone__appearance">Изглед</string>
+  <string name="ChatColorsMegaphone__not_now">Не сада</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Емоџи</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Отворите претрагу емоџија</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Отворите претрагу налепница</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Отворите претрагу Гифа</string>
+  <string name="KeyboardPagerFragment_stickers">Налепнице</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Гифови</string>
+  <string name="KeyboardPagerFragment_search_emoji">Претражити емоџи</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Назад на емоџи</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Испразни претрагу</string>
+  <string name="KeyboardPagerFragment_search_giphy">Тражити GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Тражити налепнице</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Нема резултата</string>
+  <string name="EmojiSearchFragment__no_results_found">Нема резултата</string>
   <!--EOF-->
 </resources>

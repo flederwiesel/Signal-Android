@@ -615,7 +615,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_mute_notifications">Heshtoji njoftimet</string>
   <string name="ManageGroupActivity_custom_notifications">Njoftime vetjake</string>
   <string name="ManageGroupActivity_mentions">Përmendje</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Sfond fjalosjesh</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Ngjyrë &amp; sfond fjalosjeje</string>
   <string name="ManageGroupActivity_until_s">Deri më %1$s</string>
   <string name="ManageGroupActivity_always">Përherë</string>
   <string name="ManageGroupActivity_off">Off</string>
@@ -643,7 +643,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_upgrade_this_group">përmirësoni këtë grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht, ftojini kontaktet tuaj te Signal-i.</string>
   <string name="ManageGroupActivity_invite_now">Ftojini tani</string>
-  <string name="ManageGroupActivity_more">…më tepër</string>
+  <string name="ManageGroupActivity_more">më tepër</string>
   <string name="ManageGroupActivity_add_group_description">Shtoni përshkrim grupi…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
@@ -843,6 +843,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="Megaphones_new_group">Grup i ri</string>
   <string name="Megaphones_invite_friends">Ftoni shokë</string>
   <string name="Megaphones_use_sms">Use SMS</string>
+  <string name="Megaphones_appearance">Dukje</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
@@ -1115,10 +1116,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Duket sikur po provoni të lidhni një pajisje Signal duke përdorur skaner të një pale të tretë. Si masë mbrojtëse, ju lutemi, riskanojeni kodin që nga brenda Signal-it.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Që të mund të skanojë një kod QR, Signal lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">S\’arrihet të skanohet kod QR pa leje mbi Kamerën</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Zhdukje mesazhesh</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Mesazhet tuaja nuk do të skadojnë.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesazhet e dërguara dhe të marra në këtë bisedë do të zhduken %s pasi të jenë parë.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Përditësoje tani</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ky version i Signal-it do të skadojë sot. Përditësojeni me versionin më të freskët.</string>
@@ -1216,6 +1213,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallView__no_one_else_is_here">S’ka tjetër këtu</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s është në këtë thirrje</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s dhe %2$s janë në këtë thirrje</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s po paraqet</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, dhe %3$d tjetër janë në në këtë thirrje</item>
     <item quantity="other">%1$s, %2$s, dhe %3$d të tjerë janë në këtë thirrje</item>
@@ -1232,6 +1230,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">S’mund të merret audio &amp; video prej %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">S’mund të merret audio dhe video prej %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Kjo mund të vijë ngaqë s’kanë verifikuar ndryshimin e numrit tuaj të sigurisë, ka një problem me pajisjen e tyre, ose ju kanë bllokuar.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Fërkojeni që të shihni ndarje ekrani</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Shërbyes ndërmjetës</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Adresë ndërmjetësi</string>
@@ -1773,7 +1773,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="EditAboutFragment_taking_a_break">Pushoni ca</string>
   <string name="EditAboutFragment_working_on_something_new">Po merrem me diçka të re</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Përpunoni emër dhe foto grupi</string>
+  <string name="EditProfileFragment__edit_group">Përpunoni grup</string>
   <string name="EditProfileFragment__group_name">Emër grupi</string>
   <string name="EditProfileFragment__group_description">Përshkrim grupi</string>
   <!--EditProfileNameFragment-->
@@ -1969,6 +1969,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__appearance">Dukje</string>
   <string name="preferences__theme">Temë</string>
   <string name="preferences__chat_wallpaper">Sfond fjalosjesh</string>
+  <string name="preferences__chat_color_and_wallpaper">Ngjyrë &amp; sfond fjalosjeje</string>
   <string name="preferences__disable_pin">Çaktivizoje PIN-in</string>
   <string name="preferences__enable_pin">Aktivizoje PIN-in</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nëse çaktivizoni PIN-in, do të humbni krejt të dhënat, kur riregjistroni
@@ -2753,17 +2754,25 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Sfond fjalosjesh</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Ngjyrë fjalosjeje</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Riktheji te parazgjedhjet ngjyrat e fjalosjes</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Riktheje te parazgjedhja ngjyrën e fjalosjes</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Të rikthehet te parazgjedhja ngjyra e fjalosjes?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Caktoni sfond</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema e errët e ul ndriçimin e sfondit</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Hiqe sfondin</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Të hiqet sfondi për këtë fjalosje?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Të hiqet sfondi? Kjo s’do të spastrojë sfonde vetjake që keni vënë për fjalosjet tuaja.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Rikthe te parazgjedhjet krejt sfondet</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Të rikthehen te parazgjedhjet krejt sfondet, përfshi sfonde vetjake që keni caktuar për fjalosjet tuaja?</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mënyra e errët e ul ndriçimin e sfondit</string>
   <string name="ChatWallpaperFragment__contact_name">Emër kontakti</string>
   <string name="ChatWallpaperFragment__reset">Riktheje</string>
   <string name="ChatWallpaperFragment__clear">Spastroje</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Paraparje sfondi</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Do të donit të anashkalohen krejt ngjyrat e fjalosjes?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Do të donit të anashkalohen krejt ngjyrat sfondet?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Riktheji ngjyrat parazgjedhje</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Riktheji te parazgjedhjet krejt ngjyrat</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Riktheje sfondin te parazgjedhja</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Rikthe te parazgjedhjet krejt sfondet</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Rikthe sfondet te parazgjedhjet</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Rikthe sfondin te parazgjedhja</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Të rikthehet sfondi te parazgjedhja?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Zgjidhni prej fotosh</string>
   <string name="ChatWallpaperSelectionFragment__presets">Paracaktime</string>
@@ -2865,6 +2874,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Asnjë prej kontakteve tuaj, apo persona me të cilët bisedoni, s’gjenden në këtë grup. Për të shmangur mesazhe të padëshiruar, shqyrtojini me kujdes kërkesat, përpara se t’i miratoni.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Mbi kërkesa mesazhesh</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Ja një paraparje e ngjyrës së fjalosjes.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ngjyra është e dukshme vetëm për ju.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Përshkrim grupi</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2916,11 +2927,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpireTimerSettingsFragment__custom_time">Kohë vetjake</string>
   <string name="ExpireTimerSettingsFragment__set">Vëre</string>
   <string name="ExpireTimerSettingsFragment__save">Ruaje</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekondë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minutë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Orë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Ditë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Javë</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">sekonda</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuta</string>
+  <string name="CustomExpireTimerSelectorView__hours">horë</string>
+  <string name="CustomExpireTimerSelectorView__days">ditë</string>
+  <string name="CustomExpireTimerSelectorView__weeks">javë</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Qendër asistence</string>
   <string name="HelpSettingsFragment__contact_us">Lidhuni me ne</string>
@@ -2931,5 +2942,60 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="HelpFragment__licenced_under_the_gplv3">Licencuar nën GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Thirrje</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Përdor ngjyra vetjake</string>
+  <string name="ChatColorSelectionFragment__chat_color">Ngjyrë fjalosjeje</string>
+  <string name="ChatColorSelectionFragment__edit">Përpunojeni</string>
+  <string name="ChatColorSelectionFragment__duplicate">E përsëdytur</string>
+  <string name="ChatColorSelectionFragment__delete">Fshije</string>
+  <string name="ChatColorSelectionFragment__delete_color">Fshije ngjyrën</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Kjo ngjyrë vetjake përdoret në 1%1$d fjalosje. Doni të fshihet për krejt fjalosjet?</item>
+    <item quantity="other">Kjo ngjyrë vetjake përdoret në %1$d fjalosje. Doni të fshihet për krejt fjalosjet?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">E plotë</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+  <string name="CustomChatColorCreatorFragment__hue">Ngjyresë</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Ngopje</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Ruaje</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Përpunoni ngjyrë</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Kjo ngjyrë vetjake përdoret në %1$d fjalosje. Doni të ruhen ndryshimet për krejt fjalosjet?</item>
+    <item quantity="other">Kjo ngjyrë vetjake përdoret në %1$d fjalosje. Doni të ruhen ndryshimet për krejt fjalosjet?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Përzgjedhësi i skajit të epërm</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Përzgjedhës i skajit të poshtëm</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Përshtatni reagime</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Prekeni që të zëvendësoni një emoxhi</string>
+  <string name="EditReactionsFragment__reset">Riktheje</string>
+  <string name="EditReactionsFragment_save">Ruaje</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Përputhje e automatizuar e ngjyrës me sfondin</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Tërhiqeni që të ndryshohet drejtimi i gradientit</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Ngjyra të Reja Fjalosjeje</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Kemi këmbyer ngjyrat e fjalosjes, për t’ju dhënë më tepër mundësi dhe për t’i bërë fjalosjet të lexohen më kollaj.</string>
+  <string name="ChatColorsMegaphone__appearance">Dukje</string>
+  <string name="ChatColorsMegaphone__not_now">Jo tani</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Hap kërkim emoji-sh</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Hap kërkim ngjitësish</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Hap kërkim gif-esh</string>
+  <string name="KeyboardPagerFragment_stickers">Ngjitës</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Gif-e</string>
+  <string name="KeyboardPagerFragment_search_emoji">Kërkoni emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Mbrapsht te emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Spastro zë kërkimi</string>
+  <string name="KeyboardPagerFragment_search_giphy">Kërkoni GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Kërkoni ngjitës</string>
+  <string name="StickerSearchDialogFragment_no_results_found">S’u gjet përfundim</string>
+  <string name="EmojiSearchFragment__no_results_found">S’u gjet përfundim</string>
   <!--EOF-->
 </resources>
