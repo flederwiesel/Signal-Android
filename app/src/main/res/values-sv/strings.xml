@@ -656,32 +656,11 @@
   <string name="ManageProfileFragment_your_username">Ditt användarnamn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Misslyckades med att ställa in avatar</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denna person finns i dina kontakter</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string>
-  <string name="ManageRecipientActivity_chat_color">Chattfärg</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Chattbakgrund</string>
-  <string name="ManageRecipientActivity_block">Blockera</string>
-  <string name="ManageRecipientActivity_unblock">Avblockera</string>
-  <string name="ManageRecipientActivity_view_safety_number">Visa säkerhetsnummer</string>
-  <string name="ManageRecipientActivity_mute_notifications">Tysta aviseringar</string>
-  <string name="ManageRecipientActivity_custom_notifications">Anpassade aviseringar</string>
-  <string name="ManageRecipientActivity_until_s">Fram tills %1$s</string>
-  <string name="ManageRecipientActivity_always">Alltid</string>
-  <string name="ManageRecipientActivity_off">Av</string>
-  <string name="ManageRecipientActivity_on">På</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Lägg till i en grupp</string>
-  <string name="ManageRecipientActivity_view_all_groups">Visa alla grupper</string>
-  <string name="ManageRecipientActivity_see_all">Se alla</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Inga gemensamma grupper</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupp gemensamt</item>
     <item quantity="other">%d gemensamma grupper</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Meddelande</string>
-  <string name="ManageRecipientActivity_voice_call_description">Röstsamtal</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Osäkert röstsamtal</string>
-  <string name="ManageRecipientActivity_video_call_description">Videosamtal</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s bjöd in 1 person</item>
     <item quantity="other">%1$s bjöd in %2$d personer</item>
@@ -865,6 +844,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Lägg till en bildtext…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ett objekt togs bort eftersom det överskred storleksgränsen</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Ett objekt togs bort eftersom det hade en okänd typ</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Ett objekt togs bort eftersom det översteg storleksgränsen eller hade en okänd typ</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera otillgänglig.</string>
   <string name="MediaSendActivity_message_to_s">Meddelande till %s</string>
   <string name="MediaSendActivity_message">Meddelande</string>
@@ -896,7 +877,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s inaktiverade försvinnande meddelanden.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tidsgränsen för försvinnande meddelanden till %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tidsgränsen för försvinnande meddelanden till %2$s. </string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Den försvinnande meddelandetidtagaren har ställts in till %1$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Tidsgränsen för försvinnande meddelanden har ställts in till %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Denna grupp uppdaterades till en Ny grupp.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</string>
   <string name="MessageRecord_chat_session_refreshed">Chattsessionen uppdaterad</string>
@@ -1175,6 +1156,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifiera för att fortsätta skicka meddelanden</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">För att förhindra skräppost på Signal, vänligen slutför verifieringen.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Efter verifiering kan du fortsätta skicka meddelanden. Alla pausade meddelanden skickas automatiskt.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Du</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockera</string>
   <string name="RecipientPreferenceActivity_unblock">Avblockera</string>
@@ -1810,6 +1793,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="message_details_recipient_header__delivered_to">Levererat till</string>
   <string name="message_details_recipient_header__read_by">Läst av</string>
   <string name="message_details_recipient_header__not_sent">Inte skickat</string>
+  <string name="message_details_recipient_header__viewed">Visat av</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Misslyckades att skicka</string>
   <string name="message_details_recipient__new_safety_number">Nytt säkerhetsnummer</string>
@@ -1864,6 +1848,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flaggor</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Uttryckssymboler</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Inga resultat hittades</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
@@ -1951,8 +1936,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
-  <string name="preferences__mms_proxy_host">MMS Proxyvärd</string>
-  <string name="preferences__mms_proxy_port">MMS Proxyport</string>
+  <string name="preferences__mms_proxy_host">MMS-proxyvärd</string>
+  <string name="preferences__mms_proxy_port">MMS-proxyport</string>
   <string name="preferences__mmsc_username">MMSC Användarnamn</string>
   <string name="preferences__mmsc_password">MMSC Lösenord</string>
   <string name="preferences__sms_delivery_reports">SMS-leveransrapporter</string>
@@ -1975,7 +1960,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__enable_pin">Aktivera PIN-koden</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Om du inaktiverar PIN-koden kommer du att förlora alla data när du registrerar om Signal om du inte säkerhetskopierar och återställer manuellt. Du kan inte aktivera registreringslåset medan PIN-koden är inaktiverad.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koden håller information lagrad hos Signal krypterad så att du bara kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om. Du behöver inte din PIN-kod för att öppna appen.</string>
-  <string name="preferences__system_default">Systemets standardinställning</string>
+  <string name="preferences__system_default">Systemets standard</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__signal_messages_and_calls">Signal-meddelanden och -samtal</string>
   <string name="preferences__advanced_pin_settings">Avancerade PIN-kodsinställningar</string>
@@ -2640,7 +2625,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Lägg till i en grupp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lägg till i en annan grupp</string>
   <string name="RecipientBottomSheet_view_safety_number">Visa säkerhetsnummer</string>
-  <string name="RecipientBottomSheet_make_group_admin">Gör till gruppadministratör</string>
+  <string name="RecipientBottomSheet_make_admin">Gör till administratör</string>
   <string name="RecipientBottomSheet_remove_as_admin">Ta bort som administratör</string>
   <string name="RecipientBottomSheet_remove_from_group">Ta bort från grupp</string>
   <string name="RecipientBottomSheet_message_description">Meddelande</string>
@@ -2905,8 +2890,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PrivacySettingsFragment__app_security">Appsäkerhet</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blockera skärmdumpar i senaste-listan och appen</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meddelanden och -samtal, vidarebefordra samtal och dold avsändare</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard tidtagare för nya chattar</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ställ in en standardtidtagare för försvinnande meddelanden för alla nya chattar som du startar.</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard tidsgräns för nya chattar</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ställ in en standardtidsgräns för försvinnande meddelanden för alla nya chattar som du startar.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Visa statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Visa en ikon i meddelandedetaljer när de levererades med dold avsändare.</string>
@@ -2975,7 +2960,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Dra för att ändra lutningens riktning</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nya chattfärger</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Vi ändrade chattfärger för att ge dig fler alternativ och göra chatt lättare att läsa.</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Vi ändrade chattfärger för att ge dig fler alternativ och göra chattar lättare att läsa.</string>
   <string name="ChatColorsMegaphone__appearance">Utseende</string>
   <string name="ChatColorsMegaphone__not_now">Inte nu</string>
   <!--KeyboardPagerFragment-->
@@ -2995,5 +2980,51 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="StickerSearchDialogFragment_no_results_found">Inga resultat hittades</string>
   <string name="EmojiSearchFragment__no_results_found">Inga resultat hittades</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Okänd ringsignal</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Skicka meddelande</string>
+  <string name="ConversationSettingsFragment__start_video_call">Starta videosamtal</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Starta ljudsamtal</string>
+  <string name="ConversationSettingsFragment__message">Meddelande</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Ljud</string>
+  <string name="ConversationSettingsFragment__call">Ring</string>
+  <string name="ConversationSettingsFragment__mute">Tysta</string>
+  <string name="ConversationSettingsFragment__muted">Tystad</string>
+  <string name="ConversationSettingsFragment__search">Sök</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Försvinnande meddelanden</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Ljud &amp; aviseringar</string>
+  <string name="ConversationSettingsFragment__contact_details">Kontaktdetaljer</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Visa säkerhetsnummer</string>
+  <string name="ConversationSettingsFragment__block">Blockera</string>
+  <string name="ConversationSettingsFragment__block_group">Blockera grupp</string>
+  <string name="ConversationSettingsFragment__unblock">Avblockera</string>
+  <string name="ConversationSettingsFragment__unblock_group">Avblockera grupp</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Lägg till i en grupp</string>
+  <string name="ConversationSettingsFragment__see_all">Se alla</string>
+  <string name="ConversationSettingsFragment__add_members">Lägg till medlemmar</string>
+  <string name="ConversationSettingsFragment__permissions">Behörigheter</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Förfrågningar &amp; inbjudningar</string>
+  <string name="ConversationSettingsFragment__group_link">Grupplänk</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Lägg till som en kontakt</string>
+  <string name="ConversationSettingsFragment__unmute">Ljud på</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Konversation tystad till %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Konversation tystad för alltid</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Redigera gruppinformation</string>
+  <string name="PermissionsSettingsFragment__all_members">Alla medlemmar</string>
+  <string name="PermissionsSettingsFragment__only_admins">Endast administratörer</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Vem kan lägga till nya medlemmar?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Vem kan redigera denna grupps information?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tysta aviseringar</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Inte tystad</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Tystad till %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Omnämnanden</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Meddela alltid</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Meddela inte</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Anpassade aviseringar</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

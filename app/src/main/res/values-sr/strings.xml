@@ -689,33 +689,12 @@
   <string name="ManageProfileFragment_your_username">Твоје корисничко име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Неуспех постављења аватара</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Додај у системске контакте</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ова особа је у вашим контактима</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Самонестајуће поруке</string>
-  <string name="ManageRecipientActivity_chat_color">Боја ћаскања</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Позадина за ћаскање</string>
-  <string name="ManageRecipientActivity_block">Блокирај</string>
-  <string name="ManageRecipientActivity_unblock">Одблокирај</string>
-  <string name="ManageRecipientActivity_view_safety_number">Прикажи сигурносни број</string>
-  <string name="ManageRecipientActivity_mute_notifications">Утишај обавештења</string>
-  <string name="ManageRecipientActivity_custom_notifications">Прилагођена обавештења</string>
-  <string name="ManageRecipientActivity_until_s">До %1$s</string>
-  <string name="ManageRecipientActivity_always">Увек</string>
-  <string name="ManageRecipientActivity_off">Искључено</string>
-  <string name="ManageRecipientActivity_on">Укључено</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Додај у групу</string>
-  <string name="ManageRecipientActivity_view_all_groups">Види све групе</string>
-  <string name="ManageRecipientActivity_see_all">Погледај све</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Нема заједничких група</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d заједничка група</item>
     <item quantity="few">%d заједничке групе</item>
     <item quantity="other">%d заједничких група</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Порука</string>
-  <string name="ManageRecipientActivity_voice_call_description">Гласовни позив</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Несигуран гласовни позив</string>
-  <string name="ManageRecipientActivity_video_call_description">Видео позив</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s је позвао/ла једну особу</item>
     <item quantity="few">%1$s је позвао/ла %2$d особа</item>
@@ -908,6 +887,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Додај натпис</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Датотека је уклоњена јер је прекорачила дозвољену величину</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Датотека је уклоњена јер је имала непознати тип</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Датотека је уклоњена јер је прекорачила дозвољену величину или има непознати тип</string>
   <string name="MediaSendActivity_camera_unavailable">Камера није доступна.</string>
   <string name="MediaSendActivity_message_to_s">Порука за %s</string>
   <string name="MediaSendActivity_message">Порука</string>
@@ -1090,6 +1071,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Означили сте ваш сигурносни број са %s као проверен на другом уређају.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Означили сте ваш сигурносни број са %s као непроверен.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Означили сте ваш сигурносни број са %s као непроверен на другом уређају.</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порука од %s није могла да се испоручи</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s покренуо/ла групни позив · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s је у групном позиву · %2$s</string>
@@ -1233,6 +1215,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Верификујте да би се наставило преписивање</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Да бисте спречили спем у Signаl-у, испуните верификацију.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Након верификације, можете наставити са порукама. Било која паузирана порука ће аутоматски бити послана.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Ви</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
@@ -1828,6 +1812,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Да бисте слали мултимедијалне и групне поруке тапните „У реду“ и попуните захтеване поставке. ММС поставке за вашег оператера углавном можете наћи претрагом „мој оператер APN“. Ово треба да урадите само једном.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем у испоруци</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Порука, налепница, реакција, потврда о читању или медиј од %s није могло да се испоручи. Можда су то покушали да вам пошаљу директно или у групи.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Порука, налепница, реакција или потврда о читању од %s није вам достављена.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Име (потребно)</string>
   <string name="CreateProfileActivity_last_name_optional">Презиме (опционо)</string>
@@ -1884,6 +1870,7 @@
   <string name="message_details_recipient_header__delivered_to">Достављено</string>
   <string name="message_details_recipient_header__read_by">Прочитао</string>
   <string name="message_details_recipient_header__not_sent">Није послато</string>
+  <string name="message_details_recipient_header__viewed">Погледао</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Неуспех слања</string>
   <string name="message_details_recipient__new_safety_number">Нова шифра преписке</string>
@@ -1938,6 +1925,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Симболи</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Заставе</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Емотикони</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Нема резултата</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Користи подразумевано</string>
   <string name="arrays__use_custom">Користи посебно</string>
@@ -2105,6 +2093,8 @@
   <string name="preferences_data_and_storage__calls">Позиви</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Користите мање података за позиве</string>
   <string name="preferences_data_and_storage__never">Никад</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">ВиФи и мобилна мрежа</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Само мобилна мрежа</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Коришћење мање података може побољшати позиве на лошим мрежама</string>
   <string name="preferences_notifications__messages">Поруке</string>
   <string name="preferences_notifications__events">Догађаји</string>
@@ -2129,6 +2119,7 @@
   <string name="preferences_off">Искључено</string>
   <string name="preferences_on">Укључено</string>
   <string name="preferences_proxy_address">Адреса проксија</string>
+  <string name="preferences_only_use_a_proxy_if">Прокси користите само ако не можете да се повежете са Signal-ом на мобилној или Ви-Фи мрежи.</string>
   <string name="preferences_share">Поделите</string>
   <string name="preferences_save">Сачувај</string>
   <string name="preferences_connecting_to_proxy">Повезивање са проксијом…</string>
@@ -2720,7 +2711,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Додај у групу</string>
   <string name="RecipientBottomSheet_add_to_another_group">Додај у другу групу</string>
   <string name="RecipientBottomSheet_view_safety_number">Прикажи сигурносни број</string>
-  <string name="RecipientBottomSheet_make_group_admin">Постави за администратора групе</string>
+  <string name="RecipientBottomSheet_make_admin">Постави за администратора</string>
   <string name="RecipientBottomSheet_remove_as_admin">Одузми администраторске дозволе</string>
   <string name="RecipientBottomSheet_remove_from_group">Уклони из групе</string>
   <string name="RecipientBottomSheet_message_description">Порука</string>
@@ -2823,6 +2814,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Поделите</string>
   <string name="ShareActivity__send">Пошаљи</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Дељење у више ћаскања је подржано само за Signal поруке</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Слање неким корисницима није успело</string>
@@ -3077,5 +3069,40 @@
   <string name="StickerSearchDialogFragment_search_stickers">Тражити налепнице</string>
   <string name="StickerSearchDialogFragment_no_results_found">Нема резултата</string>
   <string name="EmojiSearchFragment__no_results_found">Нема резултата</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Непозната мелодија звона</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Порука</string>
+  <string name="ConversationSettingsFragment__video">Видео запис</string>
+  <string name="ConversationSettingsFragment__audio">Звучни запис</string>
+  <string name="ConversationSettingsFragment__call">Позови</string>
+  <string name="ConversationSettingsFragment__mute">Утишај</string>
+  <string name="ConversationSettingsFragment__muted">Утишано</string>
+  <string name="ConversationSettingsFragment__search">Претрага</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Самонестајуће поруке</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Прикажи сигурносни број</string>
+  <string name="ConversationSettingsFragment__block">Блокирај</string>
+  <string name="ConversationSettingsFragment__block_group">Блокирај групу</string>
+  <string name="ConversationSettingsFragment__unblock">Одблокирај</string>
+  <string name="ConversationSettingsFragment__unblock_group">Одблокирај групу</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Додај у групу</string>
+  <string name="ConversationSettingsFragment__see_all">Погледај све</string>
+  <string name="ConversationSettingsFragment__add_members">Додај чланове</string>
+  <string name="ConversationSettingsFragment__permissions">Дозволе</string>
+  <string name="ConversationSettingsFragment__group_link">Веза до групе</string>
+  <string name="ConversationSettingsFragment__unmute">Укључи обавештења</string>
+  <string name="ConversationSettingsFragment__phone_number">Број телефона</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Додај чланове</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Уреди информације о групи</string>
+  <string name="PermissionsSettingsFragment__all_members">Сви чланови</string>
+  <string name="PermissionsSettingsFragment__only_admins">Само администратори</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Ко може додати нове чланове?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ко може мењати информације о групи?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Утишај обавештења</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Није утишано</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Помињања</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Прилагођена обавештења</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

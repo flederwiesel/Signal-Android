@@ -145,19 +145,23 @@ class MediaSendViewModel extends ViewModel {
   void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
     List<Media> originalMedia = getSelectedMediaOrDefault();
 
-    if (!newMedia.isEmpty()) {
-      selectedMedia.setValue(newMedia);
-    }
-
     repository.getPopulatedMedia(context, newMedia, populatedMedia -> {
       ThreadUtil.runOnMain(() -> {
         List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
 
         if (filteredMedia.size() != newMedia.size()) {
           if (filteredMedia.isEmpty() && newMedia.size() == 1 && page == Page.UNKNOWN) {
-            error.setValue(Error.ONLY_ITEM_TOO_LARGE);
+            if (MediaUtil.isImageOrVideoType(newMedia.get(0).getMimeType())) {
+              error.setValue(Error.ONLY_ITEM_TOO_LARGE);
+            } else {
+              error.setValue(Error.ONLY_ITEM_IS_INVALID_TYPE);
+            }
           } else {
-            error.setValue(Error.ITEM_TOO_LARGE);
+            if (newMedia.stream().allMatch(m -> MediaUtil.isImageOrVideoType(m.getMimeType()))) {
+              error.setValue(Error.ITEM_TOO_LARGE);
+            } else {
+              error.setValue(Error.ITEM_TOO_LARGE_OR_INVALID_TYPE);
+            }
           }
         }
 
@@ -199,8 +203,6 @@ class MediaSendViewModel extends ViewModel {
   }
 
   void onSingleMediaSelected(@NonNull Context context, @NonNull Media media) {
-    selectedMedia.setValue(Collections.singletonList(media));
-
     repository.getPopulatedMedia(context, Collections.singletonList(media), populatedMedia -> {
       ThreadUtil.runOnMain(() -> {
         List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
@@ -234,12 +236,8 @@ class MediaSendViewModel extends ViewModel {
     captionVisible = getSelectedMediaOrDefault().size() > 1 || (getSelectedMediaOrDefault().size() > 0 && getSelectedMediaOrDefault().get(0).getCaption().isPresent());
     buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
-    if (viewOnceState == ViewOnceState.GONE && viewOnceSupported()) {
-      viewOnceState = ViewOnceState.DISABLED;
-      showViewOnceTooltipIfNecessary(viewOnceState);
-    } else if (!viewOnceSupported()) {
-      viewOnceState = ViewOnceState.GONE;
-    }
+    updateViewOnceState();
+    showViewOnceTooltipIfNecessary(viewOnceState);
 
     railState      = !isSms && viewOnceState != ViewOnceState.ENABLED ? RailState.INTERACTIVE : RailState.GONE;
     composeVisible = viewOnceState != ViewOnceState.ENABLED;
@@ -588,6 +586,15 @@ class MediaSendViewModel extends ViewModel {
     return mediaConstraints;
   }
 
+  private void updateViewOnceState() {
+    if (viewOnceState == ViewOnceState.GONE && viewOnceSupported()) {
+      showViewOnceTooltipIfNecessary(viewOnceState);
+      viewOnceState = ViewOnceState.DISABLED;
+    } else if (!viewOnceSupported()) {
+      viewOnceState = ViewOnceState.GONE;
+    }
+  }
+
   private @NonNull List<Media> getSelectedMediaOrDefault() {
     return selectedMedia.getValue() == null ? Collections.emptyList()
                                             : selectedMedia.getValue();
@@ -610,6 +617,8 @@ class MediaSendViewModel extends ViewModel {
     int         selectionCount        = selectedMedia.size();
     ButtonState updatedButtonState    = buttonState == ButtonState.COUNT && selectionCount == 0 ? ButtonState.GONE : buttonState;
     boolean     updatedCaptionVisible = captionVisible && (selectedMedia.size() > 1 || (selectedMedia.size() > 0 && selectedMedia.get(0).getCaption().isPresent()));
+
+    updateViewOnceState();
 
     return new HudState(hudVisible, composeVisible, updatedCaptionVisible, selectionCount, updatedButtonState, railState, viewOnceState);
   }
@@ -702,7 +711,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   enum Error {
-    ITEM_TOO_LARGE, TOO_MANY_ITEMS, NO_ITEMS, ONLY_ITEM_TOO_LARGE
+    ITEM_TOO_LARGE, TOO_MANY_ITEMS, NO_ITEMS, ONLY_ITEM_TOO_LARGE, ONLY_ITEM_IS_INVALID_TYPE, ITEM_TOO_LARGE_OR_INVALID_TYPE
   }
 
   enum Event {

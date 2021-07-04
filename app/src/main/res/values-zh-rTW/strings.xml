@@ -240,8 +240,8 @@
   <string name="ConversationActivity_full">已滿</string>
   <string name="ConversationActivity_error_sending_media">傳送媒體檔時出錯</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">已檢舉垃圾訊息並封鎖。</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF 已經被移動了</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">在表情符號和貼圖旁邊尋找 GIF。</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF 挪動了</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">請到表情符號與貼圖旁邊尋找 GIF。</string>
   <string name="ConversationActivity__gifs_are_now_here">GIF 現在在這裡。</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -623,31 +623,10 @@
   <string name="ManageProfileFragment_your_username">你的使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">加入系統聯絡人</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">這個人在你的聯絡人清單中</string>
-  <string name="ManageRecipientActivity_disappearing_messages">自動銷毀訊息</string>
-  <string name="ManageRecipientActivity_chat_color">聊天的顏色</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">聊天壁紙</string>
-  <string name="ManageRecipientActivity_block">封鎖</string>
-  <string name="ManageRecipientActivity_unblock">解除封鎖</string>
-  <string name="ManageRecipientActivity_view_safety_number">檢視安全碼</string>
-  <string name="ManageRecipientActivity_mute_notifications">將通知調整為靜音</string>
-  <string name="ManageRecipientActivity_custom_notifications">自訂通知</string>
-  <string name="ManageRecipientActivity_until_s">直到 %1$s</string>
-  <string name="ManageRecipientActivity_always">永遠</string>
-  <string name="ManageRecipientActivity_off">關</string>
-  <string name="ManageRecipientActivity_on">開</string>
-  <string name="ManageRecipientActivity_add_to_a_group">新增到群組</string>
-  <string name="ManageRecipientActivity_view_all_groups">檢視全部群組</string>
-  <string name="ManageRecipientActivity_see_all">查看全部</string>
   <string name="ManageRecipientActivity_no_groups_in_common">沒有共同的群組</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">%d 個共同的群組</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">訊息</string>
-  <string name="ManageRecipientActivity_voice_call_description">語音電話</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">不安全的語音電話</string>
-  <string name="ManageRecipientActivity_video_call_description">視訊電話</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s 邀請了 %2$d 人</item>
   </plurals>
@@ -822,6 +801,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">新增標題…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一個項目因為超過容量的限制而被移除</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">刪除了一個項目，因為它的類型未知</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">項目因超出大小限制或類型未知而被刪除</string>
   <string name="MediaSendActivity_camera_unavailable">相機無法使用。</string>
   <string name="MediaSendActivity_message_to_s">傳訊息給 %s</string>
   <string name="MediaSendActivity_message">訊息</string>
@@ -988,7 +969,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">你從另一個裝置標記與 %s 的安全碼為已驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">你已標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
-  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自%s的訊息無法傳遞</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %s 的一則訊息無法送達</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
@@ -1117,6 +1098,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">驗證以繼續傳送訊息</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">為了協助防止Signal上的垃圾訊息，請完成驗證。</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">驗證後，你可以繼續進行訊息傳送。 任何暫停的訊息將自動傳送。</string>
+  <!--Recipient-->
+  <string name="Recipient_you">你</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
@@ -1682,8 +1665,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">傳送媒體檔案或群組訊息，請按下 \"OK\" 並完成必要的設定。您所使用電信業者相關的MMS多媒體簡訊設定可能羅列在 \'無線與網路／行動網路\'的設定項目內。且您只需設定一次。</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">傳送問題</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">無法從%s 向你傳送訊息、貼圖、回應或已讀回執。 他們可能已經嘗試將其直接傳送給你，或以群組的形式傳送給你。</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">無法從 %s向你傳送訊息、貼圖、回應或已讀回執。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">來自 %s 的一則訊息、貼圖、反應或已讀回執無法向你送達。不清楚是直接傳送給你，又或是來自某個群組中。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">來自 %s 的一則訊息、貼圖、反應或已讀回執無法向你送達。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名字 (必填)</string>
   <string name="CreateProfileActivity_last_name_optional">姓氏 (選用)</string>
@@ -1740,6 +1723,7 @@
   <string name="message_details_recipient_header__delivered_to">已送達</string>
   <string name="message_details_recipient_header__read_by">已讀取</string>
   <string name="message_details_recipient_header__not_sent">未傳送</string>
+  <string name="message_details_recipient_header__viewed">查看者</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">傳送失敗</string>
   <string name="message_details_recipient__new_safety_number">新的安全碼</string>
@@ -1794,6 +1778,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">符號</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">旗幟</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">表情符號</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">未找到結果</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">使用預設</string>
   <string name="arrays__use_custom">使用自訂</string>
@@ -1959,7 +1944,7 @@
   <string name="preferences_data_and_storage__calls">通話</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">使用更少的數據進行通話</string>
   <string name="preferences_data_and_storage__never">永不</string>
-  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi和行動網路</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi 與行動網路</string>
   <string name="preferences_data_and_storage__mobile_data_only">僅限行動網路</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">使用較少的數據可能改善不良網路上的通話</string>
   <string name="preferences_notifications__messages">訊息</string>
@@ -2562,7 +2547,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">新增到群組</string>
   <string name="RecipientBottomSheet_add_to_another_group">新增到另一個群組</string>
   <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
-  <string name="RecipientBottomSheet_make_group_admin">成為群組管理員</string>
+  <string name="RecipientBottomSheet_make_admin">設為管理員</string>
   <string name="RecipientBottomSheet_remove_as_admin">移除管理員身份</string>
   <string name="RecipientBottomSheet_remove_from_group">從群組中移除</string>
   <string name="RecipientBottomSheet_message_description">訊息</string>
@@ -2661,7 +2646,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">傳送</string>
-  <string name="ShareActivity__comma_s">, %1$s</string>
+  <string name="ShareActivity__comma_s">、%1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">分享多個聊天僅支援 Signal 訊息</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">無法傳送給某些使用者</string>
@@ -2913,5 +2898,52 @@
   <string name="StickerSearchDialogFragment_no_results_found">未找到結果</string>
   <string name="EmojiSearchFragment__no_results_found">未找到結果</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">未知的鈴聲</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">傳送訊息</string>
+  <string name="ConversationSettingsFragment__start_video_call">開始視訊通話</string>
+  <string name="ConversationSettingsFragment__start_audio_call">開始語音通話</string>
+  <string name="ConversationSettingsFragment__message">訊息</string>
+  <string name="ConversationSettingsFragment__video">影片</string>
+  <string name="ConversationSettingsFragment__audio">音訊</string>
+  <string name="ConversationSettingsFragment__call">通話</string>
+  <string name="ConversationSettingsFragment__mute">靜音對話</string>
+  <string name="ConversationSettingsFragment__muted">已靜音</string>
+  <string name="ConversationSettingsFragment__search">搜尋</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">自動銷毀訊息</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">聲音 &amp; 通知</string>
+  <string name="ConversationSettingsFragment__contact_details">聯絡人細節</string>
+  <string name="ConversationSettingsFragment__view_safety_number">檢視安全碼</string>
+  <string name="ConversationSettingsFragment__block">封鎖</string>
+  <string name="ConversationSettingsFragment__block_group">封鎖群組</string>
+  <string name="ConversationSettingsFragment__unblock">解除封鎖</string>
+  <string name="ConversationSettingsFragment__unblock_group">解除封鎖群組</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">新增到群組</string>
+  <string name="ConversationSettingsFragment__see_all">查看全部</string>
+  <string name="ConversationSettingsFragment__add_members">新增成員</string>
+  <string name="ConversationSettingsFragment__permissions">權限</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">要求 &amp; 邀請</string>
+  <string name="ConversationSettingsFragment__group_link">群組連結</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">新增為聯絡人</string>
+  <string name="ConversationSettingsFragment__unmute">取消靜音</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">對話靜音直到 %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">永遠對話靜音</string>
+  <string name="ConversationSettingsFragment__phone_number">電話號碼</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">新增成員</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">編輯群組資訊</string>
+  <string name="PermissionsSettingsFragment__all_members">所有成員</string>
+  <string name="PermissionsSettingsFragment__only_admins">僅限管理員</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">誰可以新增新成員？</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">誰可以編輯此群組資訊?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">將通知調整為靜音</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">對話未靜音</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">靜音直到 %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">提及</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">總是通知</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">不要通知</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">自訂通知</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">最近使用的</string>
   <!--EOF-->
 </resources>
