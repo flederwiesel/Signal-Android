@@ -51,7 +51,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(प्रतिसाद द्या)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">गॅलरी</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">फाईल</string>
   <string name="AttachmentKeyboard_contact">संपर्क</string>
   <string name="AttachmentKeyboard_location">स्थान</string>
@@ -422,6 +422,7 @@
   <string name="AddToGroupActivity_add_to_groups">गटात जोडा</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
   <string name="AddToGroupActivity_add">जोडा</string>
+  <string name="AddToGroupActivity_add_to_a_group">गटात जोडा</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">नवीन प्रशासक निवडा</string>
   <string name="ChooseNewAdminActivity_done">ठीक</string>
@@ -552,6 +553,7 @@
     <item quantity="other">%3$d सदस्य \"%2$s\" मध्ये जोडायचे?</item>
   </plurals>
   <string name="AddMembersActivity__add">जोडा</string>
+  <string name="AddMembersActivity__add_members">सदस्य जोडा</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">या गटाला नाव द्या</string>
   <string name="AddGroupDetailsFragment__create_group">गट तयार करा</string>
@@ -788,6 +790,7 @@
   <string name="MediaOverviewActivity_audio">ऑडिओ</string>
   <string name="MediaOverviewActivity_video">व्हिडिओ</string>
   <string name="MediaOverviewActivity_image">चित्र</string>
+  <string name="MediaOverviewActivity_voice_message">व्हॉईस संदेश</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s द्वारे पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you">आपल्या द्वारे पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s यास पाठवले</string>
@@ -842,6 +845,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">सर्व मिडिया</string>
   <string name="MediaRepository__camera">कॅमेरा</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">अज्ञात</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal ची जुनी आवृत्ती वापरून एन्क्रिप्टेड संदेश प्राप्त झाला आहे जो आता समर्थित नाही. कृपया प्रेषकाला सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यास आणि संदेश पुन्हा पाठविण्यास विचारा.</string>
@@ -1591,6 +1595,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">खालपर्यंत स्क्रोल करा</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">सुरक्षितता नंबर बदल</string>
+  <string name="safety_number_change_dialog__accept">स्वीकारा</string>
   <string name="safety_number_change_dialog__send_anyway">तरीही पाठवा</string>
   <string name="safety_number_change_dialog__call_anyway">तरीही कॉल करा</string>
   <string name="safety_number_change_dialog__join_call">कॉलमध्ये सामील व्हा</string>
@@ -2591,5 +2596,14 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">उल्लेख</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">सानुकूल सूचना</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">नवीन संदेश</string>
+  <!--ContactFilterView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

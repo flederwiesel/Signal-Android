@@ -172,6 +172,20 @@ private static final String[] GROUP_PROJECTION = {
     }
   }
 
+  public Optional<GroupRecord> getGroupByDistributionId(@NonNull DistributionId distributionId) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = DISTRIBUTION_ID + " = ?";
+    String[]       args  = SqlUtil.buildArgs(distributionId);
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, query, args, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return getGroup(cursor);
+      } else {
+        return Optional.absent();
+      }
+    }
+  }
+
   /**
    * Removes the specified members from the list of 'unmigrated V1 members' -- the list of members
    * that were either dropped or had to be invited when migrating the group from V1->V2.
@@ -452,7 +466,7 @@ private static final String[] GROUP_PROJECTION = {
     GroupId.V2 groupId = GroupId.v2(groupMasterKey);
 
     if (getGroupV1ByExpectedV2(groupId).isPresent()) {
-      throw new MissedGroupMigrationInsertException(groupId);
+      Log.w(TAG, "There already exists a V1 group that should be migrated into this group. But if the recipient already exists, there's not much we can do here.");
     }
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();

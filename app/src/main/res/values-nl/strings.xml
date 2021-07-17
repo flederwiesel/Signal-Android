@@ -52,9 +52,10 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(locatie)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(citaat)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Audiobericht)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerij</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Bestand</string>
   <string name="AttachmentKeyboard_contact">Contactpersoon</string>
   <string name="AttachmentKeyboard_location">Locatie</string>
@@ -242,9 +243,9 @@
   <string name="ConversationActivity_full">Vol</string>
   <string name="ConversationActivity_error_sending_media">Fout bij het verzenden van media</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Gemeld als spam en geblokkeerd.</string>
-  <string name="ConversationActivity_gifs_have_moved">GIFs zijn verplaatst</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Je kunt de GIFs vinden bij de emojis en stickers</string>
-  <string name="ConversationActivity__gifs_are_now_here">De GIFs zijn nu hier.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFs zijn verplaatst</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Je kunt de GIFs vinden bij de emojis en stickers</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">De GIFs zijn nu hier.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -329,6 +330,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sommige contactpersonen kunnen geen lid worden van verouderde groepen.</string>
+  <string name="CreateGroupActivity__select_members">Kies leden</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiel</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
@@ -435,6 +437,7 @@
   <string name="AddToGroupActivity_add_to_groups">Aan groepen toevoegen</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan een verouderde groep.</string>
   <string name="AddToGroupActivity_add">Toevoegen</string>
+  <string name="AddToGroupActivity_add_to_a_group">Aan een groep toevoegen</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Kies een nieuwe beheerder</string>
   <string name="ChooseNewAdminActivity_done">Klaar</string>
@@ -566,6 +569,7 @@
     <item quantity="other">%3$d personen toevoegen aan “%2$s”?</item>
   </plurals>
   <string name="AddMembersActivity__add">Toevoegen</string>
+  <string name="AddMembersActivity__add_members">Groepsleden toevoegen</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Geef dit groepsgesprek een naam </string>
   <string name="AddGroupDetailsFragment__create_group">Groep aanmaken</string>
@@ -806,6 +810,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Afbeelding</string>
+  <string name="MediaOverviewActivity_voice_message">Audiobericht</string>
   <string name="MediaOverviewActivity_sent_by_s">Door %1$s verzonden</string>
   <string name="MediaOverviewActivity_sent_by_you">Door jou verzonden</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Door %1$s naar %2$s verzonden</string>
@@ -863,6 +868,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle media</string>
   <string name="MediaRepository__camera">Camera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Ontsleutelen van bericht is mislukt</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tik hier op een foutopsporingslog te uploaden</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Gebruiker niet bekend</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
@@ -1638,6 +1646,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar bodem</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Veiligheidsnummer(s) veranderd</string>
+  <string name="safety_number_change_dialog__accept">Aanvaarden</string>
   <string name="safety_number_change_dialog__send_anyway">Toch verzenden</string>
   <string name="safety_number_change_dialog__call_anyway">Toch bellen</string>
   <string name="safety_number_change_dialog__join_call">Aan oproep deelnemen</string>
@@ -2025,7 +2034,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_data_and_storage__calls">Oproepen</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Minder dataoverdracht bij oproepen</string>
   <string name="preferences_data_and_storage__never">Nooit</string>
-  <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij wifi en mobie-dataoverdracht</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
   <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele-dataoverdracht</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruik maken van minder dataoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>
@@ -2087,7 +2096,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsHomeFragment__deactivate_payments">Overschrijvingen uitschakelen</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsHomeFragment__help">Hulp</string>
-  <string name="PaymentsHomeFragment__coin_cleanup_fee">Afrondingskosten</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Samenvoegingskosten</string>
   <string name="PaymentsHomeFragment__sent_payment">Verzonden overschrijving</string>
   <string name="PaymentsHomeFragment__received_payment">Ontvangen overschijving</string>
   <string name="PaymentsHomeFragment__processing_payment">Overschrijving aan het verwerken</string>
@@ -2129,8 +2138,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsDetailsFragment__to">Naar</string>
   <string name="PaymentsDetailsFragment__from">Van</string>
   <string name="PaymentsDetailsFragment__information">Overschrijvingsdetails waaronder de hoeveelheid en het tijdstip van de betaling zijn onderdeel van het kasboek van MobileCoin.</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Afrondingskosten</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “afrondingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd om een overschrijving te voltooien. Door deze afrondingskosten kunnen je toch overschrijvingen blijven doen.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Samenvoegingskosten</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “samenvoegingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd to de nieuwe gewenste overschrijving. Door deze samenvoegingskosten kunnen je toch een nieuwe overschrijvingen maken.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Er is geen verdere informatie beschikbaar over deze overschrijving</string>
   <string name="PaymentsDetailsFragment__sent_payment">Overschrijving verzenden</string>
   <string name="PaymentsDetailsFragment__received_payment">Ontvangen overschrijving</string>
@@ -2667,6 +2676,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De verwijzing is momenteel niet actief</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Het afspelen van het audiobericht is mislukt</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Audiobericht · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naar %2$s</string>
@@ -2733,6 +2743,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="DeleteAccountCountryPickerFragment__search_countries">Land zoeken</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Overslaan</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d lid</item>
+    <item quantity="other">%1$d leden</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Delen via andere app</string>
   <string name="ShareActivity__send">Verzend</string>
@@ -2946,6 +2960,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="one">Deze zelfgekozen kleur wordt in %1$d gesprek gebruikt. Wil je het voor dat gesprek wissen?</item>
     <item quantity="other">Deze zelfgekozen kleur wordt in %1$d gesprekken gebruikt. Wil je het voor die gesprekken wissen?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Gesprekskleur verwijderen?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Effen</string>
   <string name="CustomChatColorCreatorFragment__gradient">Verloop</string>
@@ -2994,7 +3009,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__send_message">Bericht verzenden</string>
   <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
   <string name="ConversationSettingsFragment__start_audio_call">Audio-oproep beginnen</string>
-  <string name="ConversationSettingsFragment__message">Een bericht verzenden</string>
+  <string name="ConversationSettingsFragment__message">Bericht verzenden</string>
   <string name="ConversationSettingsFragment__video">Video-oproep</string>
   <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
   <string name="ConversationSettingsFragment__call">Bellen</string>
@@ -3038,5 +3053,20 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Aangepaste meldingen</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Recentelijk gebruikt</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nieuwe overschrijving</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Nieuw bericht</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Zoek op naam of telefoonnummer</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">Sms (onbeveiligd)</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

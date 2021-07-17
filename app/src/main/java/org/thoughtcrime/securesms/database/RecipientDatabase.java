@@ -8,6 +8,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
@@ -186,7 +187,7 @@ public class RecipientDatabase extends Database {
   };
 
   private static final String[] ID_PROJECTION              = new String[]{ID};
-  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, EXTRAS, GROUPS_IN_COMMON, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_JOINED_NAME) + ", " + nullIfEmpty(SYSTEM_GIVEN_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
+  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, EXTRAS, GROUPS_IN_COMMON, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "LOWER(COALESCE(" + nullIfEmpty(SYSTEM_JOINED_NAME) + ", " + nullIfEmpty(SYSTEM_GIVEN_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ")) AS " + SORT_NAME};
   public  static final String[] SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, EXTRAS, GROUPS_IN_COMMON, SEARCH_PROFILE_NAME, SORT_NAME};
   private static final String[] TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
                                                                    .map(columnName -> TABLE_NAME + "." + columnName)
@@ -404,10 +405,8 @@ public class RecipientDatabase extends Database {
     return getByColumn(EMAIL, email);
   }
 
-  public @NonNull
-  Optional<RecipientId> getByGroupId(@NonNull GroupId groupId) {
+  public @NonNull Optional<RecipientId> getByGroupId(@NonNull GroupId groupId) {
     return getByColumn(GROUP_ID, groupId.toString());
-
   }
 
   public @NonNull
@@ -2316,20 +2315,13 @@ public class RecipientDatabase extends Database {
   }
 
   public @Nullable Cursor getSignalContacts(boolean includeSelf) {
-    String   selection = BLOCKED    + " = ? AND "                                                     +
-                         REGISTERED + " = ? AND "                                                     +
-                         GROUP_ID   + " IS NULL AND "                                                 +
-                         "(" + SYSTEM_JOINED_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
-                         "(" + SORT_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
-    String[] args;
+    ContactSearchSelection searchSelection = new ContactSearchSelection.Builder().withRegistered(true)
+                                                                                 .withGroups(false)
+                                                                                 .excludeId(includeSelf ? null : Recipient.self().getId())
+                                                                                 .build();
 
-    if (includeSelf) {
-      args = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1" };
-    } else {
-      selection += " AND " + ID + " != ?";
-      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", Recipient.self().getId().serialize() };
-    }
-
+    String   selection = searchSelection.getWhere();
+    String[] args      = searchSelection.getArgs();
     String   orderBy   = SORT_NAME + ", " + SYSTEM_JOINED_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
@@ -2338,23 +2330,14 @@ public class RecipientDatabase extends Database {
   public @Nullable Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
     query = buildCaseInsensitiveGlobPattern(query);
 
-    String   selection = BLOCKED     + " = ? AND " +
-                         REGISTERED  + " = ? AND " +
-                         GROUP_ID    + " IS NULL AND " +
-                         "(" + SYSTEM_JOINED_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
-                         "(" +
-                           PHONE     + " GLOB ? OR " +
-                           SORT_NAME + " GLOB ? OR " +
-                           USERNAME  + " GLOB ?" +
-                         ")";
-    String[] args;
+    ContactSearchSelection searchSelection = new ContactSearchSelection.Builder().withRegistered(true)
+                                                                                 .withGroups(false)
+                                                                                 .excludeId(includeSelf ? null : Recipient.self().getId())
+                                                                                 .withSearchQuery(query)
+                                                                                 .build();
 
-    if (includeSelf) {
-      args = new String[]{"0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query};
-    } else {
-      selection += " AND " + ID + " != ?";
-      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query, String.valueOf(Recipient.self().getId().toLong()) };
-    }
+    String   selection = searchSelection.getWhere();
+    String[] args      = searchSelection.getArgs();
 
     String   orderBy   = SORT_NAME + ", " + SYSTEM_JOINED_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
 
@@ -2362,12 +2345,12 @@ public class RecipientDatabase extends Database {
   }
 
   public @Nullable Cursor getNonSignalContacts() {
-    String   selection = BLOCKED    + " = ? AND " +
-                         REGISTERED + " != ? AND " +
-                         GROUP_ID   + " IS NULL AND " +
-                         SYSTEM_CONTACT_URI + " NOT NULL AND " +
-                         "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL)";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()) };
+    ContactSearchSelection searchSelection = new ContactSearchSelection.Builder().withNonRegistered(true)
+                                                                                 .withGroups(false)
+                                                                                 .build();
+
+    String   selection = searchSelection.getWhere();
+    String[] args      = searchSelection.getArgs();
     String   orderBy   = SYSTEM_JOINED_NAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
@@ -2376,18 +2359,43 @@ public class RecipientDatabase extends Database {
   public @Nullable Cursor queryNonSignalContacts(@NonNull String query) {
     query = buildCaseInsensitiveGlobPattern(query);
 
-    String   selection = BLOCKED    + " = ? AND " +
-                         REGISTERED + " != ? AND " +
-                         GROUP_ID   + " IS NULL AND " +
-                         SYSTEM_CONTACT_URI + " NOT NULL AND " +
-                         "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL) AND " +
-                         "(" +
-                           PHONE              + " GLOB ? OR " +
-                           EMAIL              + " GLOB ? OR " +
-                           SYSTEM_JOINED_NAME + " GLOB ?" +
-                         ")";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query };
+    ContactSearchSelection searchSelection = new ContactSearchSelection.Builder().withNonRegistered(true)
+                                                                                 .withGroups(false)
+                                                                                 .withSearchQuery(query)
+                                                                                 .build();
+
+    String   selection = searchSelection.getWhere();
+    String[] args      = searchSelection.getArgs();
     String   orderBy   = SYSTEM_JOINED_NAME + ", " + PHONE;
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
+  }
+
+  public @Nullable Cursor getNonGroupContacts(boolean includeSelf) {
+    ContactSearchSelection searchSelection = new ContactSearchSelection.Builder().withRegistered(true)
+                                                                                 .withNonRegistered(true)
+                                                                                 .withGroups(false)
+                                                                                 .excludeId(includeSelf ? null : Recipient.self().getId())
+                                                                                 .build();
+
+    String orderBy = SORT_NAME + ", " + SYSTEM_JOINED_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, searchSelection.where, searchSelection.args, null, null, orderBy);
+  }
+
+  public @Nullable Cursor queryNonGroupContacts(@NonNull String query, boolean includeSelf) {
+    query = buildCaseInsensitiveGlobPattern(query);
+
+    ContactSearchSelection searchSelection = new ContactSearchSelection.Builder().withRegistered(true)
+                                                                                 .withNonRegistered(true)
+                                                                                 .withGroups(false)
+                                                                                 .excludeId(includeSelf ? null : Recipient.self().getId())
+                                                                                 .withSearchQuery(query)
+                                                                                 .build();
+
+    String   selection = searchSelection.getWhere();
+    String[] args      = searchSelection.getArgs();
+    String   orderBy   = SORT_NAME + ", " + SYSTEM_JOINED_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
@@ -2402,7 +2410,7 @@ public class RecipientDatabase extends Database {
                            PHONE     + " GLOB ? OR " +
                            EMAIL     + " GLOB ?" +
                          ")";
-    String[] args      = new String[] { "0", query, query, query, query };
+    String[] args      = SqlUtil.buildArgs("0", query, query, query, query);
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null);
   }
@@ -2932,18 +2940,24 @@ public class RecipientDatabase extends Database {
     // SMS Messages
     ContentValues smsValues = new ContentValues();
     smsValues.put(SmsDatabase.RECIPIENT_ID, byUuid.serialize());
-    if (threadMerge.neededMerge) {
-      smsValues.put(SmsDatabase.THREAD_ID, threadMerge.threadId);
-    }
     db.update(SmsDatabase.TABLE_NAME, smsValues, SmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+
+    if (threadMerge.neededMerge) {
+      ContentValues values = new ContentValues();
+      values.put(SmsDatabase.THREAD_ID, threadMerge.threadId);
+      db.update(SmsDatabase.TABLE_NAME, values, SmsDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId));
+    }
 
     // MMS Messages
     ContentValues mmsValues = new ContentValues();
     mmsValues.put(MmsDatabase.RECIPIENT_ID, byUuid.serialize());
-    if (threadMerge.neededMerge) {
-      mmsValues.put(MmsDatabase.THREAD_ID, threadMerge.threadId);
-    }
     db.update(MmsDatabase.TABLE_NAME, mmsValues, MmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+
+    if (threadMerge.neededMerge) {
+      ContentValues values = new ContentValues();
+      values.put(MmsDatabase.THREAD_ID, threadMerge.threadId);
+      db.update(MmsDatabase.TABLE_NAME, values, MmsDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId));
+    }
 
     // Sessions
     boolean hasE164Session = DatabaseFactory.getSessionDatabase(context).getAllFor(byE164).size() > 0;
@@ -3539,6 +3553,148 @@ public class RecipientDatabase extends Database {
     private GetOrInsertResult(@NonNull RecipientId recipientId, boolean neededInsert) {
       this.recipientId  = recipientId;
       this.neededInsert = neededInsert;
+    }
+  }
+
+  @VisibleForTesting
+  static final class ContactSearchSelection {
+
+    static final String FILTER_GROUPS  = " AND " + GROUP_ID + " IS NULL";
+    static final String FILTER_ID      = " AND " + ID + " != ?";
+    static final String FILTER_BLOCKED = " AND " + BLOCKED + " = ?";
+
+    static final String NON_SIGNAL_CONTACT = REGISTERED + " != ? AND " +
+                                             SYSTEM_CONTACT_URI + " NOT NULL AND " +
+                                             "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL)";
+
+    static final String QUERY_NON_SIGNAL_CONTACT = NON_SIGNAL_CONTACT +
+                                                   " AND (" +
+                                                   PHONE + " GLOB ? OR " +
+                                                   EMAIL + " GLOB ? OR " +
+                                                   SYSTEM_JOINED_NAME + " GLOB ?" +
+                                                   ")";
+
+    static final String SIGNAL_CONTACT = REGISTERED + " = ? AND " +
+                                         "(" + SYSTEM_JOINED_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
+                                         "(" + SORT_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
+
+    static final String QUERY_SIGNAL_CONTACT = SIGNAL_CONTACT + " AND (" +
+                                               PHONE + " GLOB ? OR " +
+                                               SORT_NAME + " GLOB ? OR " +
+                                               USERNAME + " GLOB ?" +
+                                               ")";
+
+    private final String   where;
+    private final String[] args;
+
+    private ContactSearchSelection(@NonNull String where, @NonNull String[] args) {
+      this.where = where;
+      this.args  = args;
+    }
+
+    String getWhere() {
+      return where;
+    }
+
+    String[] getArgs() {
+      return args;
+    }
+
+    @VisibleForTesting
+    static final class Builder {
+
+      private boolean     includeRegistered;
+      private boolean     includeNonRegistered;
+      private RecipientId excludeId;
+      private boolean     excludeGroups;
+      private String      searchQuery;
+
+      @NonNull Builder withRegistered(boolean includeRegistered) {
+        this.includeRegistered = includeRegistered;
+        return this;
+      }
+
+      @NonNull Builder withNonRegistered(boolean includeNonRegistered) {
+        this.includeNonRegistered = includeNonRegistered;
+        return this;
+      }
+
+      @NonNull Builder excludeId(@Nullable RecipientId recipientId) {
+        this.excludeId = recipientId;
+        return this;
+      }
+
+      @NonNull Builder withGroups(boolean includeGroups) {
+        this.excludeGroups = !includeGroups;
+        return this;
+      }
+
+      @NonNull Builder withSearchQuery(@NonNull String searchQuery) {
+        this.searchQuery = searchQuery;
+        return this;
+      }
+
+      @NonNull ContactSearchSelection build() {
+        if (!includeRegistered && !includeNonRegistered) {
+          throw new IllegalStateException("Must include either registered or non-registered recipients in search");
+        }
+
+        StringBuilder stringBuilder = new StringBuilder("(");
+        List<Object>  args          = new LinkedList<>();
+
+        if (includeRegistered) {
+          stringBuilder.append("(");
+
+          args.add(RegisteredState.REGISTERED.id);
+          args.add(1);
+
+          if (Util.isEmpty(searchQuery)) {
+            stringBuilder.append(SIGNAL_CONTACT);
+          } else {
+            stringBuilder.append(QUERY_SIGNAL_CONTACT);
+            args.add(searchQuery);
+            args.add(searchQuery);
+            args.add(searchQuery);
+          }
+
+          stringBuilder.append(")");
+        }
+
+        if (includeRegistered && includeNonRegistered) {
+          stringBuilder.append(" OR ");
+        }
+
+        if (includeNonRegistered) {
+          stringBuilder.append("(");
+          args.add(RegisteredState.REGISTERED.id);
+
+          if (Util.isEmpty(searchQuery)) {
+            stringBuilder.append(NON_SIGNAL_CONTACT);
+          } else {
+            stringBuilder.append(QUERY_NON_SIGNAL_CONTACT);
+            args.add(searchQuery);
+            args.add(searchQuery);
+            args.add(searchQuery);
+          }
+
+          stringBuilder.append(")");
+        }
+
+        stringBuilder.append(")");
+        stringBuilder.append(FILTER_BLOCKED);
+        args.add(0);
+
+        if (excludeGroups) {
+          stringBuilder.append(FILTER_GROUPS);
+        }
+
+        if (excludeId != null) {
+          stringBuilder.append(FILTER_ID);
+          args.add(excludeId.serialize());
+        }
+
+        return new ContactSearchSelection(stringBuilder.toString(), args.stream().map(Object::toString).toArray(String[]::new));
+      }
     }
   }
 }

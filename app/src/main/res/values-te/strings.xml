@@ -51,7 +51,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">స్పంధించు</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">చిత్రశాల</string>
-  <string name="AttachmentKeyboard_gif">గిఫ్</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">గిఫ్</string> -->
   <string name="AttachmentKeyboard_file">పత్రం</string>
   <string name="AttachmentKeyboard_contact">పరిచయం</string>
   <string name="AttachmentKeyboard_location">స్థానం</string>
@@ -429,6 +429,7 @@
   <string name="AddToGroupActivity_add_to_groups">సమూహాలకు జోడించండి</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ఈ వ్యక్తిని లెగసీ సమూహాలకు చేర్చలేరు.</string>
   <string name="AddToGroupActivity_add">చేర్చు</string>
+  <string name="AddToGroupActivity_add_to_a_group">సమూహంకి కలపండి</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">క్రొత్త నిర్వాహకుడిని ఎంచుకోండి</string>
   <string name="ChooseNewAdminActivity_done">పూర్తి</string>
@@ -559,6 +560,7 @@
     <item quantity="other">%3$d సభ్యులను \"%2$s\" కు జోడించాలా?</item>
   </plurals>
   <string name="AddMembersActivity__add">చేర్చు</string>
+  <string name="AddMembersActivity__add_members">సభ్యులను జోడించండి</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ఈ గుంపుకు పేరు పెట్టండి</string>
   <string name="AddGroupDetailsFragment__create_group">సమూహం సృష్టించు</string>
@@ -798,6 +800,7 @@
   <string name="MediaOverviewActivity_audio">ఆడియో</string>
   <string name="MediaOverviewActivity_video">వీడియో</string>
   <string name="MediaOverviewActivity_image">చిత్రం</string>
+  <string name="MediaOverviewActivity_voice_message">వాయిస్ సందేశం</string>
   <string name="MediaOverviewActivity_sent_by_s">పంపినది%1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">మీరు పంపారు</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$sనుండి%2$sవరకు పంపబడింది</string>
@@ -852,6 +855,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">అన్ని మీడియా</string>
   <string name="MediaRepository__camera">కెమెరా</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">గుర్తు తెలియని</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ఇకపై మద్దతు అని Signal యొక్క పాత సంస్కరణను ఉపయోగించి ఎన్క్రిప్ట్ ఒక సందేశాన్ని పొందింది. దయచేసి ఇటీవల సంస్కరణకు అప్డేట్ మరియు సందేశాన్ని మళ్లీ పంపినవారు అడగండి</string>
@@ -1600,6 +1604,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">దిగువకు స్క్రోల్ చెయ్యి</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">భద్రతా సంఖ్య మార్పులు</string>
+  <string name="safety_number_change_dialog__accept">అంగీకరించండి</string>
   <string name="safety_number_change_dialog__send_anyway">ఏదేమైనా పంపు</string>
   <string name="safety_number_change_dialog__call_anyway">ఏమైనా కాల్ చేయండి</string>
   <string name="safety_number_change_dialog__join_call">కాల్‌లో చేరండి</string>
@@ -2609,5 +2614,14 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ప్రస్తావనలు</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">అనుకూల ప్రకటనలను</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">కొత్త సందేశం</string>
+  <!--ContactFilterView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">ఎస్సెమ్మెస్</string>
   <!--EOF-->
 </resources>

@@ -52,9 +52,10 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(konum)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(yanıtla)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Sesli ileti)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeri</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Dosya</string>
   <string name="AttachmentKeyboard_contact">Kişi</string>
   <string name="AttachmentKeyboard_location">Konum</string>
@@ -241,9 +242,9 @@
   <string name="ConversationActivity_full">Dolu</string>
   <string name="ConversationActivity_error_sending_media">İçerik gönderilemedi</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Gereksiz olarak bildirildi ve engellendi</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF\'ler taşındı</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF\'leri emoji ve çıkartmaların yanında bulabilirsiniz.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF\'ler artık burada.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF\'ler taşındı</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF\'leri emoji ve çıkartmaların yanında bulabilirsiniz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF\'ler artık burada.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d okunmamış ileti</item>
@@ -434,6 +435,7 @@
   <string name="AddToGroupActivity_add_to_groups">Gruplara ekle</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Bu kullanıcı eski bir gruba eklenemez.</string>
   <string name="AddToGroupActivity_add">Ekle</string>
+  <string name="AddToGroupActivity_add_to_a_group">Bir gruba ekle</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Yeni yönetici seç</string>
   <string name="ChooseNewAdminActivity_done">Tamam</string>
@@ -564,6 +566,7 @@
     <item quantity="other">\"%2$s\" grubuna %3$d üye eklensin mi?</item>
   </plurals>
   <string name="AddMembersActivity__add">Ekle</string>
+  <string name="AddMembersActivity__add_members">Üye ekle</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Bu grubu adlandır</string>
   <string name="AddGroupDetailsFragment__create_group">Grup oluştur</string>
@@ -804,6 +807,7 @@
   <string name="MediaOverviewActivity_audio">Ses</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Görüntü</string>
+  <string name="MediaOverviewActivity_voice_message">Sesli ileti</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s tarafından gönderilen</string>
   <string name="MediaOverviewActivity_sent_by_you">Sizin gönderdikleriniz</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s tarafından --&gt; %2$s </string>
@@ -861,6 +865,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tüm içerik</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">İletinin şifresi çözülemedi</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Hata günlüğünü göndermek için dokunun</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Bilinmeyen</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artık desteklenmeyen eski bir Signal sürümü kullanılarak şifrelenmiş bir ileti alındı. Gönderen kişiden Signal\'i en son sürüme güncellemesini ve iletiyi yeniden göndermesini isteyin.</string>
@@ -1632,6 +1639,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">En alta kaydır</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Güvenlik Numarası Değişiklikleri</string>
+  <string name="safety_number_change_dialog__accept">Kabul et</string>
   <string name="safety_number_change_dialog__send_anyway">Yine de gönder</string>
   <string name="safety_number_change_dialog__call_anyway">Yine de ara</string>
   <string name="safety_number_change_dialog__join_call">Aramaya katıl</string>
@@ -2940,6 +2948,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="one">Bu özel renk %1$d sohbette kullanılıyor. Silmek istiyor musunuz?</item>
     <item quantity="other">Bu özel renk %1$d sohbette kullanılıyor. Tüm sohbetler için silmek istiyor musunuz?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Sohbet rengi silinsin mi?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Düz</string>
   <string name="CustomChatColorCreatorFragment__gradient">Karışım</string>
@@ -2985,6 +2994,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="EmojiSearchFragment__no_results_found">Sonuç bulunamadı</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Bilinmeyen zil sesi</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">İleti gönder</string>
+  <string name="ConversationSettingsFragment__start_video_call">Görüntülü arama başlat</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Sesli arama başlat</string>
   <string name="ConversationSettingsFragment__message">İleti</string>
   <string name="ConversationSettingsFragment__video">Video</string>
   <string name="ConversationSettingsFragment__audio">Ses</string>
@@ -2993,6 +3005,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationSettingsFragment__muted">Sessize Alındı</string>
   <string name="ConversationSettingsFragment__search">Konuşmada Ara</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Kaybolan iletiler</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Sesler ve bildirimler</string>
+  <string name="ConversationSettingsFragment__contact_details">Kişi ayrıntıları</string>
   <string name="ConversationSettingsFragment__view_safety_number">Güvenlik numarasını görüntüle</string>
   <string name="ConversationSettingsFragment__block">Engelle</string>
   <string name="ConversationSettingsFragment__block_group">Grubu engelle</string>
@@ -3002,8 +3016,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationSettingsFragment__see_all">Tümünü gör</string>
   <string name="ConversationSettingsFragment__add_members">Üye ekle</string>
   <string name="ConversationSettingsFragment__permissions">İzinler</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">İstekler ve davetler</string>
   <string name="ConversationSettingsFragment__group_link">Grup bağlantısı</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Kişi olarak ekle</string>
   <string name="ConversationSettingsFragment__unmute">Sesi aç</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Konuşma %1$s tarihine kadar sessiz yapıldı</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Konuşma sonsuza kadar sessiz yapıldı</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefon numarası panoya kopyalandı</string>
   <string name="ConversationSettingsFragment__phone_number">Telefon numarası</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Üye ekle</string>
@@ -3015,8 +3034,24 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Bildirimleri sessize al</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Sessizleştirilmedi</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s tarihine kadar sessiz</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Bahsedilmeler</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Her zaman bildir</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Bildirme</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Özel bildirimler</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Yakında kullanılmış</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Yeni ileti</string>
+  <!--ContactFilterView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

@@ -52,9 +52,10 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(local)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Mensagem de voz)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeria</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Arquivo</string>
   <string name="AttachmentKeyboard_contact">Contato</string>
   <string name="AttachmentKeyboard_location">Local</string>
@@ -241,9 +242,9 @@
   <string name="ConversationActivity_full">Lotada</string>
   <string name="ConversationActivity_error_sending_media">Erro ao enviar a mídia</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Denunciado como spam e bloqueado.</string>
-  <string name="ConversationActivity_gifs_have_moved">GIFs mudaram de lugar</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Encontre os GIFs ao lado de emojis e figurinhas.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIFs agora estão aqui.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFs mudaram de lugar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Encontre os GIFs ao lado de emojis e figurinhas.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFs agora estão aqui.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -328,6 +329,7 @@
   <string name="ConversationTypingView__plus_d">+ %1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contatos não podem estar em grupos legados.</string>
+  <string name="CreateGroupActivity__select_members">Selecionar membros</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir foto do perfil</string>
@@ -434,6 +436,7 @@
   <string name="AddToGroupActivity_add_to_groups">Adicionar aos grupos</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legados.</string>
   <string name="AddToGroupActivity_add">Adicionar</string>
+  <string name="AddToGroupActivity_add_to_a_group">Adicionar a um grupo</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Escolha novo admin</string>
   <string name="ChooseNewAdminActivity_done">Pronto</string>
@@ -564,6 +567,7 @@
     <item quantity="other">Adicionar %3$d membros em \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Adicionar</string>
+  <string name="AddMembersActivity__add_members">Adicionar membros</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Escolha um nome para este grupo</string>
   <string name="AddGroupDetailsFragment__create_group">Criar grupo</string>
@@ -804,6 +808,7 @@
   <string name="MediaOverviewActivity_audio">Áudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
   <string name="MediaOverviewActivity_image">Imagem</string>
+  <string name="MediaOverviewActivity_voice_message">Mensagem de voz</string>
   <string name="MediaOverviewActivity_sent_by_s">Enviado por %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Enviado por você</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Enviado por %1$s para %2$s</string>
@@ -861,6 +866,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Todas as mídias</string>
   <string name="MediaRepository__camera">Câmera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Falha ao descriptografar a mensagem</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Toque para enviar um registro de depuração</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconhecida/o</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Foi recebida uma mensagem criptografada usando uma versão antiga do Signal que não possui mais suporte. Favor pedir ao remetente que atualize para a versão mais recente e reenvie a mensagem.</string>
@@ -1634,6 +1642,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rolar para o final</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Mudanças no Número de Segurança</string>
+  <string name="safety_number_change_dialog__accept">Aceitar</string>
   <string name="safety_number_change_dialog__send_anyway">Enviar mesmo assim</string>
   <string name="safety_number_change_dialog__call_anyway">Ligar mesmo assim</string>
   <string name="safety_number_change_dialog__join_call">Participar da chamada</string>
@@ -2650,6 +2659,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">O link não está ativo no momento</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Falha ao reproduzir a mensagem de voz</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mensagem de voz · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s para %2$s</string>
@@ -2716,6 +2726,10 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Pesquisar países</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Ignorar</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membros</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartilhar</string>
   <string name="ShareActivity__send">Enviar</string>
@@ -2926,6 +2940,7 @@
     <item quantity="one">Essa cor personalizada é usada em %1$d conversa. Deseja removê-la da conversa?</item>
     <item quantity="other">Essa cor personalizada é usada em %1$d conversas. Deseja removê-la de todas as conversas?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Remover a cor dessa conversa?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Sólida</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradiente</string>
@@ -2999,6 +3014,7 @@
   <string name="ConversationSettingsFragment__unmute">Reativar notificações</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversa silenciada até %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversa silenciada para sempre</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Número de telefone copiado para a área de transferência.</string>
   <string name="ConversationSettingsFragment__phone_number">Número de telefone</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Adicionar membros</string>
@@ -3016,5 +3032,21 @@
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Não me notifique</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalizar notificações</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Utilizada recentemente</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Novo pagamento</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Nova mensagem</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Pesquise o nome ou número</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

@@ -50,9 +50,10 @@
   <string name="DraftDatabase_Draft_video_snippet">(動画)</string>
   <string name="DraftDatabase_Draft_location_snippet">(位置情報)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(返信)</string>
+  <string name="DraftDatabase_Draft_voice_note">(音声メッセージ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ギャラリー</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ファイル</string>
   <string name="AttachmentKeyboard_contact">連絡先</string>
   <string name="AttachmentKeyboard_location">場所</string>
@@ -239,9 +240,9 @@
   <string name="ConversationActivity_full">満席</string>
   <string name="ConversationActivity_error_sending_media">メディア送信エラー</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">スパムとして報告してブロックしました。</string>
-  <string name="ConversationActivity_gifs_have_moved">GIFは移動しました</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFは絵文字やステッカーの隣にあります。</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIFはここです。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFは移動しました</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFは絵文字やステッカーの隣にあります。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFはここです。</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d件の未読メッセージ</item>
@@ -421,6 +422,7 @@
   <string name="AddToGroupActivity_add_to_groups">グループへ追加</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">このユーザーはレガシーグループに追加できません。</string>
   <string name="AddToGroupActivity_add">追加する</string>
+  <string name="AddToGroupActivity_add_to_a_group">グループへ追加</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">新しい管理者を選択</string>
   <string name="ChooseNewAdminActivity_done">完了</string>
@@ -535,6 +537,7 @@
     <item quantity="other">%3$d人のメンバーを「%2$s」へ追加しますか？</item>
   </plurals>
   <string name="AddMembersActivity__add">追加する</string>
+  <string name="AddMembersActivity__add_members">メンバーの追加</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">このグループに名前を付ける</string>
   <string name="AddGroupDetailsFragment__create_group">グループ作成</string>
@@ -760,6 +763,7 @@
   <string name="MediaOverviewActivity_audio">音声</string>
   <string name="MediaOverviewActivity_video">動画</string>
   <string name="MediaOverviewActivity_image">画像</string>
+  <string name="MediaOverviewActivity_voice_message">音声メッセージ</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s が送信</string>
   <string name="MediaOverviewActivity_sent_by_you">あなたが送信</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s が %2$s に送信</string>
@@ -816,6 +820,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">すべてのメディア</string>
   <string name="MediaRepository__camera">カメラ</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">メッセージの復号に失敗しました</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">タップしてデバッグログを送信します</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">不明</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージはサポート外の古いSignalで暗号化されています。送信者にSignalをアップデートして再送するよう依頼してください。</string>
@@ -1558,6 +1565,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">一番下までスクロール</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">安全番号の変更</string>
+  <string name="safety_number_change_dialog__accept">承認する</string>
   <string name="safety_number_change_dialog__send_anyway">とにかく送信する</string>
   <string name="safety_number_change_dialog__call_anyway">とにかく発信する</string>
   <string name="safety_number_change_dialog__join_call">通話に参加する</string>
@@ -2761,6 +2769,7 @@
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
     <item quantity="other">この色は%1$d件のチャットで使用されています。すべてのチャットで削除しますか？</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">チャットの色を削除しますか？</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">無地</string>
   <string name="CustomChatColorCreatorFragment__gradient">グラデーション</string>
@@ -2833,6 +2842,7 @@
   <string name="ConversationSettingsFragment__unmute">ミュートを解除</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">チャットは%1$sまでミュートされます</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">チャットは常にミュートされます</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">電話番号をクリップボードにコピーしました。</string>
   <string name="ConversationSettingsFragment__phone_number">電話番号</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">メンバーの追加</string>
@@ -2850,5 +2860,18 @@
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">通知しない</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">カスタム通知</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">最近使ったもの</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">0.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">新着メッセージ</string>
+  <!--ContactFilterView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

@@ -51,7 +51,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(பதில்)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">கேலரி</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">கோப்பு</string>
   <string name="AttachmentKeyboard_contact">தொடர்பு</string>
   <string name="AttachmentKeyboard_location">இடம்</string>
@@ -423,6 +423,7 @@
   <string name="AddToGroupActivity_add_to_groups">குழுக்களில் சேர்க்கவும்</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
   <string name="AddToGroupActivity_add">சேர்க்கவும்</string>
+  <string name="AddToGroupActivity_add_to_a_group">ஒரு குழுவில் சேர்க்கவும்</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string>
   <string name="ChooseNewAdminActivity_done">முடிந்தது</string>
@@ -553,6 +554,7 @@
     <item quantity="other">\"%3$d\" உறுப்பினர்களை %2$s\" இல் சேர்க்கவா?</item>
   </plurals>
   <string name="AddMembersActivity__add">சேர்க்கவும்</string>
+  <string name="AddMembersActivity__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">இந்த குழுவிற்கு பெயரிடுங்கள்</string>
   <string name="AddGroupDetailsFragment__create_group">குழு உருவாக்குக</string>
@@ -789,6 +791,7 @@
   <string name="MediaOverviewActivity_audio">ஒலி</string>
   <string name="MediaOverviewActivity_video">காணொளி</string>
   <string name="MediaOverviewActivity_image">படம் </string>
+  <string name="MediaOverviewActivity_voice_message">குரல் செய்தி</string>
   <string name="MediaOverviewActivity_sent_by_s">அனுப்பியது %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">அனுப்பியதுநீங்கள்</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">அனுப்பியது %1$s க்கு%2$s</string>
@@ -843,6 +846,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">அனைத்து ஊடகங்களும்</string>
   <string name="MediaRepository__camera">புகைப்பட கருவி</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">தெரியாத</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ஆதரவில்லா Signal-இன் பழைய பதிப்பைப் பயன்படுத்தி மறையாக்கப்பட்ட செய்தி பெறப்பட்டது. தயவுசெய்து அனுப்புநரிடம் மிகச் சமீபத்திய பதிப்பைப் புதுப்பித்து, செய்தியை மீண்டும் அனுப்பச் சொல்லுங்கள்.</string>
@@ -1594,6 +1598,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">கீழே உருட்டவும்</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">பாதுகாப்பு எண் மாற்றங்கள்</string>
+  <string name="safety_number_change_dialog__accept">ஒப்புக்கொள்</string>
   <string name="safety_number_change_dialog__send_anyway">இருந்தாலும் அனுப்பு</string>
   <string name="safety_number_change_dialog__call_anyway">இருந்தாலும் அழைக்கவும்</string>
   <string name="safety_number_change_dialog__join_call">அழைப்பில் சேரவும்</string>
@@ -2614,5 +2619,14 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">பெயர் குறிப்பிடுவது</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">புதிய செய்தி</string>
+  <!--ContactFilterView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

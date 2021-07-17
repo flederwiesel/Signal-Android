@@ -52,9 +52,10 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ubicació)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(reposta)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Missatge de veu)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeria</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fitxer</string>
   <string name="AttachmentKeyboard_contact">Contacte</string>
   <string name="AttachmentKeyboard_location">Ubicació</string>
@@ -241,9 +242,9 @@
   <string name="ConversationActivity_full">Ple</string>
   <string name="ConversationActivity_error_sending_media">Error en enviar contingut</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Se n\'ha informat com a brossa i s\'ha blocat.</string>
-  <string name="ConversationActivity_gifs_have_moved">S\'han mogut els GIF</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Cerqueu els GIF al costat d’emoticones i adhesius.</string>
-  <string name="ConversationActivity__gifs_are_now_here">Ara teniu aquí els GIF.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">S\'han mogut els GIF</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Cerqueu els GIF al costat d’emoticones i adhesius.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">Ara teniu aquí els GIF.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -434,6 +435,7 @@
   <string name="AddToGroupActivity_add_to_groups">Afegeix-lo als grups</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Aquesta persona no es pot afegir a grups de llegat.</string>
   <string name="AddToGroupActivity_add">Afegeix</string>
+  <string name="AddToGroupActivity_add_to_a_group">Afegeix-lo a un grup</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Trieu un administrador nou</string>
   <string name="ChooseNewAdminActivity_done">Fet</string>
@@ -564,6 +566,7 @@
     <item quantity="other">Voleu afegir %3$d membres a \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Afegeix</string>
+  <string name="AddMembersActivity__add_members">Afegeix-hi membres</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Poseu un nom al grup</string>
   <string name="AddGroupDetailsFragment__create_group">Crea un grup</string>
@@ -804,6 +807,7 @@
   <string name="MediaOverviewActivity_audio">Àudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
   <string name="MediaOverviewActivity_image">Imatge</string>
+  <string name="MediaOverviewActivity_voice_message">Missatge de veu</string>
   <string name="MediaOverviewActivity_sent_by_s">Enviat per %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Ho heu enviat</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Enviat per %1$s a %2$s</string>
@@ -861,6 +865,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tot el contingut</string>
   <string name="MediaRepository__camera">Càmera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Ha fallat desencriptar el missatge.</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Toqueu per enviar-ne un registre de depuració.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconegut</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">S\'ha rebut un missatge encriptat amb una versió antiga del Signal que ja no s\'admet. Digueu-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
@@ -1628,6 +1635,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desplaça al final</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Canvis en el número de seguretat</string>
+  <string name="safety_number_change_dialog__accept">Ho accepto</string>
   <string name="safety_number_change_dialog__send_anyway">Envia\'l tanmateix</string>
   <string name="safety_number_change_dialog__call_anyway">Truca-li tanmateix</string>
   <string name="safety_number_change_dialog__join_call">Afegeix-me a la trucada</string>
@@ -2936,6 +2944,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="one">Aquest color personalitzat s\'usa en %1$d conversa. Voleu suprimir-lo per a totes?</item>
     <item quantity="other">Aquest color personalitzat s\'usa en %1$d converses. Voleu suprimir-lo per a totes?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Voleu suprimir el color de la conversa?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Sòlid</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
@@ -3009,6 +3018,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationSettingsFragment__unmute">No la silenciïs</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversa silenciada fins %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversa silenciada per sempre</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">S\'ha copiat el número de telèfon al porta-retalls.</string>
   <string name="ConversationSettingsFragment__phone_number">Número de telèfon</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Afegeix-hi membres</string>
@@ -3026,5 +3036,18 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">No m\'ho notifiquis mai</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificacions personalitzades</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Usat recentment</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Missatge nou</string>
+  <!--ContactFilterView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>
