@@ -156,8 +156,6 @@ public class RecipientDatabase extends Database {
   private static final String IDENTITY_STATUS          = "identity_status";
   private static final String IDENTITY_KEY             = "identity_key";
 
-  static final long IMPORTANT_LOG_DURATION = TimeUnit.DAYS.toMillis(7);
-
   /**
    * Values that represent the index in the capabilities bitmask. Each index can store a 2-bit
    * value, which in this case is the value of {@link Recipient.Capability}.
@@ -168,6 +166,7 @@ public class RecipientDatabase extends Database {
     static final int GROUPS_V2           = 0;
     static final int GROUPS_V1_MIGRATION = 1;
     static final int SENDER_KEY          = 2;
+    static final int ANNOUNCEMENT_GROUPS = 3;
   }
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
@@ -440,7 +439,7 @@ public class RecipientDatabase extends Database {
       RecipientId finalId;
 
       if (!byE164.isPresent() && !byUuid.isPresent()) {
-        Log.i(TAG, "Discovered a completely new user. Inserting.", IMPORTANT_LOG_DURATION);
+        Log.i(TAG, "Discovered a completely new user. Inserting.", true);
         if (highTrust) {
           long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(e164, uuid));
           finalId = RecipientId.from(id);
@@ -453,7 +452,7 @@ public class RecipientDatabase extends Database {
           RecipientSettings e164Settings = getRecipientSettings(byE164.get());
           if (e164Settings.uuid != null) {
             if (highTrust) {
-              Log.w(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s), but that user already has a UUID (%s). Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to a new entry.", uuid, byE164.get(), e164Settings.uuid), IMPORTANT_LOG_DURATION);
+              Log.w(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s), but that user already has a UUID (%s). Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to a new entry.", uuid, byE164.get(), e164Settings.uuid), true);
 
               removePhoneNumber(byE164.get(), db);
               recipientNeedingRefresh = byE164.get();
@@ -464,18 +463,18 @@ public class RecipientDatabase extends Database {
               long id = db.insert(TABLE_NAME, null, insertValues);
               finalId = RecipientId.from(id);
             } else {
-              Log.w(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s), but that user already has a UUID (%s). Likely a case of re-registration. Low-trust, so making a new user for the UUID.", uuid, byE164.get(), e164Settings.uuid), IMPORTANT_LOG_DURATION);
+              Log.w(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s), but that user already has a UUID (%s). Likely a case of re-registration. Low-trust, so making a new user for the UUID.", uuid, byE164.get(), e164Settings.uuid), true);
 
               long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, uuid));
               finalId = RecipientId.from(id);
             }
           } else {
             if (highTrust) {
-              Log.i(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s). High-trust, so updating.", uuid, byE164.get()), IMPORTANT_LOG_DURATION);
+              Log.i(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s). High-trust, so updating.", uuid, byE164.get()), true);
               markRegisteredOrThrow(byE164.get(), uuid);
               finalId = byE164.get();
             } else {
-              Log.i(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s). Low-trust, so making a new user for the UUID.", uuid, byE164.get()), IMPORTANT_LOG_DURATION);
+              Log.i(TAG, String.format(Locale.US, "Found out about a UUID (%s) for a known E164 user (%s). Low-trust, so making a new user for the UUID.", uuid, byE164.get()), true);
               long id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, uuid));
               finalId = RecipientId.from(id);
             }
@@ -486,11 +485,11 @@ public class RecipientDatabase extends Database {
       } else if (!byE164.isPresent() && byUuid.isPresent()) {
         if (e164 != null) {
           if (highTrust) {
-            Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known UUID user (%s). High-trust, so updating.", e164, byUuid.get()), IMPORTANT_LOG_DURATION);
+            Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known UUID user (%s). High-trust, so updating.", e164, byUuid.get()), true);
             setPhoneNumberOrThrow(byUuid.get(), e164);
             finalId = byUuid.get();
           } else {
-            Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known UUID user (%s). Low-trust, so doing nothing.", e164, byUuid.get()), IMPORTANT_LOG_DURATION);
+            Log.i(TAG, String.format(Locale.US, "Found out about an E164 (%s) for a known UUID user (%s). Low-trust, so doing nothing.", e164, byUuid.get()), true);
             finalId = byUuid.get();
           }
         } else {
@@ -500,13 +499,13 @@ public class RecipientDatabase extends Database {
         if (byE164.equals(byUuid)) {
           finalId = byUuid.get();
         } else {
-          Log.w(TAG, String.format(Locale.US, "Hit a conflict between %s (E164 of %s) and %s (UUID %s). They map to different recipients.", byE164.get(), e164, byUuid.get(), uuid), new Throwable(), IMPORTANT_LOG_DURATION);
+          Log.w(TAG, String.format(Locale.US, "Hit a conflict between %s (E164 of %s) and %s (UUID %s). They map to different recipients.", byE164.get(), e164, byUuid.get(), uuid), new Throwable(), true);
 
           RecipientSettings e164Settings = getRecipientSettings(byE164.get());
 
           if (e164Settings.getUuid() != null) {
             if (highTrust) {
-              Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to the UUID entry.", IMPORTANT_LOG_DURATION);
+              Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to the UUID entry.", true);
 
               removePhoneNumber(byE164.get(), db);
               recipientNeedingRefresh = byE164.get();
@@ -515,17 +514,17 @@ public class RecipientDatabase extends Database {
 
               finalId = byUuid.get();
             } else {
-              Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. Low-trust, so doing nothing.", IMPORTANT_LOG_DURATION);
+              Log.w(TAG, "The E164 contact has a different UUID. Likely a case of re-registration. Low-trust, so doing nothing.", true);
               finalId = byUuid.get();
             }
           } else {
             if (highTrust) {
-              Log.w(TAG, "We have one contact with just an E164, and another with UUID. High-trust, so merging the two rows together.", IMPORTANT_LOG_DURATION);
+              Log.w(TAG, "We have one contact with just an E164, and another with UUID. High-trust, so merging the two rows together.", true);
               finalId                 = merge(byUuid.get(), byE164.get());
               recipientNeedingRefresh = byUuid.get();
               remapped                = new Pair<>(byE164.get(), byUuid.get());
             } else {
-              Log.w(TAG, "We have one contact with just an E164, and another with UUID. Low-trust, so doing nothing.", IMPORTANT_LOG_DURATION);
+              Log.w(TAG, "We have one contact with just an E164, and another with UUID. Low-trust, so doing nothing.", true);
               finalId  = byUuid.get();
             }
           }
@@ -546,6 +545,7 @@ public class RecipientDatabase extends Database {
 
         if (remapped != null) {
           Recipient.live(remapped.first()).refresh(remapped.second());
+          ApplicationDependencies.getRecipientCache().remap(remapped.first(), remapped.second());
         }
 
         if (recipientNeedingRefresh != null || remapped != null) {
@@ -741,14 +741,13 @@ public class RecipientDatabase extends Database {
     return null;
   }
 
-  public void markNeedsSync(@NonNull Collection<RecipientId> recipientIds) {
+  public void markNeedsSyncWithoutRefresh(@NonNull Collection<RecipientId> recipientIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     db.beginTransaction();
     try {
       for (RecipientId recipientId : recipientIds) {
         rotateStorageId(recipientId);
-        Recipient.live(recipientId).refresh();
       }
       db.setTransactionSuccessful();
     } finally {
@@ -1616,6 +1615,7 @@ public class RecipientDatabase extends Database {
     value = Bitmask.update(value, Capabilities.GROUPS_V2,           Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv2()).serialize());
     value = Bitmask.update(value, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv1Migration()).serialize());
     value = Bitmask.update(value, Capabilities.SENDER_KEY,          Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isSenderKey()).serialize());
+    value = Bitmask.update(value, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isAnnouncementGroup()).serialize());
 
     ContentValues values = new ContentValues(1);
     values.put(CAPABILITIES, value);
@@ -2881,7 +2881,7 @@ public class RecipientDatabase extends Database {
     RecipientSettings e164Settings = getRecipientSettings(byE164);
 
     // Recipient
-    Log.w(TAG, "Deleting recipient " + byE164, IMPORTANT_LOG_DURATION);
+    Log.w(TAG, "Deleting recipient " + byE164, true);
     db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(byE164));
     RemappedRecords.getInstance().addRecipient(context, byE164, byUuid);
 
@@ -2966,17 +2966,17 @@ public class RecipientDatabase extends Database {
     boolean hasUuidSession = DatabaseFactory.getSessionDatabase(context).getAllFor(byUuid).size() > 0;
 
     if (hasE164Session && hasUuidSession) {
-      Log.w(TAG, "Had a session for both users. Deleting the E164.", IMPORTANT_LOG_DURATION);
+      Log.w(TAG, "Had a session for both users. Deleting the E164.", true);
       db.delete(SessionDatabase.TABLE_NAME, SessionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
     } else if (hasE164Session && !hasUuidSession) {
-      Log.w(TAG, "Had a session for E164, but not UUID. Re-assigning to the UUID.", IMPORTANT_LOG_DURATION);
+      Log.w(TAG, "Had a session for E164, but not UUID. Re-assigning to the UUID.", true);
       ContentValues values = new ContentValues();
       values.put(SessionDatabase.RECIPIENT_ID, byUuid.serialize());
       db.update(SessionDatabase.TABLE_NAME, values, SessionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
     } else if (!hasE164Session && hasUuidSession) {
-      Log.w(TAG, "Had a session for UUID, but not E164. No action necessary.", IMPORTANT_LOG_DURATION);
+      Log.w(TAG, "Had a session for UUID, but not E164. No action necessary.", true);
     } else {
-      Log.w(TAG, "Had no sessions. No action necessary.", IMPORTANT_LOG_DURATION);
+      Log.w(TAG, "Had no sessions. No action necessary.", true);
     }
 
     // Mentions
@@ -2989,6 +2989,7 @@ public class RecipientDatabase extends Database {
       db.update(MentionDatabase.TABLE_NAME, mentionThreadValues, MentionDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId));
     }
 
+    DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadMerge.threadId, 0);
     DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false, false);
 
     return byUuid;
@@ -3147,6 +3148,7 @@ public class RecipientDatabase extends Database {
     private final Recipient.Capability            groupsV2Capability;
     private final Recipient.Capability            groupsV1MigrationCapability;
     private final Recipient.Capability            senderKeyCapability;
+    private final Recipient.Capability            announcementGroupCapability;
     private final InsightsBannerTier              insightsBannerTier;
     private final byte[]                          storageId;
     private final MentionSetting                  mentionSetting;
@@ -3238,6 +3240,7 @@ public class RecipientDatabase extends Database {
       this.groupsV2Capability          = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V2, Capabilities.BIT_LENGTH));
       this.groupsV1MigrationCapability = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH));
       this.senderKeyCapability         = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH));
+      this.announcementGroupCapability = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH));
       this.insightsBannerTier          = insightsBannerTier;
       this.storageId                   = storageId;
       this.mentionSetting              = mentionSetting;
@@ -3389,6 +3392,10 @@ public class RecipientDatabase extends Database {
 
     public @NonNull Recipient.Capability getSenderKeyCapability() {
       return senderKeyCapability;
+    }
+
+    public @NonNull Recipient.Capability getAnnouncementGroupCapability() {
+      return announcementGroupCapability;
     }
 
     public @Nullable byte[] getStorageId() {

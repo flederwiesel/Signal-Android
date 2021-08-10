@@ -10,6 +10,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessageSendLogDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -35,6 +37,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
 
@@ -137,18 +140,21 @@ public final class GroupSendUtil {
                                                      @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
-    RecipientData recipients = new RecipientData(context, allTargets);
+    RecipientData         recipients  = new RecipientData(context, allTargets);
+    Optional<GroupRecord> groupRecord = groupId != null ? DatabaseFactory.getGroupDatabase(context).getGroup(groupId) : Optional.absent();
 
     List<Recipient> senderKeyTargets = new LinkedList<>();
     List<Recipient> legacyTargets    = new LinkedList<>();
 
     for (Recipient recipient : allTargets) {
-      Optional<UnidentifiedAccessPair> access = recipients.getAccessPair(recipient.getId());
+      Optional<UnidentifiedAccessPair> access          = recipients.getAccessPair(recipient.getId());
+      boolean                          validMembership = groupRecord.isPresent() && groupRecord.get().getMembers().contains(recipient.getId());
 
       if (recipient.getSenderKeyCapability() == Recipient.Capability.SUPPORTED &&
           recipient.hasUuid()                                                  &&
           access.isPresent()                                                   &&
-          access.get().getTargetUnidentifiedAccess().isPresent())
+          access.get().getTargetUnidentifiedAccess().isPresent()               &&
+          validMembership)
       {
         senderKeyTargets.add(recipient);
       } else {
@@ -206,6 +212,9 @@ public final class GroupSendUtil {
         if (sendOperation.shouldIncludeInMessageLog()) {
           DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), senderKeyTargets, results, sendOperation.getContentHint(), sendOperation.getRelatedMessageId());
         }
+      } catch (InvalidUnidentifiedAccessHeaderException e) {
+        Log.w(TAG, "Someone had a bad UD header. Falling back to legacy sends.", e);
+        legacyTargets.addAll(senderKeyTargets);
       } catch (NoSessionException e) {
         Log.w(TAG, "No session. Falling back to legacy sends.", e);
         legacyTargets.addAll(senderKeyTargets);
@@ -248,7 +257,7 @@ public final class GroupSendUtil {
       allResults.addAll(results);
 
       int successCount = (int) results.stream().filter(SendMessageResult::isSuccess).count();
-      Log.d(TAG, "Successfully using 1:1 to " + successCount + "/" + targets.size() + " legacy targets.");
+      Log.d(TAG, "Successfully sent using 1:1 to " + successCount + "/" + targets.size() + " legacy targets.");
     }
 
     return allResults;

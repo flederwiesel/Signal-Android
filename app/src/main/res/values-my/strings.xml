@@ -914,6 +914,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">အဖွဲ့ဝင်ဖြစ်မှုအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည် ကို \"%1$s\" သို့ သင် ပြောင်းလိုက်သည်။</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s သည် အဖွဲ့ဝင်ဖြစ်မှုအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည် ကို \"%2$s\" သို့ ပြောင်းလိုက်သည်။</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">အဖွဲ့ဝင်ဖြစ်မှုအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည်ကို \"%1$s\" သို့ ပြောင်းလဲထားသည်။</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">အက်မင်၏သဘောတူညီချက်ကို ပိတ်ထားပြီး အဖွဲ့လင့်ခ်ကို သင်ဖွင့်လိုက်သည်။</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">အက်မင်၏သဘောတူညီချက်ကို ဖွင့်ထားပြီး အဖွဲ့လင့်ခ်ကို သင်ဖွင့်လိုက်သည်။</string>
@@ -2810,14 +2811,18 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">ကင်မရာ</string>
   <string name="AvatarPickerFragment__photo">ရုပ်ပုံ</string>
   <string name="AvatarPickerFragment__save">သိမ်းမယ်</string>
+  <string name="AvatarPickerFragment__edit">ပြင်မယ်</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">ကြိုတင်ကြည့်မယ်</string>
   <string name="TextAvatarCreationFragment__done">ပြီးပါပြီ</string>
   <string name="TextAvatarCreationFragment__color">အရောင်</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">ပြင်မယ်</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>
