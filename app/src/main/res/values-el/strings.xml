@@ -52,7 +52,6 @@
   <string name="DraftDatabase_Draft_voice_note">(Μήνυμα φωνής)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Πινακοθήκη</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Αρχείο</string>
   <string name="AttachmentKeyboard_contact">Επαφή</string>
   <string name="AttachmentKeyboard_location">Τοποθεσία</string>
@@ -239,9 +238,6 @@
   <string name="ConversationActivity_full">Γεμάτο</string>
   <string name="ConversationActivity_error_sending_media">Σφάλμα στην αποστολή πολυμέσων</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Αναφέρθηκε ως ανεπιθύμητο και είναι σε φραγή</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">Τα GIF μεταφέρθηκαν</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Μπορείς να βρεις τα GIF δίπλα στα emoji και τα αυτοκόλλητα.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">Τα GIF θα είναι πλέον εδώ.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d μη αναγνωσμένο μήνυμα</item>
@@ -326,6 +322,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Κάποιες επαφές δεν μπορούν να προστεθούν σε ομάδες παλαιού τύπου.</string>
+  <string name="CreateGroupActivity__select_members">Επιλογή μελών</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Προφίλ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Σφάλμα κατά τον ορισμό φωτογραφίας προφίλ</string>
@@ -1703,8 +1700,6 @@
   <string name="giphy_activity_toolbar__search_gifs">Αναζήτηση GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Δε βρέθηκε τίποτα</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Αυτό το αρχείο καταγραφής θα δημοσιευθεί διαδικτυακά ώστε οι συνεισφέροντες να μπορούν να το δουν, οπότε ίσως επιθυμείς να το μελετήσεις και να το τροποποιήσεις πριν την καταχώρησή του.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Θέλεις να εισάγεις τα υπάρχοντα μηνύματά σου στην κρυπτογραφημένη βάση δεδομένων του Signal;</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Η προκαθορισμένη βάση δεδομένων του συστήματος δε θα αλλαχθεί καθόλου.</string>
@@ -2583,6 +2578,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Ο σύνδεσμος δεν είναι ενεργός αυτή τη στιγμή</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Αποτυχία αναπαραγωγής μηνύματος φωνής</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Μήνυμα φωνής · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s προς %2$s</string>
@@ -2648,6 +2644,10 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Εύρεση χωρών</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Παράλειψη</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d μέλος</item>
+    <item quantity="other">%1$d μέλη</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Μοιράσου</string>
   <string name="ShareActivity__send">Αποστολή</string>
@@ -2841,6 +2841,8 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Βελτιώσαμε τα χρώματα των συνομιλιών για να σου δώσουμε περισσότερες επιλογές και για να κάνουμε τις συνομιλίες πιο ευανάγνωστες.</string>
   <string name="ChatColorsMegaphone__appearance">Εμφάνιση</string>
   <string name="ChatColorsMegaphone__not_now">Όχι τώρα</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Όχι τώρα</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Άνοιγμα αναζήτησης emoji</string>
@@ -2910,9 +2912,20 @@
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Νέο μήνυμα</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Αναζήτηση ονόματος ή άριθμού</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Κάμερα</string>
+  <string name="AvatarPickerFragment__photo">Φωτογραφία</string>
+  <string name="AvatarPickerFragment__text">Κείμενο</string>
+  <string name="AvatarPickerFragment__save">Αποθήκευση</string>
+  <string name="TextAvatarCreationFragment__preview">Προεπισκόπηση</string>
+  <string name="TextAvatarCreationFragment__done">Τέλος</string>
+  <string name="TextAvatarCreationFragment__text">Κείμενο</string>
+  <string name="TextAvatarCreationFragment__color">Χρώμα</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Eπεξεργασία</string>
   <!--EOF-->
 </resources>

@@ -55,7 +55,6 @@
   <string name="DraftDatabase_Draft_voice_note">(Sprachnachricht)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerie</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Datei</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Standort</string>
@@ -141,8 +140,8 @@
   <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter anstatt über das Internet erfolgen.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
-  <string name="ConfirmIdentityDialog_accept">Akzeptieren</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Möglicherweise möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
+  <string name="ConfirmIdentityDialog_accept">OK</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Letzte Unterhaltungen</string>
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
@@ -242,9 +241,6 @@
   <string name="ConversationActivity_full">Voll</string>
   <string name="ConversationActivity_error_sending_media">Fehler beim Senden der Medieninhalte</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Als Spam gemeldet und blockiert.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFs sind umgezogen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFs findest du neben Emojis und Stickern.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFs sind jetzt hier.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ungelesene Nachricht</item>
@@ -329,6 +325,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Einige Kontakte können keine Mitglieder von Gruppen alten Typs sein.</string>
+  <string name="CreateGroupActivity__select_members">Mitglieder auswählen</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fehler beim Festlegen des Profilfotos</string>
@@ -653,7 +650,7 @@
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">Profilname</string>
   <string name="ManageProfileFragment_username">Nutzername</string>
-  <string name="ManageProfileFragment_about">Über</string>
+  <string name="ManageProfileFragment_about">Info</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Schreib einige Worte über dich</string>
   <string name="ManageProfileFragment_your_name">Dein Name</string>
   <string name="ManageProfileFragment_your_username">Dein Nutzername</string>
@@ -1338,7 +1335,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Teilen</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dieses Diagnoseprotokoll wird im Internet veröffentlicht, damit Mitwirkende es einsehen können. Bevor du das Protokoll hochlädst, kannst du es noch einmal überprüfen und bearbeiten.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Geräteinformationen:</string>
@@ -1708,8 +1704,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="giphy_activity_toolbar__search_gifs">GIFs suchen</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nichts gefunden</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Dieses Protokoll wird für Mitwirkende im Internet veröffentlicht. Vor Übermittlung kannst du es noch überprüfen und bearbeiten.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Möchtest du deine bestehenden Nachrichten in Signals verschlüsselte Datenbank importieren?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Die Standard-Systemdatenbank wird dabei in keiner Weise verändert.</string>
@@ -1749,7 +1743,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Personalisierte MMS-Gruppennamen und -fotos sind nur für dich sichtbar.</string>
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Gruppenbeschreibungen sind für Mitglieder dieser Gruppe und eingeladene Personen sichtbar.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">Über</string>
+  <string name="EditAboutFragment_about">Info</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schreib einige Worte über dich …</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Sprich offen</string>
@@ -2453,8 +2447,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupDialog_no_file_picker_available">Keine Dateiauswahl verfügbar.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Gib deine Sicherungspassphrase ein</string>
   <string name="BackupDialog_verify">Bestätigen</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du hast deine Sicherungspassphrase erfolgreich eingegeben</string>
-  <string name="BackupDialog_passphrase_was_not_correct">Passphrase war falsch</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du hast deine Sicherungspassphrase richtig eingegeben</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Sicherungspassphrase war falsch</string>
   <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
   <string name="LocalBackupJobApi29_backup_failed">Sicherung gescheitert</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dein Verzeichnis für die Datensicherung wurde gelöscht oder verschoben.</string>
@@ -2660,6 +2654,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="GroupLinkBottomSheet_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Der Link ist derzeit nicht aktiv</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Sprachnachricht konnte nicht wiedergegeben werden</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Sprachnachricht · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s an %2$s</string>
@@ -2726,6 +2721,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DeleteAccountCountryPickerFragment__search_countries">Länder suchen</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Überspringen</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d Mitglied</item>
+    <item quantity="other">%1$d Mitglieder</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Teilen</string>
   <string name="ShareActivity__send">Senden</string>
@@ -2873,7 +2872,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AppSettingsFragment__invite_your_friends">Freunde einladen</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen werden mit der Zeit seltener angezeigt</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen aktivieren. Diese werden seltener angezeigt, wenn du die PIN regelmäßig korrekt eingibst.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
@@ -2967,6 +2966,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Wir haben die Unterhaltungsfarben geändert, um mehr Optionen zu bieten und Unterhaltungen besser lesbar zu machen.</string>
   <string name="ChatColorsMegaphone__appearance">Darstellung</string>
   <string name="ChatColorsMegaphone__not_now">Jetzt nicht</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Jetzt nicht</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji-Suche öffnen</string>
@@ -3037,12 +3038,24 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Neue Zahlung</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Neue Nachricht</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__text">Text</string>
+  <string name="AvatarPickerFragment__save">Speichern</string>
+  <string name="TextAvatarCreationFragment__preview">Vorschau</string>
+  <string name="TextAvatarCreationFragment__done">Fertig</string>
+  <string name="TextAvatarCreationFragment__text">Text</string>
+  <string name="TextAvatarCreationFragment__color">Farbe</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Bearbeiten</string>
   <!--EOF-->
 </resources>

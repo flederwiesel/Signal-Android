@@ -55,7 +55,6 @@
   <string name="DraftDatabase_Draft_voice_note">(Sesli ileti)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeri</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Dosya</string>
   <string name="AttachmentKeyboard_contact">Kişi</string>
   <string name="AttachmentKeyboard_location">Konum</string>
@@ -242,9 +241,6 @@
   <string name="ConversationActivity_full">Dolu</string>
   <string name="ConversationActivity_error_sending_media">İçerik gönderilemedi</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Gereksiz olarak bildirildi ve engellendi</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF\'ler taşındı</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF\'leri emoji ve çıkartmaların yanında bulabilirsiniz.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF\'ler artık burada.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d okunmamış ileti</item>
@@ -1347,7 +1343,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubmitDebugLogActivity_success">Başarılı!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bu adresi kopyalayın ve sorun bildirinize veya destek epostasına ekleyin:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Paylaş</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Bu günlük katkıda bulunanların görmesi için herkese açık bir şekilde paylaşılacaktır. Yüklemeden önce inceleyip düzenleyebilirsiniz.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtre:</string>
   <string name="SupportEmailUtil_device_info">Cihaz bilgisi:</string>
@@ -1717,8 +1712,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="giphy_activity_toolbar__search_gifs">GIF Arama</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Hiçbir şey bulunamadı</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Bu günlük katkıda bulunanların görebilmeleri için herkese açık bir şekilde gönderilecektir. Göndermeden önce inceleyip düzenleyebilirsiniz.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Mevcut metin iletilerinizi Signal\'in şifreli veritabanına almak ister misiniz?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Varsayılan sistem veritabanı hiçbir şekilde değiştirilemez veya dönüştürülemez.</string>
@@ -2976,6 +2969,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Sohbet renklerini size daha fazla seçenek vermek ve daha kolay okunması için değiştirdik.</string>
   <string name="ChatColorsMegaphone__appearance">Görünüm</string>
   <string name="ChatColorsMegaphone__not_now">Şimdi değil</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Şimdi değil</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji arayıcıyı aç</string>
@@ -3051,7 +3046,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Fotoğraf</string>
+  <string name="AvatarPickerFragment__save">Kaydet</string>
+  <string name="TextAvatarCreationFragment__preview">Ön izleme</string>
+  <string name="TextAvatarCreationFragment__done">Tamam</string>
+  <string name="TextAvatarCreationFragment__color">Renk</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">Düzenle</string>
   <!--EOF-->
 </resources>
