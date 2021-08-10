@@ -10,13 +10,17 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.jetbrains.annotations.NotNull;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+
+import java.util.Objects;
 
 public class ResourceContactPhoto implements FallbackContactPhoto {
 
@@ -61,12 +65,11 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
 
   private @NonNull Drawable buildDrawable(@NonNull Context context, int resourceId, @NonNull AvatarColor color, boolean inverted) {
     Avatars.ForegroundColor foregroundColor = Avatars.getForegroundColor(color);
-    Drawable                background      = TextDrawable.builder().buildRound(" ", inverted ? foregroundColor.getColorInt() : color.colorInt());
+    Drawable                background      = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.hexagon));
     RoundedDrawable         foreground      = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));
 
     //noinspection ConstantConditions
     foreground.setScaleType(scaleType);
-    foreground.setColorFilter(inverted ? color.colorInt() : foregroundColor.getColorInt(), PorterDuff.Mode.SRC_ATOP);
 
     return new ExpandingLayerDrawable(new Drawable[] {background, foreground});
   }

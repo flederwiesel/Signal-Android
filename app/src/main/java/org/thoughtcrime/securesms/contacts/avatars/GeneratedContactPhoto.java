@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.avatar.Avatar;
 import org.thoughtcrime.securesms.avatar.AvatarRenderer;
 import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
-import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.NameUtil;
 
 import java.util.Objects;
@@ -55,12 +54,12 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
       Avatars.ForegroundColor foregroundColor = Avatars.getForegroundColor(color);
       Avatar.Text             avatar          = new Avatar.Text(character, new Avatars.ColorPair(color, foregroundColor), Avatar.DatabaseId.DoNotPersist.INSTANCE);
       Drawable                foreground      = AvatarRenderer.createTextDrawable(context, avatar, inverted, targetSize);
-      Drawable                background      = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.circle_tintable));
+      Drawable                background      = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.hexagon));
 
-      background.setColorFilter(new SimpleColorFilter(inverted ? foregroundColor.getColorInt() : color.colorInt()));
+      background.setColorFilter(new SimpleColorFilter(0xffffffff));
 
       return new LayerDrawable(new Drawable[] { background, foreground });
-   }
+    }
 
     return newFallbackDrawable(context, color, inverted);
   }
