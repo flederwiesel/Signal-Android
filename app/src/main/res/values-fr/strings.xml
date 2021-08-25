@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partager</string>
   <string name="InviteActivity_share_with_contacts">Partager avec des contacts</string>
-  <string name="InviteActivity_choose_how_to_share">Choisir comment partager</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Choisir comment partager</string> -->
   <string name="InviteActivity_cancel">Annuler</string>
   <string name="InviteActivity_sending">Envoi…</string>
   <string name="InviteActivity_invitations_sent">L’invitation a été envoyée.</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Passons à Signal : %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Vous semblez n’avoir aucune appli vers laquelle partager.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les amis ne laissent pas leur amis dialoguer sans chiffrement.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les amis ne laissent pas leur amis dialoguer sans chiffrement.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">En apprendre davantage</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Établissement de l’appel Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Appel Signal entrant</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Arrêt du service d’appel de Signal</string>
-  <string name="NotificationBarManager__deny_call">Refuser l’appel</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Refuser l’appel</string> -->
   <string name="NotificationBarManager__answer_call">Répondre à l’appel</string>
   <string name="NotificationBarManager__end_call">Raccrocher</string>
   <string name="NotificationBarManager__cancel_call">Annuler l’appel</string>
@@ -1201,13 +1201,12 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Appel…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
+  <string name="WebRtcCallView__signal_call">Appel Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal</string>
   <string name="WebRtcCallView__start_call">Démarrer un appel</string>
   <string name="WebRtcCallView__join_call">Me joindre à l’appel</string>
   <string name="WebRtcCallView__call_is_full">L’appel est complet</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Le nombre maximal de %1$d participants a été atteint pour cet appel. Veuillez réessayer plus tard.</string>
-  <string name="WebRtcCallView__s_group_call">Appel de groupe « %1$s »</string>
   <string name="WebRtcCallView__view_participants_list">Afficher les participants</string>
   <string name="WebRtcCallView__your_video_is_off">La vidéo est désactivée</string>
   <string name="WebRtcCallView__reconnecting">Reconnexion…</string>
@@ -1221,6 +1220,10 @@
     <item quantity="one">%1$s, %2$s et %3$d autre personne font partie de cet appel</item>
     <item quantity="other">%1$s, %2$s et %3$d autres personnes font partie de cet appel</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Haut-parleur</string>
+  <string name="WebRtcCallView__camera">Appareil photo</string>
+  <string name="WebRtcCallView__mute">Sourdine</string>
+  <string name="WebRtcCallView__end_call">Raccrocher</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Dans cet appel · %1$d personne</item>
@@ -3099,5 +3102,26 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Naviguer vers le haut</string>
+  <string name="MultiselectForwardFragment__forward_to">Transférer à</string>
+  <string name="MultiselectForwardFragment__add_a_message">Ajouter un message</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Transferts plus rapides</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Les messages transférés sont désormais immédiatement envoyés.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Envoyer %1$d message</item>
+    <item quantity="other">Envoyer %1$d messages</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Message envoyé</item>
+    <item quantity="other">Messages envoyés</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Échec de l’envoi du message</item>
+    <item quantity="other">Échec de l’envoi des messages</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Impossible de transférer le message car il n’est plus disponible.</item>
+    <item quantity="other">Impossible de transférer les messages car ils ne sont plus disponibles.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Limite atteinte</string>
   <!--EOF-->
 </resources>

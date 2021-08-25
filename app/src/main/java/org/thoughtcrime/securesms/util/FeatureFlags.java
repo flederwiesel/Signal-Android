@@ -81,7 +81,8 @@ public final class FeatureFlags {
   private static final String SENDER_KEY                        = "android.senderKey.4";
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
-  private static final String ANNOUNCEMENT_GROUPS               = "android.announcementGroups";
+  private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
+  private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -117,7 +118,8 @@ public final class FeatureFlags {
       SENDER_KEY,
       RETRY_RECEIPTS,
       SUGGEST_SMS_BLACKLIST,
-      ANNOUNCEMENT_GROUPS
+      MAX_GROUP_CALL_RING_SIZE,
+      GROUP_CALL_RINGING
   );
 
   @VisibleForTesting
@@ -166,7 +168,9 @@ public final class FeatureFlags {
       RETRY_RESPOND_MAX_AGE,
       SUGGEST_SMS_BLACKLIST,
       RETRY_RECEIPTS,
-      SENDER_KEY
+      SENDER_KEY,
+      MAX_GROUP_CALL_RING_SIZE,
+      GROUP_CALL_RINGING
   );
 
   /**
@@ -365,7 +369,7 @@ public final class FeatureFlags {
 
   /** How old a message is allowed to be while still resending in response to a retry receipt . */
   public static long retryRespondMaxAge() {
-    return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(1));
+    return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(14));
   }
 
   /** Whether or not sending using sender key is enabled. */
@@ -373,14 +377,19 @@ public final class FeatureFlags {
     return getBoolean(SENDER_KEY, false);
   }
 
-  /** Whether or not showing the announcement group setting in the UI is enabled . */
-  public static boolean announcementGroups() {
-    return getBoolean(ANNOUNCEMENT_GROUPS, false);
-  }
-
   /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
   public static @NonNull String suggestSmsBlacklist() {
     return getString(SUGGEST_SMS_BLACKLIST, "");
+  }
+
+  /** Max group size that can be use group call ringing. */
+  public static long maxGroupCallRingSize() {
+    return getLong(MAX_GROUP_CALL_RING_SIZE, 16);
+  }
+
+  /** Whether or not to show the group call ring toggle in the UI. */
+  public static boolean groupCallRinging() {
+    return getBoolean(GROUP_CALL_RINGING, false);
   }
 
   /** Only for rendering debug info. */

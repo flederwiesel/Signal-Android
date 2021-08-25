@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">শেয়ার করুন</string>
   <string name="InviteActivity_share_with_contacts">পরিচিতিদের সাথে শেয়ার করুন</string>
-  <string name="InviteActivity_choose_how_to_share">কিভাবে শেয়ার করবেন তা চয়ন করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">কিভাবে শেয়ার করবেন তা চয়ন করুন</string> -->
   <string name="InviteActivity_cancel">বাতিল</string>
   <string name="InviteActivity_sending">পাঠানো হচ্ছে</string>
   <string name="InviteActivity_invitations_sent">আমন্ত্রণ পাঠানো হয়েছে!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">চলুন Signal এ যোগ দেইঃ %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">আপনার কাছে শেয়ার করতে পারবেন এমন কোন অ্যাপ নেই।</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">বন্ধুরা কখনোই বন্ধুদের এনক্রিপ্ট না করে চ্যাট করতে দেয় না।</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">বন্ধুরা কখনোই বন্ধুদের এনক্রিপ্ট না করে চ্যাট করতে দেয় না।</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">আরও জানুন</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal কল স্থাপন করা হচ্ছে</string>
   <string name="NotificationBarManager__incoming_signal_call">আগত Signal কল</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal কল সার্ভিস বন্ধ করা হচ্ছে</string>
-  <string name="NotificationBarManager__deny_call">কল অগ্রাহ্য করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">কল অগ্রাহ্য করুন</string> -->
   <string name="NotificationBarManager__answer_call">কল গ্রহণ করুন</string>
   <string name="NotificationBarManager__end_call">কল শেষ করুন</string>
   <string name="NotificationBarManager__cancel_call">কল বাতিল করুন</string>
@@ -930,7 +930,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s কে একজন এডমিন বানিয়েছে|</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s আপনাকে এডমিন বানিয়েছে|</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">আপনি %1$s এর এডমিন ক্ষমতাগুলি বাতিল করেছেন।</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s আপনার এর এডমিন ক্ষমতাগুলি বাতিল করেছে।</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s এর এডমিন ক্ষমতাগুলি বাতিল করেছে।</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s এখন একজন এডমিন। </string>
   <string name="MessageRecord_you_are_now_an_admin">আপনি এখন প্রশাসক</string>
@@ -1200,13 +1199,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">কল করা হচ্ছে…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal ভয়েস কল…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal ভিডিও কল…</string>
+  <string name="WebRtcCallView__signal_call">Signal কল</string>
   <string name="WebRtcCallView__start_call">কল শুরু করুন</string>
   <string name="WebRtcCallView__join_call">কলে যোগ দিন</string>
   <string name="WebRtcCallView__call_is_full">কলটিতে জায়গা নেই</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">এই কল-এ সর্বোচ্চ %1$d জন অংশগ্রহণকারীর সংখ্যায় পৌঁছেছে। পরে আবার চেষ্টা করুন।</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" গ্রুপ কল</string>
   <string name="WebRtcCallView__view_participants_list">অংশগ্রহণকারীদের দেখুন</string>
   <string name="WebRtcCallView__your_video_is_off">আপনার ভিডিও বন্ধ করা আছে</string>
   <string name="WebRtcCallView__reconnecting">পুনঃসংযোগ হচ্ছে …</string>
@@ -1220,6 +1217,10 @@
     <item quantity="one">%1$s, %2$s, ও আরো %3$d  জন এই কল-এ আছেন</item>
     <item quantity="other">%1$s, %2$s ও আরও %3$d জন এই কল-এ আছেন</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">স্পিকার</string>
+  <string name="WebRtcCallView__camera">ক্যামেরা</string>
+  <string name="WebRtcCallView__mute">নিরব</string>
+  <string name="WebRtcCallView__end_call">কল শেষ করুন</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">এই কল-এ · %1$d জন</item>

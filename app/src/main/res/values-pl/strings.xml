@@ -823,7 +823,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Udostępnij</string>
   <string name="InviteActivity_share_with_contacts">Udostępnij kontaktom</string>
-  <string name="InviteActivity_choose_how_to_share">Wybierz sposób udostępnienia</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Wybierz sposób udostępnienia</string> -->
   <string name="InviteActivity_cancel">Anuluj</string>
   <string name="InviteActivity_sending">Wysyłanie…</string>
   <string name="InviteActivity_invitations_sent">Zaproszenie zostało wysłane!</string>
@@ -842,7 +842,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Zacznij używać Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Nie pozwól znajomym używać nieszyfrowanych połączeń.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Nie pozwól znajomym używać nieszyfrowanych połączeń.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dowiedz się więcej</string>
   <!--LongMessageActivity-->
@@ -922,7 +922,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Przychodzące połączenie Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zatrzymywanie usługi połączeń Signal</string>
-  <string name="NotificationBarManager__deny_call">Odrzuć</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odrzuć</string> -->
   <string name="NotificationBarManager__answer_call">Odbierz</string>
   <string name="NotificationBarManager__end_call">Zakończ</string>
   <string name="NotificationBarManager__cancel_call">Anuluj</string>
@@ -1316,13 +1316,12 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Łączenie…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Połączenie głosowe Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal…</string>
+  <string name="WebRtcCallView__signal_call">Połączenie audio Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal</string>
   <string name="WebRtcCallView__start_call">Rozpocznij połączenie</string>
   <string name="WebRtcCallView__join_call">Dołącz do rozmowy</string>
   <string name="WebRtcCallView__call_is_full">Połączenie jest pełne</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Osiągnięto maksymalną liczbę %1$d uczestników rozmowy. Spróbuj później.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Połączenie grupowe</string>
   <string name="WebRtcCallView__view_participants_list">Zobacz uczestników</string>
   <string name="WebRtcCallView__your_video_is_off">Twoje wideo jest wyłączone</string>
   <string name="WebRtcCallView__reconnecting">Ponowne łączenie…</string>
@@ -1338,6 +1337,11 @@
     <item quantity="many">%1$s, %2$s i %3$d innych uczestniczy w rozmowie</item>
     <item quantity="other">%1$s, %2$s i %3$d innych uczestniczy w rozmowie</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Przełącz kamerę</string>
+  <string name="WebRtcCallView__speaker">Głośnik</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Wycisz</string>
+  <string name="WebRtcCallView__end_call">Zakończ rozmowę</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">W tej rozmowie · %1$d osoba</item>
@@ -3270,5 +3274,34 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Przejdź do góry</string>
+  <string name="MultiselectForwardFragment__forward_to">Przekaż do</string>
+  <string name="MultiselectForwardFragment__add_a_message">Dodaj wiadomość</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Szybsze przekazywanie</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Przekazywane wiadomości są teraz natychmiast wysyłane.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Wysłano %1$d wiadomość</item>
+    <item quantity="few">Wysłano %1$d wiadomości</item>
+    <item quantity="many">Wysłano %1$d wiadomości</item>
+    <item quantity="other">Wysłano %1$d wiadomości</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Wiadomość wysłana</item>
+    <item quantity="few">Wiadomości wysłane</item>
+    <item quantity="many">Wiadomości wysłane</item>
+    <item quantity="other">Wiadomości wysłane</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Nie udało się wysłać wiadomości</item>
+    <item quantity="few">Nie udało się wysłać wiadomości</item>
+    <item quantity="many">Nie udało się wysłać wiadomości</item>
+    <item quantity="other">Nie udało się wysłać wiadomości</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nie udało się przekazać wiadomości, gdyż nie jest już dostępna.</item>
+    <item quantity="few">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
+    <item quantity="many">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
+    <item quantity="other">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Osiągnięto limit</string>
   <!--EOF-->
 </resources>

@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">શેર કરો</string>
   <string name="InviteActivity_share_with_contacts">સંપર્કો સાથે શેર કરો</string>
-  <string name="InviteActivity_choose_how_to_share">કેવી રીતે શેર કરવું તે પસંદ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">કેવી રીતે શેર કરવું તે પસંદ કરો</string> -->
   <string name="InviteActivity_cancel">રદ કરો</string>
   <string name="InviteActivity_sending">મોકલી રહ્યો છે…</string>
   <string name="InviteActivity_invitations_sent">આમંત્રણો મોકલ્યા!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">ચાલો Signal પર સ્વિચ કરીએ: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">એવું લાગે છે કે તમારી પાસે શેર કરવા માટે કોઈ એપ્લિકેશન નથી.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">મિત્રો મિત્રોને અનક્રિપ્ટ વિના ચેટ કરવા દેતા નથી.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">મિત્રો મિત્રોને અનક્રિપ્ટ વિના ચેટ કરવા દેતા નથી.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">વધુ શીખો</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal કૉલ સ્થાપિત કરી રહ્યા છીએ</string>
   <string name="NotificationBarManager__incoming_signal_call">આવી રહેલ Signal કૉલ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal કોલ સેવા બંધ કરી રહ્યા છીએ</string>
-  <string name="NotificationBarManager__deny_call">કૉલ નામંજૂર</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">કૉલ નામંજૂર</string> -->
   <string name="NotificationBarManager__answer_call">કૉલનો જવાબ આપો</string>
   <string name="NotificationBarManager__end_call">કૉલ નો અંત કરો</string>
   <string name="NotificationBarManager__cancel_call">કૉલ ને રદ કરો</string>
@@ -930,7 +930,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s એ %2$sને એડમિન બનાવ્યા.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s એ તમને એડમિન બનાવ્યાં છે.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">તમે %1$s ના એડમિન વિશેષાધિકારો રદ કર્યા.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$sએ તમારા એડમિન વિશેષાધિકારો રદ કર્યા.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$sએ %2$s માંથી એડમિન વિશેષાધિકારો રદ કર્યા.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s હવે એડમિન છે</string>
   <string name="MessageRecord_you_are_now_an_admin">હવે તમે એડમિન છો.</string>
@@ -1200,13 +1199,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">કોલિંગ…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal વૉઈસ કૉલ…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal વિડિયો કૉલ…</string>
+  <string name="WebRtcCallView__signal_call">Signal કૉલ</string>
   <string name="WebRtcCallView__start_call">કૉલ શરૂ કરો</string>
   <string name="WebRtcCallView__join_call">કૉલમાં જોડાઓ</string>
   <string name="WebRtcCallView__call_is_full">કૉલ પૂર્ણ છે</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">આ કૉલ માટે %1$d સહભાગીઓની સંખ્યા મહત્તમ સુધી પહોંચી ગઈ છે. પછીથી ફરીથી પ્રયાસ કરો.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" ગ્રુપ કૉલ</string>
   <string name="WebRtcCallView__view_participants_list">સહભાગીઓ જુઓ</string>
   <string name="WebRtcCallView__your_video_is_off">તમારો વીડિયો બંધ છે</string>
   <string name="WebRtcCallView__reconnecting">ફરીથી કનેક્ટ કરી રહ્યું છે…</string>
@@ -1220,6 +1217,10 @@
     <item quantity="one">%1$s, %2$s, અને %3$d અન્યો આ કૉલ માં છે</item>
     <item quantity="other">%1$s, %2$s, અને %3$d અન્યો આ કૉલમાં છે</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">સ્પીકર</string>
+  <string name="WebRtcCallView__camera">કૅમેરા</string>
+  <string name="WebRtcCallView__mute">મ્યુટ</string>
+  <string name="WebRtcCallView__end_call">કૉલ નો અંત કરો</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">આ કૉલમાં · %1$d લોકો</item>

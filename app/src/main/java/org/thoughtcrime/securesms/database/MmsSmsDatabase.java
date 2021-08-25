@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import net.sqlcipher.database.SQLiteQueryBuilder;
+import net.zetetic.database.sqlcipher.SQLiteQueryBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
@@ -192,7 +192,7 @@ public class MmsSmsDatabase extends Database {
 
 
   public Cursor getConversation(long threadId, long offset, long limit) {
-    SQLiteDatabase db        = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String         order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
     String         limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
@@ -219,7 +219,7 @@ public class MmsSmsDatabase extends Database {
   }
 
   public @NonNull MessageRecord getConversationSnippet(long threadId) throws NoSuchMessageException {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
     try (Cursor cursor = db.rawQuery(SNIPPET_QUERY, SqlUtil.buildArgs(threadId, threadId))) {
       if (cursor.moveToFirst()) {
         boolean isMms = CursorUtil.requireBoolean(cursor, TRANSPORT);
@@ -237,7 +237,7 @@ public class MmsSmsDatabase extends Database {
   }
 
   public long getConversationSnippetType(long threadId) throws NoSuchMessageException {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
     try (Cursor cursor = db.rawQuery(SNIPPET_QUERY, SqlUtil.buildArgs(threadId, threadId))) {
       if (cursor.moveToFirst()) {
         return CursorUtil.requireLong(cursor, MmsSmsColumns.NORMALIZED_TYPE);
@@ -415,7 +415,7 @@ public class MmsSmsDatabase extends Database {
    * @return Whether or not some thread was updated.
    */
   private boolean incrementReceiptCount(SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
-    SQLiteDatabase    db             = databaseHelper.getWritableDatabase();
+    SQLiteDatabase    db             = databaseHelper.getSignalWritableDatabase();
     ThreadDatabase    threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Set<ThreadUpdate> threadUpdates  = new HashSet<>();
 
@@ -449,7 +449,7 @@ public class MmsSmsDatabase extends Database {
    * @return All of the messages that didn't result in updates.
    */
   private @NonNull Collection<SyncMessageId> incrementReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
-    SQLiteDatabase            db             = databaseHelper.getWritableDatabase();
+    SQLiteDatabase            db             = databaseHelper.getSignalWritableDatabase();
     ThreadDatabase            threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Set<ThreadUpdate>         threadUpdates  = new HashSet<>();
     Collection<SyncMessageId> unhandled      = new HashSet<>();
@@ -589,11 +589,11 @@ public class MmsSmsDatabase extends Database {
     DatabaseFactory.getMmsDatabase(context).setNotifiedTimestamp(timestamp, mmsIds);
   }
 
-  public boolean deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
+  public int deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
     Log.d(TAG, "deleteMessagesInThreadBeforeData(" + threadId + ", " + trimBeforeDate + ")");
-    boolean deletedSms = DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
-    boolean deletedMms = DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
-    return deletedSms || deletedMms;
+    int deletes = DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    deletes += DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    return deletes;
   }
 
   public void deleteAbandonedMessages() {
@@ -819,7 +819,7 @@ public class MmsSmsDatabase extends Database {
   private Cursor queryTables(String[] projection, String selection, String order, String limit) {
     String query = buildQuery(projection, selection, order, limit, true);
 
-    return databaseHelper.getReadableDatabase().rawQuery(query, null);
+    return databaseHelper.getSignalReadableDatabase().rawQuery(query, null);
   }
 
   public static Reader readerFor(@NonNull Cursor cursor) {

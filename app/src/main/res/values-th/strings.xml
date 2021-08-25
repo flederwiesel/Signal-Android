@@ -712,7 +712,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">แบ่งปัน</string>
   <string name="InviteActivity_share_with_contacts"> แบ่งปันกับผู้ติดต่อ</string>
-  <string name="InviteActivity_choose_how_to_share">เลือกว่าจะแบ่งปันอย่างไร</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">เลือกว่าจะแบ่งปันอย่างไร</string> -->
   <string name="InviteActivity_cancel">ยกเลิก</string>
   <string name="InviteActivity_sending">กำลังส่ง…</string>
   <string name="InviteActivity_invitations_sent">ส่งคำเชิญแล้ว!</string>
@@ -725,7 +725,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กัน: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ดูเหมือนว่าคุณไม่มีแอปอะไรที่จะแบ่งปันได้</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">เพื่อนต้องไม่ยอมให้เพื่อนคุยกันโดยไม่มีการเข้ารหัส</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">เพื่อนต้องไม่ยอมให้เพื่อนคุยกันโดยไม่มีการเข้ารหัส</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">เรียนรู้เพิ่มเติม</string>
   <!--LongMessageActivity-->
@@ -793,7 +793,7 @@
   <string name="NotificationBarManager__establishing_signal_call">กำลังต่อสาย Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">สาย Signal เรียกเข้า</string>
   <string name="NotificationBarManager__stopping_signal_call_service">หยุดบริการโทร Signal</string>
-  <string name="NotificationBarManager__deny_call">ไม่รับสาย</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">ไม่รับสาย</string> -->
   <string name="NotificationBarManager__answer_call">รับสาย</string>
   <string name="NotificationBarManager__end_call">วางสาย</string>
   <string name="NotificationBarManager__cancel_call">ยกเลิกการโทร</string>
@@ -884,7 +884,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ตั้ง %2$s เป็นผู้ดูแล</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ตั้งคุณเป็นผู้ดูแล</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">คุณได้เพิกถอนสิทธิ์ผู้ดูแลจาก %1$s</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจากคุณ</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ได้เป็นผู้ดูแลแล้ว</string>
   <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>
@@ -1143,13 +1142,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">กำลังโทร…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">โทรเสียง Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">โทรวิดีโอ Signal…</string>
+  <string name="WebRtcCallView__signal_call">โทร Signal</string>
   <string name="WebRtcCallView__start_call">เริ่มโทร</string>
   <string name="WebRtcCallView__join_call">เข้าร่วมการโทร</string>
   <string name="WebRtcCallView__call_is_full">ห้องเต็ม</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">มีผู้เข้าร่วมสายนี้เต็มขีดจำกัดสูงสุด %1$d คนแล้ว โปรดลองใหม่ภายหลัง</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" โทรกลุ่ม</string>
   <string name="WebRtcCallView__view_participants_list">ดูผู้เข้าร่วม</string>
   <string name="WebRtcCallView__your_video_is_off">วิดีโอของคุณปิดอยู่</string>
   <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
@@ -1162,6 +1159,10 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรนี้</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">ลำโพง</string>
+  <string name="WebRtcCallView__camera">กล้อง</string>
+  <string name="WebRtcCallView__mute">ปิดเสียง</string>
+  <string name="WebRtcCallView__end_call">วางสาย</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">มีผู้เข้าร่วมการโทร %1$d คน</item>
