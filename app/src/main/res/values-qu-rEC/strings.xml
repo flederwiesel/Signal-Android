@@ -323,10 +323,10 @@
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Shunku</string> -->
   <string name="InviteActivity_invitations_sent">¡Kumpitaykunata kachashka!</string>
   <string name="InviteActivity_invite_to_signal">Signal ukuman kayachiy</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">MASHIMAN %d KILLKANA SMS</item>
     <item quantity="other">MASHIKUNAMAN %d  SMS KACHAY</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Kayachita SMS %d kachanayanchu</item>
     <item quantity="other">%d SMS kayachikunata kachanayanchu</item>
@@ -888,10 +888,10 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">YUPAY MASHIKUMAN KIMICHINA</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">MANA ALLICHINI , SHINAPASH TUKUYLLA ÑUKAPA KALLARI WILLAYTA RIKUCHUN MUNANI </string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Wakaychishka pakalla  yupayta kaywan %s rikunkapak munashpaka, hawapi yupayta kay antanikipi llukshishka yupaywan chimpapurapay kikinpa kayachirikuk mashiwan. Mana kashpaka, rantimanta unanchata  shuyurikchashpa ushankichik. <a href="https://signal.org/redirect/safety-numbers">Ashtawan yachana.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Wakaychishka pakalla  yupayta kaywan %s rikunkapak munashpaka, hawapi yupayta kay antanikipi llukshishka yupaywan chimpapurapay kikinpa kayachirikuk mashiwan. Mana kashpaka, rantimanta unanchata  shuyurikchashpa ushankichik. <a href="https://signal.org/redirect/safety-numbers">Ashtawan yachana.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Shuyurikchankapak llapipay.</string>
   <string name="verify_display_fragment__loading">Paskakun…</string>
-  <string name="verify_display_fragment__verified">Shinapachami</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Shinapachami</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Kikinpa wakaychishka yupayta riksichiy</string>
   <!--webrtc_answer_decline_button-->

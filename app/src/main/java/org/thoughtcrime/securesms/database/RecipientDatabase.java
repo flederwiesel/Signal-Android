@@ -28,7 +28,8 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -792,17 +793,17 @@ public class RecipientDatabase extends Database {
 
     if (id < 0) {
       Log.w(TAG,  "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.");
-      recipientId = getAndPossiblyMerge(insert.getAddress().getUuid(), insert.getAddress().getNumber().get(), true);
+      recipientId = getAndPossiblyMerge(insert.getAddress().hasValidUuid() ? insert.getAddress().getUuid() : null, insert.getAddress().getNumber().get(), true);
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
     } else {
       recipientId = RecipientId.from(id);
     }
 
-    if (insert.getIdentityKey().isPresent()) {
+    if (insert.getIdentityKey().isPresent() && insert.getAddress().hasValidUuid()) {
       try {
         IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
 
-        DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(insert.getAddress().getIdentifier(), identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
+        DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(insert.getAddress().getIdentifier(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
       } catch (InvalidKeyException e) {
         Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
       }
@@ -812,9 +813,9 @@ public class RecipientDatabase extends Database {
   }
 
   public void applyStorageSyncContactUpdate(@NonNull StorageRecordUpdate<SignalContactRecord> update) {
-    SQLiteDatabase   db               = databaseHelper.getSignalWritableDatabase();
-    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-    ContentValues    values           = getValuesForStorageContact(update.getNew(), false);
+    SQLiteDatabase             db            = databaseHelper.getSignalWritableDatabase();
+    TextSecureIdentityKeyStore identityStore = ApplicationDependencies.getIdentityStore();
+    ContentValues              values        = getValuesForStorageContact(update.getNew(), false);
 
     try {
       int updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
@@ -827,7 +828,7 @@ public class RecipientDatabase extends Database {
       RecipientId recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getOld().getId().getRaw())).get();
       Log.w(TAG,  "[applyStorageSyncContactUpdate] Found user " + recipientId + ". Possibly merging.");
 
-      recipientId = getAndPossiblyMerge(update.getNew().getAddress().getUuid(), update.getNew().getAddress().getNumber().orNull(), true);
+      recipientId = getAndPossiblyMerge(update.getNew().getAddress().hasValidUuid() ? update.getNew().getAddress().getUuid() : null, update.getNew().getAddress().getNumber().orNull(), true);
       Log.w(TAG,  "[applyStorageSyncContactUpdate] Merged into " + recipientId);
 
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
@@ -842,21 +843,21 @@ public class RecipientDatabase extends Database {
     }
 
     try {
-      Optional<IdentityRecord> oldIdentityRecord = identityDatabase.getIdentity(recipientId);
+      Optional<IdentityRecord> oldIdentityRecord = identityStore.getIdentityRecord(recipientId);
 
-      if (update.getNew().getIdentityKey().isPresent()) {
+      if (update.getNew().getIdentityKey().isPresent() && update.getNew().getAddress().hasValidUuid()) {
         IdentityKey identityKey = new IdentityKey(update.getNew().getIdentityKey().get(), 0);
-        DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(update.getNew().getAddress().getIdentifier(), identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
+        DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(update.getNew().getAddress().getIdentifier(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
       }
 
-      Optional<IdentityRecord> newIdentityRecord = identityDatabase.getIdentity(recipientId);
+      Optional<IdentityRecord> newIdentityRecord = identityStore.getIdentityRecord(recipientId);
 
       if ((newIdentityRecord.isPresent() && newIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED) &&
           (!oldIdentityRecord.isPresent() || oldIdentityRecord.get().getVerifiedStatus() != VerifiedStatus.VERIFIED))
       {
         IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
       } else if ((newIdentityRecord.isPresent() && newIdentityRecord.get().getVerifiedStatus() != VerifiedStatus.VERIFIED) &&
-          (oldIdentityRecord.isPresent() && oldIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED))
+                 (oldIdentityRecord.isPresent() && oldIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED))
       {
         IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), false, true);
       }
@@ -1022,7 +1023,10 @@ public class RecipientDatabase extends Database {
     ProfileName profileName = ProfileName.fromParts(contact.getGivenName().orNull(), contact.getFamilyName().orNull());
     String      username    = contact.getUsername().orNull();
 
-    values.put(UUID, contact.getAddress().getUuid().toString());
+    if (contact.getAddress().hasValidUuid()) {
+      values.put(UUID, contact.getAddress().getUuid().toString());
+    }
+
     values.put(PHONE, contact.getAddress().getNumber().orNull());
     values.put(PROFILE_GIVEN_NAME, profileName.getGivenName());
     values.put(PROFILE_FAMILY_NAME, profileName.getFamilyName());
@@ -1035,7 +1039,7 @@ public class RecipientDatabase extends Database {
     values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(contact.getId().getRaw()));
 
     if (contact.hasUnknownFields()) {
-      values.put(STORAGE_PROTO, Base64.encodeBytes(contact.serializeUnknownFields()));
+      values.put(STORAGE_PROTO, Base64.encodeBytes(Objects.requireNonNull(contact.serializeUnknownFields())));
     } else {
       values.putNull(STORAGE_PROTO);
     }
@@ -2030,6 +2034,25 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  public void updateSelfPhone(@NonNull String e164) {
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+    db.beginTransaction();
+
+    try {
+      RecipientId id    = Recipient.self().getId();
+      RecipientId newId = getAndPossiblyMerge(Recipient.self().requireUuid(), e164, true);
+
+      if (id.equals(newId)) {
+        Log.i(TAG, "[updateSelfPhone] Phone updated for self");
+      } else {
+        throw new AssertionError("[updateSelfPhone] Self recipient id changed when updating phone. old: " + id + " new: " + newId);
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
   public void setUsername(@NonNull RecipientId id, @Nullable String username) {
     if (username != null) {
       Optional<RecipientId> existingUsername = getByUsername(username);
@@ -2898,7 +2921,7 @@ public class RecipientDatabase extends Database {
     db.update(TABLE_NAME, uuidValues, ID_WHERE, SqlUtil.buildArgs(byUuid));
 
     // Identities
-    db.delete(IdentityDatabase.TABLE_NAME, IdentityDatabase.ADDRESS + " = ?", SqlUtil.buildArgs(byE164));
+    ApplicationDependencies.getIdentityStore().delete(e164Settings.e164);
 
     // Group Receipts
     ContentValues groupReceiptValues = new ContentValues();
@@ -3581,7 +3604,7 @@ public class RecipientDatabase extends Database {
                                                    ")";
 
     static final String SIGNAL_CONTACT = REGISTERED + " = ? AND " +
-                                         "(" + SYSTEM_JOINED_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
+                                         "(" + nullIfEmpty(SYSTEM_JOINED_NAME) + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
                                          "(" + SORT_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
 
     static final String QUERY_SIGNAL_CONTACT = SIGNAL_CONTACT + " AND (" +

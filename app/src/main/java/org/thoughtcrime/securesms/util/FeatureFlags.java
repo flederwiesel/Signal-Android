@@ -78,11 +78,12 @@ public final class FeatureFlags {
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
-  private static final String SENDER_KEY                        = "android.senderKey.4";
+  private static final String SENDER_KEY                        = "android.senderKey.5";
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
+  private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -124,7 +125,8 @@ public final class FeatureFlags {
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY_VERSION
+      PHONE_NUMBER_PRIVACY_VERSION,
+      CHANGE_NUMBER_ENABLED
   );
 
   /**
@@ -359,7 +361,7 @@ public final class FeatureFlags {
 
   /** Whether or not sending or responding to retry receipts is enabled. */
   public static boolean retryReceipts() {
-    return getBoolean(RETRY_RECEIPTS, false);
+    return getBoolean(RETRY_RECEIPTS, true);
   }
 
   /** How long to wait before considering a retry to be a failure. */
@@ -374,7 +376,7 @@ public final class FeatureFlags {
 
   /** Whether or not sending using sender key is enabled. */
   public static boolean senderKey() {
-    return getBoolean(SENDER_KEY, false);
+    return getBoolean(SENDER_KEY, true);
   }
 
   /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
@@ -390,6 +392,11 @@ public final class FeatureFlags {
   /** Whether or not to show the group call ring toggle in the UI. */
   public static boolean groupCallRinging() {
     return getBoolean(GROUP_CALL_RINGING, false);
+  }
+
+  /** Weather or not to show change number in the UI. */
+  public static boolean changeNumber() {
+    return getBoolean(CHANGE_NUMBER_ENABLED, false);
   }
 
   /** Only for rendering debug info. */

@@ -163,7 +163,6 @@ import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.views.AdaptiveActionsToolbar;
-import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 
 import java.io.IOException;
@@ -208,6 +207,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private MessageRequestViewModel     messageRequestViewModel;
   private MessageCountsViewModel      messageCountsViewModel;
   private ConversationViewModel       conversationViewModel;
+  private ConversationGroupViewModel  groupViewModel;
   private SnapToTopDataObserver       snapToTopDataObserver;
   private MarkReadHelper              markReadHelper;
   private Animation                   scrollButtonInAnimation;
@@ -309,13 +309,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                    MenuState.canReplyToMessage(recipient.get(),
                                                                MenuState.isActionMessage(conversationMessage.getMessageRecord()),
                                                                conversationMessage.getMessageRecord(),
-                                                               messageRequestViewModel.shouldShowMessageRequest()),
+                                                               messageRequestViewModel.shouldShowMessageRequest(),
+                                                               groupViewModel.isNonAdminInAnnouncementGroup()),
             this::handleReplyMessage,
             this::onViewHolderPositionTranslated
     ).attachToRecyclerView(list);
 
     setupListLayoutListeners();
 
+    this.groupViewModel         = ViewModelProviders.of(requireActivity(), new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
     this.messageCountsViewModel = ViewModelProviders.of(requireActivity()).get(MessageCountsViewModel.class);
     this.conversationViewModel  = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
@@ -692,7 +694,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }
 
       Log.d(TAG, "Initializing adapter for " + recipient.getId());
-      ConversationAdapter adapter = new ConversationAdapter(requireContext(), this, GlideApp.with(this), locale, selectionClickListener, this.recipient.get(), new AttachmentMediaSourceFactory(requireContext()), colorizer);
+      ConversationAdapter adapter = new ConversationAdapter(requireContext(), this, GlideApp.with(this), locale, selectionClickListener, this.recipient.get(), colorizer);
       adapter.setPagingController(conversationViewModel.getPagingController());
       list.setAdapter(adapter);
       setInlineDateDecoration(adapter);
@@ -801,7 +803,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       return;
     }
 
-    MenuState menuState = MenuState.getMenuState(recipient.get(), selectedParts, messageRequestViewModel.shouldShowMessageRequest());
+    MenuState menuState = MenuState.getMenuState(recipient.get(), selectedParts, messageRequestViewModel.shouldShowMessageRequest(), groupViewModel.isNonAdminInAnnouncementGroup());
 
     menu.findItem(R.id.menu_context_forward).setVisible(menuState.shouldShowForwardAction());
     menu.findItem(R.id.menu_context_reply).setVisible(menuState.shouldShowReplyAction());
@@ -904,7 +906,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private AlertDialog.Builder buildRemoteDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
     Context             context       = requireActivity();
     int                 messagesCount = messageRecords.size();
-    AlertDialog.Builder builder       = new MaterialAlertDialogBuilder(getActivity());
+    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
 
     builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
@@ -958,7 +960,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (SignalStore.uiHints().hasConfirmedDeleteForEveryoneOnce()) {
       deleteForEveryone.run();
     } else {
-      new MaterialAlertDialogBuilder(requireActivity())
+      new AlertDialog.Builder(requireActivity())
                      .setMessage(R.string.ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation)
                      .setPositiveButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> {
                        SignalStore.uiHints().markHasConfirmedDeleteForEveryoneOnce();
@@ -1052,7 +1054,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (getListAdapter() != null) {
       clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
-      getListAdapter().addFastRecord(ConversationMessageFactory.createWithResolvedData(messageRecord, messageRecord.getDisplayBody(requireContext()), message.getMentions()));
       list.post(() -> list.scrollToPosition(0));
     }
 
@@ -1065,17 +1066,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (getListAdapter() != null) {
       clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
-      getListAdapter().addFastRecord(ConversationMessageFactory.createWithResolvedData(messageRecord));
       list.post(() -> list.scrollToPosition(0));
     }
 
     return messageRecord.getId();
-  }
-
-  public void releaseOutgoingMessage(long id) {
-    if (getListAdapter() != null) {
-      getListAdapter().releaseFastRecord(id);
-    }
   }
 
   private void presentConversationMetadata(@NonNull ConversationData conversation) {
@@ -1659,7 +1653,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                           .setView(R.layout.safety_number_changed_learn_more_dialog)
                                           .setPositiveButton(R.string.ConversationFragment_verify, (d, w) -> {
                                             SimpleTask.run(getLifecycle(), () -> {
-                                              return DatabaseFactory.getIdentityDatabase(requireContext()).getIdentity(recipient.getId());
+                                              return ApplicationDependencies.getIdentityStore().getIdentityRecord(recipient.getId());
                                             }, identityRecord -> {
                                               if (identityRecord.isPresent()) {
                                                 startActivity(VerifyIdentityActivity.newIntent(requireContext(), identityRecord.get()));

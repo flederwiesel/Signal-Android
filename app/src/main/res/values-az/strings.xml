@@ -84,13 +84,13 @@
   <string name="BlockedUsersActivity__unblock">Əngəldən çıxart</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s qrupunu əngəlləyərək tərk edirsiniz?</string>
-  <string name="BlockUnblockDialog_block_s">%1$səngəllənsin?</string>
+  <string name="BlockUnblockDialog_block_s">%1$s əngəllənsin?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Artıq bu qrupdan mesaj və ya yeniləmələr almayacaqsınız və üzvlər sizi bu qrupa yenidən əlavə edə bilməyəcək.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Qrup üzvləri, sizi yenidən bu qrupa əlavə edə bilməyəcək.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Qrup üzvləri, sizi bu qrupa yenidən əlavə edə biləcək.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Bir-birinizə mesaj göndərə, zəng edə biləcəksiniz, foto və adınız onlarla paylaşılacaq.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Əngəllənmiş şəxslər sizə zəng edə və ya mesaj göndərə bilməyəcək.</string>
-  <string name="BlockUnblockDialog_unblock_s">%1$səngəldən çıxarılsın?</string>
+  <string name="BlockUnblockDialog_unblock_s">%1$s əngəldən çıxarılsın?</string>
   <string name="BlockUnblockDialog_block">Əngəllə</string>
   <string name="BlockUnblockDialog_block_and_leave">Əngəllə və tərk et</string>
   <string name="BlockUnblockDialog_report_spam_and_block">Spam bildir və əngəllə</string>
@@ -693,7 +693,7 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">Bağlantını sıfırla</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Üzv tələbləri</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Yeni üzvləri təsdiqlə</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Qrup bağlantısı vasitəsilə qoşulan yeni üzvləri təsdiqləmək üçün bir admin tələb et.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Qrup bağlantısı vasitəsilə qoşulan yeni üzvlərin admin tərəfindən təsdiqlənməsi tələb olunsun.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Qrup bağlantısını sıfırlamaq istədiyinizə əminsiniz? İnsanlar, artıq hazırkı bağlantını istifadə edərək qrupa qoşula bilməyəcək.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR Kodu</string>
@@ -749,22 +749,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Paylaş</string>
   <string name="InviteActivity_share_with_contacts">Əlaqələrlə paylaş</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Necə paylaşacağınızı seçin</string> -->
+  <string name="InviteActivity_share_via">Paylaş…</string>
   <string name="InviteActivity_cancel">İmtina</string>
   <string name="InviteActivity_sending">Göndərilir…</string>
   <string name="InviteActivity_invitations_sent">Dəvətlər göndərildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal-a dəvət et</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d DOSTUNA SMS GÖNDƏR</item>
-    <item quantity="other">%d DOSTUNA SMS GÖNDƏR</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">SMS göndər (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS dəvətnaməsi göndərirsən?</item>
     <item quantity="other">%d SMS dəvəti göndərilsin?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Gəlin Signal-a keçək: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Bunu paylaşmaq üçün heç bir tətbiqiniz yoxdur kimi görünür.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dostlar, dostlarının şifrəsiz söhbət etməsinə icazə vermir.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Daha ətraflı</string>
   <!--LongMessageActivity-->
@@ -835,11 +831,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal zəngi davam edir</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal zəngi edilir</string>
   <string name="NotificationBarManager__incoming_signal_call">Gələn Signal zəngi</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Gələn Signal görüntülü zəngi</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal zəng xidməti dayandırılır</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Zəngi rədd et</string> -->
+  <string name="NotificationBarManager__decline_call">Zəngi rədd et</string>
   <string name="NotificationBarManager__answer_call">Zəngi cavabla</string>
   <string name="NotificationBarManager__end_call">Zəngi bitir</string>
   <string name="NotificationBarManager__cancel_call">Zəngi ləğv et</string>
+  <string name="NotificationBarManager__join_call">Zəngə qoşul</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Bildirişlər açılsın?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Əlaqələrinizdən və qruplarınızdan gələn heç bir mesajı qaçırmayın.</string>
@@ -1200,6 +1198,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal-ın, %1$s əlaqəsinə zəng etmək üçün kameranıza müraciətinə ehtiyacı var</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Zəng edilir…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Qrup, iştirakçılara zəng etmək üçün çox böyükdür.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal zəngi</string>
   <string name="WebRtcCallView__signal_video_call">Signal görüntülü zəngi</string>
@@ -1212,8 +1211,34 @@
   <string name="WebRtcCallView__reconnecting">Yenidən bağlantı qurulur…</string>
   <string name="WebRtcCallView__joining">Qoşulur…</string>
   <string name="WebRtcCallView__disconnected">Bağlantı kəsildi</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal, %1$s üçün zəng edəcək</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal, %1$s və %2$s əlaqələrinə zəng edəcək</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal, %1$s, %2$s və digər %3$d nəfərə zəng edəcək</item>
+    <item quantity="other">Signal, %1$s, %2$s və digər %3$d nəfərə zəng edəcək</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s bildiriş alacaq</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s və %2$s bildiriş alacaq</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s və digər %3$d nəfər bildiriş alacaq</item>
+    <item quantity="other">%1$s, %2$s və digər %3$d nəfər bildiriş alacaq</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$s üçün zəng edilir</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s və %2$s əlaqələrinə zəng edilir</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">%1$s, %2$s və digər %3$d nəfərə zəng edilir</item>
+    <item quantity="other">%1$s, %2$s və digər %3$d nəfərə zəng edilir</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s sizə zəng edir</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s, sizə və %2$s əlaqəsinə zəng edir</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s, sizə, %2$s və %3$s əlaqələrinə zəng edir</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s, sizə, %2$s, %3$s və digər %4$d nəfərə zəng edir</item>
+    <item quantity="other">%1$s, sizə, %2$s, %3$s və digər %4$d nəfərə zəng edir</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Burada heç kim yoxdur</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s bu zəngdədir</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s bu zəngdədir</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s və %2$s bu zəngdədir</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s təqdim edir</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1224,6 +1249,7 @@
   <string name="WebRtcCallView__speaker">Dinamik</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Səssizə al</string>
+  <string name="WebRtcCallView__ring">Zəng</string>
   <string name="WebRtcCallView__end_call">Zəngi bitir</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1274,6 +1300,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Dostlarınızla əlaqə qurmaq, mesajlaşmaq və onlara güvənli zənglər edə bilmək üçün Signal-ın, əlaqələrinizə müraciətinə ehtiyacı var.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Bu nömrəni qeydiyyatdan keçirmək üçün həddindən çox cəhd etdiniz. Zəhmət olmasa daha sonra yenidən sınayın.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Xidmətlə bağlantı qurula bilmir. Zəhmət olmasa şəbəkə bağlantınızı yoxlayıb yenidən sınayın.</string>
+  <string name="RegistrationActivity_call_requested">Zəng tələb olundu</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Xətanın aradan qaldırılması üçün sorğunu daxil etmək üçün %d cəmi addım qaldı.</item>
     <item quantity="other">Bir sazlama jurnalını göndərməyinizə %d addım qaldı.</item>
@@ -1801,21 +1828,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Ad və ya nömrə daxil edin</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s  ilə şifrələmə güvənliyini təsdiqləmək istəyirsinizsə, yuxarıdakı nömrələri qarşı tərəfin cihazındakı nömrələrlə müqayisə edin. Alternativ olaraq, onun telefonundakı kodu skan edə və ya ondan telefonunuzdakı kodu skan etməsini xahiş edə bilərsiniz. <a href="https://signal.org/redirect/safety-numbers">Daha ətraflı.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ilə olan bir ucdan digərinə qədər şifrələmənin güvənliyini təsdiqləmək üçün yuxarıdakı nömrələri onun cihazındakı nömrələrlə müqayisə edin. Həmçinin onun telefonundakı kodu skan edə bilərsiniz.<a href="https://signal.org/redirect/safety-numbers">Daha ətraflı.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skan etmək üçün toxunun</string>
+  <string name="verify_display_fragment__successful_match">Uğurlu</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Güvənlik nömrəsi təsdiqlənmədi</string>
   <string name="verify_display_fragment__loading">Yüklənir…</string>
-  <string name="verify_display_fragment__verified">Təsdiqləndi</string>
+  <string name="verify_display_fragment__mark_as_verified">Təsdiqləndi olaraq işarələ</string>
+  <string name="verify_display_fragment__clear_verification">Təsdiqləməni təmizlə</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Təhlükəsizlik nömrəsini paylaş</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Əlaqənizin cihazındakı QR kodu skan edin.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Cavablamaq üçün yuxarı sürüşdürün</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Rədd etmək üçün aşağı sürüşdürün</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Bəzi problemlər diqqətinizi tələb edir.</string>
-  <string name="message_details_header__sent">Göndərildi</string>
-  <string name="message_details_header__received">Alındı</string>
-  <string name="message_details_header__disappears">Yox olacaq</string>
-  <string name="message_details_header__via">Vasitəsilə</string>
+  <string name="message_details_header__sent">Göndərildi:</string>
+  <string name="message_details_header__received">Alındı:</string>
+  <string name="message_details_header__disappears">Yox olacaq:</string>
+  <string name="message_details_header__via">Vasitəsilə:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Gözləyir</string>
   <string name="message_details_recipient_header__sent_to">Göndərildi</string>
@@ -2493,6 +2525,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Əvəzində mənə zəng edin \n (%1$02d:%2$02d ərzində əlçatan olacaq)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal Dəstək komandası ilə əlaqə</string>
   <string name="RegistrationActivity_code_support_subject">Signal Qeydiyyatı - Android üçün Təsdiqləmə Kodu</string>
+  <string name="RegistrationActivity_incorrect_code">Yanlış kod</string>
   <string name="BackupUtil_never">Heç vaxt</string>
   <string name="BackupUtil_unknown">Bilinmir</string>
   <string name="preferences_app_protection__see_my_phone_number">Telefon nömrəmə baxa bilər</string>
@@ -2689,8 +2722,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Səsli mesaj oxudulmadı</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Səsli mesaj · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s, %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Səsli mesaj · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s -  %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" əngəlləndi.</string>
@@ -3133,5 +3166,25 @@
     <item quantity="other">Artıq mövcud olmadığı üçün mesajlar yönləndirilə bilmədi.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limitə çatıldı</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Bir mesaj əlavə et</string>
+  <string name="MediaReviewFragment__add_a_reply">Bir cavab əlavə et</string>
+  <string name="MediaReviewFragment__send_to">Göndər</string>
+  <string name="ImageEditorHud__cancel">İmtina</string>
+  <string name="ImageEditorHud__draw">Çək</string>
+  <string name="ImageEditorHud__write_text">Mətn yaz</string>
+  <string name="ImageEditorHud__add_a_sticker">Stiker əlavə et</string>
+  <string name="ImageEditorHud__blur">Bulanıqlıq</string>
+  <string name="ImageEditorHud__done_editing">Düzəlişi bitir</string>
+  <string name="ImageEditorHud__clear_all">Hamısını təmizlə</string>
+  <string name="ImageEditorHud__undo">Geri al</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">İşarələyici və vurğulayıcı arasında keçid</string>
+  <string name="MediaCountIndicatorButton__send">Göndər</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Çıxartmaq üçün toxunun</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Seçmək üçün toxunun</string>
+  <string name="MediaReviewImagePageFragment__discard">Ləğv et</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Dəyişikliklər ləğv edilsin?</string>
+  <string name="MediaReviewFragment__view_once_message">Bir dəfə baxıla bilən mesaj</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bu foto üzərində etdiyiniz bütün dəyişiklikləri itirəcəksiniz.</string>
   <!--EOF-->
 </resources>

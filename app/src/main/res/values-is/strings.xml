@@ -749,22 +749,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deila</string>
   <string name="InviteActivity_share_with_contacts">Deila með tengiliðum</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Veldu hvernig á að deila</string> -->
+  <string name="InviteActivity_share_via">Deila með…</string>
   <string name="InviteActivity_cancel">Hætta við</string>
   <string name="InviteActivity_sending">Sendi…</string>
   <string name="InviteActivity_invitations_sent">Boðskort voru send!</string>
   <string name="InviteActivity_invite_to_signal">Bjóða á Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SENDA SMS TIL %d VINAR</item>
-    <item quantity="other">SENDA SMS TIL %d VINA</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Senda SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Senda %d SMS boð?</item>
     <item quantity="other">Senda %d SMS boð?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Skiptum yfir í Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Það lítur út eins og þú sért ekki með nein forrit sem hægt sé að deila til.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vinir láta vini sína ekki spjalla án dulritunar.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Kanna nánar</string>
   <!--LongMessageActivity-->
@@ -835,11 +831,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Hringing með Signal í gangi</string>
   <string name="NotificationBarManager__establishing_signal_call">Er að tengja hringingu með Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Innhringing með Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Innhringing Signal-hópsímtals</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stöðva hringiþjónustu Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Hafna símtali</string> -->
+  <string name="NotificationBarManager__decline_call">Hafna símtali</string>
   <string name="NotificationBarManager__answer_call">Svara símtali</string>
   <string name="NotificationBarManager__end_call">Ljúka símtali</string>
   <string name="NotificationBarManager__cancel_call">Hætta við símtal</string>
+  <string name="NotificationBarManager__join_call">Taka þátt í símtali</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Kveikja á tilkynningum?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Misstu aldrei af skilaboðum frá tengiliðunum þinum eða hópum.</string>
@@ -1200,6 +1198,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Svo hægt sé að hringja í %1$s, þarf Signal að fá aðgang að myndavélinni þinni.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Hringi…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Hópurinn er of stór til að hægt sé að hringja í þátttakendurna.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-símtal</string>
   <string name="WebRtcCallView__signal_video_call">Signal-myndsímtal</string>
@@ -1212,8 +1211,34 @@
   <string name="WebRtcCallView__reconnecting">Endurtengist….</string>
   <string name="WebRtcCallView__joining">Geng í hóp…</string>
   <string name="WebRtcCallView__disconnected">Aftengt</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal mun hringja í %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal mun hringja í %1$s og %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal mun hringja í %1$s, %2$s og %3$d til viðbótar</item>
+    <item quantity="other">Signal mun hringja í %1$s, %2$s og %3$d til viðbótar</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s verður látinn vita</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s og %2$s verða látnir vita</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s og %3$d til viðbótar verða látnir vita</item>
+    <item quantity="other">%1$s, %2$s og %3$d til viðbótar verða látnir vita</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Hringi í %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Hringi í %1$s og %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Hringi í %1$s, %2$s og %3$d til viðbótar</item>
+    <item quantity="other">Hringi í %1$s, %2$s og %3$d til viðbótar</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s er að hringja í þig</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s er að hringja í þig og %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s er að hringja í þig, %2$s og %3$s til viðbótar</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s er að hringja í þig, %2$s, %3$s og %4$d til viðbótar</item>
+    <item quantity="other">%1$s er að hringja í þig, %2$s, %3$s og %4$d til viðbótar</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Það er enginn annar hérna</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s er í þessu símtali</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s eru í þessu símtali</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s eru í þessu símtali</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s er að kynna</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1224,6 +1249,7 @@
   <string name="WebRtcCallView__speaker">Hátalari</string>
   <string name="WebRtcCallView__camera">Myndavél</string>
   <string name="WebRtcCallView__mute">Hljóð af</string>
+  <string name="WebRtcCallView__ring">Hringja</string>
   <string name="WebRtcCallView__end_call">Ljúka símtali</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1800,21 +1826,17 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Settu inn nafn eða símanúmer</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ef þú vilt sannreyna öryggi enda-í-enda dulritunarinnar þinnar með %s, skaltu bera tölurnar hér fyrir ofan saman við tölurnar á viðkomandi tækjum. Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um að skanna kóðann þinn. <a href="https://signal.org/redirect/safety-numbers">Kanna nánar.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ýttu til að skanna</string>
   <string name="verify_display_fragment__loading">Hleð inn…</string>
-  <string name="verify_display_fragment__verified">Sannreynt</string>
+  <string name="verify_display_fragment__mark_as_verified">Merkja sem staðfest</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Deila öryggisnúmeri</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Strjúka upp til að svara</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Strjúka niður til að hafna</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Nokkur vandamál krefjast athygli þinnar.</string>
-  <string name="message_details_header__sent">Sent</string>
-  <string name="message_details_header__received">Móttekið</string>
-  <string name="message_details_header__disappears">Hverfur</string>
-  <string name="message_details_header__via">Með</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Í bið</string>
   <string name="message_details_recipient_header__sent_to">Sent til</string>
@@ -2691,8 +2713,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Mistókst að spila talskilaboð</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Talskilaboð - %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Talskilaboð - %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s til %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" hefur verið útilokaður.</string>
@@ -2727,7 +2749,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ReviewCard__recently_changed">Breytti nýlega nafninu á sniðinu sínu úr %1$s yfir í %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s gekk í hópinn</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s og %2$stóku þátt</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s og %2$s tóku þátt</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$sog %3$s tóku þátt</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s og %3$d til viðbótar tóku þátt</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s hætti</string>
@@ -3135,5 +3157,11 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
     <item quantity="other">Tókst ekki að senda skilaboð því þau eru ekki lengur tiltæk.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Takmörkum náð</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Bæta við skilaboðum</string>
+  <string name="ImageEditorHud__cancel">Hætta við</string>
+  <string name="ImageEditorHud__undo">Afturkalla</string>
+  <string name="MediaCountIndicatorButton__send">Senda</string>
+  <string name="MediaReviewImagePageFragment__discard">Henda</string>
   <!--EOF-->
 </resources>

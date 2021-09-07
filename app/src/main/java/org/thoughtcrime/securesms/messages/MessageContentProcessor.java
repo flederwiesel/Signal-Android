@@ -552,7 +552,7 @@ public final class MessageContentProcessor {
       database.markAsMissedCall(smsMessageId.get(), message.getType() == OfferMessage.Type.VIDEO_CALL);
     } else {
       RemotePeer remotePeer        = new RemotePeer(senderRecipient.getId());
-      byte[]     remoteIdentityKey = DatabaseFactory.getIdentityDatabase(context).getIdentity(senderRecipient.getId()).transform(record -> record.getIdentityKey().serialize()).orNull();
+      byte[]     remoteIdentityKey = ApplicationDependencies.getIdentityStore().getIdentityRecord(senderRecipient.getId()).transform(record -> record.getIdentityKey().serialize()).orNull();
 
       ApplicationDependencies.getSignalCallManager()
                              .receivedOffer(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()),
@@ -570,7 +570,7 @@ public final class MessageContentProcessor {
   {
     log(String.valueOf(content), "handleCallAnswerMessage...");
     RemotePeer remotePeer        = new RemotePeer(senderRecipient.getId());
-    byte[]     remoteIdentityKey = DatabaseFactory.getIdentityDatabase(context).getIdentity(senderRecipient.getId()).transform(record -> record.getIdentityKey().serialize()).orNull();
+    byte[]     remoteIdentityKey = ApplicationDependencies.getIdentityStore().getIdentityRecord(senderRecipient.getId()).transform(record -> record.getIdentityKey().serialize()).orNull();
 
     ApplicationDependencies.getSignalCallManager()
                            .receivedAnswer(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()),
@@ -694,8 +694,7 @@ public final class MessageContentProcessor {
     }
 
     if (insertResult.isPresent()) {
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(content.getSender().getIdentifier());
+      ApplicationDependencies.getSessionStore().deleteAllSessions(content.getSender().getIdentifier());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
@@ -717,8 +716,7 @@ public final class MessageContentProcessor {
     long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
     if (!recipient.isGroup()) {
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(recipient.requireServiceId());
+      ApplicationDependencies.getSessionStore().deleteAllSessions(recipient.requireServiceId());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
@@ -1804,7 +1802,7 @@ public final class MessageContentProcessor {
 
     long sentTimestamp = decryptionErrorMessage.getTimestamp();
 
-    warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + senderRecipient.getId() + ", device " + decryptionErrorMessage.getDeviceId() + " for message with timestamp " + sentTimestamp + ".");
+    warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + senderRecipient.getId() + ", device " + content.getSenderDevice() + " for message with timestamp " + sentTimestamp + ".");
 
     if (!senderRecipient.hasUuid()) {
       warn(content.getTimestamp(), "[RetryReceipt] Requester " + senderRecipient.getId() + " somehow has no UUID! timestamp: " + sentTimestamp);
@@ -1884,10 +1882,10 @@ public final class MessageContentProcessor {
 
     if (decryptionErrorMessage.getDeviceId() == SignalServiceAddress.DEFAULT_DEVICE_ID &&
         decryptionErrorMessage.getRatchetKey().isPresent()                             &&
-        SessionUtil.ratchetKeyMatches(context, requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
+        SessionUtil.ratchetKeyMatches(requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
     {
       warn(content.getTimestamp(), "[RetryReceipt-I] Ratchet key matches. Archiving the session.");
-      SessionUtil.archiveSession(context, requester.getId(), content.getSenderDevice());
+      SessionUtil.archiveSession(requester.getId(), content.getSenderDevice());
       archivedSession = true;
     }
 

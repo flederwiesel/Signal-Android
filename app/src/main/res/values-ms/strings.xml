@@ -713,20 +713,15 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Kongsi</string>
   <string name="InviteActivity_share_with_contacts">Kongsikan dengan kenalan</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Pilih cara untuk berkongsi</string> -->
   <string name="InviteActivity_cancel">Batal</string>
   <string name="InviteActivity_sending">Menghantar…</string>
   <string name="InviteActivity_invitations_sent">Jemputan dihantar!</string>
   <string name="InviteActivity_invite_to_signal">Jemput ke Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">HANTAR SMS KEPADA %dRAKAN</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Hantar %d jemputan SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Mari tukar ke Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Nampaknya anda tidak mempunyai sebarang aplikasi untuk dikongsi.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kawan tidak akan biarkan kawan berbual tanpa disulitkan.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Ketahui lebih lanjut</string>
   <!--LongMessageActivity-->
@@ -794,10 +789,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Mewujudkan panggilan Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Menghentikan perkhidmatan panggilan Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Tolak panggilan</string> -->
   <string name="NotificationBarManager__answer_call">Jawab panggilan </string>
   <string name="NotificationBarManager__end_call">Tamatkan panggilan</string>
   <string name="NotificationBarManager__cancel_call">Batalkan panggilan</string>
+  <string name="NotificationBarManager__join_call">Sertai panggilan</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Hidupkan Pemberitahuan?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Tidak sesekali terlepas mesej daripada kenalan dan kumpulan anda.</string>
@@ -1719,21 +1714,17 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Masukkan nama atau nombor telefon</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jika anda ingin mengesah keselamatan penyulitan anda dengan %s, bandingkan nombor di atas dengan nombor pada peranti mereka. Secara alternatif, anda boleh mengimbas kod di telefon mereka, atau meminta mereka untuk mengimbas kod anda. <a href="https://signal.org/redirect/safety-numbers">Ketahui lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketik untuk mengimbas</string>
   <string name="verify_display_fragment__loading">Memuatkan…</string>
-  <string name="verify_display_fragment__verified">Disahkan</string>
+  <string name="verify_display_fragment__mark_as_verified">Tanda sebagai disahkan</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Kongsikan nombor keselamatan</string>
+  <!--verity_scan_fragment-->
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Leret ke atas untuk menjawab</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Leret ke bawah untuk menolak</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Beberapa isu memerlukan perhatian anda</string>
-  <string name="message_details_header__sent">Dihantar</string>
-  <string name="message_details_header__received">Diterima</string>
-  <string name="message_details_header__disappears">Hilang</string>
-  <string name="message_details_header__via">Melalui</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Belum selesai</string>
   <string name="message_details_recipient_header__sent_to">Dihantar kepada</string>
@@ -2599,8 +2590,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Gagal memainkan mesej suara</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mesej suara · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s kepada %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Mesej suara · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s kepada %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" telah disekat.</string>
@@ -3017,5 +3008,11 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Navigasi ke atas</string>
+  <!--Media V2-->
+  <string name="ImageEditorHud__cancel">Batal</string>
+  <string name="ImageEditorHud__undo">Buat Asal</string>
+  <string name="MediaCountIndicatorButton__send">Hantar</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Ketik untuk dipilih</string>
+  <string name="MediaReviewImagePageFragment__discard">Buang</string>
   <!--EOF-->
 </resources>

@@ -712,20 +712,17 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">共有</string>
   <string name="InviteActivity_share_with_contacts">連絡先と共有</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">共有方法を選択</string> -->
+  <string name="InviteActivity_share_via">共有…</string>
   <string name="InviteActivity_cancel">キャンセル</string>
   <string name="InviteActivity_sending">送信しています…</string>
-  <string name="InviteActivity_invitations_sent">招待を送信しました！</string>
-  <string name="InviteActivity_invite_to_signal">Signalに招待する</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">SMSを友達%d人に送る</item>
-  </plurals>
+  <string name="InviteActivity_invitations_sent">招待状を送信しました！</string>
+  <string name="InviteActivity_invite_to_signal">Signalへの招待</string>
+  <string name="InviteActivity_send_sms">SMSを送信する (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">SMS招待状%d件を送信しますか？</item>
+    <item quantity="other">%d件のSMS招待状を送信しますか？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">メッセージアプリをSignalにしましょう: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">共有先として使えるアプリがないようです。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">友達とのチャットを暗号化しましょう。</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">詳しく見る</string>
   <!--LongMessageActivity-->
@@ -792,11 +789,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal通話の着信</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Signalグループ着信</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal通話サービスを停止しています</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">通話を拒否</string> -->
+  <string name="NotificationBarManager__decline_call">拒否する</string>
   <string name="NotificationBarManager__answer_call">通話を開始</string>
   <string name="NotificationBarManager__end_call">通話を終了</string>
   <string name="NotificationBarManager__cancel_call">通話をキャンセル</string>
+  <string name="NotificationBarManager__join_call">通話に参加する</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">通知を有効にしますか？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">連絡先やグループからのメッセージを見逃しません。</string>
@@ -1141,6 +1140,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s と通話するには、Signalにカメラへのアクセスを許可してください。</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">呼び出しています…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">グループが大きすぎるため、参加者を呼べません。</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal通話</string>
   <string name="WebRtcCallView__signal_video_call">Signalビデオ通話</string>
@@ -1153,8 +1153,30 @@
   <string name="WebRtcCallView__reconnecting">再接続しています…</string>
   <string name="WebRtcCallView__joining">参加しています…</string>
   <string name="WebRtcCallView__disconnected">接続していません</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signalは %1$s を呼び出します</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signalは %1$s と %2$s を呼び出します</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signalは %1$s, %2$s ほか%3$d名を呼び出します</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s には通知されません</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s と %2$s には通知されません</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s, %2$s ほか%3$d名には通知されません</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$s を呼び出しています</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s と %2$s を呼び出しています</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">%1$s, %2$s ほか%3$d名を呼び出しています</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s があなたを呼び出しています</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s があなたと %2$s を呼び出しています</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s があなた, %2$s および %3$s を呼び出しています</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s があなた, %2$s, %3$s ほか%4$d名を呼び出しています</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">誰も参加していません</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s が参加中</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s が参加中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s と %2$s が参加中</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s が画面を共有しています</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1164,7 +1186,8 @@
   <string name="WebRtcCallView__speaker">スピーカー</string>
   <string name="WebRtcCallView__camera">カメラ</string>
   <string name="WebRtcCallView__mute">ミュート</string>
-  <string name="WebRtcCallView__end_call">通話を終了</string>
+  <string name="WebRtcCallView__ring">呼び出し</string>
+  <string name="WebRtcCallView__end_call">通話終了</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">参加者 · %1$d人</item>
@@ -1207,6 +1230,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、安全な通話をするには、Signalに連絡先へのアクセス許可が必要です。</string>
   <string name="RegistrationActivity_rate_limited_to_service">この番号の登録試行回数が多すぎます。あとで再度試してください。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できませんでした。ネットワークの接続を確認してから、再度試してください。</string>
+  <string name="RegistrationActivity_call_requested">通話を要求されました</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">デバッグログの提出まで、あと%dステップです。</item>
   </plurals>
@@ -1719,21 +1743,26 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s に対する暗号化を検証するには、上記の番号が相手の端末のものと一致するか確認してください。相手の端末上のコードをスキャンするか、あなたのコードをスキャンしてもらうことでも可能です。<a href="https://signal.org/redirect/safety-numbers">詳細</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s とのエンドツーエンドの暗号化を検証するには、上記の番号が相手の端末のものと一致するか確認してください。相手の端末上のコードをスキャンするか、あなたのコードをスキャンしてもらうことでも可能です。<a href="https://signal.org/redirect/safety-numbers">詳細</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">タップしてスキャンする</string>
+  <string name="verify_display_fragment__successful_match">一致しました</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">安全番号を検証できませんでした</string>
   <string name="verify_display_fragment__loading">読み込んでいます…</string>
-  <string name="verify_display_fragment__verified">検証済み</string>
+  <string name="verify_display_fragment__mark_as_verified">検証済みにする</string>
+  <string name="verify_display_fragment__clear_verification">未検証にする</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">連絡先の端末のQRコードをスキャンしてください。</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">上にスワイプして電話に出る</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">下にスワイプして拒否する</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">問題が発生しました</string>
-  <string name="message_details_header__sent">送信</string>
-  <string name="message_details_header__received">受信</string>
-  <string name="message_details_header__disappears">消えるまで</string>
-  <string name="message_details_header__via">経由</string>
+  <string name="message_details_header__sent">送信:</string>
+  <string name="message_details_header__received">受信:</string>
+  <string name="message_details_header__disappears">消えるまで:</string>
+  <string name="message_details_header__via">経由:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">保留中</string>
   <string name="message_details_recipient_header__sent_to">宛先</string>
@@ -2403,6 +2432,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">代わりに電話してください\n (利用可能になるまで %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Signalサポートに問い合わせ</string>
   <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
+  <string name="RegistrationActivity_incorrect_code">コードが違います</string>
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="preferences_app_protection__see_my_phone_number">私の電話番号を確認できる人</string>
@@ -2599,8 +2629,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">音声メッセージを再生できませんでした。</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">音声メッセージ · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s から %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">音声メッセージ · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s から %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">「%1$s」はブロックされました。</string>
@@ -3025,14 +3055,34 @@
     <item quantity="other">%1$d件のメッセージを送信</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
-    <item quantity="other">メッセージ送信済み</item>
+    <item quantity="other">メッセージを送信しました</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
-    <item quantity="other">メッセージ送信失敗</item>
+    <item quantity="other">メッセージの送信に失敗しました</item>
   </plurals>
   <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
     <item quantity="other">すでにメッセージがないため、転送できませんでした。</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">制限に達しました</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">メッセージを追加してください</string>
+  <string name="MediaReviewFragment__add_a_reply">返信を追加</string>
+  <string name="MediaReviewFragment__send_to">宛先</string>
+  <string name="ImageEditorHud__cancel">キャンセル</string>
+  <string name="ImageEditorHud__draw">描く</string>
+  <string name="ImageEditorHud__write_text">テキストを記入</string>
+  <string name="ImageEditorHud__add_a_sticker">ステッカーを追加</string>
+  <string name="ImageEditorHud__blur">ぼかす</string>
+  <string name="ImageEditorHud__done_editing">編集完了</string>
+  <string name="ImageEditorHud__clear_all">すべて消去</string>
+  <string name="ImageEditorHud__undo">元に戻す</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">マーカーと蛍光ペンを切り替えます</string>
+  <string name="MediaCountIndicatorButton__send">送信する</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">タップして削除</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">タップして選択</string>
+  <string name="MediaReviewImagePageFragment__discard">破棄する</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">変更を破棄しますか？</string>
+  <string name="MediaReviewFragment__view_once_message">使い捨てメッセージ</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">この写真に加えた変更はすべて失われます。</string>
   <!--EOF-->
 </resources>

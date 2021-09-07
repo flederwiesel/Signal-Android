@@ -786,16 +786,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Distribuie</string>
   <string name="InviteActivity_share_with_contacts">Distribuie la contacte</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Alegeți cum să distribuiți</string> -->
+  <string name="InviteActivity_share_via">Distribuiți cu…</string>
   <string name="InviteActivity_cancel">Anulați</string>
   <string name="InviteActivity_sending">Se trimite…</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
   <string name="InviteActivity_invite_to_signal">Invitați la Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">TRIMITE SMS LA %d PRIETEN</item>
-    <item quantity="few">TRIMITE SMS LA %d PRIETENI</item>
-    <item quantity="other">TRIMITE SMS LA %d DE PRIETENI</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Trimite SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Trimit %d invitație prin SMS?</item>
     <item quantity="few">Trimit %d invitații prin SMS?</item>
@@ -803,7 +799,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hai să folosim Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți distribui.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să converseze necriptat.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Aflați mai multe</string>
   <!--LongMessageActivity-->
@@ -878,11 +873,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Primire apel Signal de grup</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Se oprește serviciul de apelare Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Respingeți apelul</string> -->
+  <string name="NotificationBarManager__decline_call">Respinge apelul</string>
   <string name="NotificationBarManager__answer_call">Răspundeți apelului</string>
   <string name="NotificationBarManager__end_call">Închideți apelul</string>
   <string name="NotificationBarManager__cancel_call">Anulați apelul</string>
+  <string name="NotificationBarManager__join_call">Alăturați-vă apelului</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Activaţi notificările?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nu rata niciodată un mesaj de la contactele și grupurile tale.</string>
@@ -1258,6 +1255,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pentru a apela pe %1$s, Signal are nevoie de acces la camera dvs.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Apel în curs…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupul este prea mare pentru a apela participanții.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Apel Signal</string>
   <string name="WebRtcCallView__signal_video_call">Apel Video Signal</string>
@@ -1266,12 +1264,42 @@
   <string name="WebRtcCallView__call_is_full">Numărul maxim de participanți a fost atins</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Numărul maxim de %1$d participanți a fost atins pentru acest apel. Încercați mai târziu. </string>
   <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
-  <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
+  <string name="WebRtcCallView__your_video_is_off">Camera dvs. este oprită</string>
   <string name="WebRtcCallView__reconnecting">Se reconectează…</string>
   <string name="WebRtcCallView__joining">Se alătură…</string>
   <string name="WebRtcCallView__disconnected">Deconectat</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal va suna la %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal va suna la %1$s și %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal va suna la %1$s, %2$s, și %3$d altul</item>
+    <item quantity="few">Signal va suna la %1$s, %2$s, și %3$d alții</item>
+    <item quantity="other">Signal va suna la %1$s, %2$s, și %3$d alții</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s va fi notificat</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s și %2$s vor fi notificați</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s și %3$d altul vor fi notificați </item>
+    <item quantity="few">%1$s, %2$s și %3$d alții vor fi notificați</item>
+    <item quantity="other">%1$s, %2$s și %3$d alții vor fi notificați</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Se apelează %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Se apelează %1$s și %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Se apelează %1$s, %2$s și %3$d altul</item>
+    <item quantity="few">Se apelează %1$s, %2$s și %3$d alții</item>
+    <item quantity="other">Se apelează %1$s, %2$s și %3$d alții </item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s vă apelează</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s apelează pe dvs. și %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s apelează pe dvs, %2$s, și %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s apelează pe dvs, %2$s, %3$s și %4$d altul</item>
+    <item quantity="few">%1$s apelează pe dvs, %2$s, %3$s și %4$d alții</item>
+    <item quantity="other">%1$s apelează pe dvs, %2$s, %3$s și %4$d alții</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Nu este nimeni aici</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s este în acest apel </string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s sunteți în acest apel</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s și %2$s sunt în acest apel</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s prezintă</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1279,10 +1307,11 @@
     <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
     <item quantity="other">%1$s, %2$s și alte %3$d de persoane sunt în acest apel</item>
   </plurals>
-  <string name="WebRtcCallView__flip">Comutați</string>
+  <string name="WebRtcCallView__flip">Comută</string>
   <string name="WebRtcCallView__speaker">Difuzor</string>
   <string name="WebRtcCallView__camera">Cameră foto</string>
   <string name="WebRtcCallView__mute">Silențios</string>
+  <string name="WebRtcCallView__ring">Sună</string>
   <string name="WebRtcCallView__end_call">Închideți apelul</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1331,6 +1360,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal are nevoie de acces la contactele tale pentru a putea facilita comunicarea cu prietenii tăi, schimba mesaje și pentru a efectua apeluri securizate</string>
   <string name="RegistrationActivity_rate_limited_to_service">Ați făcut prea multe încercări de înregistrare a acestui număr. Vă rugăm să încercați din nou mai târziu.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rog verifică conexiunea la rețea și încearcă din nou.</string>
+  <string name="RegistrationActivity_call_requested">Apel solicitat</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ești acum la %d pas de a trimite un jurnal de depanare.</item>
     <item quantity="few">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
@@ -1869,21 +1899,26 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introduceți un nume sau un număr</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă doriți să verificați securitatea criptării cu %s, comparați numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, puteți scana codul de pe telefonul lor sau îi puteți ruga să scaneze codul dvs. <a href="https://signal.org/redirect/safety-numbers">Aflați mai multe.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pentru a verifica securitatea criptării integrale între dvs. și %s, comparați numerele de mai sus cu cele de pe dispozitivul acestora. Puteți de asemenea scana codul de pe telefonul lor. <a href="https://signal.org/redirect/safety-numbers">Aflați mai multe.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Atingeți pentru a scana</string>
+  <string name="verify_display_fragment__successful_match">Potrivire reușită</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Verificarea numărului de siguranță a eșuat</string>
   <string name="verify_display_fragment__loading">Se încarcă…</string>
-  <string name="verify_display_fragment__verified">Verificat</string>
+  <string name="verify_display_fragment__mark_as_verified">Marchează ca verificat</string>
+  <string name="verify_display_fragment__clear_verification">Șterge verificarea</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Distribuie numărul de siguranță</string>
+  <!--verity_scan_fragment-->
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scanați codul QR de pe dispozitivul contactului dvs.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Glisați în sus pentru a răspunde</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Glisați în jos pentru a respinge</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Anumite probleme au nevoie de atenția dvs.</string>
-  <string name="message_details_header__sent">Trimis</string>
-  <string name="message_details_header__received">Primit</string>
-  <string name="message_details_header__disappears">Dispare</string>
-  <string name="message_details_header__via">Prin</string>
+  <string name="message_details_header__sent">Trimis:</string>
+  <string name="message_details_header__received">Primit:</string>
+  <string name="message_details_header__disappears">Dispare:</string>
+  <string name="message_details_header__via">Prin:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">În curs</string>
   <string name="message_details_recipient_header__sent_to">Trimis la</string>
@@ -2570,6 +2605,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_call_me_instead_available_in">Sună-mă mai bine \n (Disponibil în %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contactați suportul Signal</string>
   <string name="RegistrationActivity_code_support_subject">Înregistrare Signal - Cod de verificare pentru Android</string>
+  <string name="RegistrationActivity_incorrect_code">Cod incorect</string>
   <string name="BackupUtil_never">Niciodată</string>
   <string name="BackupUtil_unknown">Necunoscut</string>
   <string name="preferences_app_protection__see_my_phone_number">Să-mi vadă numărul de telefon</string>
@@ -2766,8 +2802,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Mesajul vocal nu a putut fi redat</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mesaj vocal · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s la %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Mesaj vocal · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s la %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" a fost blocat.</string>
@@ -3142,7 +3178,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PermissionsSettingsFragment__only_admins">Doar administratorii</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Cine poate adăuga membri?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cine poate edita informațiile grupului?</string>
-  <string name="PermissionsSettingsFragment__who_can_send_messages">Cine poate să trimită mesaje?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Cine poate trimite mesaje?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Notificări fără sunet</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nu este pe silențios</string>
@@ -3219,5 +3255,24 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">Nu s-au putut redirecționa mesajele deoarece nu mai sunt disponibile.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Ați atins limita</string>
+  <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Adăugați un mesaj</string>
+  <string name="MediaReviewFragment__add_a_reply">Adăugați un răspuns</string>
+  <string name="MediaReviewFragment__send_to">Trimiteți către</string>
+  <string name="ImageEditorHud__cancel">Anulați</string>
+  <string name="ImageEditorHud__draw">Desenați</string>
+  <string name="ImageEditorHud__write_text">Scrieți</string>
+  <string name="ImageEditorHud__add_a_sticker">Adăugați un autocolant</string>
+  <string name="ImageEditorHud__blur">Estompare</string>
+  <string name="ImageEditorHud__done_editing">Terminați editarea</string>
+  <string name="ImageEditorHud__clear_all">Ștergeți tot</string>
+  <string name="ImageEditorHud__undo">Anulează</string>
+  <string name="MediaCountIndicatorButton__send">Trimiteți</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Atingeți pentru a elimina</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Atingeți pentru a selecta</string>
+  <string name="MediaReviewImagePageFragment__discard">Renunță</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Anulați modificări?</string>
+  <string name="MediaReviewFragment__view_once_message">Mesaj vizibil o singură dată</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Veți pierde toate modificările făcute acestei fotografii.</string>
   <!--EOF-->
 </resources>
