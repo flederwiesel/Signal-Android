@@ -1560,6 +1560,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ConversationUpdateItem_call_is_full">Panggilan penuh</string>
   <string name="ConversationUpdateItem_invite_friends">Jemput rakan</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Dayakan Pemberitahuan Panggilan</string>
+  <string name="ConversationUpdateItem_update_contact">Kemas kini kenalan</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Tidak ada kumpulan yang sama. Semak permintaan dengan teliti.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Tidak ada kenalan dalam kumpulan ini. Semak permintaan dengan teliti.</string>
   <string name="ConversationUpdateItem_view">Lihat</string>
@@ -2805,6 +2806,20 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="AccountSettingsFragment__account">Akaun</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Anda akan diminta dengan kurang kerap dari masa ke masa</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Memerlukan PIN Signal anda untuk mendaftarkan nombor telefon anda dengan Signal sekali lagi</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Teruskan</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Nombor telefon yang anda masukkan tidak sepadan dengan akaun anda.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Edit nombor</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Kemas kini PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Cuba Semula</string>
+  <string name="ChangeNumberLockActivity__leave">Tinggalkan</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Menghantar log nyahpepijat</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Papan Kekunci</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Kekunci enter menghantar</string>
@@ -3014,5 +3029,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MediaCountIndicatorButton__send">Hantar</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Ketik untuk dipilih</string>
   <string name="MediaReviewImagePageFragment__discard">Buang</string>
+  <string name="ImageEditorHud__delete">Padam</string>
   <!--EOF-->
 </resources>

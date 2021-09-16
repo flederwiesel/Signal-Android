@@ -1623,6 +1623,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationUpdateItem_call_is_full">A hívás betelt</string>
   <string name="ConversationUpdateItem_invite_friends">Barátok meghívása</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Hívás-értesítések engedélyezése</string>
+  <string name="ConversationUpdateItem_update_contact">Profil frissítése</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nincs közös csoportotok. A kérelmek áttekintése során légy óvatos.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nincs ismerősöd ebben a csoportban. A kérelmek áttekintése során légy óvatos.</string>
   <string name="ConversationUpdateItem_view">Megtekintés</string>
@@ -2884,6 +2885,22 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="AccountSettingsFragment__account">Fiók</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Idővel egyre ritkábban kérünk meg rá</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Telefonszámod újraregisztrációját Signal PIN kódod megadásához kötheted</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Folytatás</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Szám változtatása</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">A megadott telefonszám nem egyezik a fiókodhoz tartozóval.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Szám változtatása</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Szám szerkesztése</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN módosítása</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Újra</string>
+  <string name="ChangeNumberLockActivity__leave">Csoport elhagyása</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Fejlesztői naplófájl elküldése</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Billentyűzet</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Küldés az Enter lenyomásával</string>
@@ -3075,5 +3092,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MediaCountIndicatorButton__send">Küldés</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Koppints a kiválasztáshoz</string>
   <string name="MediaReviewImagePageFragment__discard">Elvetés</string>
+  <string name="ImageEditorHud__delete">Törlés</string>
   <!--EOF-->
 </resources>

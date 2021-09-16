@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(ဗွီဒီယို) </string>
   <string name="DraftDatabase_Draft_location_snippet">(တည်နေရာ) </string>
   <string name="DraftDatabase_Draft_quote_snippet">(ပြန်လည်ပေးပို့လာသောစာတို)</string>
+  <string name="DraftDatabase_Draft_voice_note">စက္ကန့်</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ဓါတ်ပုံပြခန်း</string>
   <string name="AttachmentKeyboard_file">ဖိုင်</string>
@@ -1519,6 +1520,7 @@
   <string name="ConversationUpdateItem_call_is_full">ခေါ်ဆိုမှုထဲ လူပြည့်နေပါပြီ</string>
   <string name="ConversationUpdateItem_invite_friends">သူငယ်ချင်းများကို ဖိတ်ခေါ်ပါ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ ဖွင့်မယ်</string>
+  <string name="ConversationUpdateItem_update_contact">အဆက်အသွယ် အပ်ဒိတ်မယ်</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">တူညီသော အဖွဲ့များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">၎င်းအဖွဲ့ထဲတွင် အဆက်အသွယ်များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <string name="ConversationUpdateItem_view">ကြည့်မယ်</string>
@@ -2712,6 +2714,20 @@
   <string name="AppSettingsFragment__invite_your_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">အကောင့်</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">ဆက်လက်ရန်</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">သင်ရိုက်ထည့်ထားသော ဖုန်းနံပါတ်သည် သင့်အကောင့်အတွင်းရှိ နံပါတ်နှင့် မကိုက်ညီပါ။</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">နံပါတ်ကို ပြင်မယ်</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">ပင်နံပါတ်ကို အပ်ဒိတ်ပြုလုပ်မယ်</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">ထပ်ကြိုးစားပါ</string>
+  <string name="ChangeNumberLockActivity__leave">ထွက်မည်။</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Debug log ကို တင်ပြပါ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">ထည့်ထားတဲ့ ကီးပို့ပါ</string>
   <!--SmsSettingsFragment-->
@@ -2821,5 +2837,6 @@
   <string name="ImageEditorHud__cancel">ပယ်ဖျက်မယ်</string>
   <string name="MediaCountIndicatorButton__send">ပေးပို့မယ်</string>
   <string name="MediaReviewImagePageFragment__discard">စွန့်ပစ်သည် </string>
+  <string name="ImageEditorHud__delete">ဖျက်မယ်</string>
   <!--EOF-->
 </resources>

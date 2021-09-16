@@ -1575,6 +1575,7 @@
   <string name="ConversationUpdateItem_call_is_full">통화 참가자 수 최대</string>
   <string name="ConversationUpdateItem_invite_friends">친구 초대</string>
   <string name="ConversationUpdateItem_enable_call_notifications">통화 알림 활성화</string>
+  <string name="ConversationUpdateItem_update_contact">연락처 업데이트</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">공통된 그룹이 없습니다. 요청을 주의 깊게 검토하세요.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">이 그룹에 연락처가 없습니다. 요청을 주의 깊게 검토하세요.</string>
   <string name="ConversationUpdateItem_view">보기</string>
@@ -2820,6 +2821,20 @@
   <string name="AccountSettingsFragment__account">계정</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">시간이 지남에 따라 질문 빈도가 줄어듭니다.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal에 전화번호를 다시 등록하려면 Signal PIN이 필요합니다.</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">계속</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">입력한 전화번호가 내 계정과 일치하지 않습니다.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">전화번호 수정</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">번호 업데이트</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">재시도</string>
+  <string name="ChangeNumberLockActivity__leave">나가기</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">디버그 로그 제출</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">키보드</string>
   <string name="ChatsSettingsFragment__enter_key_sends">엔터 키로 메시지 보내기</string>
@@ -3024,5 +3039,6 @@
   <string name="MediaCountIndicatorButton__send">보내기</string>
   <string name="MediaReviewSelectedItem__tap_to_select">탭하여 선택</string>
   <string name="MediaReviewImagePageFragment__discard">파기</string>
+  <string name="ImageEditorHud__delete">삭제</string>
   <!--EOF-->
 </resources>

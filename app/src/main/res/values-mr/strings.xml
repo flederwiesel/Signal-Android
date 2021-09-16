@@ -1628,6 +1628,7 @@
   <string name="ConversationUpdateItem_call_is_full">कॉल पूर्ण आहे</string>
   <string name="ConversationUpdateItem_invite_friends">मित्रांना आमंत्रित करा</string>
   <string name="ConversationUpdateItem_enable_call_notifications">कॉल सूचना सक्षम करा</string>
+  <string name="ConversationUpdateItem_update_contact">संपर्क अद्यतनित करा</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">कुठलेही गट सामाईक नाहीत. विनंत्यांचे काळजीपूर्वक पुनरावलोकन करा.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">या गटात कुठलेही संपर्क नाहीत. विनंत्यांचे काळजीपूर्वक पुनरावलोकन करा.</string>
   <string name="ConversationUpdateItem_view">बघा</string>
@@ -2891,6 +2892,20 @@
   <string name="AccountSettingsFragment__account">खाते</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">वेळेनुसार आपल्याला कमी वारंवार विचारले जाईल</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal सोबत पुन्हा नोंदणी करताना आपला Signal PIN आवश्यक करा.</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">सुरू ठेवा</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">आपण प्रविष्ट केलेला फोन नंबर आपल्या खात्याशी जुळत नाही.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">नंबर संपादित करा</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN अद्यतनित करा</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">पुन्हा प्रयत्न करा</string>
+  <string name="ChangeNumberLockActivity__leave">सोडा</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">डीबग लॉग प्रविष्ट करा</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">कीबोर्ड</string>
   <string name="ChatsSettingsFragment__enter_key_sends">प्रविष्ट करा की पाठवते</string>
@@ -3098,5 +3113,6 @@
   <string name="MediaCountIndicatorButton__send">पाठवा</string>
   <string name="MediaReviewSelectedItem__tap_to_select">निवडण्यासाठी टॅप करा</string>
   <string name="MediaReviewImagePageFragment__discard">टाकून द्या</string>
+  <string name="ImageEditorHud__delete">हटवा</string>
   <!--EOF-->
 </resources>

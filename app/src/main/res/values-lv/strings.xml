@@ -1696,6 +1696,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConversationUpdateItem_call_is_full">Zvana/sarunas dalībnieku limits izsmelts</string>
   <string name="ConversationUpdateItem_invite_friends">Uzaicināt draugus</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Iespējot zvana paziņojumus</string>
+  <string name="ConversationUpdateItem_update_contact">Atjaunināt kontaktpersonu</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nav kopīgu grupu. Pārskatiet pieprasījumus rūpīgi.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Šajā grupā nav kontaktpersonu. Pārskatiet pieprasījumus rūpīgi.</string>
   <string name="ConversationUpdateItem_view">Skatīt</string>
@@ -2978,6 +2979,22 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="AccountSettingsFragment__account">Konts</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Laika gaitā jums tiks jautāts retāk</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Pieprasīt savu Signal PIN, lai vēlreiz reģistrētu savu tālruņa numuru lietotnē Signal</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Turpināt</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Izmainīt numuru</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Ievadītais tālruņa numurs neatbilst jūsu kontā norādītajam.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Izmainīt numuru</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Rediģēt numuru</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Aktualizēt PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Mēģināt vēlreiz</string>
+  <string name="ChangeNumberLockActivity__leave">Pamest</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Iesniegt atkļūdošanas žurnālu</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatūra</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Pogas Enter funkcija</string>
@@ -3195,5 +3212,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MediaCountIndicatorButton__send">Sūtīt</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pieskarieties, lai izvēlētos</string>
   <string name="MediaReviewImagePageFragment__discard">Atmest</string>
+  <string name="ImageEditorHud__delete">Dzēst</string>
   <!--EOF-->
 </resources>

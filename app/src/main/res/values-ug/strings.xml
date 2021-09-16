@@ -1633,6 +1633,7 @@
   <string name="ConversationUpdateItem_call_is_full">چاقىرىق توشتى</string>
   <string name="ConversationUpdateItem_invite_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">چاقىرىش ئۇقتۇرۇشلىرىنى قوزغات</string>
+  <string name="ConversationUpdateItem_update_contact">ئالاقەداش يېڭىلا</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ھېچقانداق ئورتاق گۇرۇپپا يوق. تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">بۇ گۇرۇپپىدا ھېچقانداق ئەزا يوق. تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <string name="ConversationUpdateItem_view">كۆرسەت</string>
@@ -2896,6 +2897,20 @@
   <string name="AccountSettingsFragment__account">ھېسابات</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ۋاقىتنىڭ ئۆتۈشىگە ئەگىشىپ سوئالىڭىز ئازىيىدۇ</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">تېلېفون نومۇرىڭىزنى Signal دا قايتا تىزىملىتىش ئۈچۈن Signal PIN نىڭىز لازىم.</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">داۋاملاشتۇر</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">كىرگۈزگەن تېلېفون نومۇرىڭىز ھېساباتىڭىزنىڭكى بىلەن ئوخشاش ئەمەس</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">نومۇرنى تەھرىرلەش</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN يېڭىلا</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">قايتا سىنا</string>
+  <string name="ChangeNumberLockActivity__leave">ئايرىلىڭ</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">سازلاش خاتىرە يوللا</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">ھەرپتاختا</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter نى باسسا يوللايدۇ</string>
@@ -3128,5 +3143,6 @@
   <string name="ImageEditorHud__undo">يېنىۋال</string>
   <string name="MediaCountIndicatorButton__send">ئەۋەت</string>
   <string name="MediaReviewImagePageFragment__discard">تاشلىۋەت</string>
+  <string name="ImageEditorHud__delete">ئۆچۈر</string>
   <!--EOF-->
 </resources>

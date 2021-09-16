@@ -1664,6 +1664,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationUpdateItem_call_is_full">Arama dolu</string>
   <string name="ConversationUpdateItem_invite_friends">Arkadaşlarını davet et</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Arama Bildirimlerini Etkinleştir</string>
+  <string name="ConversationUpdateItem_update_contact">Kişiyi güncelle</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ortak bir grup yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Bu grupta kişilerinizden kimse yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_view">Görüntüle</string>
@@ -2927,6 +2928,20 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="AccountSettingsFragment__account">Hesap</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Zaman geçtikçe daha az sorulacaktır</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Telefon numaranız Signal\'e tekrar kaydedilirken Signal PIN\'i istensin.</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Devam Et</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Girmiş olduğunuz numara hesabınızla uyuşmuyor.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Numarayı düzenle</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">PIN\'i güncelle</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Tekrar dene</string>
+  <string name="ChangeNumberLockActivity__leave">Ayrıl</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Hata ayıklama günlüğünü gönder</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klavye</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter tuşu ile gönder</string>
@@ -3161,5 +3176,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MediaCountIndicatorButton__send">Gönder</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Seçmek için dokunun</string>
   <string name="MediaReviewImagePageFragment__discard">Vazgeç</string>
+  <string name="ImageEditorHud__delete">Sil</string>
   <!--EOF-->
 </resources>

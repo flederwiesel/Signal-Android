@@ -1627,6 +1627,7 @@ nambari yako ya simu</string>
   <string name="ConversationUpdateItem_call_is_full">Mazungumzo ya simu yamejaa</string>
   <string name="ConversationUpdateItem_invite_friends">Alika marafiki</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Washa Arifa za Simu</string>
+  <string name="ConversationUpdateItem_update_contact">Sasisha mwasiliani</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Hakuna vikundi mnavyoshiriki pamoja. Kagua maombi kwa uangalifu.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Hakuna waasiliani katika kikundi hiki. Kagua maombi kwa uangalifu.</string>
   <string name="ConversationUpdateItem_view">Tazama</string>
@@ -2891,6 +2892,20 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="AccountSettingsFragment__account">Akaunti</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Utaulizwa mara chache zaidi baada ya muda</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Itisha PIN yako ya Signal ili usajili tena nambari yako ya simu katika Signal.</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Endelea</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Nambari ya simu uliyoweka hailingani na iliyo katika akaunti yako.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Hariri nambari</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Sasisha Nenosiri</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Jaribu Upya</string>
+  <string name="ChangeNumberLockActivity__leave">Ondoka</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Wasilisha tunzakumbukumbu ya ueuaji</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Kibodi</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Ingiza za kutuma zilizo muhimu</string>
@@ -3102,5 +3117,6 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="MediaCountIndicatorButton__send">Tuma</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Gusa kuchagua</string>
   <string name="MediaReviewImagePageFragment__discard">Ghairi</string>
+  <string name="ImageEditorHud__delete">Futa</string>
   <!--EOF-->
 </resources>

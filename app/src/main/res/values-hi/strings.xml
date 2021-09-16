@@ -1625,6 +1625,7 @@
   <string name="ConversationUpdateItem_call_is_full">कॉल पूर्ण है</string>
   <string name="ConversationUpdateItem_invite_friends">मित्रों को आमंत्रित करें</string>
   <string name="ConversationUpdateItem_enable_call_notifications">कॉल सूचनाएं चालू करें</string>
+  <string name="ConversationUpdateItem_update_contact">संपर्क जानकारी अपडेट करें </string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">कोई समूह सामान्य नहीं है। अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">इस ग्रुप में कोई संपर्क नहीं है। अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
   <string name="ConversationUpdateItem_view">देखना</string>
@@ -2888,6 +2889,20 @@
   <string name="AccountSettingsFragment__account">खाता</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">समय के साथ-साथ आपसे कम बार पूछा जाएगा</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">आपके फ़ोन नंबर को Signal पर दोबारा रजिस्टर करने के लिए आपका Signal PIN आवश्यक होता है</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">आगे </string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">आपने जो फोन नंबर दर्ज किया है, वह आपके खाते के फोन नंबर से मेल नहीं खाता।</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">नंबर संपादित करें</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">पिन अपडेट करें</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">दोबारा कोशिश करें</string>
+  <string name="ChangeNumberLockActivity__leave">छोङें</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">डीबग लॉग जमा करें</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">कीबोर्ड</string>
   <string name="ChatsSettingsFragment__enter_key_sends">दर्ज की भेजता है</string>
@@ -3099,5 +3114,6 @@
   <string name="MediaCountIndicatorButton__send">भेजें</string>
   <string name="MediaReviewSelectedItem__tap_to_select">चयन के लिए टैप करें</string>
   <string name="MediaReviewImagePageFragment__discard">रद्द करें</string>
+  <string name="ImageEditorHud__delete">हटाए </string>
   <!--EOF-->
 </resources>

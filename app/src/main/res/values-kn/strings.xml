@@ -1628,6 +1628,7 @@
   <string name="ConversationUpdateItem_call_is_full">ಕರೆ ಭರ್ತಿಯಾಗಿದೆ</string>
   <string name="ConversationUpdateItem_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="ConversationUpdateItem_update_contact">ಸಂಪರ್ಕ ನವೀಕರಿಸಿ</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ಯಾವುದೇ ಗ್ರೂಪ್‌ನಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇಲ್ಲ. ವಿನಂತಿಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ಈ ಗ್ರೂಪ್‌ನಲ್ಲಿ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ. ವಿನಂತಿಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ.</string>
   <string name="ConversationUpdateItem_view">ತೋರಿಸು</string>
@@ -2891,6 +2892,20 @@
   <string name="AccountSettingsFragment__account">ಖಾತೆ</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ಕಾಲಾನಂತರದಲ್ಲಿ ಕಡಿಮೆ ಆವರ್ತನದಲ್ಲಿ ನಿಮ್ಮನ್ನು ಕೇಳಲಾಗುತ್ತದೆ</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal ಜೊತೆಗೆ ಪುನಃ ನಿಮ್ಮ ಫೋನ್ ನಂಬರ್ ನೋಂದಣಿ ಮಾಡಲು ನಿಮ್ಮ Signal ಪಿನ್ ಅಗತ್ಯವಿದೆ</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">ಮುಂದುವರಿಸಿ</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">ನೀವು ನಮೂದಿಸಿದ ಫೋನ್ ನಿಮ್ಮ ಖಾತೆಗೆ ಹೋಲಿಕೆಯಾಗುತ್ತಿಲ್ಲ.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">ನಂಬರ್ ಎಡಿಟ್ ಮಾಡಿ</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
+  <string name="ChangeNumberLockActivity__leave">ತೊರೆಯಿರಿ </string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಿ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">ಕೀಬೋರ್ಡ್‌</string>
   <string name="ChatsSettingsFragment__enter_key_sends">ಎಂಟರ್ ಕೀ ಕಳುಹಿಸುತ್ತದೆ </string>
@@ -3102,5 +3117,6 @@
   <string name="MediaCountIndicatorButton__send">ಕಳುಹಿಸು</string>
   <string name="MediaReviewSelectedItem__tap_to_select">ಆಯ್ಕೆ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="MediaReviewImagePageFragment__discard">ತ್ಯಜಿಸಿ</string>
+  <string name="ImageEditorHud__delete">ಅಳಿಸು</string>
   <!--EOF-->
 </resources>

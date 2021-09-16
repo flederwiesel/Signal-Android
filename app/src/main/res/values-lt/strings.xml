@@ -1140,6 +1140,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Jūs pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nepavyko pristatyti žinutės nuo %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s pasikeitė numerį į naują.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
@@ -1803,6 +1804,7 @@
   <string name="ConversationUpdateItem_call_is_full">Skambutis yra pilnas</string>
   <string name="ConversationUpdateItem_invite_friends">Pakviesti draugus</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Įjungti pranešimus apie skambučius</string>
+  <string name="ConversationUpdateItem_update_contact">Atnaujinti adresatą</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nėra jokių bendrų grupių. Atidžiai peržiūrėkite prašymus.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Šioje grupėje nėra jokių adresatų. Atidžiai peržiūrėkite prašymus.</string>
   <string name="ConversationUpdateItem_view">Rodyti</string>
@@ -3112,6 +3114,47 @@
   <string name="AccountSettingsFragment__account">Paskyra</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bėgant laikui, jūsų bus klausiama vis rečiau</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Norint vėl registruoti jūsų telefono numerį su Signal, reikalauti jūsų Signal PIN kodo</string>
+  <string name="AccountSettingsFragment__change_phone_number">Keisti telefono numerį</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Naudokite tai, norėdami pasikeisti dabartinį telefono numerį į naują numerį. Šio pakeitimo nebegalėsite atšaukti.\n\nPrieš tęsdami, įsitikinkite, kad į naują numerį galite gauti SMS žinutes bei priimti skambučius.</string>
+  <string name="ChangeNumberFragment__continue">Tęsti</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Jūsų telefono numeris pakeistas.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Pakeisti numerį</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Jūsų senas numeris</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Senas telefono numeris</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Jūsų naujas numeris</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Naujas telefono numeris</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Jūsų įvestas telefono numeris nesutampa su jūsų paskyros telefono numeriu.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Privalote nurodyti savo seno numerio šalies kodą</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Privalote nurodyti savo seną telefono numerį</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Privalote nurodyti savo naujo numerio šalies kodą</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Privalote nurodyti savo naują telefono numerį</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Pakeisti numerį</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Patvirtinamas %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Reikia saugos kodo</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Keisti numerį</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Jūs ketinate pasikeisti telefono numerį iš %1$s į %2$s.\n\nPrieš tęsdami, patikrinkite, ar žemiau esantis numeris yra teisingas.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Taisyti numerį</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal numerio keitimas - Reikia pagalbos su „Android“ PIN kodu (v2 PIN kodas)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN kodai nesutampa</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Su jūsų nauju numeriu susietas PIN kodas yra kitoks nei su jūsų senu numeriu susietas PIN kodas. Norėtumėte palikti seną PIN kodą ar jį atnaujinti?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Palikti seną PIN kodą</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Atnaujinti PIN kodą</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Palikti seną PIN kodą?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Atrodo, kad bandėte pasikeisti numerį, bet mums nepavyko nustatyti, ar tai buvo sėkmingai atlikta.\n\nDabar tikrinama iš naujo…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Pakeitimo būsena patvirtinta</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Jūsų numeris patvirtintas kaip %1$s. Jeigu tai nėra jūsų naujas numeris, pradėkite numerio keitimo procesą iš naujo.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Pakeitimo būsena nepatvirtinta</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Mums nepavyko nustatyti, kokia yra jūsų numerio keitimo užklausos būsena.\n\n(Error: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Bandyti dar kartą</string>
+  <string name="ChangeNumberLockActivity__leave">Išeiti</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Pateikti derinimo žurnalą</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatūra</string>
   <string name="ChatsSettingsFragment__enter_key_sends">„Enter“ (Įvedimo) klavišas išsiunčia</string>
@@ -3370,5 +3413,8 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Atmesti pakeitimus?</string>
   <string name="MediaReviewFragment__view_once_message">Vienkartinės peržiūros žinutė</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Prarasite bet kokius šiai nuotraukai atliktus pakeitimus.</string>
+  <string name="ImageEditorHud__delete">Ištrinti</string>
+  <string name="CameraFragment__failed_to_open_camera">Nepavyko atverti kameros</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Perjungti tarp teksto stilių</string>
   <!--EOF-->
 </resources>

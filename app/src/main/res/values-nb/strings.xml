@@ -1595,6 +1595,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalen er full</string>
   <string name="ConversationUpdateItem_invite_friends">Inviter venner</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Slå på samtalevarsler</string>
+  <string name="ConversationUpdateItem_update_contact">Oppdater kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen felles grupper. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i denne gruppen. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_view">Vis</string>
@@ -2782,6 +2783,20 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil bli spurt sjeldnere over tid</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Krev Signal-PIN for å registrere telefonnummeret på nytt hos Signal</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Fortsett</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Rediger nummer</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Oppdater PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Prøv på nytt</string>
+  <string name="ChangeNumberLockActivity__leave">Forlat</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Send feilsøkingslogg</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Send med enter-tast</string>
@@ -2936,5 +2951,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaCountIndicatorButton__send">Send</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velge</string>
   <string name="MediaReviewImagePageFragment__discard">Kast</string>
+  <string name="ImageEditorHud__delete">Slett</string>
   <!--EOF-->
 </resources>

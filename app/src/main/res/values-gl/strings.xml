@@ -1610,6 +1610,7 @@
   <string name="ConversationUpdateItem_call_is_full">A chamada está completa</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amizades</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activar notificacións de chamadas</string>
+  <string name="ConversationUpdateItem_update_contact">Actualizar contacto</string>
   <string name="ConversationUpdateItem_view">Ver</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reproducir … Deter</string>
@@ -2658,6 +2659,22 @@
   <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
   <!--AppSettingsFragment-->
   <!--AccountSettingsFragment-->
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Continuar</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Cambiar número</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">O número de teléfono escrito non concorda co da túa conta.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Cambiar número</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Editar número</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Actualizar PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__retry">Tentar de novo</string>
+  <string name="ChangeNumberLockActivity__leave">Abandonar</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Enviar rexistro de depuración</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">Tecla Intro para enviar</string>
   <!--SmsSettingsFragment-->
@@ -2795,5 +2812,6 @@
   <string name="MediaCountIndicatorButton__send">Enviar</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Toca para seleccionar</string>
   <string name="MediaReviewImagePageFragment__discard">Descartar</string>
+  <string name="ImageEditorHud__delete">Eliminar</string>
   <!--EOF-->
 </resources>
