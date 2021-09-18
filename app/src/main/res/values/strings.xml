@@ -2168,7 +2168,7 @@
     <string name="verify_identity__share_safety_number">Share safety number</string>
 
     <!-- verity_scan_fragment -->
-    <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan the QR Code on your contact\’s device.</string>
+    <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan the QR Code on your contact\'s device.</string>
 
     <!-- webrtc_answer_decline_button -->
     <string name="webrtc_answer_decline_button__swipe_up_to_answer">Swipe up to answer</string>
@@ -2505,6 +2505,8 @@
     <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
     <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
     <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
+    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
+    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
     <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
     <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
     <string name="preferences__internal_network" translatable="false">Network</string>
@@ -2517,6 +2519,7 @@
     <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
     <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
     <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
+    <string name="preferences__internal_details" translatable="false">Internal Details</string>
     <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
     <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
     <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
@@ -3687,6 +3690,7 @@
     <string name="ConversationSettingsFragment__search">Search</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Disappearing messages</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds &amp; notifications</string>
+    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">Contact details</string>
     <string name="ConversationSettingsFragment__view_safety_number">View safety number</string>
     <string name="ConversationSettingsFragment__block">Block</string>
@@ -3731,6 +3735,7 @@
     <!-- PlaybackSpeedToggleTextView -->
     <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
     <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+    <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
     <string name="PlaybackSpeedToggleTextView__2x">2x</string>
 
     <!-- PaymentRecipientSelectionFragment -->

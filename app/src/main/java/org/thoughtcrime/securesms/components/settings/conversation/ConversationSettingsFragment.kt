@@ -302,11 +302,9 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           customPref(
             InternalPreference.Model(
               recipient = state.recipient,
-              onDisableProfileSharingClick = {
-                viewModel.disableProfileSharing()
-              },
-              onDeleteSessionClick = {
-                viewModel.deleteSession()
+              onInternalDetailsClicked = {
+                val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToInternalDetailsSettingsFragment(state.recipient.id)
+                navController.navigate(action)
               }
             )
           )
@@ -407,6 +405,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       state.withRecipientSettingsState { recipientState ->
         when (recipientState.contactLinkState) {
           ContactLinkState.OPEN -> {
+            @Suppress("DEPRECATION")
             clickPref(
               title = DSLSettingsText.from(R.string.ConversationSettingsFragment__contact_details),
               icon = DSLSettingsIcon.from(R.drawable.ic_profile_circle_24),
@@ -416,6 +415,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             )
           }
           ContactLinkState.ADD -> {
+            @Suppress("DEPRECATION")
             clickPref(
               title = DSLSettingsText.from(R.string.ConversationSettingsFragment__add_as_a_contact),
               icon = DSLSettingsIcon.from(R.drawable.ic_plus_24),
@@ -444,6 +444,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
         sectionHeaderPref(R.string.recipient_preference_activity__shared_media)
 
+        @Suppress("DEPRECATION")
         customPref(
           SharedMediaPreference.Model(
             mediaCursor = state.sharedMedia,
@@ -666,6 +667,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     startActivity(AddToGroupsActivity.newIntent(requireContext(), addToAGroup.recipientId, addToAGroup.groupMembership))
   }
 
+  @Suppress("DEPRECATION")
   private fun handleAddMembersToGroup(addMembersToGroup: ConversationSettingsEvent.AddMembersToGroup) {
     startActivityForResult(
       AddMembersActivity.createIntent(
