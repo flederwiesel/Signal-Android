@@ -418,10 +418,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Berkas tanpa nama</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Berdonasi ke Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal didukung oleh orang seperti Anda. Tunjukkan dukungan Anda hari ini!</string>
-  <string name="DonateMegaphone_donate">Donasi</string>
-  <string name="DonateMegaphone_no_thanks">Tidak Terima Kasih</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Berdonasi ke Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal didukung oleh orang seperti Anda. Tunjukkan dukungan Anda hari ini!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Donasi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Tidak Terima Kasih</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Memperkenalkan Panggilan Grup</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Buka sebuah Grup Baru untuk memulai panggilan grup gratis yang terenkripsi.</string>
@@ -756,6 +756,7 @@
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Pelajari lebih lanjut</string>
+  <string name="SpanUtil__read_more">Baca lebih lanjut</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Tidak dapat menemukan pesan</string>
   <string name="LongMessageActivity_message_from_s">Pesan dari %1$s</string>
@@ -1855,16 +1856,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__debug_log">Catatan debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- Mohon pilih --</item>
-    <item>Sesuatu Tidak Berfungsi</item>
-    <item>Permintaan Fitur</item>
-    <item>Pertanyaan</item>
-    <item>Umpan balik</item>
-    <item>Lainnya</item>
-    <item>Pembayaran (MobileCoin)</item>
-    <item>Donasi (Pemelihara &amp; Signal Boost)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Pesan Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Terakhir Digunakan</string>
@@ -3039,6 +3030,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Pilih tampilan dan warna atau kustomisasi inisial Anda.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Nanti saja</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Tambahkan foto</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Menjadi Penyokong</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Tidak, terima kasih</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Buka pencarian emoji</string>
@@ -3200,23 +3194,58 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Pilih sebuah lencana</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Anda harus memilih sebuah lencana</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Gagal memperbarui profil</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi penyokong</string>
   <string name="ImageView__badge">Lencana</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Dukung teknologi yang dibangun untuk Anda—bukan untuk data Anda—dengan bergabung ke komunitas yang menyokongnya.</string>
-  <string name="SubscribeFragment__donation_amount">Jumlah donasi</string>
   <string name="SubscribeFragment__more_payment_options">Pilihan Pembayaran Lainnya</string>
   <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
   <string name="SubscribeFragment__confirm_cancellation">Konfirmasi Pembatalan?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Anda tidak akan dikenakan biaya lagi. Lencana Anda akan dihapus dari profil Anda pada periode akhir tagihan Anda.</string>
   <string name="SubscribeFragment__not_now">Nanti saja</string>
   <string name="SubscribeFragment__confirm">Konfirmasi</string>
   <string name="SubscribeFragment__update_subscription">Perbarui Langganan</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Langganan Anda telah dibatalkan.</string>
+  <string name="SubscribeFragment__update_subscription_question">Perbarui langganan?</string>
   <string name="SubscribeFragment__update">Perbarui</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Anda akan dikenakan biaya penuh dari harga berlangganan hari ini. Langganan Anda akan diperbarui %1$s.</string>
+  <string name="Subscription__s_per_month">%s/bulan</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/bulan. Perbarui %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/bulan · Berakhir %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal bersifat nirlaba tanpa pengiklan atau investor, disokong hanya oleh mereka yang menggunakan dan menghargainya. Beri kontribusi bulanan rutin dan dapatkan lencana profil untuk membagikan dukungan Anda.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Mengapa Berkontribusi?</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih untuk Dukungan Anda!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Penguatnya!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Tampilkan di Profil</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Buat lencana istimewa</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Jika punya lebih dari satu lencana, Anda dapat memilih salah satunya untuk ditampilkan pada profil Anda.</string>
+  <string name="ManageDonationsFragment__my_support">Dukungan saya</string>
+  <string name="ManageDonationsFragment__manage_subscription">Kelola langganan</string>
   <string name="ManageDonationsFragment__badges">Lencana</string>
+  <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Populer Langganan</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Eror mengambil langganan.</string>
+  <string name="BoostFragment__give_signal_a_boost">Beri Penguat untuk Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Ucapkan Terima kasih!\\" dan dapatkan lencana Penguat untuk %1$d hari.</string>
   <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
+  <string name="Boost__one_time_contribution">Kontribusi sekali saja</string>
+  <string name="MySupportPreference__add_a_signal_boost">Tambahkan Penguat Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/bulan</string>
+  <string name="MySupportPreference__renews_s">Perpanjang %1$s</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana Anda sudah Hangus</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi penyokong</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
+  <string name="Subscription__verification_failed">Verifikasi Langganan Gagal</string>
+  <string name="Subscription__please_contact_support_for_more_information">Harap hubungi bantuan untuk informasi lebih lanjut.</string>
   <string name="Subscription__contact_support">Hubungi Bantuan</string>
+  <string name="Subscription__earn_a_s_badge">Dapatkan lencana %1$s</string>
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
   <string name="DonationsErrors__payment_failed">Pembayaran gagal</string>
+  <string name="DonationsErrors__your_payment">Pembayaran tidak dapat diproses dan Anda belum ditagih. Silakan coba kembali.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda harus menata Google Pay untuk berdonasi dari dalam aplikasi.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan sambungan internet.</string>
+  <string name="NetworkFailure__retry">Coba lagi</string>
   <!--EOF-->
 </resources>

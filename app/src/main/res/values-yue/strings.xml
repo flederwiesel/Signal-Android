@@ -130,7 +130,7 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">呢個版本嘅 Signal 已經 out 咗喇。您可以睇返先前嘅訊息記錄，但係要升咗級先至可以收發訊息。</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">搵唔到網頁瀏覽器。</string>
-  <string name="CommunicationActions_send_email">傳送電子郵件</string>
+  <string name="CommunicationActions_send_email">發送電郵</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">手機已經打緊電話。</string>
   <string name="CommunicationActions_start_voice_call">係咪要開始語音通話？</string>
   <string name="CommunicationActions_cancel">取消</string>
@@ -187,7 +187,7 @@
   <string name="ConversationActivity_select_contact_info">揀選聯絡人資訊</string>
   <string name="ConversationActivity_compose_message">寫訊息</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">唔好意思，您份附件搞唔掂。</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人唔係有效嘅短訊或電子郵件地址！</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人唔係有效嘅短訊或電郵地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">乜嘢都無寫噃！</string>
   <string name="ConversationActivity_group_members">個谷嘅成員</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">撳一下呢度開始成谷嘅通話</string>
@@ -272,7 +272,7 @@
   <string name="ConversationFragment_deleting_messages">刪除緊啲訊息…</string>
   <string name="ConversationFragment_delete_for_me">刪走我自己嘅紀錄</string>
   <string name="ConversationFragment_delete_for_everyone">全世界扠咗佢</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">呢個訊息會喺對話中用緊最近版本嘅 Signal 嘅所有人度扠走。佢哋會見到您刪除咗一個訊息囉。</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">呢個訊息會喺對話入面所有用緊 Signal 最近版本嘅人嗰度扠走。佢哋會見到您扠走咗一個訊息，咁樣囉。</string>
   <string name="ConversationFragment_quoted_message_not_found">搵唔到原來嘅訊息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原來嘅訊息已經無咗</string>
   <string name="ConversationFragment_failed_to_open_message">開唔到訊息</string>
@@ -318,10 +318,10 @@
     <item quantity="other">唔使置頂</item>
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
-    <item quantity="other">沈默</item>
+    <item quantity="other">避靜</item>
   </plurals>
   <plurals name="ConversationListFragment_unmute_plural">
-    <item quantity="other">解除沈默</item>
+    <item quantity="other">解除避靜</item>
   </plurals>
   <string name="ConversationListFragment_select">揀選</string>
   <plurals name="ConversationListFragment_archive_plural">
@@ -354,7 +354,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">設定個人資料相嘅時候發生問題</string>
   <string name="CreateProfileActivity_problem_setting_profile">設定個人資料嘅時候發生問題</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定您嘅個人資料</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您嘅個人資料係受到端對端加密。當您發起或接受新嘅對話，又或者加入新嘅谷，您嘅聯絡人就會睇到您嘅個人資料 (以及您之後所作嘅變化)。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您嘅個人資料係受到端對端加密。您嘅個人資料 (以及您之後所作嘅變化) 將會俾您嘅聯絡人睇到，而且當您發起或接受新嘅對話，又或者加入新嘅谷，亦會向別人展示。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">係咪要攞返備份嚟還原？</string>
@@ -418,10 +418,10 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名嘅檔案</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">課金 Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全靠每一位有心人先有今日。請您大力「懲罰」，多多益善，少少無拘！</string>
-  <string name="DonateMegaphone_donate">課金</string>
-  <string name="DonateMegaphone_no_thanks">有心</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">課金 Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 全靠每一位有心人先有今日。請您大力「懲罰」，多多益善，少少無拘！</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">課金</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">有心</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">同您介紹成谷通話</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">開一個新版嘅谷，開始免費嘅加密成谷通話</string>
@@ -614,7 +614,7 @@
   <string name="ManageGroupActivity_block_group">封鎖個谷</string>
   <string name="ManageGroupActivity_unblock_group">解除封鎖個谷</string>
   <string name="ManageGroupActivity_leave_group">退谷</string>
-  <string name="ManageGroupActivity_mute_notifications">沈默地通知</string>
+  <string name="ManageGroupActivity_mute_notifications">將啲通知潛水避靜</string>
   <string name="ManageGroupActivity_custom_notifications">自訂通知</string>
   <string name="ManageGroupActivity_mentions">點名講</string>
   <string name="ManageGroupActivity_chat_color_and_wallpaper">傾偈顏色同背景</string>
@@ -649,7 +649,7 @@
   <string name="ManageGroupActivity_add_group_description">加返個谷嘅描述…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">點名講起我嘅時候通知</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">喺沈默嘅傾偈中點名講起您嘅時候，使唔使接收通知？</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">喺避靜嘅傾偈中點名講起您嘅時候，使唔使接收通知？</string>
   <string name="GroupMentionSettingDialog_always_notify_me">幾時都要通知我</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">唔好通知我</string>
   <!--ManageProfileFragment-->
@@ -925,7 +925,7 @@
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s 已唔再係話事人。</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">您已唔再係話事人。</string>
   <!--GV2 invitations-->
-  <string name="MessageRecord_you_invited_s_to_the_group">您已邀請 %1$s 人加入呢個谷。</string>
+  <string name="MessageRecord_you_invited_s_to_the_group">您已邀請 %1$s 加入呢個谷。</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s 已邀請您加入呢個谷。</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="other">%1$s 已邀請 %2$d 人加入呢個谷。</item>
@@ -1184,7 +1184,7 @@
   <string name="WebRtcCallView__start_call">開始通話</string>
   <string name="WebRtcCallView__join_call">加入通話</string>
   <string name="WebRtcCallView__call_is_full">通話已滿座</string>
-  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">呢次通話已經頂到盡 %1$d 個參與者爆晒棚。陣間再試下啦。</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">呢次通話已經頂到盡 %1$d 位參與者爆晒棚。陣間再試下啦。</string>
   <string name="WebRtcCallView__view_participants_list">睇下參與者</string>
   <string name="WebRtcCallView__your_video_is_off">您閂咗視像</string>
   <string name="WebRtcCallView__reconnecting">重新連緊線…</string>
@@ -1453,7 +1453,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">加密嘅多媒體短訊訊息軭咗</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">多媒體短訊訊息所屬嘅加密階段唔存在</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">沈默地通知</string>
+  <string name="MuteDialog_mute_notifications">將啲通知潛水避靜</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">匯入而家整緊</string>
   <string name="ApplicationMigrationService_importing_text_messages">匯入緊文字訊息</string>
@@ -1855,16 +1855,6 @@
   <string name="HelpFragment__debug_log">除錯記錄檔：</string>
   <string name="HelpFragment__could_not_upload_logs">上載唔到記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請您儘可能具體說明，幫我哋了解個問題。</string>
-  <string-array name="HelpFragment__categories_2">
-    <item>-- 請揀選一項 --</item>
-    <item>有嘢軭咗</item>
-    <item>有某個功能就好嘞</item>
-    <item>有問題想問</item>
-    <item>想反映一下淺見</item>
-    <item>其他</item>
-    <item>關於付款 (MobileCoin)</item>
-    <item>關於捐款 (擔當後援以及 Signal 集氣)</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">呢個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近用過</string>
@@ -1881,10 +1871,10 @@
   <!--arrays.xml-->
   <string name="arrays__use_default">跟返預設咁樣</string>
   <string name="arrays__use_custom">自己揀選咁樣</string>
-  <string name="arrays__mute_for_one_hour">沈默 1 個鐘</string>
-  <string name="arrays__mute_for_eight_hours">沈默 8 個鐘</string>
-  <string name="arrays__mute_for_one_day">沈默 1 日</string>
-  <string name="arrays__mute_for_seven_days">沈默 7 日</string>
+  <string name="arrays__mute_for_one_hour">避靜 1 個鐘</string>
+  <string name="arrays__mute_for_eight_hours">避靜 8 個鐘</string>
+  <string name="arrays__mute_for_one_day">避靜 1 日</string>
+  <string name="arrays__mute_for_seven_days">避靜 7 日</string>
   <string name="arrays__always">幾時都係</string>
   <string name="arrays__settings_default">跟返 [設定] 點話點好</string>
   <string name="arrays__enabled">啟用</string>
@@ -2103,7 +2093,7 @@
   <string name="PaymentsHomeFragment__sent_s">畀咗 %1$s</string>
   <string name="PaymentsHomeFragment__received_s">收到 %1$s</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">轉移去交易平台</string>
-  <string name="PaymentsHomeFragment__currency_conversion">貨幣兌換</string>
+  <string name="PaymentsHomeFragment__currency_conversion">貨幣換算</string>
   <string name="PaymentsHomeFragment__deactivate_payments">停用付款</string>
   <string name="PaymentsHomeFragment__recovery_phrase">恢復口訣</string>
   <string name="PaymentsHomeFragment__help">說明</string>
@@ -2112,8 +2102,8 @@
   <string name="PaymentsHomeFragment__received_payment">接收咗嘅付款</string>
   <string name="PaymentsHomeFragment__processing_payment">處理緊嘅付款</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
-  <string name="PaymentsHomeFragment__currency_conversion_not_available">貨幣兌換未能提供</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">顯示唔到貨幣兌換。請檢查您部手機嘅連線，然後再試一次啦。</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">貨幣換算未能提供</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">顯示唔到貨幣換算。請檢查您部手機嘅連線，然後再試一次啦。</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">付款未有喺您嘅地區提供。</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">啟用唔到付款。陣間再試下啦。</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">係咪要停用付款？</string>
@@ -2155,7 +2145,7 @@
   <string name="PaymentsDetailsFragment__sent_payment">傳送咗嘅付款</string>
   <string name="PaymentsDetailsFragment__received_payment">接收咗嘅付款</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">付款完成 %1$s</string>
-  <string name="PaymentsDetailsFragment__block_number">封鎖冧把</string>
+  <string name="PaymentsDetailsFragment__block_number">區塊編號</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">轉移</string>
   <string name="PaymentsTransferFragment__scan_qr_code">掃描二維碼</string>
@@ -2191,7 +2181,7 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">褪後一格</string>
   <string name="CreatePaymentFragment__add_note">加備註</string>
-  <string name="CreatePaymentFragment__conversions_are_just_estimates">兌換儘其量都係斷估，算法談唔上精準。</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">換算儘其量都係斷估，談唔上精準。</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">備註</string>
   <!--ConfirmPaymentFragment-->
@@ -2211,7 +2201,7 @@
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">呢個人未有啟用付款</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">請求唔到網絡費。要繼續呢次付款嘅話，請撳一下「確定」再試一次。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
-  <string name="CurrencyAmountFormatter_s_at_s">%1$s (以 %2$s 兌換)</string>
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s (喺 %2$s 換算)</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">設定貨幣</string>
   <string name="SetCurrencyFragment__all_currencies">所有貨幣</string>
@@ -2268,9 +2258,9 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">重設安全對話</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">解除沈默</string>
+  <string name="conversation_muted__unmute">解除避靜</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">沈默地通知</string>
+  <string name="conversation_unmuted__mute_notifications">將啲通知潛水避靜</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">谷嘅設定</string>
   <string name="conversation__menu_leave_group">退谷</string>
@@ -2595,7 +2585,7 @@
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">由較新版本嘅 Sigmal 轉移過嚟係唔得嘅</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">轉移緊資料</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">將兩部機保持靠近。唔好熄機、開住 Signal。轉移經端對端加密。</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">將兩部機保持靠近。唔好熄機，並且開住 Signal。轉移係經端對端加密。</string>
   <string name="DeviceTransfer__d_messages_so_far">目前為止 %1$d 個訊息…</string>
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">再試一次</string>
@@ -3039,6 +3029,8 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">您可以揀個公仔、校下色水，又或者整返個屬於自己嘅頭文字都得。</string>
   <string name="AddAProfilePhotoMegaphone__not_now">遲啲先啦</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">加張相</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">唔使喇，唔該晒</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符號</string>
   <string name="KeyboardPagerFragment_open_emoji_search">開啟表情符號搜尋</string>
@@ -3064,8 +3056,8 @@
   <string name="ConversationSettingsFragment__video">視像</string>
   <string name="ConversationSettingsFragment__audio">語音</string>
   <string name="ConversationSettingsFragment__call">打電話</string>
-  <string name="ConversationSettingsFragment__mute">沈默</string>
-  <string name="ConversationSettingsFragment__muted">已沈默</string>
+  <string name="ConversationSettingsFragment__mute">避靜</string>
+  <string name="ConversationSettingsFragment__muted">已避靜</string>
   <string name="ConversationSettingsFragment__search">搜尋</string>
   <string name="ConversationSettingsFragment__disappearing_messages">過眼雲煙訊息</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">聲音同通知</string>
@@ -3082,9 +3074,9 @@
   <string name="ConversationSettingsFragment__requests_and_invites">請求與邀請</string>
   <string name="ConversationSettingsFragment__group_link">谷拎</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">加做聯絡人</string>
-  <string name="ConversationSettingsFragment__unmute">解除沈默</string>
-  <string name="ConversationSettingsFragment__conversation_muted_until_s">對話沈默至 %1$s</string>
-  <string name="ConversationSettingsFragment__conversation_muted_forever">對話沈默至永遠</string>
+  <string name="ConversationSettingsFragment__unmute">解除避靜</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">對話避靜至 %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">對話避靜至永遠</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">複製咗個電話冧把去剪貼簿。</string>
   <string name="ConversationSettingsFragment__phone_number">電話冧把</string>
   <!--PermissionsSettingsFragment-->
@@ -3097,9 +3089,9 @@
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">邊個改到關於呢個谷嘅資訊？</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">邊個可以傳送訊息？</string>
   <!--SoundsAndNotificationsSettingsFragment-->
-  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">沈默地通知</string>
-  <string name="SoundsAndNotificationsSettingsFragment__not_muted">非沈默</string>
-  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">沈默至 %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">將啲通知潛水避靜</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">唔使避靜</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">避靜至 %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">點名講</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">幾時都要通知</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">唔好通知</string>
@@ -3126,7 +3118,7 @@
   <string name="VoiceNotePlayerView__navigate_to_voice_message">跳去語音訊息嗰個位</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
-  <string name="AvatarPickerFragment__camera">相機</string>
+  <string name="AvatarPickerFragment__camera">影相</string>
   <string name="AvatarPickerFragment__take_a_picture">影返幅相</string>
   <string name="AvatarPickerFragment__choose_a_photo">揀張相</string>
   <string name="AvatarPickerFragment__photo">揀相</string>
@@ -3204,7 +3196,6 @@
   <string name="ImageView__badge">襟章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 應援靠團伙。</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">力撐為您而設、而非為求您嘅資料而打造嘅科技；「惜爐」有團伙，Signal 不懼風吹日曬。</string>
-  <string name="SubscribeFragment__donation_amount">捐款金額</string>
   <string name="SubscribeFragment__more_payment_options">其他付款方式</string>
   <string name="SubscribeFragment__cancel_subscription">取消課金計劃</string>
   <string name="SubscribeFragment__confirm_cancellation">係咪確認取消？</string>
@@ -3221,11 +3212,8 @@
   <string name="Subscription__s_per_month_dot_expires_s">每月 %1$s · %2$s 到期</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 係非牟利組織，背後冇廣告商或投資者大條水喉硬碰加軟撼，全靠位位用呢個爐、錫呢個爐嘅「惜爐」團伙，燃亮最光的星斗，至能夠廢鉄到足金。希望您做我哋月供計劃嘅金主，同時可換取一枚襟章掛喺個人資料度，同好友分享您做力撐派嘅喜悅。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">何解要課金？</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__the_team_at_signal_is_committed">Signal 團隊秉持初心，開發開放原始碼嘅私隱技術，去守護表達自由，同時令通訊變得安全、無遠弗屆。擔當呢份使命，全靠您嘅捐款做後援。無廣告、無追蹤、堅過石堅。</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution_helps_pay">您嘅捐款可幫手補貼程式開發、伺服器、網絡頻寬等燈油火蠟，等世界上數以百萬計嘅人，都用到同一個 app 做私密嘅即時通訊；只要開住個「爐」，彼此哪怕獨處漫天的星座，仍能遙遠的在看，並為對方送上一份焗製嘅甜蜜蘋果派。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">多謝您嘅鼎力支持！</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">多謝您為我哋集氣！</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_s_badge">您已獲取一枚「%s」襟章！不妨將襟章掛上去個人資料度展示，等同您傾偈嘅人為您拍手，知道您為擔當 Signal 後援而自豪。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">掛上去個人資料度展示</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">揀選為賣飛佛襟章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">搞掂</string>
@@ -3243,9 +3231,7 @@
   <string name="MySupportPreference__s_per_month">每月 %1$s</string>
   <string name="MySupportPreference__renews_s">到 %1$s 續期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">您個襟章已經褪色夠鐘換喇</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_s_badge_has_expired">您個「%1$s」襟章已經褪色夠鐘換喇，因此已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting">如果您想繼續力撐為您而設、而非為求您嘅資料而打造嘅科技，請考慮做我哋月供課金計劃嘅金主。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">擔當課金計劃金主</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
   <string name="Subscription__verification_failed">課金計劃驗證失敗</string>
   <string name="Subscription__please_contact_support_for_more_information">詳情請聯絡支援。</string>
@@ -3254,11 +3240,10 @@
   <string name="SubscribeFragment__processing_payment">處理緊付款…</string>
   <string name="DonationsErrors__payment_failed">付款失敗</string>
   <string name="DonationsErrors__your_payment">處理唔到您嘅付款，您未有被扣數。請再試一次。</string>
-  <string name="DonationsErrors__redemption_still_pending">換領手續仲搞緊</string>
-  <string name="DonationsErrors__you_might_not_see_your_badge_right_away">您個襟章可能仲要等等，但我哋好快會為您送上！</string>
   <string name="DonationsErrors__google_pay_unavailable">用唔到 Google Pay</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">您要設定好 Google Pay 先可以喺 App 內捐款。</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">取消唔到課金計劃</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">取消課金計劃需要連線上網。</string>
+  <string name="NetworkFailure__retry">再試一次</string>
   <!--EOF-->
 </resources>

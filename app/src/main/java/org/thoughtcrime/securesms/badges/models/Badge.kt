@@ -36,7 +36,8 @@ data class Badge(
   val visible: Boolean,
 ) : Parcelable, Key {
 
-  fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis()
+  fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis() && expirationTimestamp > 0
+  fun isBoost(): Boolean = id == BOOST_BADGE_ID
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
     messageDigest.update(id.toByteArray(Key.CHARSET))
@@ -128,7 +129,7 @@ data class Badge(
         .downsample(DownsampleStrategy.NONE)
         .diskCacheStrategy(DiskCacheStrategy.NONE)
         .transform(
-          BadgeSpriteTransformation(BadgeSpriteTransformation.Size.XLARGE, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)),
+          BadgeSpriteTransformation(BadgeSpriteTransformation.Size.BADGE_64, model.badge.imageDensity, ThemeUtil.isDarkTheme(context)),
         )
         .into(badge)
 
@@ -159,6 +160,8 @@ data class Badge(
   }
 
   companion object {
+    const val BOOST_BADGE_ID = "BOOST"
+
     private val SELECTION_CHANGED = Any()
 
     fun register(mappingAdapter: MappingAdapter, onBadgeClicked: OnBadgeClicked) {
