@@ -480,11 +480,6 @@
   <string name="DeviceListItem_today">Dnes</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nepojmenovaný soubor</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Podpořte Signal finančně</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal je aplikace, za kterou stojí lidé jako vy. Prokažte jim dnes svoji podporu!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Sponzorujte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ne, děkuji</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Představujeme skupinové hovory</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Zahájit bezplatné skupinové hovory lze po otevření nové skupiny.</string>
@@ -1492,8 +1487,8 @@ telefonní číslo
   <string name="RegistrationActivity_play_services_error">Chyba Google Play </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Služba Google Play se aktualizuje nebo je dočasně nedostupná. Zkuste to prosím znovu.</string>
   <string name="RegistrationActivity_terms_and_privacy">Podmínky a zásady ochrany osobních údajů</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potřebuje přístup ke kontaktům a médiím, abyste se mohli spojit s vašimi přáteli, vyměňovat si zprávy a bezpečně telefonovat.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potřebuje přístup k vašim kontaktům, aby bylo možné propojení s přáteli, vyměňování zpráv a uskutečňování zabezpečených hovorů. </string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potřebuje oprávnění pro přístup ke kontaktům a médiím, abyste se mohli spojit s přáteli a posílat zprávy. Vaše kontakty jsou nahrávány pomocí soukromého zjišťování kontaktů služby Signal, což znamená, že jsou end-to-end šifrovány a pro Signal nejsou nikdy viditelné.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potřebuje oprávnění pro přístup ke kontaktům, abyste se mohli spojit s přáteli a posílat zprávy. Vaše kontakty jsou nahrávány pomocí soukromého zjišťování kontaktů služby Signal, což znamená, že jsou end-to-end šifrovány a pro Signal nejsou nikdy viditelné.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Učinili jste příliš mnoho pokusů zaregistrovat toto číslo. Zkuste to prosím znovu později.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nelze se připojit k službě. Prosím zkontrolujte připojení k internetu a poté to zkuste znovu.</string>
   <string name="RegistrationActivity_non_standard_number_format">Nestandardní formát čísla</string>
@@ -2584,7 +2579,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Insights__title">Postřehy</string>
   <string name="InsightsDashboardFragment__title">Postřehy</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky ochráněno %1$d%% vašich odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signal jsou vždy koncově šifrovány.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Podpořte Signal</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Šiřte informace</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procento je vypočteno na základě odchozích zpráv za posledních %1$d dnů, které nezmizely ani nebyly smazány. </string>
   <string name="InsightsDashboardFragment__start_a_conversation">Zahájit konverzaci</string>
@@ -3555,6 +3550,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvořit doporučený odznak</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hotovo</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Pokud máte více odznaků, můžete si jeden z nich vybrat, aby ho ostatní viděli na vašem profilu.</string>
+  <string name="BecomeASustainerFragment__get_badges">Získejte odznaky pro svůj profil za podporu Signalu.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizace fungující bez reklam a investorů, kterou podporují pouze lidé jako vy.</string>
   <string name="ManageDonationsFragment__my_support">Má podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
   <string name="ManageDonationsFragment__badges">Odznaky</string>
@@ -3568,29 +3565,34 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MySupportPreference__s_per_month">%1$s/měsíc</string>
   <string name="MySupportPreference__renews_s">Obnova %1$s</string>
   <string name="MySupportPreference__processing_transaction">Zpracovávání transakce…</string>
-  <string name="MySupportPreference__couldnt_add_badge">Nezdařilo se přidat odznak</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Nezdařilo se přidat odznak.%1$s</string>
   <string name="MySupportPreference__please_contact_support">Prosím kontaktujte podporu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnost odznaku vypršela</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Předplatné zrušeno</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnost vašeho Boost odznaku vypršela a na vašem profilu již není pro ostatní viditelný.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnost vašeho odznaku Boost vypršela a již není pro ostatní na vašem profilu viditelný.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jednorázovým příspěvkem si můžete odznak Boost znovu aktivovat na dalších 30 dní.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás, zvažte možnost stát se měsíčním podporovatelem.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Přidat Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše předplatné Sustainer bylo automaticky zrušeno, protože jste byli příliš dlouho neaktivní. Váš %1$s odznak již není na vašem profilu viditelný.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovit předplatné</string>
-  <string name="Subscription__verification_failed">Ověření předplatného selhalo</string>
-  <string name="Subscription__redemption_failed">Vykoupení odznaku se nezdařilo</string>
   <string name="Subscription__please_contact_support_for_more_information">Pro více informací prosím kontaktujte podporu.</string>
   <string name="Subscription__contact_support">Kontaktovat podporu</string>
   <string name="Subscription__earn_a_s_badge">Získat odznak %1$s</string>
   <string name="SubscribeFragment__processing_payment">Zpracovávání platby…</string>
-  <string name="DonationsErrors__payment_failed">Platba selhala</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Chyba při zpracování platby</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Chyba při zpracovávání platby. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
   <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
   <string name="DonationsErrors__still_processing">Stále zpracovávám</string>
-  <string name="DonationsErrors__redemption_failed">Vykoupení se nezdařilo</string>
-  <string name="DonationsErrors__please_contact_support">Prosím kontaktujte podporu</string>
+  <string name="DonationsErrors__couldnt_add_badge">Nezdařilo se přidat odznak</string>
+  <string name="DonationsErrors__your_badge_could_not">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
   <string name="DonationsErrors__your_payment_is_still">Vaše platba se stále zpracovává. To může trvat několik minut v závislosti na vašem připojení.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay není dostupné</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musíte si nastavit Google Pay, abyste mohli přispět v rámci aplikace.</string>
@@ -3599,5 +3601,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zařízení nepodporuje službu Google Pay, takže se nemůžete přihlásit k odběru a získat odznak. Přesto můžete Signal podpořit příspěvkem na našich webových stránkách.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba sítě. Zkontrolujte připojení a zkuste to znovu.</string>
   <string name="NetworkFailure__retry">Zkusit znovu</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Nepodařilo se otevřít picker.</string>
   <!--EOF-->
 </resources>

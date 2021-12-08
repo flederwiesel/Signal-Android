@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">Leo</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Faili isiyo na jina</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Changia Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal inaendeshwa na watu kama wewe. Simama uhesabike leo!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Toa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Hapana, Asante</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Tunakuletea Mikutano ya Vikundi</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Fungua Kikundi Kipya ili uanzishe mkutano wa kikundi uliosimbwa na usiolipishwa</string>
@@ -1252,8 +1247,6 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_play_services_error">Hitilafu katika huduma za Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Huduma za Google Play zinasasisha au hazipatikani kwa muda. Tafadhali jaribu tena.</string>
   <string name="RegistrationActivity_terms_and_privacy">Vigezo &amp;amp: Sera ya Faragha</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal inahitaji kupata wawasiliani wako ama Media ili kukuunganisha na marafiki, kubadilishana jumbe, na kupiga simu kisalama</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal inahitaji ufikizi kwenye waasiliani wako ili kukuunganisha na marafiki, kubadilishana ujumbe, na kupiga miito salama</string>
   <string name="RegistrationActivity_rate_limited_to_service">Umefanya majaribio mengi sana ili kusajili nambari hii. Tafadhali jaribu tena baadaye.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Imeshindwa kuunganisha kwenye huduma. Tafadhali angalia muunganisho wako wa mtandao na ujaribu tena.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -2290,7 +2283,6 @@ nambari yako ya simu</string>
   <string name="Insights__title">Ufahamu</string>
   <string name="InsightsDashboardFragment__title">Ufahamu</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Itifaki za Signal moja kwa moja zimelinda %1$d%% ya jumbe zako zilizotumwa kwenye siku %2$d zilizopita. Gumzo kati ya watumizi wa Signal zimesimbwa mwisho hadi mwisho.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Ongezo-hadhi la Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Data haitoshi</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Asilimia ya Ufahamu wako inahesabiwa kulingana na jumbe zilizotumwa kwa siku %1$dzilizopita  ambazo hazijatoweka wala kufutwa. </string>
   <string name="InsightsDashboardFragment__start_a_conversation">Anza gumzo</string>
@@ -3118,10 +3110,13 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="SubscribeFragment__update">Sasisha</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Imekamilika</string>
   <string name="Boost__enter_custom_amount">Weka Kiasi Maalum</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Sio sasa</string>
   <string name="Subscription__contact_support">Wasiliana na Msaada</string>
   <string name="SubscribeFragment__processing_payment">Tunachakata malipo…</string>
-  <string name="DonationsErrors__payment_failed">Malipo hayajatumwa</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">Jaribu Upya</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

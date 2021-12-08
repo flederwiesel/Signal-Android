@@ -70,6 +70,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   }
 
   fun requestTokenFromGooglePay(price: FiatMoney, label: String, requestCode: Int) {
+    Log.d(TAG, "Requesting a token from google pay...")
     googlePayApi.requestPayment(price, label, requestCode)
   }
 
@@ -80,15 +81,16 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     expectedRequestCode: Int,
     paymentsRequestCallback: GooglePayApi.PaymentRequestCallback
   ) {
+    Log.d(TAG, "Processing possible google pay result...")
     googlePayApi.onActivityResult(requestCode, resultCode, data, expectedRequestCode, paymentsRequestCallback)
   }
 
   fun continuePayment(price: FiatMoney, paymentData: PaymentData): Completable {
-    Log.d(TAG, "Creating payment intent...", true)
+    Log.d(TAG, "Creating payment intent for $price...", true)
     return stripeApi.createPaymentIntent(price, application.getString(R.string.Boost__thank_you_for_your_donation))
       .onErrorResumeNext { Single.error(DonationExceptions.SetupFailed(it)) }
       .flatMapCompletable { result ->
-        Log.d(TAG, "Created payment intent.", true)
+        Log.d(TAG, "Created payment intent for $price.", true)
         when (result) {
           is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost amount is too small")))
           is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost amount is too large")))
@@ -99,26 +101,36 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   }
 
   fun continueSubscriptionSetup(paymentData: PaymentData): Completable {
+    Log.d(TAG, "Continuing subscription setup...", true)
     return stripeApi.createSetupIntent()
       .flatMapCompletable { result ->
-        stripeApi.confirmSetupIntent(GooglePayPaymentSource(paymentData), result.setupIntent)
+        Log.d(TAG, "Retrieved SetupIntent, confirming...", true)
+        stripeApi.confirmSetupIntent(GooglePayPaymentSource(paymentData), result.setupIntent).doOnComplete {
+          Log.d(TAG, "Confirmed SetupIntent...", true)
+        }
       }
   }
 
   fun cancelActiveSubscription(): Completable {
+    Log.d(TAG, "Canceling active subscription...", true)
     val localSubscriber = SignalStore.donationsValues().requireSubscriber()
     return ApplicationDependencies.getDonationsService()
       .cancelSubscription(localSubscriber.subscriberId)
-      .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
+      .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
+      .ignoreElement()
+      .doOnComplete { Log.d(TAG, "Cancelled active subscription.", true) }
   }
 
   fun ensureSubscriberId(): Completable {
+    Log.d(TAG, "Ensuring SubscriberId exists on Signal service...", true)
     val subscriberId = SignalStore.donationsValues().getSubscriber()?.subscriberId ?: SubscriberId.generate()
     return ApplicationDependencies
       .getDonationsService()
       .putSubscription(subscriberId)
       .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
       .doOnComplete {
+        Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
+
         SignalStore
           .donationsValues()
           .setSubscriber(Subscriber(subscriberId, SignalStore.donationsValues().getSubscriptionCurrency().currencyCode))
@@ -160,9 +172,11 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
             }
           }
         } else {
+          Log.d(TAG, "Boost redemption timed out waiting for job completion.", true)
           it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
         }
       } catch (e: InterruptedException) {
+        Log.d(TAG, "Boost redemption job interrupted", e, true)
         it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
       }
     }
@@ -243,6 +257,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   }
 
   private fun getOrCreateLevelUpdateOperation(subscriptionLevel: String): Single<LevelUpdateOperation> = Single.fromCallable {
+    Log.d(TAG, "Retrieving level update operation for $subscriptionLevel")
     val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
     if (levelUpdateOperation == null) {
       val newOperation = LevelUpdateOperation(
@@ -252,36 +267,48 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
       SignalStore.donationsValues().setLevelOperation(newOperation)
       LevelUpdate.updateProcessingState(true)
+      Log.d(TAG, "Created a new operation for $subscriptionLevel")
       newOperation
     } else {
       LevelUpdate.updateProcessingState(true)
+      Log.d(TAG, "Reusing operation for $subscriptionLevel")
       levelUpdateOperation
     }
   }
 
   override fun fetchPaymentIntent(price: FiatMoney, description: String?): Single<StripeApi.PaymentIntent> {
+    Log.d(TAG, "Fetching payment intent from Signal service for $price... (Locale.US minimum precision: ${price.minimumUnitPrecisionString})")
     return ApplicationDependencies
       .getDonationsService()
       .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, description)
       .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
       .map {
         StripeApi.PaymentIntent(it.id, it.clientSecret)
+      }.doOnSuccess {
+        Log.d(TAG, "Got payment intent from Signal service!")
       }
   }
 
   override fun fetchSetupIntent(): Single<StripeApi.SetupIntent> {
+    Log.d(TAG, "Fetching setup intent from Signal service...")
     return Single.fromCallable { SignalStore.donationsValues().requireSubscriber() }
       .flatMap { ApplicationDependencies.getDonationsService().createSubscriptionPaymentMethod(it.subscriberId) }
       .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
       .map { StripeApi.SetupIntent(it.id, it.clientSecret) }
+      .doOnSuccess {
+        Log.d(TAG, "Got setup intent from Signal service!")
+      }
   }
 
   override fun setDefaultPaymentMethod(paymentMethodId: String): Completable {
+    Log.d(TAG, "Setting default payment method via Signal service...")
     return Single.fromCallable {
       SignalStore.donationsValues().requireSubscriber()
     }.flatMap {
       ApplicationDependencies.getDonationsService().setDefaultPaymentMethodId(it.subscriberId, paymentMethodId)
-    }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
+    }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
+      Log.d(TAG, "Set default payment method via Signal service!")
+    }
   }
 
   companion object {

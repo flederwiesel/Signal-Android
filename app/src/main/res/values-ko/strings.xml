@@ -417,11 +417,6 @@
   <string name="DeviceListItem_today">오늘</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">이름 없는 파일</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal에 후원</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal은 귀하와 같은 분들이 만들어나갑니다. 지금 귀하의 응원을 보여주세요!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">기부</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">됐어요</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">그룹 통화 소개</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">새 그룹을 열어 무료 암호화 그룹 통화를 시작하세요.</string>
@@ -1242,8 +1237,6 @@
   <string name="RegistrationActivity_play_services_error">Play Services 오류</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services가 업데이트 중이거나 잠시 제공되지 않고 있습니다. 다시 시도해 주세요.</string>
   <string name="RegistrationActivity_terms_and_privacy">이용 약관 &amp; 개인 정보 보호 정책</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal에서 친구들과 연락하고, 메시지를 주고받으며 안전하게 전화하기 위해 연락처와 미디어 권한이 필요합니다.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal에서 친구들과 연락하고, 메시지를 주고받으며 안전하게 전화하기 위해 연락처 권한이 필요합니다.</string>
   <string name="RegistrationActivity_rate_limited_to_service">이 전화번호를 등록하려고 너무 많이 시도했습니다. 나중에 다시 시도하세요.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">서비스에 연결할 수 없습니다. 네트워크 연결을 확인 후 다시 시도해 주세요.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -2269,7 +2262,6 @@
   <string name="Insights__title">인사이트</string>
   <string name="InsightsDashboardFragment__title">인사이트</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal 프로토콜이 지난 %2$d일 동안 발신된 메시지 중 %1$d%%를 발견했습니다. Signal 사용자 간의 대화는 항상 단대단 암호화됩니다.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal 부스트</string>
   <string name="InsightsDashboardFragment__not_enough_data">데이터가 충분하지 않음</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">인사이트 백분율은 최근 %1$d일 동안 사라졌거나 삭제되지 않은 발신 메시지에 대해 산정됩니다.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">대화 시작</string>
@@ -3079,10 +3071,13 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">확인</string>
   <string name="ManageDonationsFragment__badges">배지</string>
   <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
   <string name="Subscription__contact_support">지원에 문의</string>
   <string name="SubscribeFragment__processing_payment">결제 처리 중…</string>
-  <string name="DonationsErrors__payment_failed">결제 실패</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">재시도</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

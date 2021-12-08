@@ -398,11 +398,6 @@
   <string name="DeviceListItem_today">இன்று</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">பெயரிடப்படாத கோப்பு</string>
-  <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate_to_signal">Signal-க்கு நன்கொடை அளி</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal லை உங்களைப் போன்றவர்கள் ஆதரிக்கிறார்கள். இன்று உங்கள் ஆதரவைக் காட்டுங்கள்!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">நன்கொடை</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">வேண்டாம், நன்றி</string> -->
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">அறிமுகப்படுத்துகிறது குழு அழைப்புகள்</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">திற a புதிய குழு இலவசமாக தொடங்க மறையாக்கப்பட்ட குழு அழைப்பு</string>
@@ -1257,8 +1252,6 @@
   <string name="RegistrationActivity_play_services_error">சேவைகளில் பிழை</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play சேவைகள் புதுப்பித்தல் அல்லது தற்காலிகமாக கிடைக்கவில்லை. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_terms_and_privacy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">நண்பர்களுடன் இணைவதற்கும், செய்திகளைப் பரிமாறிக் கொள்வதற்கும், பாதுகாப்பான அழைப்புகளைச் செய்வதற்கும் Signal உங்கள் தொடர்புகள் மற்றும் ஊடகங்களுக்கான அணுகல் தேவை</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">உங்கள் நண்பர்களுடன் தொடர்புகொள்வதற்கும், செய்திகளைப் பரிமாறிக்கொள்வதற்கும், பாதுகாப்பான அழைப்புகளைச் செய்வதற்கும், சிக்னலுக்கு உங்கள் தொடர்புகள் பிரிவுக்கு அணுகல் அனுமதி தேவை.</string>
   <string name="RegistrationActivity_rate_limited_to_service">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -2299,7 +2292,6 @@
   <string name="Insights__title">நுண்ணறிவு</string>
   <string name="InsightsDashboardFragment__title">நுண்ணறிவு</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">கடந்த %2$d நாட்களில் Signal நெறிமுறை தானாகவே உங்களின் %1$d%% வெளிச்செல்லும் செய்திகளை பாதுகாத்தது. Signal பயனர்களிடையேயான உரையாடல்கள் எப்போதும் முடிவிலிருந்து-முடிவுவரை மறையாக்கம் செய்யப்படுகின்றன.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal பூஸ்ட்</string>
   <string name="InsightsDashboardFragment__not_enough_data">போதிய தரவு இல்லை</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">கடந்த %1$d நாட்களில் காணாமல் போகாத அல்லது நீக்கப்படாத வெளிச்செல்லும் செய்திகளின் அடிப்படையில் உங்கள் நுண்ணறிவு சதவீதம் கணக்கிடப்படுகிறது.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">புதிய உரையாடலை தொடங்கு</string>
@@ -3140,10 +3132,13 @@
   <string name="SubscribeFragment__update">புதுப்பிக்கப்பட்டது</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">முடிந்தது</string>
   <string name="Boost__enter_custom_amount">உள்ளிடவும் தனிப்பயன் தொகை</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">இப்போது இல்லை</string>
   <string name="Subscription__contact_support">தொடர்பு ஆதரவு</string>
   <string name="SubscribeFragment__processing_payment">கட்டணத்தை செயலாக்குகிறது…</string>
-  <string name="DonationsErrors__payment_failed">கட்டணம் தோல்வியடைந்தது</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

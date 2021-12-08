@@ -180,7 +180,8 @@ public final class FeatureFlags {
       GROUP_CALL_RINGING,
       CDSH,
       SENDER_KEY_MAX_AGE,
-      DONOR_BADGES_DISPLAY
+      DONOR_BADGES_DISPLAY,
+      DONATE_MEGAPHONE
   );
 
   /**
@@ -403,17 +404,14 @@ public final class FeatureFlags {
     return getBoolean(CHANGE_NUMBER_ENABLED, false);
   }
 
-  /** Whether or not to show donor badges in the UI.
-   *
-   * WARNING: Donor Badges is an unfinished feature and should not be enabled in production builds.
-   *    Enabling this flag in a custom build can result in crashes and could result in your Google Pay
-   *    account being charged real money.
+  /**
+   * Whether or not to show donor badges in the UI.
    */
   public static boolean donorBadges() {
     if (Environment.IS_STAGING) {
       return true;
     } else {
-      return getBoolean(DONOR_BADGES, false ) || SignalStore.donationsValues().getSubscriber() != null;
+      return getBoolean(DONOR_BADGES, true) || SignalStore.donationsValues().getSubscriber() != null;
     }
   }
 
@@ -421,7 +419,7 @@ public final class FeatureFlags {
    * Whether or not donor badges should be displayed throughout the app.
    */
   public static boolean displayDonorBadges() {
-    return getBoolean(DONOR_BADGES_DISPLAY, false);
+    return getBoolean(DONOR_BADGES_DISPLAY, true);
   }
 
   public static boolean cdsh() {

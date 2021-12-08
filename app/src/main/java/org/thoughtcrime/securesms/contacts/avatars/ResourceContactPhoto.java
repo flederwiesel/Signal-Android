@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
-import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.jetbrains.annotations.NotNull;
@@ -70,6 +69,8 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
 
     //noinspection ConstantConditions
     foreground.setScaleType(scaleType);
+    background.setColorFilter(inverted ? foregroundColor.getColorInt() : color.colorInt(), PorterDuff.Mode.SRC_IN);
+    foreground.setColorFilter(inverted ? color.colorInt() : foregroundColor.getColorInt(), PorterDuff.Mode.SRC_ATOP);
 
     return new ExpandingLayerDrawable(new Drawable[] {background, foreground});
   }
