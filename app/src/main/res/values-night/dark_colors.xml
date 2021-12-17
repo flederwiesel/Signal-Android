@@ -168,4 +168,7 @@
     <color name="voice_note_player_speed_background_tint">@color/core_grey_65</color>
 
     <color name="signal_accent_primary_transparent_15">@color/signal_primary_alpha50</color>
+    <color name="notification_profile_moon_tint">@color/core_flederwiesel_dark</color>
+
+    <color name="top_toast_background_color">@color/core_grey_80</color>
 </resources>
