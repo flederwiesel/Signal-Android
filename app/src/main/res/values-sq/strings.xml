@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anëtarë të grupit do të jenë në gjendje t\’ju rishtojnë te ky grup.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Do të jeni në gjendje t\’i dërgoni mesazhe dhe t\’i bëni thirrje njëri-tjetrit, dhe emri juaj dhe fotoja do të jenë të dukshëm për të.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Personat e bllokuar s\’do të jenë në gjendje t\’ju bëjnë thirrje apo t\’ju dërgojnë mesazhe.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">Të zhbllokohet %1$s?</string>
   <string name="BlockUnblockDialog_block">Bllokoje</string>
   <string name="BlockUnblockDialog_block_and_leave">Bllokoje dhe Braktise</string>
@@ -448,9 +450,6 @@
   <string name="DeviceListItem_today">Sot</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Kartelë e paemërtuar</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Ju paraqesim Thirrje Grupi</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Që të nisni një thirrje të lirë, të fshehtëzuar, në grup, hapni një Grup të Ri</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizoje për Shërbime Play që mungojnë</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Signal-in të marrë mesazhe teksa është joaktiv.</string>
@@ -569,10 +568,6 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="LeaveGroupDialog_choose_new_admin">Zgjidhni përgjegjës të ri</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Përpara se të largoheni, duhet të zgjidhni të paktën një përgjegjës të ri për këtë grup.</string>
   <string name="LeaveGroupDialog_choose_admin">Zgjidhni përgjegjës</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Çaktivizoje</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Bëni paraparje të çfarëdo lidhjeje</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Tanimë, për mesazhet që dërgoni, mund të bëni paraparje lidhjesh drejt e nga çfarëdo sajti.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">S\’ka lidhje për paraparje</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Kjo lidhje grupi s\’është aktive</string>
@@ -872,8 +867,6 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dërguar nga %1$s për %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dërguar nga ju për %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Ju Prezantojmë Reagimet</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Prekeni dhe mbajeni të prekur cilindo mesazh që të ndani me të tjerët se si ndjeheni prej tij.</string>
   <string name="Megaphones_remind_me_later">Kujtomë më vonë</string>
   <string name="Megaphones_verify_your_signal_pin">Verifikoni PIN-in tuaj të Signal-it</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Me raste, do t\’ju kërkojmë të verifikoni PIN-in tuaj, që kështu të mund ta mbani mend.</string>
@@ -1097,7 +1090,9 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar nga një tjetër pajisje</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">S\’u dërgua dot një mesazh prej %s</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s e ndryshoi numrin e vet me një numër të ri.</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s ndryshoi numrin e vet të telefonit.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
@@ -1737,6 +1732,10 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Pa kontakte në këtë grup. Shqyrtojini me kujdes kërkesat.</string>
   <string name="ConversationUpdateItem_view">Shihni</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Koha për mesazhe që treten do të caktohet si %1$s, kur u dërgoni mesazhe.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Fuqizim Signal-i</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Bëhuni një Mbështetës</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -2340,18 +2339,33 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation_callable_secure__menu_call">Thirrje përmes Signal-i</string>
   <string name="conversation_callable_secure__menu_video">Thirrje video Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Hollësi mesazhi</string>
-  <string name="conversation_context__menu_copy_text">Kopjo tekstin</string>
-  <string name="conversation_context__menu_delete_message">Fshije mesazhin</string>
-  <string name="conversation_context__menu_forward_message">Përcille mesazhin</string>
-  <string name="conversation_context__menu_resend_message">Ridërgoje mesazhin</string>
-  <string name="conversation_context__menu_reply_to_message">Përgjigjuni mesazhin</string>
-  <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">Përzgjidhni disa</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d i përsgjedhur</item>
+    <item quantity="other">%d të përzgjedhur</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Ruaje bashkëngjitjen</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Ruaji</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Tretje mesazhesh</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopjoje</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Fshiji</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Përcjellje</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Përgjigju</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Ruaji</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Ridërgoje</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Përzgjidhni</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Fto</string>
@@ -2537,16 +2551,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="KbsMegaphone__create_a_pin">Krijoni PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-et i mbajnë të fshehtëzuara të dhënat që depozitohen me Signal-in.</string>
   <string name="KbsMegaphone__create_pin">Krijoni PIN</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Tregojini Signal-it se çfarë mendoni</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Për ta bërë Signal-in aplikacionin më të mirë në planet për shkëmbim mesazhesh, do të na pëlqente fort të dëgjonim mendimin tuaj.</string>
-  <string name="ResearchMegaphone_learn_more">Mësoni më tepër</string>
-  <string name="ResearchMegaphone_dismiss">Hidhe tej</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Kërkime rreth Signal-it</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Besojmë në privatësinë.</b></p><p>Signal-i nuk ju ndjek, as grumbullon të dhëna tuajat. Që Signal-i të përmirësohet për këdo, bazohemi në mendimet e përdoruesve, <b>dhe do ta donim edhe tuajin.</b></p><p>Po kryejmë një pyetësor për të kuptuar se si e përdorni Signal-in. Pyetësori ynë s\’grumbullon ndonjë të dhënë që lejon identifikimin tuaj. Nëse ju intereson të jepni përshtypje shtesë, keni mundësinë të jepni të dhëna kontakti.</p><p>Nëse keni ndoca minuta dhe përshtypje për të dhënë, do të donim fort t\’i dëgjonim.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Plotësoni pyetësorin</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Jo, faleminderit</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Pyetësori strehohet nga Alchemer, në përkatësinë e sigurt surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>
@@ -3042,7 +3046,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Përdoreni këtë që të ndryshoni numrin tuaj të tanishëm të telefonit me një numër të ri. Këtë ndryshim s\’mund ta zhbëni.\n\nPara se të vazhdoni, sigurohuni se numri juaj i ri mund të marrë SMS ose thirrje.</string>
   <string name="ChangeNumberFragment__continue">Vazhdo</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Numri juaj i telefonit është ndryshuar.</string>
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Numri juaj i telefonit ka është ndryshuar si %1$s</string>
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">OK</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ndrysho Numrin</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Numri juaj i vjetër</string>
@@ -3071,12 +3078,19 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Përditësoni PIN-in</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Të mbahet PIN-i i vjetër?</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Duket sikur provuat të ndryshonit numrin tuaj, por s\’qemë në gjendje të përcaktojmë nëse kjo qe e suksesshme.\n\nPo rikontrollohet tani…</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Ndryshim gjendjeje i verifikuar</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numri juaj është verifikuar si %1$s. Nëse ky s\’është numri juaj i ri, ju lutemi, rinisni procesin e ndryshimit të numrit.</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Ndryshim gjendjeje i paverifikuar</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">S\’përcaktuam dot gjendjen e kërkesës tuaj për ndryshim numri.\n\n(Gabim: %1$s)</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Riprovo</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Braktise</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Parashtro regjistër diagnostikimi</string>
   <!--ChatsSettingsFragment-->
@@ -3589,5 +3603,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="NotificationProfilesMegaphone__not_now">Jo tani</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">S\’u arrit të hapet zgjedhësi.</string>
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

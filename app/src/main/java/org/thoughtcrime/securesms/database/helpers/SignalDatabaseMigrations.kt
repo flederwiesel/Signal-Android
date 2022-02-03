@@ -10,7 +10,6 @@ import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.text.TextUtils
 import com.annimon.stream.Stream
-import com.bumptech.glide.Glide
 import com.google.protobuf.InvalidProtocolBufferException
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.logging.Log
@@ -181,8 +180,12 @@ object SignalDatabaseMigrations {
   private const val PNI = 122
   private const val NOTIFICATION_PROFILES = 123
   private const val NOTIFICATION_PROFILES_END_FIX = 124
+  private const val REACTION_BACKUP_CLEANUP = 125
+  private const val REACTION_REMOTE_DELETE_CLEANUP = 126
+  private const val PNI_CLEANUP = 127
+  private const val MESSAGE_RANGES = 128
 
-  const val DATABASE_VERSION = 124
+  const val DATABASE_VERSION = 128
 
   @JvmStatic
   fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -697,7 +700,6 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < ATTACHMENT_CLEAR_HASHES_2) {
       db.execSQL("UPDATE part SET data_hash = null")
-      Glide.get(context).clearDiskCache()
     }
 
     if (oldVersion < UUIDS) {
@@ -2231,6 +2233,40 @@ object SignalDatabaseMigrations {
           UPDATE notification_profile_schedule SET end = 2400 WHERE end = 0
         """.trimIndent()
       )
+    }
+
+    if (oldVersion < REACTION_BACKUP_CLEANUP) {
+      db.execSQL(
+        // language=sql
+        """
+          DELETE FROM reaction
+          WHERE
+            (is_mms = 0 AND message_id NOT IN (SELECT _id FROM sms))
+            OR
+            (is_mms = 1 AND message_id NOT IN (SELECT _id FROM mms))
+        """.trimIndent()
+      )
+    }
+
+    if (oldVersion < REACTION_REMOTE_DELETE_CLEANUP) {
+      db.execSQL(
+        // language=sql
+        """
+          DELETE FROM reaction
+          WHERE
+            (is_mms = 0 AND message_id IN (SELECT _id from sms WHERE remote_deleted = 1))
+            OR
+            (is_mms = 1 AND message_id IN (SELECT _id from mms WHERE remote_deleted = 1))
+        """.trimIndent()
+      )
+    }
+
+    if (oldVersion < PNI_CLEANUP) {
+      db.execSQL("UPDATE recipient SET pni = NULL WHERE phone IS NULL")
+    }
+
+    if (oldVersion < MESSAGE_RANGES) {
+      db.execSQL("ALTER TABLE mms ADD COLUMN ranges BLOB DEFAULT NULL")
     }
   }
 

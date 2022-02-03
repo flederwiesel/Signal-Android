@@ -31,13 +31,6 @@ public final class LocaleFeatureFlags {
   private static final int    NOT_FOUND        = -1;
 
   /**
-   * In research megaphone group for given country code
-   */
-  public static boolean isInResearchMegaphone() {
-    return false;
-  }
-
-  /**
    * In donate megaphone group for given country code
    */
   public static boolean isInDonateMegaphone() {
@@ -59,6 +52,10 @@ public final class LocaleFeatureFlags {
     String      countryCode = String.valueOf(PhoneNumberFormatter.getLocalCountryCode());
 
     return !blacklist.contains(countryCode);
+  }
+
+  public static boolean shouldShowReleaseNote(@NonNull String releaseNoteUuid, @NonNull String countries) {
+    return isEnabled(releaseNoteUuid, countries);
   }
 
   /**
