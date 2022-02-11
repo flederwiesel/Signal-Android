@@ -200,6 +200,8 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel;
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment;
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment;
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment;
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -338,7 +340,8 @@ public class ConversationParentFragment extends Fragment
                EmojiEventListener,
                GifKeyboardPageFragment.Host,
                EmojiKeyboardPageFragment.Callback,
-               EmojiSearchFragment.Callback
+               EmojiSearchFragment.Callback,
+               StickerKeyboardPageFragment.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -616,6 +619,10 @@ public class ConversationParentFragment extends Fragment
       if (searchViewItem != null && searchViewItem.expandActionView()) {
         searchViewModel.onSearchOpened();
       }
+    } else {
+      searchViewModel.onSearchClosed();
+      viewModel.setSearchQuery(null);
+      inputPanel.setHideForSearch(false);
     }
   }
 
@@ -915,15 +922,10 @@ public class ConversationParentFragment extends Fragment
     boolean isActiveV2Group           = groupActiveState != null && groupActiveState.isActiveV2Group();
     boolean isInActiveGroup           = groupActiveState != null && !groupActiveState.isActiveGroup();
 
-    if (isInMessageRequest()) {
+    if (isInMessageRequest() && recipient != null && !recipient.get().isBlocked()) {
       if (isActiveGroup) {
         inflater.inflate(R.menu.conversation_message_requests_group, menu);
       }
-
-      inflater.inflate(R.menu.conversation_message_requests, menu);
-
-      if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-      else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
 
       super.onCreateOptionsMenu(menu, inflater);
     }
@@ -1093,7 +1095,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   public void invalidateOptionsMenu() {
-    if (!isSearchRequested) {
+    if (!isSearchRequested && getActivity() != null) {
       onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
     }
   }
@@ -1545,18 +1547,21 @@ public class ConversationParentFragment extends Fragment
 
     sendButton.resetAvailableTransports(isMediaMessage);
 
-    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes()) {
-      sendButton.disableTransport(Type.TEXTSECURE);
-    }
+    boolean smsEnabled = true;
 
     if (recipient.get().isPushGroup() || (!recipient.get().isMmsGroup() && !recipient.get().hasSmsAddress())) {
       sendButton.disableTransport(Type.SMS);
+      smsEnabled = false;
     }
 
-    if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection()) {
+    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes() && smsEnabled) {
+      sendButton.disableTransport(Type.TEXTSECURE);
+    }
+
+    if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection() && smsEnabled) {
       sendButton.setDefaultTransport(Type.SMS);
     } else {
-      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes()) {
+      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
         sendButton.setDefaultTransport(Type.TEXTSECURE);
       } else {
         sendButton.setDefaultTransport(Type.SMS);
@@ -2473,6 +2478,11 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {
+    if (getContext() == null) {
+      Log.w(TAG, "onRecipientChanged called in detached state. Ignoring.");
+      return;
+    }
+
     Log.i(TAG, "onModified(" + recipient.getId() + ") " + recipient.getRegistered());
     titleView.setTitle(glideRequests, recipient);
     titleView.setVerified(identityRecords.isVerified());
@@ -3141,7 +3151,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void updateLinkPreviewState() {
-    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent()) {
+    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent() && getContext() != null) {
       linkPreviewViewModel.onEnabled();
       linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
@@ -3460,6 +3470,10 @@ public class ConversationParentFragment extends Fragment
     return voiceNoteMediaController;
   }
 
+  @Override public void openStickerSearch() {
+    StickerSearchDialogFragment.show(getChildFragmentManager());
+  }
+
   // Listeners
 
   private final class DeleteCanceledVoiceNoteListener implements ListenableFuture.Listener<VoiceNoteDraft> {
@@ -3530,7 +3544,7 @@ public class ConversationParentFragment extends Fragment
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (SignalStore.settings().isEnterKeySends()) {
+          if (SignalStore.settings().isEnterKeySends() || event.isCtrlPressed()) {
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
             return true;
@@ -3777,6 +3791,11 @@ public class ConversationParentFragment extends Fragment
             reactionDelegate.hide();
           }
         });
+  }
+
+  @Override
+  public boolean isKeyboardOpen() {
+    return container.isKeyboardOpen();
   }
 
   @Override

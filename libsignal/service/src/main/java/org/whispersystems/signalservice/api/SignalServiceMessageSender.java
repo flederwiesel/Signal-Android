@@ -487,6 +487,12 @@ public class SignalServiceMessageSender {
     return results;
   }
 
+  public SendMessageResult sendSyncMessage(SignalServiceDataMessage dataMessage)
+      throws IOException, UntrustedIdentityException
+  {
+    return sendSyncMessage(createSelfSendSyncMessage(dataMessage), Optional.absent());
+  }
+
   public SendMessageResult sendSyncMessage(SignalServiceSyncMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
       throws IOException, UntrustedIdentityException
   {
@@ -1537,6 +1543,16 @@ public class SignalServiceMessageSender {
     return results;
   }
 
+  private SignalServiceSyncMessage createSelfSendSyncMessage(SignalServiceDataMessage message) {
+    SentTranscriptMessage transcript = new SentTranscriptMessage(Optional.of(localAddress),
+                                                                 message.getTimestamp(),
+                                                                 message,
+                                                                 message.getExpiresInSeconds(),
+                                                                 Collections.singletonMap(localAddress, false),
+                                                                 false);
+    return SignalServiceSyncMessage.forSentTranscript(transcript);
+  }
+
   private List<SendMessageResult> sendMessage(List<SignalServiceAddress>         recipients,
                                               List<Optional<UnidentifiedAccess>> unidentifiedAccess,
                                               long                               timestamp,
@@ -1961,7 +1977,7 @@ public class SignalServiceMessageSender {
     }
 
     for (int deviceId : deviceIds) {
-      if (store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
+      if (deviceId == SignalServiceAddress.DEFAULT_DEVICE_ID || store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
         messages.add(getEncryptedMessage(socket, recipient, unidentifiedAccess, deviceId, plaintext));
       }
     }
@@ -2042,8 +2058,6 @@ public class SignalServiceMessageSender {
     for (SignalProtocolAddress address : addressesToClear) {
       store.archiveSession(address);
     }
-
-    store.clearSenderKeySharedWith(addressesToClear);
   }
 
   private List<SignalProtocolAddress> convertToProtocolAddresses(SignalServiceAddress recipient, List<Integer> devices) {
