@@ -62,8 +62,8 @@ ktlint {
     version = "0.43.2"
 }
 
-def canonicalVersionCode = 1005
-def canonicalVersionName = "5.32.2"
+def canonicalVersionCode = 1011
+def canonicalVersionName = "5.32.8"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -78,18 +78,18 @@ def keystores = [
 ]
 
 def selectableVariants = [
-        'nightlyProdFlipper',
+        'nightlyProdSpinner',
         'nightlyProdPerf',
         'nightlyProdRelease',
         'playProdDebug',
-        'playProdFlipper',
+        'playProdSpinner',
         'playProdPerf',
         'playProdRelease',
         'playStagingDebug',
-        'playStagingFlipper',
+        'playStagingSpinner',
         'playStagingPerf',
         'playStagingRelease',
-        'websiteProdFlipper',
+        'websiteProdSpinner',
         'websiteProdRelease',
 ]
 
@@ -127,6 +127,48 @@ android {
             }
         }
     }
+
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError true
+        baseline file("lint-baseline.xml")
+        disable "LintError"
+    }
+
+    sourceSets {
+        test {
+            java.srcDirs += "$projectDir/src/testShared"
+        }
+
+        androidTest {
+            java.srcDirs += "$projectDir/src/testShared"
+        }
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JAVA_VERSION
+        targetCompatibility JAVA_VERSION
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'LICENSE'
+        exclude 'NOTICE'
+        exclude 'asm-license.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+
 
     defaultConfig {
         versionCode canonicalVersionCode * postFixSize
@@ -201,36 +243,6 @@ android {
         testInstrumentationRunnerArguments clearPackageData: 'true'
     }
 
-    testOptions {
-        execution 'ANDROIDX_TEST_ORCHESTRATOR'
-    }
-
-    sourceSets {
-        test {
-            java.srcDirs += "$projectDir/src/testShared"
-        }
-
-        androidTest {
-            java.srcDirs += "$projectDir/src/testShared"
-        }
-    }
-
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-
-    packagingOptions {
-        exclude 'LICENSE.txt'
-        exclude 'LICENSE'
-        exclude 'NOTICE'
-        exclude 'asm-license.txt'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/proguard/androidx-annotations.pro'
-    }
-
     buildTypes {
         debug {
             if (keystores['debug'] != null) {
@@ -261,12 +273,12 @@ android {
 
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Debug\""
         }
-        flipper {
+        spinner {
             initWith debug
             isDefault false
             minifyEnabled false
             matchingFallbacks = ['debug']
-            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Flipper\""
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Spinner\""
         }
         release {
             minifyEnabled true
@@ -381,19 +393,6 @@ android {
 
         if (!selectableVariants.contains(fullName)) {
             variant.setIgnore(true)
-        }
-    }
-
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError true
-        baseline file("lint-baseline.xml")
-        disable "LintError"
-    }
-
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
         }
     }
 }
@@ -521,9 +520,8 @@ dependencies {
     }
     implementation libs.dnsjava
 
-    flipperImplementation libs.facebook.flipper
-    flipperImplementation libs.facebook.soloader
-    flipperImplementation libs.square.leakcanary
+    spinnerImplementation project(":spinner")
+    spinnerImplementation libs.square.leakcanary
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.assertj.core

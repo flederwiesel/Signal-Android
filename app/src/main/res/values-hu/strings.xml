@@ -93,7 +93,7 @@
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal újdonságok és hírek blokkolása.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal újdonságok és hírek bekapcsolása.</string>
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal újdonságok és hírek visszakapcsolása.</string>
   <string name="BlockUnblockDialog_unblock_s">Feloldod %1$s tiltását?</string>
   <string name="BlockUnblockDialog_block">Letiltás</string>
   <string name="BlockUnblockDialog_block_and_leave">Tiltás és kilépés</string>
@@ -308,8 +308,8 @@
     <item quantity="other">Törlöd a kiválasztott beszélgetéseket?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Ez végelegesen törölni fogja a kiválasztott beszélgetést.</item>
-    <item quantity="other">Ez a művelet véglegesen törölni fogja a(z) %1$d db kijelölt beszélgetést.</item>
+    <item quantity="one">A kiválasztott beszélgetések véglegesen törlődnek.</item>
+    <item quantity="other">A kiválasztott beszélgetések (%1$d db) véglegesen törlődnek.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Törlés</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Kijelölt beszélgetések törlése…</string>
@@ -1090,9 +1090,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Egy üzenet %s ismerősödtől nem érkezett meg</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s megváltoztatta a telefonszámát.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Tetszett valamelyik újdonság? Adj egy támogató Lökést!</string>
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Tetszik ez az újdonság? Fejezd ki hálád egy Lökettel!</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">A Signalt olyan emberek működtetik, mint Te. Válj Fenttartóvá!</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">A Signalt hozzád hasonló emberek működtetik. Válj te is Fenntartóvá!</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s csoport hívást indított · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s csoporthívásban van · %2$s</string>
@@ -1121,6 +1121,7 @@
   <string name="MessageRequestBottomView_unblock">Tiltás feloldása</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Amíg ebbe bele nem egyezel, addig nem értesül arról sem, hogy elolvastad-e az üzeneteit.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Nem fogsz üzenetet kapni tőle, amíg fel nem oldod a tiltást.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Szeretnél híreket és újdonságokat kapni %1$s felhasználótól? Addig nem kapsz értesítéseket tőle, míg fel nem oldod a blokkolását.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Folytatod a csoporton belüli csevegést, és megosztod nevedet, valamint profilképed a tagokkal?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Frissítsd a csoportot, hogy elérd az új funkciókat, mint az @említés és az admin szerepkör. Azok a tagok, akik nem osztották meg a nevüket vagy képüket, meghívásra kerülnek.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ezt a régi csoportot tovább nem használható, mert túl nagy létszáma. A maximum csoportméret %1$d.</string>
@@ -1251,7 +1252,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Boldog 💜 napot!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">Mutasd ki vonzalmadat és válj Signal Fenntartóvá.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">Mutasd ki törődésed, és válj Signal Fenntartóvá!</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Koppintsd ide a videókép bekapcsolásához</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s hívásához a Signalnak hozzá kell férnie kamerádhoz</string>
@@ -1307,6 +1308,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="WebRtcCallView__flip">Átvált</string>
   <string name="WebRtcCallView__speaker">Kihangosító</string>
   <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__unmute">Némítás feloldása</string>
   <string name="WebRtcCallView__mute">Némítás</string>
   <string name="WebRtcCallView__ring">Csörög</string>
   <string name="WebRtcCallView__end_call">Hívás befejezése</string>
@@ -1739,7 +1741,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationUpdateItem_view">Megtekintés</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Az eltűnő üzenetek időzítője %1$s értékre lesz állítva a következő üzenettől kezdve.</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Signal Lökés</string>
+  <string name="ConversationUpdateItem_signal_boost">Signal Löket</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
   <string name="ConversationUpdateItem_become_a_sustainer">Válj Fenntartóvá!</string>
   <!--audio_view-->
@@ -3421,11 +3423,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ManageDonationsFragment__badges">Jelvények</string>
   <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Előfizetés lekérdezése sikertelen</string>
-  <string name="BoostFragment__give_signal_a_boost">Adj egy Lökést a Signalnak</string>
+  <string name="BoostFragment__give_signal_a_boost">Adj egy Lökést a Signalnak!</string>
   <string name="BoostFragment__say_thanks_and_earn">Mondj köszönetet, és kapsz cserébe egy Löket kitűzőt %1$d napra.</string>
   <string name="Boost__enter_custom_amount">Egyedi összeg</string>
   <string name="Boost__one_time_contribution">Egyszeri hozzájárulás</string>
-  <string name="MySupportPreference__add_a_signal_boost">Signal Löket adása</string>
+  <string name="MySupportPreference__add_a_signal_boost">Új Signal Löket</string>
   <string name="MySupportPreference__s_per_month">%1$s/hó</string>
   <string name="MySupportPreference__renews_s">Megújul: %1$s</string>
   <string name="MySupportPreference__processing_transaction">Tranzakció folyamatban…</string>
@@ -3439,11 +3441,17 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Egy egyszeri hozzájárulással újraaktiválhatod a \"Löket\" kitűzőt újabb 30 napra.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Ha továbbra is támogatnád ezt a technológiát, amelyet számodra fejlesztettünk, kérjük fontold meg a havi Fenntartóvá válást.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Válj Fenntartóvá</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">\"Löket\" hozzáadása</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Új Löket</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Fenntartói előfizetésed automatikusan törlésre került, mert túl sokáig voltál inaktív. A %1$s kitűződ már nem látható profilképeden.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Fenntartói előfizetésedet automatikusan töröltük, mert túl sokáig voltál inaktív. A %1$s kitűző már nem látható profilodon.</string>
+  <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">A Fenntartói előfizetésedet megszüntettük, mert nem sikerült feldolgozni a fizetési tranzakciót. A kitűzőt eltávolítottuk profilodról.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Természetesen továbbra is használhatod a Signalt, de az alkalmazás támogatásához és jelvényed újraaktiválásához el kell végezned az előfizetés megújítását.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Előfizetés megújítása</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nem sikerült feldolgozni a fizetési tranzakciót</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Nem sikerült feldolgozni a Signal Fenntartói előfizetésedhez kapcsolódó fizetési tranzakciót. Győződj meg róla, hogy a fizetési eszköz adatai naprakészek. Ha nem, kérlek frissítsd őket a Google Payben. A Signal néhány nap múlva újra megpróbálja végrehajtani a tranzakciót.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ne jelenjen meg többet</string>
   <string name="Subscription__please_contact_support_for_more_information">Kérünk lépj kapcsolatba a Támogatási Központtal.</string>
   <string name="Subscription__contact_support">Kapcsolatfelvétel a támogatással</string>
   <string name="Subscription__earn_a_s_badge">Szerezz egy %1$s kitűzőt</string>
@@ -3465,6 +3473,34 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Az eszközöd nem támogatja a Google Pay-t, így nem tudsz előfizetést indítani kitűző elnyeréséért. Alternatívaként továbbra is adományozhatsz a Signal számára weboldalunkon.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Hálózati hiba. Ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
   <string name="NetworkFailure__retry">Újra</string>
+  <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Próbáld újra egy másik fizetési eszközzel, vagy keresd fel bankodat további információért!</string>
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Győződj meg róla, hogy fizetési eszközöd naprakész a Google Payben, majd próbáld újra!</string>
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Tudj meg többet!</string>
+  <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Győződj meg róla, hogy fizetési eszközöd naprakész a Google Payben, majd próbáld újra. Ha a probléma továbbra is fennáll, keresd fel bankod ügyfélszolgálatát.</string>
+  <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">A kártyádat nem lehet ilyen típusú fizetési tranzakcióra használni. Próbáld újra egy másik fizetési eszközzel!</string>
+  <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Kártyád érvényessége lejárt. Frissítsd fizetési eszközöd adatait a Google Payben, majd próbáld újra!</string>
+  <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Google Pay megnyitása</string>
+  <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Kártyaszámod helytelen. Frissítsd a Google Payben, majd próbáld újra!</string>
+  <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">A kártyádhoz tartozó CVC helytelen. Frissítsd a Google Payben, majd próbáld újra!</string>
+  <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">A kártyádon nem áll rendelkezésre elegendő összeg a vásárlás befejezéséhez. Próbáld újra egy másik fizetési eszközzel!</string>
+  <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">A kártyádhoz tartozó lejárati hónap helytelen. Frissítsd a Google Payben, majd próbáld újra!</string>
+  <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">A kártyádhoz tartozó lejárati év helytelen. Frissítsd a Google Payben, majd próbáld újra!</string>
+  <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Próbáld meg újra végrehajtani a fizetési tranzakciót, vagy keresd fel bankodat további információért!</string>
+  <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Próbáld újra, vagy keresd fel bankodat további információért!</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Profil elnevezése</string>
   <!--Hint text for create/edit notification profile name-->

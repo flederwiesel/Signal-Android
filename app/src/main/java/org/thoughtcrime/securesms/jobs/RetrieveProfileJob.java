@@ -47,7 +47,7 @@ import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -73,7 +73,8 @@ public class RetrieveProfileJob extends BaseJob {
 
   private static final String TAG = Log.tag(RetrieveProfileJob.class);
 
-  private static final String KEY_RECIPIENTS = "recipients";
+  private static final String KEY_RECIPIENTS             = "recipients";
+  private static final String DEDUPE_KEY_RETRIEVE_AVATAR = KEY + "_RETRIEVE_PROFILE_AVATAR";
 
   private final Set<RecipientId> recipientIds;
 
@@ -256,7 +257,7 @@ public class RetrieveProfileJob extends BaseJob {
                                                        ApplicationDependencies.getSignalWebSocket());
 
     List<Observable<Pair<Recipient, ServiceResponse<ProfileAndCredential>>>> requests = Stream.of(recipients)
-                                                                                              .filter(Recipient::hasServiceIdentifier)
+                                                                                              .filter(Recipient::hasServiceId)
                                                                                               .map(r -> ProfileUtil.retrieveProfile(context, r, getRequestType(r), profileService).toObservable())
                                                                                               .toList();
     stopwatch.split("requests");
@@ -287,11 +288,11 @@ public class RetrieveProfileJob extends BaseJob {
 
     Set<RecipientId> success = SetUtil.difference(recipientIds, operationState.retries);
 
-    Map<RecipientId, ACI> newlyRegistered = Stream.of(operationState.profiles)
-                                                  .map(Pair::first)
-                                                  .filterNot(Recipient::isRegistered)
-                                                  .collect(Collectors.toMap(Recipient::getId,
-                                                                            r -> r.getAci().orNull()));
+    Map<RecipientId, ServiceId> newlyRegistered = Stream.of(operationState.profiles)
+                                                        .map(Pair::first)
+                                                        .filterNot(Recipient::isRegistered)
+                                                        .collect(Collectors.toMap(Recipient::getId,
+                                                                                  r -> r.getServiceId().orNull()));
 
 
     //noinspection SimplifyStreamApiCallChains
@@ -395,12 +396,12 @@ public class RetrieveProfileJob extends BaseJob {
 
       IdentityKey identityKey = new IdentityKey(Base64.decode(identityKeyValue), 0);
 
-      if (!ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient).isPresent()) {
+      if (!ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.getId()).isPresent()) {
         Log.w(TAG, "Still first use for " + recipient.getId());
         return;
       }
 
-      IdentityUtil.saveIdentity(recipient.requireServiceId(), identityKey);
+      IdentityUtil.saveIdentity(recipient.requireServiceId().toString(), identityKey);
     } catch (InvalidKeyException | IOException e) {
       Log.w(TAG, e);
     }
@@ -497,9 +498,10 @@ public class RetrieveProfileJob extends BaseJob {
 
   private static void setProfileAvatar(Recipient recipient, String profileAvatar) {
     if (recipient.getProfileKey() == null) return;
-
     if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
-      ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+      SignalDatabase.runPostSuccessfulTransaction(DEDUPE_KEY_RETRIEVE_AVATAR + recipient.getId(), () -> {
+        ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+      });
     }
   }
 
