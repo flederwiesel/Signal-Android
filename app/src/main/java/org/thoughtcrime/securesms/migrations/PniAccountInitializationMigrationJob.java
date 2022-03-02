@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.jobs.KbsEnclaveMigrationWorkerJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.state.PreKeyRecord;
@@ -58,22 +57,32 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
   public void performMigration() throws IOException {
     PNI pni = SignalStore.account().getPni();
 
-    if (!Recipient.self().isRegistered() || pni == null) {
+    if (pni == null || SignalStore.account().getAci() == null || !Recipient.self().isRegistered()) {
       Log.w(TAG, "Not yet registered! No need to perform this migration.");
       return;
     }
 
-    SignalStore.account().generatePniIdentityKey();
+    if (!SignalStore.account().hasPniIdentityKey()) {
+      Log.i(TAG, "Generating PNI identity.");
+      SignalStore.account().generatePniIdentityKeyIfNecessary();
+    } else {
+      Log.w(TAG, "Already generated the PNI identity. Skipping this step.");
+    }
 
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
     SignalProtocolStore         protocolStore  = ApplicationDependencies.getProtocolStore().pni();
     PreKeyMetadataStore         metadataStore  = SignalStore.account().pniPreKeys();
 
-    SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
-    List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore);
+    if (!metadataStore.isSignedPreKeyRegistered()) {
+      Log.i(TAG, "Uploading signed prekey for PNI.");
+      SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
+      List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore);
 
-    accountManager.setPreKeys(ServiceIdType.PNI, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
-    metadataStore.setSignedPreKeyRegistered(true);
+      accountManager.setPreKeys(ServiceIdType.PNI, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
+      metadataStore.setSignedPreKeyRegistered(true);
+    } else {
+      Log.w(TAG, "Already uploaded signed prekey for PNI. Skipping this step.");
+    }
   }
 
   @Override

@@ -121,6 +121,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">មិនអាចស្វែងរកមនុស្សដែលអ្នកកំពុងរក?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">អញ្ជើញអ្នកទំនាក់ទំនងមកចូលរួម Signal</string>
   <string name="CameraContacts__menu_search">ស្វែងរក</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">បិទ</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">ទេ អរគុណ</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">លុបចេញ</string>
   <string name="ClearProfileActivity_remove_profile_photo">លុបរូបថតប្រវត្តិរូប?</string>
@@ -194,7 +201,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">អ្នកទទួល មិនមានSMS ឬ អ៊ីម៉ែល ត្រឹមត្រូវ!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">សារទទេ!</string>
   <string name="ConversationActivity_group_members">សមាជិកក្រុម</string>
-  <string name="ConversationActivity__tap_here_to_start_a_group_call">ប៉ះនៅទីនេះដើម្បីចាប់ផ្តើមការហៅជាក្រុម</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">ចុចនៅទីនេះដើម្បីចាប់ផ្តើមការហៅជាក្រុម</string>
   <string name="ConversationActivity_invalid_recipient">អ្នកទទួលមិនត្រឹមត្រូវ!</string>
   <string name="ConversationActivity_added_to_home_screen">បានបន្ថែមទៅអេក្រង់ដើម</string>
   <string name="ConversationActivity_calls_not_supported">មិនគាំទ្រការហៅចេញ</string>
@@ -209,8 +216,8 @@
   <string name="ConversationActivity_unable_to_record_audio">មិនអាចថតសំឡេងបាន!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">អ្នកមិនអាចផ្ញើសារទៅក្រុមនេះបានទេ ដោយសារអ្នកមិនមែនជាសមាជិកក្រុម។</string>
   <string name="ConversationActivity_only_s_can_send_messages">មានតែ %1$s អាចផ្ញើសារ។</string>
-  <string name="ConversationActivity_admins">អភិបាល</string>
-  <string name="ConversationActivity_message_an_admin">ផ្ញើសារទៅអ្នកគ្រប់គ្រង</string>
+  <string name="ConversationActivity_admins">អ្នកអភិបាល</string>
+  <string name="ConversationActivity_message_an_admin">ផ្ញើសារទៅអ្នកអ្នកអភិបាល</string>
   <string name="ConversationActivity_cant_start_group_call">មិនអាចខលជាក្រុមបាន</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">មានតែអ្នកគ្រប់គ្រងនៃក្រុមនេះ​ អាចចាប់ផ្តើមការហៅ។</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">មិនមានកម្មវិធីដើម្បីបើកតំណនេះ នៅលើឧបករណ៍របស់អ្នកទេ។</string>
@@ -366,11 +373,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">ការកំណត់រូបថតប្រវត្តរូបមានបញ្ហា</string>
   <string name="CreateProfileActivity_problem_setting_profile">បញ្ហាក្នុងការកំណត់ប្រវត្តិរូប</string>
   <string name="CreateProfileActivity_set_up_your_profile">បង្កើតប្រវត្តិរូបរបស់អ្នក</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ប្រវត្តិរូបរបស់អ្នក ត្រូវបានធ្វើកូដនីយកម្មទាំងសងខាង។ ប្រវត្តិរូប និងការផ្លាស់ប្តូរនឹងបង្ហាញទៅបញ្ជីទំនាក់ទំនងរបស់អ្នក នៅពេលចាប់ផ្តើម ឬទទួលការសន្ទនាថ្មី និងពេលអ្នកចូលរួមក្រុមថ្មី។</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ប្រវត្តិរូបរបស់អ្នក ត្រូវបានធ្វើ​​កូដនីយកម្ម​សងខាង​។ ប្រវត្តិរូប និងការផ្លាស់ប្តូរនឹងបង្ហាញសម្រាប់បញ្ជីទំនាក់ទំនងរបស់អ្នក នៅពេលចាប់ផ្តើម ឬទទួលការសន្ទនាថ្មី និងពេលអ្នកចូលរួមក្រុមថ្មី។</string>
   <string name="CreateProfileActivity_set_avatar_description">កំណត់រូបតំណាង</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">ស្តារចេញពីការបម្រុងទុក?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">ស្តារឡើងវិញសាររបស់អ្នក និងមេឌាចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥលូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">ស្តារឡើងវិញសាររបស់អ្នក និងមេឌាចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥឡូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
   <string name="ChooseBackupFragment__icon_content_description">ស្តារចេញពីរូបតំណាងការបម្រុងទុក</string>
   <string name="ChooseBackupFragment__choose_backup">ជ្រើសរើស ការបម្រុងទុក</string>
   <string name="ChooseBackupFragment__learn_more">សិក្សាបន្ថែម</string>
@@ -396,7 +403,7 @@
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ឥឡូវនេះ …</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ឥឡូវនេះ​…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signalត្រូវការសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកខាងក្រៅដើម្បីបង្កើតការស្តារឡើងវិញ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\"។ </string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកខាងក្រៅដើម្បីបង្កើតការស្តារឡើងវិញ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ការជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\"។ </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ប្រើផ្សេងៗ៖ %s</string>
   <string name="CustomDefaultPreference_using_default">ប្រើលំនាំដើម៖ %s</string>
@@ -406,16 +413,16 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">ថតរូបភាព</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">ជ្រើសរើសពីវិចិត្រសាល</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">លុបរូបថតចេញ</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">ការថតរូបភាព ទាមទារការអនុញ្ញាតកាមេរ៉ា។</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">ការបង្ហាញវិចិត្រសាលរបស់អ្នក ទាមទារការអនុញ្ញាតអង្គផ្ទុក។</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">ការថតរូបភាព ទាមទារការអនុញ្ញាតប្រើប្រាស់កាមេរ៉ា។</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">ការបង្ហាញវិចិត្រសាលរបស់អ្នក ទាមទារការអនុញ្ញាតប្រើប្រាស់អង្គផ្ទុក។</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ឥឡូវនេះ</string>
   <string name="DateUtils_minutes_ago">%dនាទី</string>
   <string name="DateUtils_today">ថ្ងៃនេះ</string>
   <string name="DateUtils_yesterday">ម្សិលមិញ</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">វគ្គជជែកត្រូវបានផ្ទុកឡើងវិញ</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ប្រើប្រាស់កូដនីយកម្មទាំងសងខាង ហើយជួនកាល​វាអាចត្រូវការផ្ទុកឡើងវិញ​នូវវគ្គជជែករបស់អ្នក។ នេះមិនប៉ះពាល់សន្តិសុខនៃការជជែករបស់អ្នកទេ តែអ្នកអាចខកខានសារមួយពីលេខទំនាក់ទំនងនេះ និងអ្នកអាចសុំគេឲ្យផ្ញើម្តងទៀត។</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">វគ្គឈែតត្រូវបានផ្ទុកឡើងវិញ</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ប្រើប្រាស់កូដនីយកម្មសងខាង ហើយជួនកាល​វាអាចត្រូវការផ្ទុកឡើងវិញ​នូវវគ្គឈែតរបស់អ្នក។ នេះមិនប៉ះពាល់សន្តិសុខនៃការឈែតរបស់អ្នកទេ តែអ្នកអាចខកខានសារមួយពីលេខទំនាក់ទំនងនេះ និងអ្នកអាចសុំគេឲ្យផ្ញើម្តងទៀត។</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">ផ្តាត់តំណភ្ជាប់ \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ពេលផ្តាច់តំណភ្ជាប់ឧបករណ៍នេះ អ្នកនឹងមិនអាចផ្ញើ និងទទួលសារទៀតទេ។ </string>
@@ -435,7 +442,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">បង្កើនប្រសិទ្ធភាពសម្រាប់ការបាត់ Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">ជំនាន់ Signal នេះបានផុតកំណត់។ ធ្វើបច្ចុប្បន្នភាពឥឡូវ ដើម្បីផ្ញើ និងទទួលសារ។</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">កំណែ Signal នេះបានផុតកំណត់។ ធ្វើបច្ចុប្បន្នភាពឥឡូវ ដើម្បីផ្ញើ និងទទួលសារ។</string>
   <string name="ExpiredBuildReminder_update_now">ធ្វើបច្ចុប្បន្នភាពឥឡូវនេះ</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -460,11 +467,11 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" បានបន្ថែមទៅ \"%2$s\"។</string>
   <string name="AddToGroupActivity_add_to_group">បន្ថែមចូលក្រុម</string>
   <string name="AddToGroupActivity_add_to_groups">បន្ថែមទៅក្រុម</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">មនុស្សនេះ មិនអាចបន្ថែមចូលក្រុមមុនទេ។</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">បុគ្គលនេះ មិនអាចបន្ថែមចូលក្រុមមុនទេ។</string>
   <string name="AddToGroupActivity_add">បន្ថែម</string>
   <string name="AddToGroupActivity_add_to_a_group">បន្ថែមទៅក្រុមមួយ</string>
   <!--ChooseNewAdminActivity-->
-  <string name="ChooseNewAdminActivity_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string>
+  <string name="ChooseNewAdminActivity_choose_new_admin">ជ្រើសរើសអ្នកអភិបាលថ្មី</string>
   <string name="ChooseNewAdminActivity_done">បញ្ចប់</string>
   <string name="ChooseNewAdminActivity_you_left">អ្នកបានចាកចេញ \"%1$s.\"</string>
   <!--GroupMembersDialog-->
@@ -478,11 +485,11 @@
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="other">ការអញ្ជើញ%d បានផ្ញើ</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">“%1$s” មិនអាចបន្ថែមស្វ័យប្រវត្តិចូលក្រុមនេះដោយអ្នកបានទេ។.\n\nពួកគេត្រូវបានអញ្ជើញចូលរួម ហើយនឹងមិនឃើញសារក្នុងក្រុម រហូតដល់ពួកគេយល់ព្រម។</string>
-  <string name="GroupManagement_invite_multiple_users">អ្នកប្រើប្រាស់ទាំងនេះ មិនអាចបន្ថែមស្វ័យប្រវត្តិចូលក្រុមនេះដោយអ្នកបានទេ។.\n\nពួកគេត្រូវបានអញ្ជើញចូលរួម ហើយនឹងមិនឃើញសារក្នុងក្រុម រហូតដល់ពួកគេយល់ព្រម។</string>
+  <string name="GroupManagement_invite_single_user">“%1$s” មិនអាចបន្ថែមដោយស្វ័យប្រវត្តិចូលក្រុមនេះដោយអ្នកបានទេ។.\n\nពួកគេត្រូវបានអញ្ជើញចូលរួម ហើយនឹងមិនឃើញសារក្នុងក្រុម នោះទេ រហូតដល់ពួកគេយល់ព្រមការចូលរួម។</string>
+  <string name="GroupManagement_invite_multiple_users">អ្នកប្រើប្រាស់ទាំងនេះ មិនអាចបន្ថែមដោយស្វ័យប្រវត្តិចូលក្រុមនេះដោយអ្នកបានទេ។.\n\nពួកគេត្រូវបានអញ្ជើញចូលរួម ហើយពួកគេនឹងមិនឃើញសារក្នុងក្រុមនោះទេ រហូតដល់ពួកគេយល់ព្រមការចូលរួម។</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">តើអ្វីជាក្រុមថ្មី?</string>
-  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">ក្រុមថ្មី មានមុខងារដូចជា @រៀបរាប់ និងអ្នកគ្រប់គ្រងក្រុម ហើយនឹងគាំទ្រមុខងារបន្ថែមនៅពេលអនាគត។</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">ក្រុមថ្មី មានមុខងារដូចជា @mentions និងអ្នកគ្រប់គ្រងក្រុម ហើយនឹងគាំទ្រមុខងារបន្ថែមនៅពេលអនាគត។</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ប្រវត្តិសារ​ និងឯកសារមេឌាទាំងអស់ ត្រូវបានរក្សាទុកមុនពេលដំឡើង។</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">អ្នកនឹងត្រូវយល់ព្រមការអញ្ជើញចួលរួមក្រុមនេះម្តងទៀត ហើយនឹងមិនអាចទទួលសារក្នុងក្រុម រហូតដល់អ្នកយល់ព្រម។</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
@@ -494,9 +501,9 @@
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">ដំឡើងទៅក្រុមថ្មី</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">ដំឡើងក្រុមនេះ</string>
-  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">ក្រុមថ្មី មានមុខងារដូចជា @រៀបរាប់ និងអ្នកគ្រប់គ្រងក្រុម ហើយនឹងគាំទ្រមុខងារបន្ថែមនៅពេលអនាគត។</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">ក្រុមថ្មី មានមុខងារដូចជា @mentions និងអ្នកគ្រប់គ្រងក្រុម ហើយនឹងគាំទ្រមុខងារបន្ថែមនៅពេលអនាគត។</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ប្រវត្តិសារ​ និងឯកសារមេឌាទាំងអស់ នឹងត្រូវរក្សាទុកមុនពេលដំឡើង។</string>
-  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញមួយ។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">បានជួបប្រទះបញ្ហាបណ្តាញ។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">បរាជ័យក្នុងការដំឡើង។</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="other">សមាជិកទាំងនេះ នឹងត្រូវយល់ព្រមការអញ្ជើញចួលរួមក្រុមនេះម្តងទៀត និងមិនអាចទទួលសារក្នុងក្រុម រហូតដល់ពួកគេយល់ព្រម៖</item>
@@ -532,19 +539,19 @@
   <string name="LeaveGroupDialog_leave_group">ចាកចេញពីក្រុម?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">អ្នកនឹងមិនអាចផ្ញើ ឬទទួលសារក្នុងក្រុមនេះទៀតទេ។</string>
   <string name="LeaveGroupDialog_leave">ចាកចេញ</string>
-  <string name="LeaveGroupDialog_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string>
+  <string name="LeaveGroupDialog_choose_new_admin">ជ្រើសរើសអ្នកអភិបាលថ្មី</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">មុនពេលអ្នកចាកចេញ អ្នកត្រូវជ្រើសរើសអ្នកគ្រប់គ្រងយ៉ាងហោចណាស់ម្នាក់សម្រាប់ក្រុមនេះ។</string>
-  <string name="LeaveGroupDialog_choose_admin">ជ្រើសរើសអ្នកគ្រប់គ្រង</string>
+  <string name="LeaveGroupDialog_choose_admin">ជ្រើសរើសអ្នកអភិបាល</string>
   <!--LinkPreviewView-->
-  <string name="LinkPreviewView_no_link_preview_available">មិនមានតំណមើលមុនទេ</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">តំណក្រុមនេះមិនសកម្មទេ</string>
+  <string name="LinkPreviewView_no_link_preview_available">មិនមានតំណភ្ជាប់បង្ហាញទេ</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">តំណភ្ជាប់ក្រុមនេះមិនដំណើរការទេ</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
     <item quantity="other">%1$d សមាជិក</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string>
+  <string name="PendingMembersActivity_pending_group_invites">ការអញ្ជើញចូលក្នុងក្រុមស្ថិតក្នុងការសម្រេច</string>
   <string name="PendingMembersActivity_requests">ស្នើសុំ</string>
   <string name="PendingMembersActivity_invites">អញ្ជើញ</string>
   <string name="PendingMembersActivity_people_you_invited">មនុស្សដែលអ្នកបានអញ្ជើញ</string>
@@ -552,24 +559,24 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">អញ្ជើញតាមសមាជិកក្រុមផ្សេង</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">មិនមានការអញ្ជើញមិនទាន់សម្រេច ពីសមាជិកក្រុម។</string>
   <string name="PendingMembersActivity_missing_detail_explanation">ព័ត៌មានលំអិតនៃមនុស្ស ដែលត្រូវបានអញ្ជើញដោយសមាជិកក្រុមផ្សេង មិនត្រូវបានបង្ហាញ។ បើអ្នកត្រូវបានអញ្ជើញជ្រើសរើសចូលរួម ព័ត៌មានពួកគេនឹងត្រូវចែករំលែកជាមួយក្រុមគ្រប់ពេល។ ពួកគេនឹងមិនអាចឃើញសារក្នុងក្រុម រហូតដល់ពួកគេចូលរួមក្រុម។</string>
-  <string name="PendingMembersActivity_revoke_invite">ដកហូតការអញ្ជើញ</string>
-  <string name="PendingMembersActivity_revoke_invites">ដកហូតការអញ្ជើញ</string>
+  <string name="PendingMembersActivity_revoke_invite">ដកចេញការអញ្ជើញ</string>
+  <string name="PendingMembersActivity_revoke_invites">ដកចេញការអញ្ជើញ</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
-    <item quantity="other">ដកហូតការអញ្ជើញ %1$d </item>
+    <item quantity="other">ដក %1$d ពីការអញ្ជើញ</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
-    <item quantity="other">បញ្ហាក្នុងការដកហូតការអញ្ជើញ</item>
+    <item quantity="other">បញ្ហាក្នុងការដកចេញពីការអញ្ជើញ</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">ការស្នើសុំសមាជិកមិនទាន់សម្រេច</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">គ្មានការស្នើសុំសមាជិកដើម្បីបង្ហាញ។</string>
-  <string name="RequestingMembersFragment_explanation">មនុស្សក្នុងតារាងនេះ កំពុងព្យាយាមចូលក្រុមតាមរយៈតំណក្រុម។</string>
+  <string name="RequestingMembersFragment_pending_member_requests">ការស្នើសុំរបស់សមាជិកមិនទាន់សម្រេច</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">គ្មានការស្នើសុំរបស់សមាជិកដើម្បីបង្ហាញ។</string>
+  <string name="RequestingMembersFragment_explanation">មនុស្សក្នុងបញ្ជីនេះ កំពុងព្យាយាមចូលក្រុមតាមរយៈតំណភ្ជាប់ក្រុម។</string>
   <string name="RequestingMembersFragment_added_s">បានបន្ថែម \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">បានបដិសេធ \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">បញ្ចប់</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">មនុស្សនេះ មិនអាចបន្ថែមចូលក្រុមមុនទេ។</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">មនុស្សម្នាក់នេះ មិនអាចបន្ថែមចូលក្នុងក្រុមប្រកាសដំណឹងទេ។</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">បុគ្គលនេះ មិនអាចបន្ថែមចូលក្រុមមុនបានទេ។</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">បុគ្គលម្នាក់នេះ មិនអាចបន្ថែមចូលក្នុងក្រុមប្រកាសដំណឹងបានទេ។</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">បន្ថែមសមាជិក %3$d នាក់ទៅ \"%2$s\"?</item>
   </plurals>
@@ -607,11 +614,11 @@
     <item quantity="other">ក្រុមនេះមិនអាចបង្កើតបាន ដោយសារសមាជិក %1$d នាក់កំពុងប្រើប្រាស់ Signal​ ជំនាន់ចាស់។ អ្នកត្រូវលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។ </item>
   </plurals>
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_member_requests_and_invites">ការស្នើសុំសមាជិក និងការអញ្ជើញ</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">ការស្នើសុំសមាជិក &amp; ការអញ្ជើញ</string>
   <string name="ManageGroupActivity_add_members">បន្ថែមសមាជិក</string>
   <string name="ManageGroupActivity_edit_group_info">កែព័ត៌មានក្រុម</string>
-  <string name="ManageGroupActivity_who_can_add_new_members">នរណាអាចបន្ថែមសមាជិកថ្មីឯ</string>
-  <string name="ManageGroupActivity_who_can_edit_this_groups_info">នរណាអាចកែប្រែព័ត៌មានក្រុមនេះឯ</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">នរណាអាចបន្ថែមសមាជិកថ្មីបាន?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">តើនរណាអាចកែប្រែព័ត៌មានក្រុមនេះ?</string>
   <string name="ManageGroupActivity_group_link">តំណក្រុម</string>
   <string name="ManageGroupActivity_block_group">ហាមឃាត់ក្រុម</string>
   <string name="ManageGroupActivity_unblock_group">លែងហាមឃាត់ក្រុម</string>
@@ -619,7 +626,7 @@
   <string name="ManageGroupActivity_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
   <string name="ManageGroupActivity_custom_notifications">សារជូនដំណឹងផ្សេង</string>
   <string name="ManageGroupActivity_mentions">ការនិយាយ</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">ពណ៌ការជជែក &amp; រូបភាពផ្ទៃក្រោយ</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">ពណ៌ឈែត &amp; ផ្ទាំងពីក្រោយ</string>
   <string name="ManageGroupActivity_until_s">រហូតដល់ %1$s</string>
   <string name="ManageGroupActivity_always">ជានិច្ច</string>
   <string name="ManageGroupActivity_off">បិទ</string>
@@ -650,7 +657,7 @@
   <string name="ManageGroupActivity_more">បន្ថែម</string>
   <string name="ManageGroupActivity_add_group_description">បន្ថែមការពណ៌នាក្រុម…</string>
   <!--GroupMentionSettingDialog-->
-  <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការរៀបរាប់</string>
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ទទួលបានការជូនដំណឹងនៅពេលដែលអ្នកត្រូវបានគេហៅនៅក្នុងការសន្ទនាស្ងាត់ ៗ ?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">ជូនដំណឹងខ្ញុំជានិច្ច</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">កុំជូនដំណឹងខ្ញុំ</string>
@@ -687,9 +694,9 @@
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">តំណភ្ជាប់ក្រុមដែលអាចចែករំលែកបាន</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">គ្រប់គ្រង និងចែករំលែក</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">តំណក្រុម</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">តំណភ្ជាប់ក្រុម</string>
   <string name="ShareableGroupLinkDialogFragment__share">ចែករំលែក</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">តំណភ្ជាប់កំណត់ឡើងវិញ</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">កំណត់តំណភ្ជាប់ឡើងវិញ</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">ការស្នើសុំសមាជិក</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">អនុម័តសមាជិកថ្មី</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ទាមទារអ្នកគ្រប់គ្រង ដើម្បីអនុម័តសមាជិកថ្មី ចូលរួមតាមតំណភ្ជាប់ក្រុម។</string>
@@ -709,7 +716,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">ស្នើសុំចូលរួម</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">មិនអាចចូលក្រុម។ សូមសាកល្បងម្តងទៀតពេលក្រោយ</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">តំណក្រុមនេះមិនសកម្មទេ</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">តំណភ្ជាប់របស់ក្រុមនេះមិនដំណើរការទេ</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">មិនអាចទទួលព័ត៌មានក្រុម សូមសាកល្បងម្តងទៀតពេលក្រោយ</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">តើអ្នកចង់ចូលរួមក្រុមនេះ និងចែករំលែកឈ្មោះអ្នក និងរូបភាពជាមួយសមាជិកក្រុម?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">អ្នកគ្រប់គ្រងនៃក្រុមនេះ ត្រូវអនុម័តសំណើរបស់អ្នក មុនពេលអ្នកអាចចូលរួមក្រុមនេះ។ នៅពេលអ្នកបានស្នើចូលរួម ឈ្មោះនិងរូបភាពរបស់អ្នក នឹងត្រូវចែករំលែកជាមួយសមាជិកក្រុម។</string>
@@ -896,11 +903,11 @@
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s បានផ្លាស់ប្តូរឈ្មោះប្រវត្តិរូបទៅ %2$s។</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s បានផ្លាស់ប្តូរឈ្មោះប្រវត្តិរូបពី %2$s ទៅ %3$s។</string>
-  <string name="MessageRecord_changed_their_profile">%1$s បានផ្លាស់ប្តូរប្រវត្តិរូបរបស់ពួកគេ។</string>
+  <string name="MessageRecord_changed_their_profile">%1$s បានផ្លាស់ប្តូររូប​គណនីរបស់ពួកគេ។</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">អ្នកបានបង្កើតក្រុមនេះ។</string>
   <string name="MessageRecord_group_updated">បានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
-  <string name="MessageRecord_invite_friends_to_this_group">អញ្ជើញមិត្តភក្តិ ទៅក្រុមនេះ តាមរយៈតំណភ្ជាប់ក្រុម</string>
+  <string name="MessageRecord_invite_friends_to_this_group">អញ្ជើញមិត្តភក្តិចូលក្រុមនេះ តាមរយៈតំណភ្ជាប់ក្រុម</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">អ្នកបានបន្ថែម %1$s។</string>
   <string name="MessageRecord_s_added_s">%1$s បានបន្ថែម %2$s។</string>
@@ -920,19 +927,19 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s បានដាក់ %2$s ជាអ្នកគ្រប់គ្រង។</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s បានដាក់អ្នកជាអ្នកគ្រប់គ្រង។</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">អ្នកបានដកសិទ្ធិអ្នកគ្រប់គ្រងពី %1$s។</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s បានដកសិទ្ធិអ្នកគ្រប់គ្រងរបស់អ្នក។</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s បានដកសិទ្ធិអភិបាលរបស់អ្នក។</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s បានដកសិទ្ធិអ្នកគ្រប់គ្រងពី %2$s។</string>
-  <string name="MessageRecord_s_is_now_an_admin">%1$s ឥឡូវ​ ជាអ្នកគ្រប់គ្រង។</string>
-  <string name="MessageRecord_you_are_now_an_admin">ឥឡូវអ្នកជាអ្នកគ្រប់គ្រង។</string>
-  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s មិនមែនជាអ្នកគ្រប់គ្រងទេ។</string>
-  <string name="MessageRecord_you_are_no_longer_an_admin">អ្នកមិនមែនជាអ្នកគ្រប់គ្រងទេ។</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s ឥឡូវ​នេះ ជាអ្នកអភិបាល។</string>
+  <string name="MessageRecord_you_are_now_an_admin">ឥឡូវនេះ អ្នកជាអ្នកអភិបាល។</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s មិនមែនជាអ្នកអភិបាលទេ។</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">អ្នកមិនមែនជាអ្នកអភិបាលទៀតទេ។</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">អ្នកបានអញ្ជើញ %1$s ទៅក្រុមនេះ។</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s បានអញ្ជើញអ្នកទៅក្រុមនេះ។</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="other">%1$s បានអញ្ជើញមនុស្ស%2$d នាក់ទៅក្រុមនេះ។</item>
   </plurals>
-  <string name="MessageRecord_you_were_invited_to_the_group">អ្នកត្រូវបានអញ្ជើញទៅក្រុម។</string>
+  <string name="MessageRecord_you_were_invited_to_the_group">អ្នកត្រូវបានអញ្ជើញចូលក្រុម។</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
     <item quantity="other">%1$d នាក់ ត្រូវបានអញ្ជើញចូលក្នុងក្រុម។</item>
   </plurals>
@@ -1180,7 +1187,7 @@
   <string name="RedPhone_got_it">ទទួលបាន</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
-  <string name="ValentinesDayMegaphone_happy_heart_day">រីករាយថ្ងៃ 💜 !</string>
+  <string name="ValentinesDayMegaphone_happy_heart_day">ថ្ងៃ 💜 រីករាយ!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <string name="ValentinesDayMegaphone_show_your_affection">បង្ហាញសេចក្តីស្រឡាញ់របស់អ្នក ដោយក្លាយជាអ្នកទ្រទ្រង់ Signal។</string>
   <!--WebRtcCallActivity-->
@@ -1528,6 +1535,10 @@
   <string name="NotificationChannel_voice_notes">កំណត់ត្រាសំឡេង</string>
   <string name="NotificationChannel_contact_joined_signal">ចូលរួមទំនាក់ទំនងតាមSignal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">មិនមានសកម្មភាព ដើម្បីបើកការកំណត់បណ្តាញជូនដំណឹង។</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">ការតភ្ជាប់ពីក្រោយ</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">ស្ថានភាពការហៅ</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">មិនមានការឆ្លើយតបភ្លាមៗ នៅពេល Signal ត្រូវបានចាក់សោរ!</string>
@@ -1795,10 +1806,10 @@
   <string name="EditAboutFragment_write_a_few_words_about_yourself">សរសេរពាក្យមួយចំនួនអំពីខ្លួនអ្នក…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">និយាយដោយសេរី</string>
-  <string name="EditAboutFragment_encrypted">បានកូដនីយកម្ម</string>
+  <string name="EditAboutFragment_encrypted">បានធ្វើកូដនីយកម្ម</string>
   <string name="EditAboutFragment_be_kind">មានចិត្តល្អ</string>
   <string name="EditAboutFragment_coffee_lover">អ្នកស្រលាញ់កាហ្វេ</string>
-  <string name="EditAboutFragment_free_to_chat">ឥតគិតថ្លៃជជែក</string>
+  <string name="EditAboutFragment_free_to_chat">ឥតគិតថ្លៃសម្រាប់ការឈែត</string>
   <string name="EditAboutFragment_taking_a_break">សម្រាកបន្ថិច</string>
   <string name="EditAboutFragment_working_on_something_new">ធ្វើការលើអ្វីដែលថ្មី</string>
   <!--EditProfileFragment-->
@@ -2066,11 +2077,11 @@
   <string name="preferences_chats__chats">ការជជែក</string>
   <string name="preferences_data_and_storage__manage_storage">គ្រប់គ្រងការរក្សាទុក</string>
   <string name="preferences_data_and_storage__calls">ការហៅ</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">ប្រើប្រាស់ទិន្នន័យតិចសម្រាប់ការហៅ</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">ប្រើប្រាស់ទិន្នន័យតិចសម្រាប់ការហៅចេញ</string>
   <string name="preferences_data_and_storage__never">មិនធ្លាប់</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi និង ទិន្នន័យទូរស័ព្ទ</string>
   <string name="preferences_data_and_storage__mobile_data_only">ទិន្នន័យទូរស័ព្ទតែប៉ុណ្ណោះ</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ការប្រើប្រាស់ទិន្នន័យតិច អាចជម្រុញការហៅទូរសព្ទនៅលើបណ្តាញមិនល្អ </string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ការប្រើប្រាស់ទិន្នន័យតិច អាចជំរុញការហៅទូរស័ព្ទនៅលើបណ្តាញមិនល្អ </string>
   <string name="preferences_notifications__messages">សារ</string>
   <string name="preferences_notifications__events">ព្រឹត្តិការណ៍</string>
   <string name="preferences_notifications__in_chat_sounds">សំឡេងក្នុងការជជែក</string>
@@ -2082,6 +2093,17 @@
   <string name="preferences_chats__message_text_size">ទំហំអក្សរសារ</string>
   <string name="preferences_events__contact_joined_signal">ចូលរួមទំនាក់ទំនងតាមSignal</string>
   <string name="preferences_notifications__priority">អទិភាព</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">បើសិនបើក Signalនឹងព្យាយាមចៀសវាងការឃ្លាំមើល។ កុំបើកមុខងារនេះ លុះត្រាអ្នកកំពុងស្ថិតនៅទីតាំងដែល Signalត្រូវបានឃ្លាំមើល។</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">ការចៀសវាងការឃ្លាំមើល ត្រូវបានដំណើរការ ផ្អែកលើលេខទូរស័ព្ទរបស់គណនីអ្នក។</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">អ្នកបានបិទការបង្ការការត្រួតពិនិត្យ។</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ការចៀសវាងការឃ្លាំមើលមិនចាំបាច់ទេ  អ្នកបានតភ្ជាប់សេវាកម្ម Signalរួចរាល់ហើយ។</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ការចៀសវាងការឃ្លាំមើល អាចត្រូវបានដំណើរការ ពេលភ្ជាប់អ៊ីនធើណេតតែប៉ុណ្ណោះ។</string>
   <string name="preferences_communication__category_sealed_sender">សញ្ញាអ្នកផ្ញើ</string>
   <string name="preferences_communication__sealed_sender_display_indicators">បង្ហាញសូចនាករ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">បង្ហាញស្ថានភាពរូបដំណាងនៅពេលអ្នកជ្រើសរើស \"ព័ត៌មានលម្អិតសាររបស់អ្នក\" នៅលើសារដែលត្រូវបានបញ្ជូនដោយប្រើឧបករណ៍បញ្ចូន</string>
@@ -2097,7 +2119,7 @@
   <string name="preferences_only_use_a_proxy_if">ប្រើប្រាស់តែប្រូកស៊ី បើអ្នកមិនអាចតភ្ជាប់ទៅកាន់ Signal លើទិន្នន័យទូរស័ព្ទ ឬ Wi-Fi។</string>
   <string name="preferences_share">ចែករំលែក</string>
   <string name="preferences_save">រក្សាទុក</string>
-  <string name="preferences_connecting_to_proxy">កំពុតតភ្ជាប់ទៅប្រូកស៊ី…</string>
+  <string name="preferences_connecting_to_proxy">កំពុងតភ្ជាប់ទៅប្រូកស៊ី…</string>
   <string name="preferences_connected_to_proxy">បានតភ្ជាប់ទៅប្រូកស៊ី</string>
   <string name="preferences_connection_failed">ការតភ្ជាប់បរាជ័យ</string>
   <string name="preferences_couldnt_connect_to_the_proxy">មិនអាចតភ្ជាប់ទៅប្រូកស៊ី។ ពិនិត្យអាសយដ្ឋានប្រូកស៊ី និងសាកល្បងម្តងទៀត។</string>
@@ -2112,10 +2134,10 @@
   <string name="PaymentsAllActivityFragment__all">ទាំងអស់</string>
   <string name="PaymentsAllActivityFragment__sent">បានផ្ញើ</string>
   <string name="PaymentsAllActivityFragment__received">បានទទួល</string>
-  <string name="PaymentsHomeFragment__introducing_payments">សូមណែនាំ ការទូទាត់ (បេតា)</string>
+  <string name="PaymentsHomeFragment__introducing_payments">សូមណែនាំការទូទាត់ (សាកល្បង)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ប្រើប្រាស់ Signal ដើម្បីផ្ញើ និងទទួល​កាក់ទូរស័ព្ទ រូបិយវត្ថុឌីជីថលផ្តោតលើឯកជនភាពថ្មីមួយ។ បើកដំណើរការ ដើម្បីចាប់ផ្តើម។</string>
-  <string name="PaymentsHomeFragment__activate_payments">បើកដំណើរការ ការទូទាត់</string>
-  <string name="PaymentsHomeFragment__activating_payments">កំពុងដំណើរការ ការទូទាត់…</string>
+  <string name="PaymentsHomeFragment__activate_payments">បើកដំណើរការការទូទាត់</string>
+  <string name="PaymentsHomeFragment__activating_payments">កំពុងបើកដំណើរការ ការទូទាត់…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">ស្តារគណនីទូទាត់</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">មិនមានសកម្មភាពថ្មីៗទេ</string>
   <string name="PaymentsHomeFragment__pending_requests">ការស្នើសុំមិនទាន់សម្រេច</string>
@@ -2130,7 +2152,7 @@
   <string name="PaymentsHomeFragment__deactivate_payments">បិទដំណើរការ ការទូទាត់</string>
   <string name="PaymentsHomeFragment__recovery_phrase">ឃ្លាសង្គ្រោះ</string>
   <string name="PaymentsHomeFragment__help">ជំនួយ</string>
-  <string name="PaymentsHomeFragment__coin_cleanup_fee">ថ្លៃសំអាតកាក់</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">ថ្លៃសម្អាតកាក់</string>
   <string name="PaymentsHomeFragment__sent_payment">ការទូទាត់បានផ្ញើ</string>
   <string name="PaymentsHomeFragment__received_payment">ការទូទាត់បានទទួល</string>
   <string name="PaymentsHomeFragment__processing_payment">កំពុងដំណើរការ ការទូទាត់</string>
@@ -2144,7 +2166,7 @@
   <string name="PaymentsHomeFragment__deactivate">បិទ</string>
   <string name="PaymentsHomeFragment__continue">បន្ត</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">សមតុល្យ មិនមានទេបច្ចុប្បន្ននេះ។</string>
-  <string name="PaymentsHomeFragment__payments_deactivated">ការទូទាត់ បានបិតដំណើរការ។</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">ការទូទាត់ បានបិទដំណើរការ។</string>
   <string name="PaymentsHomeFragment__payment_failed">ការទូទាត់បរាជ័យ</string>
   <string name="PaymentsHomeFragment__details">លម្អិត</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">អ្នកអាចប្រើប្រាស់ Signal ដើម្បីផ្ញើ និងទទួលMobileCoin។ ការទូទាត់ទាំងអស់គឺស្ថិតនៅក្រោមលក្ខខណ្ឌនៃការប្រើប្រាស់សម្រាប់MobileCoin និង MobileCoin Wallet។ នេះជាមុខងារបេតា ដូចនេះ អ្នកអាចជួបប្រទះបញ្ហាមួយចំនួន និងការទូទាត់ ឬសមតុល្យអាចបាត់បង់ មិនអាចស្តារឡើងវិញទេ។</string>
@@ -2164,7 +2186,7 @@
   <string name="PaymentsDetailsFragment__processing_payment">កំពុងដំណើរការការទូទាត់…</string>
   <string name="PaymentsDetailsFragment__payment_complete">ការទូទាត់បញ្ចប់</string>
   <string name="PaymentsDetailsFragment__payment_failed">ការទូទាត់បរាជ័យ</string>
-  <string name="PaymentsDetailsFragment__network_fee">ថ្លៃបណ្តាញ</string>
+  <string name="PaymentsDetailsFragment__network_fee">ថ្លៃសេវាបណ្តាញ</string>
   <string name="PaymentsDetailsFragment__sent_by">បានផ្ញើដោយ</string>
   <string name="PaymentsDetailsFragment__sent_to_s">បានផ្ញើទៅ %1$s</string>
   <string name="PaymentsDetailsFragment__you_on_s_at_s">អ្នកលើ %1$s នៅ %2$s</string>
@@ -2172,7 +2194,7 @@
   <string name="PaymentsDetailsFragment__to">ទៅ</string>
   <string name="PaymentsDetailsFragment__from">ពី</string>
   <string name="PaymentsDetailsFragment__information">ព័ត៌មានលម្អិតអំពីប្រតិបត្តិការ រួមទាំងចំនួនទឹកប្រាក់ទូទាត់ និងពេលវេលានៃប្រតិបត្តិការ គឺជាផ្នែកមួយនៃ MobileCoin Ledger ។</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_fee">ថ្លៃសំអាតកាក់</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">ថ្លៃសម្អាតកាក់</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">“ថ្លៃសំអាតកាក់” ត្រូវបានគិតប្រាក់នៅពេលដែលកាក់នៅក្នុងកម្មសិទ្ធិរបស់អ្នក មិនអាចបញ្ចូលគ្នាដើម្បីបញ្ចប់ប្រតិបត្តិការ។ ការសំអាត នឹងអនុញ្ញាតឱ្យអ្នកបន្តការផ្ញើការទូទាត់។</string>
   <string name="PaymentsDetailsFragment__no_details_available">មិនមានព័ត៌មានបន្ថែមសម្រាប់ប្រតិបត្តិការនេះ</string>
   <string name="PaymentsDetailsFragment__sent_payment">ការទូទាត់បានផ្ញើ</string>
@@ -2190,27 +2212,27 @@
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">អ្នកមិនអាចផ្ទេរទៅអាសយដ្ឋានកាបូប Signal ខ្លួនឯងទេ។ បញ្ចូលអាសយដ្ឋានកាបូបពីគណនីរបស់អ្នក នៅការផ្លាស់ប្តូរដែលគាំទ្រ។</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">ដើម្បីស្កេនកូដ QR Signal ត្រូវការប្រើប្រាស់កាមេរ៉ា។</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បថតកូដ QR ។ ចូលទៅ ការកំណត់​ ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"កាមេរ៉ា\"។</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">ដើម្បីស្កេនកូដ QR Signal ត្រូវការប្រើប្រាស់កាមេរ៉ា។</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal ត្រូវការប្រើប្រាស់កាមេរ៉ា ដើម្បីស្គែន QR Code។</string>
   <string name="PaymentsTransferFragment__settings">ការកំណត់</string>
   <!--PaymentsTransferQrScanFragment-->
-  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">ស្កេនអាសយដ្ឋានកូដ QR </string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">ស្កេនអាសយដ្ឋានកូដ QR របស់អ្នកទទួលប្រាក់</string>
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">ស្គែនអាសយដ្ឋាន QR Code</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">ស្គែនអាសយដ្ឋាន QR Code របស់អ្នកទទួលប្រាក់</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">ស្នើសុំ</string>
   <string name="CreatePaymentFragment__pay">ទូទាត់</string>
   <string name="CreatePaymentFragment__available_balance_s">សមតុល្យនៅមាន៖ %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">កុងតាក់</string>
-  <string name="CreatePaymentFragment__1">១</string>
-  <string name="CreatePaymentFragment__2">២</string>
-  <string name="CreatePaymentFragment__3">៣</string>
-  <string name="CreatePaymentFragment__4">៤</string>
-  <string name="CreatePaymentFragment__5">៥</string>
-  <string name="CreatePaymentFragment__6">៦</string>
-  <string name="CreatePaymentFragment__7">៧</string>
-  <string name="CreatePaymentFragment__8">៨</string>
-  <string name="CreatePaymentFragment__9">៩</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__decimal">.</string>
-  <string name="CreatePaymentFragment__0">០</string>
+  <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">ផ្នែកខាងក្រោយ</string>
   <string name="CreatePaymentFragment__add_note">បន្ថែមកំណត់ត្រា</string>
@@ -2563,11 +2585,11 @@
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">បើក Signal នៅលើទូរស័ព្ទ Android ចាស់របស់អ្នក</string>
   <string name="NewDeviceTransferInstructions__continue">បន្ត</string>
-  <string name="NewDeviceTransferInstructions__first_bullet">១.</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ចុចលើរូបថតប្រវត្តិរូបរបស់អ្នក នៅខាងលើផ្នែកឆ្វេង ដើម្បីបើក ការកំណត់</string>
-  <string name="NewDeviceTransferInstructions__second_bullet">២.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">ចុចលើ \"គណនី\"</string>
-  <string name="NewDeviceTransferInstructions__third_bullet">៣.</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">ចុច \"ផ្ទេរគណនី\" និងបន្ទាប់មក \"បន្ត\" នៅលើឧបករណ៍ទាំងពីរ</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">កំពុងរៀបចំតភ្ជាប់ទៅឧបករណ៍​ Android ចាស់…</string>
@@ -2608,12 +2630,12 @@
   <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">ត្រូវប្រាកដថាការអនុញាតិ និងសេវាកម្មដូចខាងក្រោមត្រូវបានបើក៖</string>
   <string name="DeviceTransferSetup__location_permission">ការអនុញាតិប្រើទីតាំង</string>
   <string name="DeviceTransferSetup__location_services">សេវាកម្មទីតាំង</string>
-  <string name="DeviceTransferSetup__wifi">វ៉ាយហ្វាយ</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">នៅលើផ្ទាំង WiFi Direct លុបក្រុមដែលធ្លាប់ចងចាំទាំងអស់ចោល ហើយផ្តាច់ការអញ្ជើញ ឬឧបករណ៍តភ្ជាប់ណាមួយ។</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">ផ្ទាំង WiFi Direct </string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">សូមព្យាយាមបិទ បើកវ៉ាយហ្វាយនៅលើឧបករណ៍ទាំងពីរ</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">អ្នកត្រូវប្រាកដថាឧបករណ៍ទាំងពីរស្ថិតនៅក្នុងការផ្ទេរ</string>
-  <string name="DeviceTransferSetup__go_to_support_page">ចូលទៅកាន់ទំព័រសេវាគាំទ្រ</string>
+  <string name="DeviceTransferSetup__go_to_support_page">ចូលទៅកាន់ទំព័រសេវាជំនួយ</string>
   <string name="DeviceTransferSetup__try_again">ព្យាយាមម្តងទៀត</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">កំពុងរង់ចាំឧបករណ៍ផ្សេងទៀត</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ចុចពាក្យ បន្ត លើឧបករណ៍មួយទៀតរបស់អ្នកដើម្បីចាប់ផ្ដើមការផ្ទេរ</string>
@@ -2636,11 +2658,11 @@
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">បញ្ជូនគណនី</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">អ្នកក៏អាចផ្ទេរគណនី Signal របស់អ្នកបានដែរ នៅពេលកំពុងតម្លើងកម្មវិធី Signal លើឧបករណ៍ថ្មី។ មុនពេលបន្ត៖</string>
-  <string name="OldDeviceTransferInstructions__first_bullet">១.</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">ទាញយក Signal លើឧបករណ៍ Android ថ្មីរបស់អ្នក</string>
-  <string name="OldDeviceTransferInstructions__second_bullet">២.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">ចុចលើពាក្យ \"ផ្ទេរចេញ​ ឬស្ដារគណនីមកវិញ\"</string>
-  <string name="OldDeviceTransferInstructions__third_bullet">៣.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">ជ្រើសរើស \"ផ្ទេរពីឧបករណ៍ Android\" នៅពេលសួរហើយបន្ទាប់មក \"បន្ត\" ។ សូមទុកឧបករណ៍ទាំងពីរនៅជិតគ្នា។ </string>
   <string name="OldDeviceTransferInstructions__continue">បន្ត</string>
   <!--OldDeviceTransferComplete-->
@@ -2680,7 +2702,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">បន្ថែមទៅក្រុមមួយ</string>
   <string name="RecipientBottomSheet_add_to_another_group">បន្ថែមទៅក្រុមផ្សេង</string>
   <string name="RecipientBottomSheet_view_safety_number">មើលលេខសុវត្ថិភាព</string>
-  <string name="RecipientBottomSheet_make_admin">តម្លើងជាអ្នកគ្រប់គ្រងក្រុម</string>
+  <string name="RecipientBottomSheet_make_admin">តម្លើងជាអ្នកអភិបាលក្រុម</string>
   <string name="RecipientBottomSheet_remove_as_admin">លុបអ្នកគ្រប់គ្រង</string>
   <string name="RecipientBottomSheet_remove_from_group">លុបចេញពីក្រុម</string>
   <string name="RecipientBottomSheet_message_description">សារ</string>
@@ -2762,7 +2784,7 @@
   <string name="DeleteAccountFragment__deleting_your_account_will">លុបគណនីអ្នកនឹង៖</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">វាយបញ្ចូលលេខរបស់អ្នក</string>
   <string name="DeleteAccountFragment__delete_account">លុបគណនី</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">លុបព័ត៌មានគណនី និងរូបតំណាង</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">លុបព័ត៌មានគណនី និងរូបគណនី</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">លុបសាររបស់អ្នកទាំងអស់</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">លុប%1$sនៅក្នុងគណនីទូទាត់ប្រាក់អ្នក</string>
   <string name="DeleteAccountFragment__no_country_code">មិនបានបញ្ជាក់លេខកូដប្រទេស</string>
@@ -2803,13 +2825,13 @@
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">បញ្ជូនសារបន្ត</string>
   <!--ChatWallpaperActivity-->
-  <string name="ChatWallpaperActivity__chat_wallpaper">រូបផ្ទៃការជជែក</string>
+  <string name="ChatWallpaperActivity__chat_wallpaper">រូបភាពខាងក្រោយរបស់ឈែត</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__chat_color">ពណ៌ការជជែក</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">កំណត់ពណ៌ការសន្ទនាឡើងវិញ</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">កំណត់ពណ៌ការសន្ទនាឡើងវិញ</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">កំណត់ពណ៌ការសន្ទនាឡើងវិញ?</string>
-  <string name="ChatWallpaperFragment__set_wallpaper">កំណត់ផ្ទៃខាងក្រោយ</string>
+  <string name="ChatWallpaperFragment__chat_color">ពណ៌ឈែត</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">កំណត់ពណ៌ឈែតឡើងវិញ</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">កំណត់ពណ៌ឈែតឡើងវិញ</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">កំណត់ពណ៌ឈែតឡើងវិញ?</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">កំណត់​ផ្ទាំងពីក្រោយ</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ផ្ទៃក្រោយពណ៌ខ្មៅស្រទន់</string>
   <string name="ChatWallpaperFragment__contact_name">ឈ្មោះលេខទំនាក់ទំនង</string>
   <string name="ChatWallpaperFragment__reset">កំណត់ឡើងវិញ</string>
@@ -2819,11 +2841,11 @@
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">តើអ្នកចង់លុបផ្ទៃខាងក្រោយទាំងអស់មែនទេ?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">កំណត់ពណ៌លំនាំដើមឡើងវិញ</string>
   <string name="ChatWallpaperFragment__reset_all_colors">កំណត់ពណ៌ទាំងអស់ឡើងវិញ</string>
-  <string name="ChatWallpaperFragment__reset_default_wallpaper">កំណត់ផ្ទៃខាងក្រោយលំនាំដើមឡើងវិញ</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">កំណត់ផ្ទៃខាងក្រោយឡើងវិញទាំងអស់</string>
-  <string name="ChatWallpaperFragment__reset_wallpapers">កំណត់ផ្ទៃខាងក្រោយឡើងវិញ</string>
-  <string name="ChatWallpaperFragment__reset_wallpaper">កំណត់ផ្ទៃខាងក្រោយឡើងវិញ</string>
-  <string name="ChatWallpaperFragment__reset_wallpaper_question">កំណត់ផ្ទៃខាងក្រោយឡើងវិញ?</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">កំណត់​ផ្ទាំងពីក្រោយ​លំនាំដើមឡើងវិញ</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">កំណត់​ផ្ទាំងពីក្រោយ​ឡើងវិញទាំងអស់</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">កំណត់​ផ្ទាំងពីក្រោយ​ឡើងវិញ</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">កំណត់​ផ្ទាំងពីក្រោយ​ឡើងវិញ</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">កំណត់​ផ្ទាំងពីក្រោយ​ឡើងវិញ?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ជ្រើសរើសពីរូបថត</string>
   <string name="ChatWallpaperSelectionFragment__presets">ការកំណត់ជាមុន</string>
@@ -2856,9 +2878,9 @@
   <string name="payment_info_card_record_your_phrase">កត់ត្រាឃ្លារបស់អ្នក។</string>
   <string name="payment_info_card_update_your_pin">ធ្វើបច្ចុប្បន្នភាពលេខកូដរបស់អ្នក</string>
   <string name="payment_info_card_with_a_high_balance">អ្នកគួរតែធ្វើបច្ចុប្បន្នភាពលេខកូដរបស់អ្នកដោយបន្ថែមអក្សរ និងលេខដើម្បីបន្ថែមសុវត្ថិភាពគណនីដែលមានសមតុល្យខ្ពស់របស់អ្នក។</string>
-  <string name="payment_info_card_update_pin">បច្ចុប្បន្នភាពកូដ PIN</string>
+  <string name="payment_info_card_update_pin">ធ្វើបច្ចុប្បន្នភាពកូដ PIN</string>
   <!--DeactivateWalletFragment-->
-  <string name="DeactivateWalletFragment__deactivate_wallet">បិទដំណើរការកាបូប</string>
+  <string name="DeactivateWalletFragment__deactivate_wallet">បិទដំណើរការ Wallet</string>
   <string name="DeactivateWalletFragment__your_balance">សមតុល្យរបស់អ្នក</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">អ្នកគួរតែផ្ទេរប្រាក់របស់អ្នកទៅកាន់អាសយដ្ឋានកាបូបមួយផ្សេងទៀត មុនពេលអ្នកបិទដំណើរការការទូទាត់ប្រាក់។ ប្រសិនបើអ្នកជ្រើសរើសមិនផ្ទេរប្រាក់របស់អ្នកឥឡូវនេះ ប្រាក់នឹងនៅតែមាននៅក្នុងកាបូបរបស់អ្នកដែលភ្ជាប់ទៅ Signal ប្រសិនបើអ្នកដំណើរការការទូទាត់ឡើងវិញ។</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">ផ្ទេរសមតុល្យដែលនៅសល់</string>
@@ -2875,7 +2897,7 @@
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ឃ្លាសង្គ្រោះរបស់អ្នក គឺជា%1$dពាក្យដែលប្លែកសម្រាប់អ្នក។ សូមប្រើឃ្លានេះសម្រាប់ទាញយកសមតុលអ្នកមកវិញ។</string>
   <string name="PaymentsRecoveryStartFragment__start">ចាប់ផ្ដើម</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">បញ្ជូលដោយខ្លួនឯង</string>
-  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">បិតចេញពី clipboard</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ភ្ជាប់ពី clipboard</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">បិតឃ្លាសង្គ្រោះ</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">ឃ្លាសង្គ្រោះ</string>
@@ -2963,7 +2985,7 @@
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">ប្ដូរលេខទូរស័ព្ទ</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">កំពុងបញ្ជាក់ %1$s</string>
-  <string name="ChangeNumberVerifyFragment__captcha_required">តម្រូវអោយផ្ទៀងផ្ទាត់</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">តម្រូវអោយផ្ទៀងផ្ទាត់តាម Captcha</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">ប្ដូរលេខទូរស័ព្ទ</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">អ្នកកំពុងតែប្ដូរលេខទូរស័ព្ទពីលេខ %1$s ទៅលេខ %2$s។\n\nមុនពេលដំណើរការ សូមបញ្ជាក់ថាលេខទូរស័ព្ទខាងក្រោមគឺត្រឹមត្រូវ។</string>
@@ -2974,7 +2996,7 @@
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">លេខកូដមិនត្រូវគ្នា</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">លេខកូដដែលដាក់ជាមួយលេខទូរស័ព្ទថ្មី គឺខុសពីលេខកូដដែលដាក់ជាមួយលេខទូរស័ព្ទចាស់។ តើអ្នកចង់រក្សាលេខកូដចាស់ ឬបង្កើតលេខកូដថ្មី?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">រក្សារទុកលេខកូដចាស់</string>
-  <string name="ChangeNumberPinDiffersFragment__update_pin">បច្ចុប្បន្នភាពកូដ PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">ធ្វើបច្ចុប្បន្នភាពកូដ PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">រក្សារទុកលេខកូដចាស់?</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
@@ -3012,12 +3034,12 @@
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">ទម្រង់សារជូនដំណឹង</string>
   <!--Button text to create a notification profile-->
-  <string name="NotificationProfilesFragment__create_profile">បង្កើតគណនី</string>
+  <string name="NotificationProfilesFragment__create_profile">បង្កើត​គណនី</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">បានហាមឃាត់</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d លេខទំនាក់ទំនង</string>
   <string name="PrivacySettingsFragment__messaging">ការផ្ញើសារ</string>
-  <string name="PrivacySettingsFragment__disappearing_messages">សារបាត់ទៅវិញ</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">សារដែលបាត់ទៅវិញ</string>
   <string name="PrivacySettingsFragment__app_security">សន្តិសុខកម្មវិធី</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">បិទថតរូបអេក្រង់ក្នុងបញ្ជីថ្មី និងក្នុងកម្មវិធី</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">សារ និងការហៅ Signal  តែងតែបញ្ជូនការហៅទូរសព្ទ និងអ្នកផ្ញើដែលបិទជិត</string>
@@ -3052,7 +3074,7 @@
   <string name="HelpSettingsFragment__debug_log">កំណត់ត្រាបញ្ហា</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">លក្ខខណ្ឌ &amp; គោលនយោបាយឯកជនភាព</string>
   <string name="HelpFragment__copyright_signal_messenger">កម្មសិទ្ធបញ្ញា Signal Messenger</string>
-  <string name="HelpFragment__licenced_under_the_gplv3">អាជ្ញាប័ណ្ណពី GPLv3</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">អាជ្ញាប័ណ្ណក្នុង GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__media_quality">គុណភាពមេឌៀ</string>
   <string name="DataAndStorageSettingsFragment__sent_media_quality">មេឌៀគុណភាពល្អត្រូវបានផ្ញើចេញ</string>
@@ -3115,7 +3137,7 @@
   <string name="KeyboardPagerFragment_open_gif_search">បើកការស្វែងរករូបមានចលនា</string>
   <string name="KeyboardPagerFragment_stickers">ស្ទីកគ័រ</string>
   <string name="KeyboardPagerFragment_backspace">ផ្នែកខាងក្រោយ</string>
-  <string name="KeyboardPagerFragment_gifs">រូបមានចលនា</string>
+  <string name="KeyboardPagerFragment_gifs">Gifs</string>
   <string name="KeyboardPagerFragment_search_emoji">ស្វែងរករូបតំណាងអារម្មណ៍</string>
   <string name="KeyboardPagerfragment_back_to_emoji">ត្រឡប់ទៅកាន់រូបតំណាងអារម្មណ៍</string>
   <string name="KeyboardPagerfragment_clear_search_entry">សម្អាតការស្វែងរក</string>
@@ -3144,13 +3166,13 @@
   <string name="ConversationSettingsFragment__block_group">ហាមឃាត់ក្រុម</string>
   <string name="ConversationSettingsFragment__unblock">បើកវិញ</string>
   <string name="ConversationSettingsFragment__unblock_group">លែងហាមឃាត់ក្រុម</string>
-  <string name="ConversationSettingsFragment__add_to_a_group">បន្ថែមទៅក្រុមមួយ</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">បញ្ចូលទៅក្នុងក្រុម</string>
   <string name="ConversationSettingsFragment__see_all">មើលទាំងអស់</string>
   <string name="ConversationSettingsFragment__add_members">បន្ថែមសមាជិក</string>
   <string name="ConversationSettingsFragment__permissions">ការអនុញ្ញាត</string>
   <string name="ConversationSettingsFragment__requests_and_invites">ស្នើរ &amp; អញ្ជើញ</string>
-  <string name="ConversationSettingsFragment__group_link">តំណក្រុម</string>
-  <string name="ConversationSettingsFragment__add_as_a_contact">បន្ថែមទៅក្នុងលេខទំនាក់ទំនង</string>
+  <string name="ConversationSettingsFragment__group_link">តំណភ្ជាប់របស់ក្រុម</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">បញ្ចូលជាលេខទំនាក់ទំនង</string>
   <string name="ConversationSettingsFragment__unmute">បើកសំឡេង</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">ការសន្ទនានេះត្រូវបានបិទសម្លេងរហូតដល់%1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">ការសន្ទនានេះត្រូវបានបិទសម្លេងជារៀងរហូត</string>
@@ -3177,10 +3199,10 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">ទើបតែប្រើថ្មីៗ</string>
   <!--PlaybackSpeedToggleTextView-->
-  <string name="PlaybackSpeedToggleTextView__p5x">,៥x</string>
-  <string name="PlaybackSpeedToggleTextView__1x">១x</string>
-  <string name="PlaybackSpeedToggleTextView__1p5x">១,៥x</string>
-  <string name="PlaybackSpeedToggleTextView__2x">២x</string>
+  <string name="PlaybackSpeedToggleTextView__p5x">,5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">ការទូទាត់ប្រាក់ថ្មី</string>
   <!--NewConversationActivity-->
@@ -3219,7 +3241,7 @@
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">រុករក</string>
   <string name="MultiselectForwardFragment__forward_to">បញ្ជូនបន្តទៅកាន់</string>
-  <string name="MultiselectForwardFragment__add_a_message">បន្ថែមសារមួយ</string>
+  <string name="MultiselectForwardFragment__add_a_message">បន្ថែមសារ</string>
   <string name="MultiselectForwardFragment__faster_forwards">ការបញ្ជូនសារបន្តលឿនជាងមុន</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">ការបញ្ជូនសារបន្តនឹងផ្ញើចេញទៅភ្លាមៗ</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
@@ -3246,7 +3268,7 @@
   <string name="ImageEditorHud__cancel">បោះបង់</string>
   <string name="ImageEditorHud__draw">គូរ</string>
   <string name="ImageEditorHud__write_text">សរសេរអក្សរ</string>
-  <string name="ImageEditorHud__add_a_sticker">បន្ថែមរូបតំណាង</string>
+  <string name="ImageEditorHud__add_a_sticker">បន្ថែមរូបស្ទីកក័រ</string>
   <string name="ImageEditorHud__blur">ព្រាល</string>
   <string name="ImageEditorHud__done_editing">ការកែប្រែបានបញ្ចប់</string>
   <string name="ImageEditorHud__clear_all">សម្អាតចោលទាំងអស់</string>
@@ -3270,7 +3292,7 @@
   <string name="SelectFeaturedBadgeFragment__select_a_badge">ជ្រើសរើសស្លាកសម្គាល់មួយ</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">អ្នកត្រូវជ្រើសរើសស្លាកសម្គាល់</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ក្លាយជាអ្នកគាំទ្រម្នាក់</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ធ្វើជាអ្នកគាំទ្រ</string>
   <string name="ImageView__badge">ស្លាកសម្គាល់</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ត្រូវបានបង្កើតដោយមនុស្សដូចអ្នក។</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">គាំទ្របច្ចេកវិទ្យាដែលបង្ហើតឡើងដើម្បីអ្នក មិនមែនដើម្បីទិន្នន័យអ្នក ដោយចូលរួមជាមួយសហគមន៍យើងដើម្បីនិរន្តភាពរបស់ Signal</string>
@@ -3299,8 +3321,8 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">អរគុណសម្រាប់ការជំរុញ!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">អ្នកទទួលបាននូវស្លាកសម្គាល់ជំរុញ %s! ជួយកម្មវិធី Signal ក្នុងការលើកកម្ពស់ការយល់ដឹងដោយបង្ហាញស្លាកសម្គាល់លើគណនីអ្នក</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">អ្នកទទួលបាននូវស្លាកសម្គាល់ជំរុញមួយ! ជួយកម្មវិធី Signal ក្នុងការលើកកម្ពស់ការយល់ដឹងដោយបង្ហាញស្លាកសម្គាល់លើគណនីអ្នក</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">អ្នកអាច</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ក្លាយជា Sustainer​ ប្រចាំខែម្នាក់</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">អ្នកក៏អាចដែរ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ក្លាយជាអ្នកគាំទ្រប្រចាំខែម្នាក់</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">បង្ហាញលើគណនី</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">បង្កើតស្លាកសម្គាល់ពិសេស</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">បញ្ចប់</string>
@@ -3329,7 +3351,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">ស្លាកសម្គាល់ជំរុញរបស់អ្នកផុតសុពលភាព ហើយអ្នកដទៃមិនអាចមើលឃើញលើគណនីរបស់អ្នកទេ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">អ្នកអាចដាក់ស្លាកសម្គាល់ជំរុញរបស់អោយសកម្មឡើងវិញសម្រាប់រយៈពេល ៣០ថ្ងៃដោយការចូលរួមចំណែកម្ដង</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">ដើម្បីបន្តគាំទ្របច្ចេកវិទ្យាដែលត្រូវបានបង្កើតឡើងសម្រាប់អ្នក សូមពិចារណាក្នុងការក្លាយជា Sustainer​ ម្នាក់ប្រចាំខែរបស់យើង។</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ក្លាយជា Sustainer​ ម្នាក់</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ធ្វើជាអ្នកគាំទ្រ​</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">បន្ថែមការជំរុញ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ពេលក្រោយ</string>
   <!--Copy displayed when badge expires after user inactivity-->
@@ -3367,7 +3389,7 @@
   <!--Stripe decline code verify on Google Pay and try again-->
   <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">សូមបញ្ជាក់ពីវិធីនៃការទូទាត់ប្រាក់របស់អ្នកថាទាន់សម័យនៅក្នុង Google Pay ហើយសាកល្បងម្ដងទៀត។ </string>
   <!--Stripe decline code learn more action label-->
-  <string name="DeclineCode__learn_more">សិក្សាបន្ថែម</string>
+  <string name="DeclineCode__learn_more">ឈ្វេងយល់បន្ថែម</string>
   <!--Stripe decline code contact issuer-->
   <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">សូមបញ្ជាក់ពីវិធីនៃការទូទាត់ប្រាក់របស់អ្នកថាទាន់សម័យនៅក្នុង Google Pay ហើយសាកល្បងម្ដងទៀត។ បើបញ្ហានេះនៅតែកើតមាន សូមទាក់ទងទៅកាន់ធនាគាររបស់អ្នក។</string>
   <!--Stripe decline code purchase not supported-->
@@ -3415,7 +3437,7 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__downtime">ម៉ោងសម្រាក</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__focus">ផ្ដោតលើ</string>
+  <string name="EditNotificationProfileFragment__focus">ផ្ដោតអារម្មណ៍</string>
   <!--Error message shown when attempting to next/save without a profile name-->
   <string name="EditNotificationProfileFragment__profile_must_have_a_name">ត្រូវតែមានឈ្មោះមួយ</string>
   <!--Title for add recipients to notification profile screen in create flow-->
