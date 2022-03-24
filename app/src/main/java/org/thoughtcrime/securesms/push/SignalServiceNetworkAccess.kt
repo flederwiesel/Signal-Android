@@ -16,9 +16,9 @@ import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor
 import org.thoughtcrime.securesms.net.SequentialDns
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
+import org.thoughtcrime.securesms.net.StaticDns
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.util.Base64
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
 import org.whispersystems.signalservice.internal.configuration.SignalCdshUrl
@@ -28,6 +28,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl
 import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
 import java.io.IOException
+import java.util.Optional
 
 /**
  * Provides a [SignalServiceConfiguration] to be used with our service layer.
@@ -38,7 +39,26 @@ class SignalServiceNetworkAccess(context: Context) {
     private val TAG = Log.tag(SignalServiceNetworkAccess::class.java)
 
     @JvmField
-    val DNS: Dns = SequentialDns(Dns.SYSTEM, CustomDns("1.1.1.1"))
+    val DNS: Dns = SequentialDns(
+      Dns.SYSTEM,
+      CustomDns("1.1.1.1"),
+      StaticDns(
+        mapOf(
+          BuildConfig.SIGNAL_URL.stripProtocol() to BuildConfig.SIGNAL_SERVICE_IPS.toSet(),
+          BuildConfig.STORAGE_URL.stripProtocol() to BuildConfig.SIGNAL_STORAGE_IPS.toSet(),
+          BuildConfig.SIGNAL_CDN_URL.stripProtocol() to BuildConfig.SIGNAL_CDN_IPS.toSet(),
+          BuildConfig.SIGNAL_CDN2_URL.stripProtocol() to BuildConfig.SIGNAL_CDN2_IPS.toSet(),
+          BuildConfig.SIGNAL_CONTACT_DISCOVERY_URL.stripProtocol() to BuildConfig.SIGNAL_CDS_IPS.toSet(),
+          BuildConfig.SIGNAL_KEY_BACKUP_URL.stripProtocol() to BuildConfig.SIGNAL_KBS_IPS.toSet(),
+          BuildConfig.SIGNAL_SFU_URL.stripProtocol() to BuildConfig.SIGNAL_SFU_IPS.toSet(),
+          BuildConfig.CONTENT_PROXY_HOST.stripProtocol() to BuildConfig.SIGNAL_CONTENT_PROXY_IPS.toSet(),
+        )
+      )
+    )
+
+    private fun String.stripProtocol(): String {
+      return this.removePrefix("https://")
+    }
 
     private const val COUNTRY_CODE_EGYPT = 20
     private const val COUNTRY_CODE_UAE = 971
@@ -152,7 +172,7 @@ class SignalServiceNetworkAccess(context: Context) {
     arrayOf(SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, serviceTrustStore)),
     interceptors,
     Optional.of(DNS),
-    Optional.absent(),
+    Optional.empty(),
     zkGroupServerPublicParams
   )
 
@@ -191,7 +211,7 @@ class SignalServiceNetworkAccess(context: Context) {
     COUNTRY_CODE_UZBEKISTAN,
   )
 
-  private val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
+  val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
     arrayOf(SignalServiceUrl(BuildConfig.SIGNAL_URL, serviceTrustStore)),
     mapOf(
       0 to arrayOf(SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, serviceTrustStore)),
@@ -203,7 +223,7 @@ class SignalServiceNetworkAccess(context: Context) {
     arrayOf(SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, serviceTrustStore)),
     interceptors,
     Optional.of(DNS),
-    if (SignalStore.proxy().isProxyEnabled) Optional.of(SignalStore.proxy().proxy) else Optional.absent(),
+    if (SignalStore.proxy().isProxyEnabled) Optional.ofNullable(SignalStore.proxy().proxy) else Optional.empty(),
     zkGroupServerPublicParams
   )
 
@@ -270,7 +290,7 @@ class SignalServiceNetworkAccess(context: Context) {
       cdshUrls,
       interceptors,
       Optional.of(DNS),
-      Optional.absent(),
+      Optional.empty(),
       zkGroupServerPublicParams
     )
   }
