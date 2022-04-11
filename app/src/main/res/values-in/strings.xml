@@ -717,6 +717,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tautan grup ini tidak aktif</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Anda tidak dapat bergabung dengan grup ini melalui tautan grup karena seorang admin mengeluarkan Anda.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tautan grup ini tidak lagi valid.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
@@ -1204,6 +1205,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Memanggil…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grup terlalu besar untuk menghubungi peserta.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Menyambungkan ulang…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Panggilan Signal</string>
   <string name="WebRtcCallView__signal_video_call">Panggilan Video Signal</string>
@@ -1348,12 +1351,6 @@ isikan (%s) tidak valid.
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Selanjutnya</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Kami akan mengingatkan Anda lagi nanti.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Kami akan mengingatkan Anda lagi besok.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Kami akan mengingatkan Anda lagi dalam beberapa hari.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Kami akan mengingatkan Anda lagi dalam seminggu.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Kami akan mengingatkan Anda lagi dalam beberapa minggu.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Kami akan mengingatkan Anda sebulan lagi.</string>
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_sticker">Stiker</string>
@@ -1502,6 +1499,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Hapus pesan?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Aksi ini akan menghapus pesan secara permanen.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s hingga %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
   <string name="MediaPreviewActivity_media_no_longer_available">Media tidak tersedia.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Tidak dapat menemukan aplikasi untuk berbagi media ini.</string>
   <!--MessageNotifier-->
@@ -1698,6 +1697,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QuoteView_original_missing">Pesan asli tidak ditemukan</string>
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
+  <!--Label indicating that the story being replied to no longer exists-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Gulir ke bawah</string>
   <!--BubbleOptOutTooltip-->
@@ -3599,6 +3599,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Percakapan</string>
   <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Cerita</string>
   <!--String for counts above 99 in conversation list tabs-->
   <!--Title for "My Stories" row item in Stories landing page-->
   <!--Subtitle for "My Stories" row item when user has not added stories-->
@@ -3739,5 +3740,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="StoriesLinkPopup__visit_link">Kunjungi tautan</string>
   <!--EOF-->
 </resources>

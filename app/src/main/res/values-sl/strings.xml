@@ -472,7 +472,7 @@
   <!--Backup has an unsupported file extension-->
   <string name="RestoreBackupFragment__backup_has_a_bad_extension">Varnostna kopija ima napačno končnico.</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">Varnostno kopiranje klepetov</string>
+  <string name="BackupsPreferenceFragment__chat_backups">Varnostno kopiranje pogovorov</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Varnostne kopije so zaklenjene z geslom in shranjene na vaši napravi.</string>
   <string name="BackupsPreferenceFragment__create_backup">Ustvari varnostno kopijo</string>
   <string name="BackupsPreferenceFragment__last_backup">Zadnja varnostna kopija: %1$s</string>
@@ -505,7 +505,7 @@
   <string name="DateUtils_today">Danes</string>
   <string name="DateUtils_yesterday">Včeraj</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">Seja klepeta je bila osvežena</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Seja pogovora je bila osvežena</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal uporablja šifriranje od-pošiljetalja-do-naslovnika, zato je včasih potrebna osvežitev seje klepeta. To ne bo vplivalo na varnost, lahko pa se bo izgubilo kakšno sporočilo s tem stikom in ga_jo boste morali prositi, da ga pošlje znova.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odstranim \'%s\'?</string>
@@ -1060,7 +1060,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Čas poteka sporočila je nastavljen na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Skupina je bila nadgrajena v Novo skupino.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Niste mogli biti dodani Novi skupini, zato ste bili povabljeni, da se ponovno pridružite.</string>
-  <string name="MessageRecord_chat_session_refreshed">Seja klepeta je bila osvežena</string>
+  <string name="MessageRecord_chat_session_refreshed">Seja pogovora je bila osvežena</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Član/ica ni mogel_la biti dodan_a v Novo skupino, zato je bil_a povabljen_a, da se pridruži.</item>
     <item quantity="two">%1$s člana_ici nista mogla_i biti dodana_i v Novo skupino, zato sta bila_i povabljena_i, da se pridružita.</item>
@@ -1204,6 +1204,12 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste prošnjo za pridružitev skupini.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s je preko deljene povezave zaprosil_a za pridružitev skupini.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s je zaprosil_a in nato prekinil_a svojo prošnjo za pridružitev skupini preko povezave.</item>
+    <item quantity="two">%1$s je zaprosil_a in nato prekinil_a %2$d prošnji za pridružitev skupini preko povezave.</item>
+    <item quantity="few">%1$s je zaprosil_a in nato prekinil_a %2$d prošnje za pridružitev skupini preko povezave.</item>
+    <item quantity="other">%1$s je zaprosil_a in nato prekinil_a  %2$d prošenj za pridružitev skupini preko povezave.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s je odobril_a vašo prošnjo za pridružitev skupini.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s je odobril_a prošnjo uporabnika_ce %2$s za pridružitev skupini.</string>
@@ -1408,6 +1414,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Klicanje …</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je prevelika za zvonjenje vsem udeležencem.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Ponovno povezovanje …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal klic</string>
   <string name="WebRtcCallView__signal_video_call">Video klic Signal</string>
@@ -1567,12 +1575,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Več</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Čez nekaj časa vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Jutri vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Čez nekaj dni vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Čez en teden vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Čez nekaj tednov vas bomo znova opozorili.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Čez en mesec vas bomo znova opozorili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN je bil potrjen. Kasneje vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN je bil potrjen. Jutri vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN je bil potrjen. Čez nekaj dni vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN je bil potrjen. Čez teden vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN je bil potrjen. Čez nekaj tednov vas bomo znova opomnili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN je bil potrjen. Čez mesec vas bomo znova opomnili.</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_sticker">Nalepka</string>
@@ -1655,7 +1663,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_voice_message">Glasovno sporočilo</string>
   <string name="ThreadRecord_file">Datoteka</string>
   <string name="ThreadRecord_video">Video</string>
-  <string name="ThreadRecord_chat_session_refreshed">Seja klepeta je bila osvežena</string>
+  <string name="ThreadRecord_chat_session_refreshed">Seja pogovora je bila osvežena</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nadgradnja aplikacije Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Na voljo je nova različica aplikacije Signal. Tapnite za nadgradnjo.</string>
@@ -1722,6 +1730,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Izbrišem sporočilo?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Sporočilo bo nepovratno izbrisano.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s do %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Vi za uporabnika_co %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s za vas</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Medijsko sporočilo ni več na voljo.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ne najdem ustrezne aplikacije za delitev tega medija.</string>
   <!--MessageNotifier-->
@@ -1933,9 +1945,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_you">Vi</string>
   <string name="QuoteView_original_missing">Izvorno sporočilo ni bilo najdeno</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s zgodba</string>
+  <string name="QuoteView_s_story">%1$s · Zgodba</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Tvoja zgodba</string>
+  <string name="QuoteView_your_story">Vi - zgodba</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ni več na voljo</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na dno</string>
   <!--BubbleOptOutTooltip-->
@@ -2802,7 +2816,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="registration_activity__transfer_or_restore_account">Prenesi ali obnovi račun</string>
   <string name="registration_activity__transfer_account">Prenos računa</string>
   <string name="registration_activity__skip">Preskoči</string>
-  <string name="preferences_chats__chat_backups">Varnostno kopiranje klepetov</string>
+  <string name="preferences_chats__chat_backups">Varnostno kopiranje pogovorov</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Varnostna kopija klepetov bo ustvarjena na zunanjem pomnilniku</string>
   <string name="preferences_chats__transfer_account">Prenos računa</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Prenos računa na novo androidno napravo</string>
@@ -3669,7 +3683,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ManageDonationsFragment__my_support">Moja podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Upravljanje naročnine</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Računi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Računi</string> -->
   <string name="ManageDonationsFragment__badges">Značke</string>
   <string name="ManageDonationsFragment__subscription_faq">Pogosta vprašanja o naročnini</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Napaka pri uveljavitvi naročnine.</string>
@@ -3933,7 +3947,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Dodaj zgodbo</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Trenutno ni nobenih posodobitev.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Trenutno ni nobenih posodobitev.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Skrij zgodbo</string>
   <!--Context menu option to unhide a story-->
@@ -4168,7 +4182,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Izklopi</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Zgodba</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Zgodba</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reakcija na zgodbo</string>
   <!--endregion-->

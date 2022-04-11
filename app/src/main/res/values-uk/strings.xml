@@ -1416,6 +1416,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Телефонуємо…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Група завелика для дзвінків її учасникам.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Повторне з’єднання…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Дзвінок Signal</string>
   <string name="WebRtcCallView__signal_video_call">Відеодзвінок Signal</string>
@@ -1581,12 +1583,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Більше</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Ми нагадаємо вам пізніше.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ми нагадаємо вам знов завтра.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Ми нагадаємо вам знов за декілька днів.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Ми нагадаємо вам знов за тиждень.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Ми нагадаємо вам знов за декілька тижнів.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Ми нагадаємо вам знов за місяць.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN-код успішно підтверджено. Ми нагадаємо знов згодом.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN-код успішно підтверджено. Ми нагадаємо знов завтра.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN-код успішно підтверджено. Ми нагадаємо знов за декілька днів.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-код успішно підтверджено. Ми нагадаємо знов за тиждень.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-код успішно підтверджено. Ми нагадаємо знов за пару тижнів.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-код успішно підтверджено. Ми нагадаємо знов за місяць.</string>
   <!--Slide-->
   <string name="Slide_image">Зображення</string>
   <string name="Slide_sticker">Наліпка</string>
@@ -1737,6 +1739,10 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Видалити повідомлення?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Це назавжди видалить це повідомлення.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s до %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Ви надіслали %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s надіслав вам</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Мультимедійний більше не доступний.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Неможливо знайти програму для того щоб поділитись цим медіафайлом.</string>
   <!--MessageNotifier-->
@@ -1948,9 +1954,11 @@
   <string name="QuoteView_you">Ви</string>
   <string name="QuoteView_original_missing">Оригінальне повідомлення не знайдено</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Історія від %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Історія</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Ваша історія</string>
+  <string name="QuoteView_your_story">Ви · Історія</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Більше недоступна</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Прокрутить до самого низу</string>
   <!--BubbleOptOutTooltip-->
@@ -3686,7 +3694,7 @@
   <string name="ManageDonationsFragment__my_support">Моя підтримка</string>
   <string name="ManageDonationsFragment__manage_subscription">Керувати передплатою</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Квитанції</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Квитанції</string> -->
   <string name="ManageDonationsFragment__badges">Емблеми</string>
   <string name="ManageDonationsFragment__subscription_faq">Підписка ЧАП</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Помилка отримання передплати.</string>
@@ -3950,7 +3958,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Додати історію</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Немає оновлень для показу.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Немає оновлень для показу.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Сховати історію</string>
   <!--Context menu option to unhide a story-->
@@ -4185,7 +4193,7 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Відключити</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Історія</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Історія</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Реакції на історію</string>
   <!--endregion-->

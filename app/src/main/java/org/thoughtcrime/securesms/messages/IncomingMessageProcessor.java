@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResul
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.SetUtil;
+import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalSessionLock;
@@ -142,7 +142,7 @@ public class IncomingMessageProcessor {
         stopwatch.split("group-check");
 
         try {
-          MessageContentProcessor processor = new MessageContentProcessor(context);
+          MessageContentProcessor processor = MessageContentProcessor.forNormalContent(context);
           processor.process(result.getState(), result.getContent(), result.getException(), envelope.getTimestamp(), -1);
           return null;
         } catch (IOException | GroupChangeBusyException e) {

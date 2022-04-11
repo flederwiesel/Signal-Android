@@ -1284,6 +1284,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppen är för stor för att ringa deltagarna.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Återansluter…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-samtal</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtal</string>
@@ -1432,12 +1434,12 @@ angav (%s) är ogiltigt.</string>
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Mer</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Vi påminner dig igen senare.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi påminner dig igen imorgon.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vi påminner dig om några dagar.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vi påminner dig om en vecka.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vi påminner dig om ett par veckor.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vi påminner dig om om en månad.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN-kod verifierad. Vi påminner dig igen senare.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN-kod verifierad. Vi påminner dig igen imorgon.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN-kod verifierad. Vi påminner dig igen om några dagar.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-kod verifierad. Vi påminner dig igen om en vecka.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-kod verifierad. Vi påminner dig igen om några dagar.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-kod verifierad. Vi påminner dig igen om en månad.</string>
   <!--Slide-->
   <string name="Slide_image">Bilder</string>
   <string name="Slide_sticker">Klistermärke</string>
@@ -1585,6 +1587,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ta bort meddelande?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Detta tar bort detta meddelande permanent.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s till %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Du till %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s till dig</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media är inte längre tillgängligt.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Det går inte att hitta en app som kan dela detta medium.</string>
   <!--MessageNotifier-->
@@ -1788,9 +1794,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="QuoteView_you">Du</string>
   <string name="QuoteView_original_missing">Hittade inte originalmeddelandet.</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s Berättelse</string>
+  <string name="QuoteView_s_story">%1$s · Berättelse</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Din Berättelse</string>
+  <string name="QuoteView_your_story">Du · Berättelse</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Inte längre tillgänglig</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Bläddra till botten</string>
   <!--BubbleOptOutTooltip-->
@@ -3474,7 +3482,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ManageDonationsFragment__my_support">Mitt stöd</string>
   <string name="ManageDonationsFragment__manage_subscription">Hantera abonnemang</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Skattekvitton</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Skattekvitton</string> -->
   <string name="ManageDonationsFragment__badges">Märken</string>
   <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om abonnemang</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få abonnemang.</string>
@@ -3738,7 +3746,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Lägg till en berättelse</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Inga nya uppdateringar att visa just nu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Inga nya uppdateringar att visa just nu.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Göm berättelse</string>
   <!--Context menu option to unhide a story-->
@@ -3963,7 +3971,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Inaktivera</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Berättelse</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Berättelse</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagerade på en berättelse</string>
   <!--endregion-->

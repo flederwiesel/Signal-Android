@@ -1414,6 +1414,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Volání…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je pro volání příliš velká</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Opětovné připojování…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hovor</string>
   <string name="WebRtcCallView__signal_video_call">Signal video hovor</string>
@@ -1579,12 +1581,12 @@ telefonní číslo
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Víc</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Připomeneme se vám později.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Připomeneme se vám zase zítra.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Připomeneme se vám zase za několik dní.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Připomeneme se vám zase za týden.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Připomeneme se vám zase za pár týdnů.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Připomeneme se vám znovu za měsíc.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">PIN byl úspěšně ověřen. Připomeneme se znovu později.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">PIN byl úspěšně ověřen. Připomeneme se znovu zítra.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">PIN byl úspěšně ověřen. Připomeneme se znovu za pár dnů.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN byl úspěšně ověřen. Připomeneme se znovu za týden.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN byl úspěšně ověřen. Připomeneme se znovu za několik týdnů.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN byl úspěšně ověřen. Připomeneme se znovu za měsíc.</string>
   <!--Slide-->
   <string name="Slide_image">Obrázek</string>
   <string name="Slide_sticker">Nálepka</string>
@@ -1736,6 +1738,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Smazat zprávu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto trvale smažete tuto zprávu.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s pro %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Odesláno uživateli %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s pro vás</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Média již nejsou k dispozici.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nebyla nalezena žádná aplikace pro sdílení tohoto média.</string>
   <!--MessageNotifier-->
@@ -1947,9 +1953,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="QuoteView_you">Vy</string>
   <string name="QuoteView_original_missing">Původní zpráva nebyla nalezena</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s příběh</string>
+  <string name="QuoteView_s_story">%1$s · Příběh</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Váš příběh</string>
+  <string name="QuoteView_your_story">Vy · Příběh</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Není již dostupný</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Posun na konec</string>
   <!--BubbleOptOutTooltip-->
@@ -3683,7 +3691,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ManageDonationsFragment__my_support">Má podpora</string>
   <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Daňové doklady</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Daňové doklady</string> -->
   <string name="ManageDonationsFragment__badges">Odznaky</string>
   <string name="ManageDonationsFragment__subscription_faq">Často kladené dotazy k předplatnému</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Chyba při získávání předplatného.</string>
@@ -3947,7 +3955,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Přidat příběh</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Žádné nové aktualizace k zobrazení.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Žádné nové aktualizace k zobrazení.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Schovat příběh</string>
   <!--Context menu option to unhide a story-->
@@ -4182,7 +4190,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Vypnout</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Příběh</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Příběh</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reakce na příběh</string>
   <!--endregion-->

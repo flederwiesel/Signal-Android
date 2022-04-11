@@ -1285,6 +1285,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Hringi…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Hópurinn er of stór til að hægt sé að hringja í þátttakendurna.</string>
+  <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
+  <string name="WebRtcCallActivity__reconnecting">Endurtengist….</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-símtal</string>
   <string name="WebRtcCallView__signal_video_call">Signal-myndsímtal</string>
@@ -1436,12 +1438,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Meira</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Við munum minna þig á aftur síðar.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Við munum minna þig á aftur á morgun.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Við munum minna þig á aftur eftir nokkra daga.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Við munum minna þig á aftur eftir viku.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Við munum minna þig á aftur eftir tvær vikur.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Við munum minna þig á aftur eftir mánuð.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur síðar.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur á morgun.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur eftir nokkra daga.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur eftir viku.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur eftir nokkrar vikur.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Tókst að sannreyna PIN-númer. Við munum áminna þig aftur eftir mánuð.</string>
   <!--Slide-->
   <string name="Slide_image">Mynd</string>
   <string name="Slide_sticker">Límmerki</string>
@@ -1590,6 +1592,10 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Eyða skilaboðum?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Þetta mun endanlega eyða þessum skilaboðum.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
+  <!--All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_you_to_s">Þú til %1$s</string>
+  <!--All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context)-->
+  <string name="MediaPreviewActivity_s_to_you">%1$s til þín</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Margmiðlunarefni er ekki lengur til staðar.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Finn ekki smáforrit til að deila þessu efni.</string>
   <!--MessageNotifier-->
@@ -1793,9 +1799,11 @@
   <string name="QuoteView_you">Þú</string>
   <string name="QuoteView_original_missing">Upprunaleg skilaboð finnast ekki</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">Saga frá %1$s</string>
+  <string name="QuoteView_s_story">%1$s · Saga</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Sagan þín</string>
+  <string name="QuoteView_your_story">Þú · Saga</string>
+  <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">Ekki lengur tiltækt</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Skruna neðst</string>
   <!--BubbleOptOutTooltip-->
@@ -3482,7 +3490,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ManageDonationsFragment__my_support">Stuðningur minn</string>
   <string name="ManageDonationsFragment__manage_subscription">Sýsla með áskrift</string>
   <!--Label for Tax Receipts button-->
-  <string name="ManageDonationsFragment__tax_receipts">Skattaframtalskvittanir</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Skattaframtalskvittanir</string> -->
   <string name="ManageDonationsFragment__badges">Merki</string>
   <string name="ManageDonationsFragment__subscription_faq">Spurningar varðandi áskrift</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Villa við að ná í áskrift</string>
@@ -3731,6 +3739,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Upphæð</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Takk fyrir stuðninginn við Signal. Framlag þitt hjálpar okkur að standa við markmið okkar við að þróa opna og frjálsa tækni til verndunar einkaupplýsinga sem styður við tjáningarfrelsi og tryggir örygg samskipti fyrir milljónir manna víðsvegar um heiminn. Ef þú býrð í Bandaríkjum Norður-Ameríku, geturðu haldið upp á þessa kvittun fyrir skattframtalið þitt. Signal Technology Foundation eru skattfrjáls bandarísk samtök án hagnaðarmarkmiða sem falla undir grein 501c3 í Internal Revenue Code reglugerðinni. Federal Tax ID auðkennið okkar er 82–4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--region "Stories Tab"-->
@@ -3745,7 +3754,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Bæta við sögu</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates">Í augnablikinu eru engar nýlegar uppfærslur til að birta.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Í augnablikinu eru engar nýlegar uppfærslur til að birta.</string> -->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Fela sögu</string>
   <!--Context menu option to unhide a story-->
@@ -3970,7 +3979,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Slökkva</string>
   <!--Conversation Item label for reactions to a story-->
-  <string name="ConversationItem__s_dot_story">%1$s · Saga</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Saga</string> -->
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Brást við sögu</string>
   <!--endregion-->
