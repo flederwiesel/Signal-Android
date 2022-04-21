@@ -21,7 +21,7 @@
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Afregistrerer fra Signal-beskeder og opkald …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiver Signal-beskeder og opkald?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiver Signal-beskeder og opkald ved at afregistrere fra serveren. Det er nødvendigt at registrere telefonnummeret igen for at bruge det fremadrettet.</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fejl ved oprettelse af forbindelse til serveren</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fejl ved oprettelse af forbindelse til serveren!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryk for at ændre din standard SMS-app</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktiveret</string>
@@ -229,7 +229,7 @@
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Kun administratorer af denne gruppe kan starte et opkald.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app tilgængelig på enheden, der kan åbne linket.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din anmodning om at blive medlem er sendt til gruppeadministratoren. Du får besked, når den er behandlet.</string>
-  <string name="ConversationActivity_cancel_request">Annullér forespørgsel</string>
+  <string name="ConversationActivity_cancel_request">Annullér anmodning</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Signal tilladelse til at tilgå mikrofonen.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal kræver tilladelse til at tilgå mikrofonen for at kunne sende lydfiler, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal kræver tilladelse til at tilgå mikrofon og kamera, for at kunne ringe til %s, men er permanent blevet afvist. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\".</string>
@@ -493,9 +493,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Vis</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Del med</string>
-  <string name="ShareActivity_multiple_attachments_are_only_supported">Det er kun muligt at vedhæfte flere billeder og videoer</string>
-  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har ikke tilladelse til at sende til denne gruppe</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_share_with">Del med</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_multiple_attachments_are_only_supported">Det er kun muligt at vedhæfte flere billeder og videoer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har ikke tilladelse til at sende til denne gruppe</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl ved Signal-kommunikationen!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play-tjenester. Signal-beskeder og opkald blev deaktiveret. Prøv venligst at registrere igen i Indstillinger -&gt; Avanceret</string>
@@ -649,9 +649,9 @@
   <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Efter oprettelse af denne gruppe kan du tilføje eller invitere venner.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppenavn (påkrævet)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Gruppenavn (valgfrit)</string>
-  <string name="AddGroupDetailsFragment__this_field_is_required">Dette felt er påkrævet</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Dette felt er påkrævet.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Oprettelse af gruppe mislykkedes</string>
-  <string name="AddGroupDetailsFragment__try_again_later">Prøv igen senere</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Prøv igen senere.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valgt en kontakt, der ikke understøtter Signal-grupper, så denne gruppe vil være MMS.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tilpassede MMS-gruppenavne og -billeder vil kun være synlige for dig.</string>
   <string name="AddGroupDetailsFragment__remove">Fjern</string>
@@ -696,7 +696,7 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">Dette er en forældret gruppe. Funktioner som gruppeadministratorer, er kun tilgængelige for nye grupper</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Dette er en forældet gruppe. For adgang til nye funktioner som @omtaler og administrator,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Denne forældede gruppe er for stor til at kunne opgraderes til en Ny gruppe. Den maksimale størrelse på grupper er %1$d</string>
-  <string name="ManageGroupActivity_upgrade_this_group">opgrader gruppen</string>
+  <string name="ManageGroupActivity_upgrade_this_group">opgrader denne gruppe.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. Inviter dine kontakter til Signal for at skrive og tale privat.</string>
   <string name="ManageGroupActivity_invite_now">Inviter nu</string>
   <string name="ManageGroupActivity_more">mere</string>
@@ -746,8 +746,8 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">Nulstil link</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Medlemsanmodninger</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Godkend nye medlemmer</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Det kræves at en administrator godkender nye gruppemedlemmer via gruppelinket</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på, at du vil nulstille gruppelinket? Man vil ikke længere kunne deltage i gruppen ved hjælp af det nuværende link.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Kræv at en administrator godkender nye gruppemedlemmer, som tilslutter sig via gruppelinket.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på, at du vil nulstille gruppelinket? Man vil ikke længere kunne tilslutte sig gruppen ved hjælp af det nuværende link.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-kode</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personer der scanner denne kode, kan deltage i din gruppe. Administratorer skal stadig godkende nye medlemmer, hvis denne indstilling er slået til</string>
@@ -768,13 +768,13 @@
   <!--Title shown when there was an known issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Kan ikke tilslutte gruppe</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kan ikke deltage i denne gruppe via gruppelinket, fordi en administrator har fjernet dig.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kan ikke tilslutte dig denne gruppe via gruppelinket, fordi en administrator har fjernet dig.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Gruppelinket er ikke længere gyldigt</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_link_error">Link-fejl</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
-  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Deltagelse via dette link mislykkedes. Prøv igen senere.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Tilslutning via dette link mislykkedes. Prøv igen senere.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vil du deltage i gruppen, og dele dit navn og billede med dens medlemmer?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administrator af gruppen skal godkende din anmodning, inden du kan deltage. Når du anmoder om at deltage, vil dit navn og billede blive delt med dens medlemmer</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -783,13 +783,13 @@
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Opdatér Signal for at bruge gruppelinks</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-versionen som du anvender, understøtter ikke gruppelinket. Opdater til den nyeste version for at deltage i denne gruppe via linket.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-versionen som du anvender, understøtter ikke gruppelinket. Opdater til den nyeste version for at tilslutte dig denne gruppe via linket.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Opdatér Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flere af din(e) forbundne enhed(er) kører en version af Signal, der ikke understøtter gruppelinks. Opdatér Signal for at deltage i gruppen</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelink er ikke gyldigt</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Inviter venner</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Del et link med venner, så de hurtigt kan deltage i denne gruppe.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Del et link med venner, så de hurtigt kan tilslutte sig denne gruppe.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktiver og del link</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Del link</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Det lykkedes ikke at aktivere gruppelinket, prøv igen senere</string>
@@ -824,7 +824,7 @@
     <item quantity="other">Send %d SMS-invitationer?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lad os skifte til Signal: %1$s</string>
-  <string name="InviteActivity_no_app_to_share_to">Det lader til at du ikke har nogle apps at dele til</string>
+  <string name="InviteActivity_no_app_to_share_to">Det ser ud til, at du ikke har nogen apps at dele til.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Læs mere</string>
   <string name="SpanUtil__read_more">Læs mere</string>
@@ -1908,6 +1908,10 @@ nummer (%s) er ugyldigt</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VIS</string>
   <string name="message_recipients_list_item__resend">SEND IGEN</string>
+  <!--Displayed in a toast when user long presses an item in MyStories-->
+  <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Kopierede sendt-tidsstempel til udklipsholderen.</string>
+  <!--Displayed when there are no outgoing stories-->
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Opdateringer til din historie vil blive vist her.</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s tilsluttede sig gruppen.</item>
@@ -2126,8 +2130,8 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__advanced">Avanceret</string>
   <string name="preferences__donate_to_signal">Donér til Signal</string>
   <string name="preferences__subscription">Abonnement</string>
-  <string name="preferences__become_a_signal_sustainer">Bliv Signal-bidragsyder</string>
-  <string name="preferences__signal_boost">Signal Boost</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__become_a_signal_sustainer">Bliv Signal-bidragsyder</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__signal_boost">Signal Boost</string> -->
   <string name="preferences__privacy">Privatliv</string>
   <string name="preferences__mms_user_agent">MMS-brugeragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-indstillinger</string>
@@ -2352,7 +2356,7 @@ nummer (%s) er ugyldigt</string>
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scan QR-kode for adresse</string>
   <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan betalingsmodtagerens QR-kode for adresse</string>
   <!--CreatePaymentFragment-->
-  <string name="CreatePaymentFragment__request">Forespørgsel</string>
+  <string name="CreatePaymentFragment__request">Anmodning</string>
   <string name="CreatePaymentFragment__pay">Betal</string>
   <string name="CreatePaymentFragment__available_balance_s">Disponibel saldo: %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">Skift</string>
@@ -2514,9 +2518,9 @@ nummer (%s) er ugyldigt</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol beskyttede automatisk %1$d%% af dine sendte beskeder de seneste %2$d dage. Samtaler mellem Signal-brugere er altid end-to-end krypterede.</string>
   <string name="InsightsDashboardFragment__spread_the_word">Spred budskabet</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ikke tilstrækkeligt data</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for din indsigt er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for dit indblik er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Begynd at kommunikere sikkert og aktiver nye funktioner, der ikke har samme begrænsninger som ukrypterede SMS-beskeder, ved at invitere flere kontakter til at bruge Signal.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Begynd at kommunikere sikkert og aktivér nye funktioner, der ikke har samme begrænsninger som ukrypterede SMS-beskeder, ved at invitere flere kontakter til at bruge Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Disse statistikker blev genereret lokalt på din enhed og kan kun ses af dig. De bliver aldrig sendt nogen steder hen.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>
@@ -2889,7 +2893,7 @@ nummer (%s) er ugyldigt</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" er ikke længere blokeret</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Gennemgå medlemmer</string>
-  <string name="ReviewCardDialogFragment__review_request">Gennemgå forespørgsel</string>
+  <string name="ReviewCardDialogFragment__review_request">Gennemgå anmodning</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d medlemmer af gruppen har det samme navn, gennemgå medlemmer herunder og vælg en handling.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Hvis du ikke er sikker på hvem forespørgslen er fra, gennemgå kontakterne herunder og vælg en handling.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Ingen andre grupper til fælles</string>
@@ -2907,7 +2911,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Fejl ved fjernelse af gruppemedlem.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Medlem</string>
-  <string name="ReviewCard__request">Forespørgsel</string>
+  <string name="ReviewCard__request">Anmodning</string>
   <string name="ReviewCard__your_contact">Din kontakt</string>
   <string name="ReviewCard__remove_from_group">Fjern fra gruppe</string>
   <string name="ReviewCard__update_contact">Opdatér kontakt</string>
@@ -2972,7 +2976,7 @@ nummer (%s) er ugyldigt</string>
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele med op til %1$d samtaler</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Videresend besked</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareInterstitialActivity__forward_message">Videresend besked</string> -->
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Samtalebaggrund</string>
   <!--ChatWallpaperFragment-->
@@ -3278,9 +3282,9 @@ nummer (%s) er ugyldigt</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Tilføj billede</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Bliv bidragsyder</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal er drevet af personer som dig. Bidrag og modtag et emblem.</string>
-  <string name="BecomeASustainerMegaphone__no_thanks">Nej tak</string>
-  <string name="BecomeASustainerMegaphone__contribute">Bidrag</string>
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__signal_is_powered">Signal er drevet af personer som dig. Bidrag og modtag et emblem.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__no_thanks">Nej tak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="BecomeASustainerMegaphone__contribute">Bidrag</string> -->
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Åbn emoji-søgning</string>
@@ -3463,19 +3467,19 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dit abonnement er blevet opsagt.</string>
   <string name="SubscribeFragment__update_subscription_question">Opdater abonnement?</string>
   <string name="SubscribeFragment__update">Opdatér</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du vil blive opkrævet det fulde beløb for det nye abonnement i dag. Dit abonnement fornyes %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du vil blive opkrævet det fulde beløb for det nye abonnement i dag. Dit abonnement fornyes %1$s.</string> -->
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Du vil blive opkrævet det fulde beløb (%1$s) af den nye abonnementspris i dag. Dit abonnement vil fornyes hver måned.</string>
   <string name="Subscription__s_per_month">%s/måned</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/måned · Fornyes %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/måned · Udløber %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er en non-profit uden annoncører eller investorer, som kun støttes af de mennesker, der bruger og værdsætter den. Giv et fast månedligt bidrag og få et profilemblem til at vise din støtte.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Hvorfor bidrage?</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er en non-profit uden annoncører eller investorer, som kun støttes af de mennesker, der bruger og værdsætter den. Giv et fast månedligt bidrag og få et profilemblem til at vise din støtte.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Hvorfor bidrage?</string> -->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal er dedikeret til udviklingen af open source-privatlivsteknologi, der beskytter ytringsfriheden og muliggør sikker global kommunikation.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Dit bidrag støtter denne sag og betaler for udviklingen og driften af en app, der bruges af millioner til privat kommunikation. Ingen reklamer. Ingen trackere. Helt seriøst.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Dit bidrag støtter denne sag og betaler for udviklingen og driften af en app, der bruges af millioner til privat kommunikation. Ingen reklamer. Ingen trackere. Helt seriøst.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tak for din støtte!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tak for boostet!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du har gjort dig fortjent til et %s-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Du har gjort dig fortjent til et Boost-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du har gjort dig fortjent til et %s-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Du har gjort dig fortjent til et Boost-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string> -->
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan også</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">blive en månedlig bidragsyder.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profil</string>
@@ -3486,13 +3490,13 @@ nummer (%s) er ugyldigt</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er en nonprofitorganisation uden annoncører eller investorer, der kun støttes af folk som dig.</string>
   <string name="ManageDonationsFragment__my_support">Min støtte</string>
   <string name="ManageDonationsFragment__manage_subscription">Administrer abonnement</string>
-  <!--Label for Tax Receipts button-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageDonationsFragment__tax_receipts">Skattekvitteringer</string> -->
+  <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Kvitteringer for donationer</string>
   <string name="ManageDonationsFragment__badges">Emblemer</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonnement OSS</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fejl ved oprettelse af abonnement.</string>
   <string name="BoostFragment__give_signal_a_boost">Giv Signal et boost</string>
-  <string name="BoostFragment__say_thanks_and_earn">Sig \"Tak!\", og gør dig fortjent til Boost-emblemet i %1$d dage.</string>
+  <!-- Removed by excludeNonTranslatables <string name="BoostFragment__say_thanks_and_earn">Sig \"Tak!\", og gør dig fortjent til Boost-emblemet i %1$d dage.</string> -->
   <string name="Boost__enter_custom_amount">Angiv tilpasset beløb</string>
   <string name="Boost__one_time_contribution">Engangsbidrag</string>
   <string name="MySupportPreference__add_a_signal_boost">Tilføj et Signal Boost</string>
@@ -3502,19 +3506,19 @@ nummer (%s) er ugyldigt</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Kunne ikke tilføje emblem. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Kontakt venligst support.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Emblem udløbet</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulleret</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dit Boost-emblem er udløbet og er ikke længere synligt for andre på din profil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dit emblem er udløbet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Emblem udløbet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulleret</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dit Boost-emblem er udløbet og er ikke længere synligt for andre på din profil.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan genaktivere dit Boost-emblem i yderligere 30 dage med et engangsbidrag.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overvej gerne at blive en månedlig bidragsyder for fortsat at støtte teknologi, der er bygget til dig.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overvej gerne at blive en månedlig bidragsyder for fortsat at støtte teknologi, der er bygget til dig.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tilføj et Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Dit abonnement som bidragsyder blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Dit abonnement som bidragsyder blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string> -->
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Dit Bidragsyder-abonnement blev annulleret, fordi vi ikke kunne behandle din betaling. Dit badge er ikke længere synligt på din profil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Dit Bidragsyder-abonnement blev annulleret, fordi vi ikke kunne behandle din betaling. Dit badge er ikke længere synligt på din profil.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsætte med at bruge Signal, men hvis du vil støtte appen og genaktivere dit badge, skal du forny nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Kan ikke behandle betaling af abonnement</string>
@@ -3751,7 +3755,7 @@ nummer (%s) er ugyldigt</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Tilføj en historie</string>
   <!--Displayed when there are no stories to display-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__no_recent_updates">Der er ingen nye opdateringer at vise lige nu.</string> -->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Der er ingen nye opdateringer at vise lige nu. Tryk på + for at føje til din historie.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Skjul historie</string>
   <!--Context menu option to unhide a story-->
@@ -3765,7 +3769,7 @@ nummer (%s) er ugyldigt</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sender …</string>
   <!--Label when a story fails to send-->
-  <string name="StoriesLandingItem__couldnt_send">Kunne ikke sende</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingItem__couldnt_send">Kunne ikke sende</string> -->
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Skjul historie?</string>
   <!--Message of dialog confirming decision to hide a story-->
@@ -3975,8 +3979,10 @@ nummer (%s) er ugyldigt</string>
   <string name="TurnOffCircumventionMegaphone_no_thanks">Nej tak</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Deaktiver</string>
-  <!--Conversation Item label for reactions to a story-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationItem__s_dot_story">%1$s · Historie</string> -->
+  <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Du reagerede på historie fra %1$s</string>
+  <!--Conversation Item label for reactions to your story-->
+  <string name="ConversationItem__reacted_to_your_story">Reagerede på din historie</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reagerede på en historie</string>
   <!--endregion-->

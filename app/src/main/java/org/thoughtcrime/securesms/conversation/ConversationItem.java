@@ -523,14 +523,13 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       int                    availableWidth = getAvailableMessageBubbleWidth(footer);
 
       if (activeFooter.getVisibility() != GONE && activeFooter.getMeasuredWidth() != availableWidth) {
-        activeFooter.getLayoutParams().width = availableWidth - ViewUtil.getLeftMargin(activeFooter) - ViewUtil.getRightMargin(activeFooter);
+        activeFooter.getLayoutParams().width = availableWidth;
         needsMeasure = true;
-        updatingFooter = true;
       }
 
-      if (bodyBubble.getMeasuredWidth() != availableWidth) {
-        bodyBubble.getLayoutParams().width = availableWidth;
-        audioViewStub.get().getLayoutParams().width = availableWidth - ViewUtil.getLeftMargin(audioViewStub.get()) - ViewUtil.getRightMargin(audioViewStub.get());
+      int desiredWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
+      if (bodyBubble.getMeasuredWidth() != desiredWidth) {
+        bodyBubble.getLayoutParams().width = desiredWidth;
         needsMeasure = true;
       }
     }
@@ -549,7 +548,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private int getDefaultTopMarginForRecord(@NonNull MessageRecord messageRecord, int defaultTopMargin, int defaultBottomMargin) {
-    if (isStoryReaction(messageRecord)) {
+    if (isStoryReaction(messageRecord) && !messageRecord.isRemoteDelete()) {
       return defaultBottomMargin;
     } else {
       return defaultTopMargin;
@@ -575,7 +574,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private int getAvailableMessageBubbleWidth(@NonNull View forView) {
     int availableWidth;
     if (hasAudio(messageRecord)) {
-      availableWidth = Math.min(getMaxBubbleWidth(), readDimen(R.dimen.message_audio_width));
+      availableWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
     } else if (!isViewOnceMessage(messageRecord) && (hasThumbnail(messageRecord) || hasBigImageLinkPreview(messageRecord))) {
       availableWidth = mediaThumbnailStub.require().getMeasuredWidth();
     } else {
@@ -1430,9 +1429,15 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
 
       //noinspection ConstantConditions
-      CharSequence body = isStoryReaction(current) ? current.getBody() : quote.getDisplayText();
-      //noinspection ConstantConditions
-      quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), body, quote.isOriginalMissing(), quote.getAttachment(), chatColors, isStoryReaction(current));
+      quoteView.setQuote(glideRequests,
+                         quote.getId(),
+                         Recipient.live(quote.getAuthor()).get(),
+                         quote.getDisplayText(),
+                         quote.isOriginalMissing(),
+                         quote.getAttachment(),
+                         chatColors,
+                         isStoryReaction(current) ? current.getBody() : null);
+
       quoteView.setVisibility(View.VISIBLE);
       quoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -1520,7 +1525,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setFooter(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, @NonNull Locale locale, boolean isGroupThread, boolean hasWallpaper) {
-    ViewUtil.updateLayoutParams(footer, hasAudio(current) ? LayoutParams.MATCH_PARENT : LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    ViewUtil.updateLayoutParams(footer, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     ViewUtil.setTopMargin(footer, readDimen(R.dimen.message_bubble_default_footer_bottom_margin));
 
     footer.setVisibility(GONE);
@@ -1555,7 +1560,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setStoryReactionLabel(@NonNull MessageRecord record) {
-    if (isStoryReaction(record)) {
+    if (isStoryReaction(record) && !record.isRemoteDelete()) {
       storyReactionLabelWrapper.setVisibility(View.VISIBLE);
       storyReactionLabel.setTextColor(record.isOutgoing() ? colorizer.getOutgoingBodyTextColor(context) : ContextCompat.getColor(context, R.color.signal_text_primary));
       storyReactionLabel.setText(getStoryReactionLabelText(messageRecord));
