@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
-import org.thoughtcrime.securesms.jobs.RetrieveReleaseChannelJob
+import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
@@ -382,6 +382,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_calling_disable_telecom),
+        isChecked = state.callingDisableTelecom,
+        onClick = {
+          viewModel.setInternalCallingDisableTelecom(!state.callingDisableTelecom)
+        }
+      )
+
       if (FeatureFlags.donorBadges() && SignalStore.donationsValues().getSubscriber() != null) {
         dividerPref()
 
@@ -410,7 +418,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from(R.string.preferences__internal_fetch_release_channel),
         onClick = {
           SignalStore.releaseChannelValues().previousManifestMd5 = ByteArray(0)
-          RetrieveReleaseChannelJob.enqueue(force = true)
+          RetrieveRemoteAnnouncementsJob.enqueue(force = true)
         }
       )
 
@@ -590,7 +598,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setTitle("Clear all profile keys?")
       .setMessage("Are you sure? Never do this on a non-test device.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
-        SignalDatabase.recipients.debugClearServiceIds()
+        SignalDatabase.recipients.debugClearProfileData()
         Toast.makeText(context, "Cleared all profile keys.", Toast.LENGTH_SHORT).show()
       }
       .setNegativeButton(android.R.string.cancel) { d, _ ->

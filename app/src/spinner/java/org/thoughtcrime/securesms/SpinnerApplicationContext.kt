@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms
 
 import android.content.ContentValues
 import android.os.Build
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import leakcanary.LeakCanary
 import org.signal.spinner.Spinner
 import org.signal.spinner.Spinner.DatabaseConfig
@@ -22,10 +24,20 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AppSignatureUtil
 import shark.AndroidReferenceMatchers
+import java.util.Locale
 
 class SpinnerApplicationContext : ApplicationContext() {
   override fun onCreate() {
     super.onCreate()
+
+    StrictMode.setThreadPolicy(
+      ThreadPolicy.Builder()
+        .detectDiskReads()
+        .detectDiskWrites()
+        .detectNetwork()
+        .penaltyLog()
+        .build()
+    )
 
     Spinner.init(
       this,
@@ -36,7 +48,8 @@ class SpinnerApplicationContext : ApplicationContext() {
         "Profile Name" to (if (SignalStore.account().isRegistered) Recipient.self().profileName.toString() else "none"),
         "E164" to (SignalStore.account().e164 ?: "none"),
         "ACI" to (SignalStore.account().aci?.toString() ?: "none"),
-        "PNI" to (SignalStore.account().pni?.toString() ?: "none")
+        "PNI" to (SignalStore.account().pni?.toString() ?: "none"),
+        Spinner.KEY_ENVIRONMENT to BuildConfig.FLAVOR_environment.toUpperCase(Locale.US)
       ),
       linkedMapOf(
         "signal" to DatabaseConfig(

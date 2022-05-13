@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
@@ -121,6 +122,9 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markSmsStatus(long id, int status);
   public abstract void markDownloadState(long messageId, long state);
   public abstract void markIncomingNotificationReceived(long threadId);
+  public abstract void markGiftRedemptionCompleted(long messageId);
+  public abstract void markGiftRedemptionStarted(long messageId);
+  public abstract void markGiftRedemptionFailed(long messageId);
 
   public abstract Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, boolean storiesOnly);
   abstract @NonNull MmsSmsDatabase.TimestampReadResult setTimestampRead(SyncMessageId messageId, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead);
@@ -185,6 +189,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract boolean isStory(long messageId);
   public abstract @NonNull Reader getOutgoingStoriesTo(@NonNull RecipientId recipientId);
   public abstract @NonNull Reader getAllOutgoingStories(boolean reverse);
+  public abstract @NonNull Reader getAllOutgoingStoriesAt(long sentTimestamp);
   public abstract @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds();
   public abstract @NonNull Reader getAllStoriesFor(@NonNull RecipientId recipientId);
   public abstract @NonNull MessageId getStoryId(@NonNull RecipientId authorId, long sentTimestamp) throws NoSuchMessageException;
@@ -195,7 +200,12 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract @NonNull Cursor getStoryReplies(long parentStoryId);
   public abstract @Nullable Long getOldestStorySendTimestamp();
   public abstract int deleteStoriesOlderThan(long timestamp);
+  public abstract @NonNull MessageDatabase.Reader getUnreadStories(@NonNull RecipientId recipientId, int limit);
+  public abstract @Nullable ParentStoryId.GroupReply getParentStoryIdForGroupReply(long messageId);
+  public abstract void deleteGroupStoryReplies(long parentStoryId);
+
   public abstract @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId);
+  public abstract void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds);
 
   final @NonNull String getOutgoingTypeClause() {
     List<String> segments = new ArrayList<>(Types.OUTGOING_MESSAGE_TYPES.length);
@@ -327,7 +337,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     }
 
     SQLiteDatabase db     = databaseHelper.getSignalWritableDatabase();
-    SqlUtil.Query  where  = SqlUtil.buildCollectionQuery(ID, ids);
+    SqlUtil.Query  where  = SqlUtil.buildSingleCollectionQuery(ID, ids);
     ContentValues  values = new ContentValues();
 
     values.put(NOTIFIED_TIMESTAMP, timestamp);
@@ -552,6 +562,19 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
     public long getTimetamp() {
       return timetamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final SyncMessageId that = (SyncMessageId) o;
+      return timetamp == that.timetamp && Objects.equals(recipientId, that.recipientId);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(recipientId, timetamp);
     }
   }
 

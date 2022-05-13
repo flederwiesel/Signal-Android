@@ -32,6 +32,7 @@ import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageDatabase.MessageUpdate;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -98,6 +99,7 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_BODY,
                                               MmsDatabase.QUOTE_MISSING,
                                               MmsDatabase.QUOTE_ATTACHMENT,
+                                              MmsDatabase.QUOTE_TYPE,
                                               MmsDatabase.QUOTE_MENTIONS,
                                               MmsDatabase.SHARED_CONTACTS,
                                               MmsDatabase.LINK_PREVIEWS,
@@ -257,18 +259,27 @@ public class MmsSmsDatabase extends Database {
       }
       stickyQuery.append("(")
                  .append(MmsSmsColumns.THREAD_ID + " = ")
-                 .append(stickyThread.getThreadId())
+                 .append(stickyThread.getNotificationThread().getThreadId())
                  .append(" AND ")
                  .append(MmsSmsColumns.NORMALIZED_DATE_RECEIVED)
                  .append(" >= ")
                  .append(stickyThread.getEarliestTimestamp())
+                 .append(getStickyWherePartForParentStoryId(stickyThread.getNotificationThread().getGroupStoryId()))
                  .append(")");
     }
 
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery.toString() + ")" : "") + ")";
+    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null, true);
+  }
+
+  private @NonNull String getStickyWherePartForParentStoryId(@Nullable Long parentStoryId) {
+    if (parentStoryId == null) {
+      return " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
+    }
+
+    return " AND " + MmsDatabase.PARENT_STORY_ID + " = " + parentStoryId;
   }
 
   public int getUnreadCount(long threadId) {
@@ -529,13 +540,20 @@ public class MmsSmsDatabase extends Database {
     return SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType, true);
   }
 
+  public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {
+    SignalDatabase.mms().updateViewedStories(syncMessageIds);
+  }
 
-  public void setTimestampRead(@NonNull Recipient senderRecipient, @NonNull List<ReadMessage> readMessages, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
+  /**
+   * @return Unhandled ids
+   */
+  public Collection<SyncMessageId> setTimestampRead(@NonNull Recipient senderRecipient, @NonNull List<ReadMessage> readMessages, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
     SQLiteDatabase db = getWritableDatabase();
 
-    List<Pair<Long, Long>> expiringText   = new LinkedList<>();
-    List<Pair<Long, Long>> expiringMedia  = new LinkedList<>();
-    Set<Long>              updatedThreads = new HashSet<>();
+    List<Pair<Long, Long>>    expiringText   = new LinkedList<>();
+    List<Pair<Long, Long>>    expiringMedia  = new LinkedList<>();
+    Set<Long>                 updatedThreads = new HashSet<>();
+    Collection<SyncMessageId> unhandled      = new LinkedList<>();
 
     db.beginTransaction();
     try {
@@ -552,6 +570,10 @@ public class MmsSmsDatabase extends Database {
 
         updatedThreads.addAll(textResult.threads);
         updatedThreads.addAll(mediaResult.threads);
+
+        if (textResult.threads.isEmpty() && mediaResult.threads.isEmpty()) {
+          unhandled.add(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()));
+        }
       }
 
       for (long threadId : updatedThreads) {
@@ -577,6 +599,8 @@ public class MmsSmsDatabase extends Database {
     for (long threadId : updatedThreads) {
       notifyConversationListeners(threadId);
     }
+
+    return unhandled;
   }
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
@@ -763,6 +787,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_BODY,
                               MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
+                              MmsDatabase.QUOTE_TYPE,
                               MmsDatabase.QUOTE_MENTIONS,
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
@@ -799,6 +824,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_BODY,
                               MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
+                              MmsDatabase.QUOTE_TYPE,
                               MmsDatabase.QUOTE_MENTIONS,
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
@@ -864,6 +890,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.QUOTE_BODY);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_MISSING);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
+    mmsColumnsPresent.add(MmsDatabase.QUOTE_TYPE);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_MENTIONS);
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
     mmsColumnsPresent.add(MmsDatabase.LINK_PREVIEWS);

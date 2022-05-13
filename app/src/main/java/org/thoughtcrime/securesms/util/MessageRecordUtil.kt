@@ -8,6 +8,8 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.TextSlide
 import org.thoughtcrime.securesms.stickers.StickerUrl
 
@@ -101,6 +103,14 @@ fun MessageRecord.hasBigImageLinkPreview(context: Context): Boolean {
   return linkPreview.thumbnail.isPresent && linkPreview.thumbnail.get().width >= minWidth && !StickerUrl.isValidShareLink(linkPreview.url)
 }
 
+fun MessageRecord.hasGiftBadge(): Boolean {
+  return (this as? MmsMessageRecord)?.giftBadge != null
+}
+
+fun MessageRecord.requireGiftBadge(): GiftBadge {
+  return (this as MmsMessageRecord).giftBadge!!
+}
+
 fun MessageRecord.isTextOnly(context: Context): Boolean {
   return !isMms ||
     (
@@ -114,6 +124,14 @@ fun MessageRecord.isTextOnly(context: Context): Boolean {
         !hasLocation() &&
         !hasSharedContact() &&
         !hasSticker() &&
-        !isCaptionlessMms(context)
+        !isCaptionlessMms(context) &&
+        !hasGiftBadge()
       )
+}
+
+/**
+ * Returns the QuoteType for this record, as if it was being quoted.
+ */
+fun MessageRecord.getRecordQuoteType(): QuoteModel.Type {
+  return if (hasGiftBadge()) QuoteModel.Type.GIFT_BADGE else QuoteModel.Type.NORMAL
 }

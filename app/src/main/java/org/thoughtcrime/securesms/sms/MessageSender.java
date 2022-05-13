@@ -77,6 +77,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.io.IOException;
@@ -86,6 +87,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -128,6 +130,68 @@ public class MessageSender {
     SignalDatabase.threads().update(threadId, true);
 
     return allocatedThreadId;
+  }
+
+  public static void sendStories(@NonNull final Context context,
+                                 @NonNull final List<OutgoingSecureMediaMessage> messages,
+                                 @Nullable final String metricId,
+                                 @Nullable final SmsDatabase.InsertListener insertListener)
+  {
+    Log.i(TAG, "Sending story messages to " + messages.size() + " targets.");
+    ThreadDatabase  threadDatabase = SignalDatabase.threads();
+    MessageDatabase database       = SignalDatabase.mms();
+    List<Long>      messageIds     = new ArrayList<>(messages.size());
+    List<Long>      threads        = new ArrayList<>(messages.size());
+
+    try {
+      database.beginTransaction();
+      for (OutgoingMediaMessage message : messages) {
+        long      allocatedThreadId = threadDatabase.getOrCreateValidThreadId(message.getRecipient(), -1L, message.getDistributionType());
+        Recipient recipient         = message.getRecipient();
+        long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, false, insertListener);
+
+        messageIds.add(messageId);
+        threads.add(allocatedThreadId);
+
+        if (message.getRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
+          SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
+        } else {
+          SignalLocalMetrics.GroupMessageSend.cancel(metricId);
+        }
+      }
+
+      for (int i = 0; i < messageIds.size(); i++) {
+        long                       messageId = messageIds.get(i);
+        OutgoingSecureMediaMessage message   = messages.get(i);
+        Recipient                  recipient = message.getRecipient();
+
+        if (recipient.isDistributionList()) {
+          DistributionId    distributionId = Objects.requireNonNull(SignalDatabase.distributionLists().getDistributionId(recipient.requireDistributionListId()));
+          List<RecipientId> members        = SignalDatabase.distributionLists().getMembers(recipient.requireDistributionListId());
+          SignalDatabase.storySends().insert(messageId, members, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies(), distributionId);
+        }
+      }
+
+      database.setTransactionSuccessful();
+    } catch (MmsException e) {
+      Log.w(TAG, e);
+    } finally {
+      database.endTransaction();
+    }
+
+    for (int i = 0; i < messageIds.size(); i++) {
+      long                       messageId = messageIds.get(i);
+      OutgoingSecureMediaMessage message   = messages.get(i);
+      Recipient                  recipient = message.getRecipient();
+
+      sendMediaMessage(context, recipient, false, messageId, Collections.emptyList());
+    }
+
+    onMessageSent();
+
+    for (long threadId : threads) {
+      threadDatabase.update(threadId, true);
+    }
   }
 
   public static long send(final Context context,
@@ -320,8 +384,9 @@ public class MessageSender {
         Recipient                  recipient = message.getRecipient();
 
         if (recipient.isDistributionList()) {
-          List<RecipientId> members = SignalDatabase.distributionLists().getMembers(recipient.requireDistributionListId());
-          SignalDatabase.storySends().insert(messageId, members, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies());
+          List<RecipientId> members        = SignalDatabase.distributionLists().getMembers(recipient.requireDistributionListId());
+          DistributionId    distributionId = Objects.requireNonNull(SignalDatabase.distributionLists().getDistributionId(recipient.requireDistributionListId()));
+          SignalDatabase.storySends().insert(messageId, members, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies(), distributionId);
         }
       }
 
@@ -410,7 +475,7 @@ public class MessageSender {
     db.markAsSending(messageId);
 
     try {
-      ApplicationDependencies.getJobManager().add(RemoteDeleteSendJob.create(context, messageId, isMms));
+      RemoteDeleteSendJob.create(messageId, isMms).enqueue();
       onMessageSent();
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "[sendRemoteDelete] Could not find message! Ignoring.");

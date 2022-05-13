@@ -6,6 +6,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
+import org.signal.core.util.Hex;
 import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.KbsEnclave;
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.push.SignalServiceTrustStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -38,7 +40,6 @@ import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
-import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.util.IasKeyStore;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
@@ -50,8 +51,20 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.services.DonationsService;
+import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
+import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
+import org.whispersystems.signalservice.internal.util.Util;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 
 /**
@@ -97,6 +110,7 @@ public class ApplicationDependencies {
   private static volatile SignalCallManager            signalCallManager;
   private static volatile ShakeToReport                shakeToReport;
   private static volatile OkHttpClient                 okHttpClient;
+  private static volatile OkHttpClient                 signalOkHttpClient;
   private static volatile PendingRetryReceiptManager   pendingRetryReceiptManager;
   private static volatile PendingRetryReceiptCache     pendingRetryReceiptCache;
   private static volatile SignalWebSocket              signalWebSocket;
@@ -152,8 +166,10 @@ public class ApplicationDependencies {
     if (groupsV2Authorization == null) {
       synchronized (LOCK) {
         if (groupsV2Authorization == null) {
-          GroupsV2Authorization.ValueCache authCache = new GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AuthorizationCache());
-          groupsV2Authorization = new GroupsV2Authorization(getSignalServiceAccountManager().getGroupsV2Api(), authCache);
+          GroupsV2Authorization.ValueCache aciAuthCache = new GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AciAuthorizationCache());
+          GroupsV2Authorization.ValueCache pniAuthCache = new GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2PniAuthorizationCache());
+
+          groupsV2Authorization = new GroupsV2Authorization(getSignalServiceAccountManager().getGroupsV2Api(), aciAuthCache, pniAuthCache);
         }
       }
     }
@@ -505,6 +521,32 @@ public class ApplicationDependencies {
     }
 
     return okHttpClient;
+  }
+
+  public static @NonNull OkHttpClient getSignalOkHttpClient() {
+    if (signalOkHttpClient == null) {
+      synchronized (LOCK) {
+        if (signalOkHttpClient == null) {
+          try {
+            OkHttpClient   baseClient    = ApplicationDependencies.getOkHttpClient();
+            SSLContext     sslContext    = SSLContext.getInstance("TLS");
+            TrustStore     trustStore    = new SignalServiceTrustStore(ApplicationDependencies.getApplication());
+            TrustManager[] trustManagers = BlacklistingTrustManager.createFor(trustStore);
+
+            sslContext.init(null, trustManagers, null);
+
+            signalOkHttpClient = baseClient.newBuilder()
+                                           .sslSocketFactory(new Tls12SocketFactory(sslContext.getSocketFactory()), (X509TrustManager) trustManagers[0])
+                                           .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
+                                           .build();
+          } catch (NoSuchAlgorithmException | KeyManagementException e) {
+            throw new AssertionError(e);
+          }
+        }
+      }
+    }
+
+    return signalOkHttpClient;
   }
 
   public static @NonNull AppForegroundObserver getAppForegroundObserver() {

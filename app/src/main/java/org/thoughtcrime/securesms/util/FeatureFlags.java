@@ -89,14 +89,15 @@ public final class FeatureFlags {
   private static final String CDSH                              = "android.cdsh";
   private static final String STORIES                           = "android.stories.2";
   private static final String STORIES_TEXT_FUNCTIONS            = "android.stories.text.functions";
-  private static final String STORIES_TEXT_POSTS                = "android.stories.text.posts.2";
   private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
   private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
   private static final String USE_HARDWARE_AEC_IF_OLD           = "android.calling.useHardwareAecIfOlderThanApi29";
   private static final String USE_AEC3                          = "android.calling.useAec3";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "android.payments.blocklist";
   private static final String PNP_CDS                           = "android.pnp.cds";
-  private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService";
+  private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService.3";
+  private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
+  private static final String GIFT_BADGES                       = "android.giftBadges";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -139,13 +140,14 @@ public final class FeatureFlags {
       DONOR_BADGES_DISPLAY,
       STORIES,
       STORIES_TEXT_FUNCTIONS,
-      STORIES_TEXT_POSTS,
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
       USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
-      USE_FCM_FOREGROUND_SERVICE
+      USE_FCM_FOREGROUND_SERVICE,
+      STORIES_AUTO_DOWNLOAD_MAXIMUM,
+      GIFT_BADGES
   );
 
   @VisibleForTesting
@@ -232,6 +234,7 @@ public final class FeatureFlags {
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
     put(SENDER_KEY, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
     put(STORIES, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
+    put(GIFT_BADGES, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -460,15 +463,6 @@ public final class FeatureFlags {
   }
 
   /**
-   * Whether the user supports sending Story text posts
-   *
-   * NOTE: This feature is still under ongoing development, do not enable.
-   */
-  public static boolean storiesTextPosts() {
-    return getBoolean(STORIES_TEXT_POSTS, false);
-  }
-
-  /**
    * Whether or not donor badges should be displayed throughout the app.
    */
   public static boolean displayDonorBadges() {
@@ -510,6 +504,21 @@ public final class FeatureFlags {
 
   public static boolean useFcmForegroundService() {
     return getBoolean(USE_FCM_FOREGROUND_SERVICE, false);
+  }
+
+  /**
+   * Prefetch count for stories from a given user.
+   */
+  public static int storiesAutoDownloadMaximum() {
+    return getInteger(STORIES_AUTO_DOWNLOAD_MAXIMUM, 2);
+  }
+  /**
+   * Whether or not Gifting Badges should be available on this client.
+   *
+   * NOTE: This feature is under development and should not be enabled on prod. Doing so is solely at your own risk.
+   */
+  public static boolean giftBadges() {
+    return getBoolean(GIFT_BADGES, Environment.IS_STAGING);
   }
 
   /** Only for rendering debug info. */
