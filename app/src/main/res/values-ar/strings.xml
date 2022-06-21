@@ -64,7 +64,7 @@
   <string name="AttachmentKeyboard_location">الموقع الجغرافي</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">يحتاج Signal إلى إذن لإظهار الصور ومقاطع الفيديو الخاصة بك.</string>
   <string name="AttachmentKeyboard_give_access">منح الصلاحيات</string>
-  <string name="AttachmentKeyboard_payment">دفع مال</string>
+  <string name="AttachmentKeyboard_payment">عملية الدفع</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">تعذر العثور على تطبيق لتحديد الوسائط.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن الوصول إلى التخزين من أجل إرفاق الصور والفيديوهات والملفّات الصوتيّة، ولكن الإذن لم يُمنح  بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثمّ تفعيل \"سعة التخزين\".</string>
@@ -134,7 +134,7 @@
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">يمكنك الآن ربط الاتصال بخدمة Signal‬ مباشرة لتجربة استخدام أفضل.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_turn_off">أطفىء</string>
+  <string name="CensorshipCircumventionMegaphone_turn_off">إيقاف تشغيل</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
   <string name="CensorshipCircumventionMegaphone_no_thanks">لا شكراً</string>
   <!--ClearProfileActivity-->
@@ -265,7 +265,7 @@
   <string name="ConversationActivity_join">انضم</string>
   <string name="ConversationActivity_full">ممتليء</string>
   <string name="ConversationActivity_error_sending_media">خطأُ في إرسال الوسائط</string>
-  <string name="ConversationActivity__reported_as_spam_and_blocked">أُبلِغ عن الإزعاج ثم حُظر</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">تم الإبلاغ عنه كبريد مزعج وتم حظره</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">%d رسالة غير مقروءة</item>
@@ -350,13 +350,13 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">حظر الطلب ؟</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">لن يتمكن المستخدم %1$s من الانضمام إلى هذه المجموعة أو حتى إرسال طلب للانضمام إليها بواسطة وصلة المجموعة. لكن يمكن إضافته يدويا للمجموعة.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">لن يتمكن المستخدم %1$s من الانضمام إلى هذه المجموعة أو حتى إرسال طلب للانضمام إليها من خلال رابط المجموعة. لكن يمكن إضافته يدويا للمجموعة.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">حظر الطلب</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">إلغاء</string>
   <!--Message shown after successfully blocking join requests for a user-->
-  <string name="ConversationFragment__blocked">المحظورة</string>
+  <string name="ConversationFragment__blocked">محظور</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="zero">حذف المحادثات المختارة؟</item>
     <item quantity="one">حذف المحادثة المختارة؟</item>
@@ -475,9 +475,9 @@
     <item quantity="other">تم تحديد %d</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
-  <string name="ConversationListFragment__notification_profile">هيئة الإشعارات</string>
+  <string name="ConversationListFragment__notification_profile">الملف الشخصي للإشعارات</string>
   <!--Tooltip shown after you have created your first notification profile-->
-  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">يٌرجى تشغيل هيئة إشعارك أو تعطيلها من هنا.</string>
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">يٌرجى تشغيل الملف الشخصي للإشعارات أو إيقاف تشغيله من هنا.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s مشغّل</string>
   <!--ConversationListItem-->
@@ -803,8 +803,8 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">هذا الحقل مطلوب.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">فشل إنشاء المجموعة.</string>
   <string name="AddGroupDetailsFragment__try_again_later">يُرجى المحاولة مرة أخرى لاحقا.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">لقد اخترت شخصا لا يدعم مجموعات Signal، لذلك هذه المجموعة ستتواصل بتقنية MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">أسماء وصور مجموعة MMS المخصصة ستكون مرئية لك فقط.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">لقد اخترت شخصا لا يدعم مجموعات Signal، لذلك هذه المجموعة ستتواصل بتقنية MMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">أسماء وصور مجموعة MMS المخصصة ستكون مرئية لك فقط.</string> -->
   <string name="AddGroupDetailsFragment__remove">إزالة</string>
   <string name="AddGroupDetailsFragment__sms_contact">جهة اتصال عبر الرسائل القصيرة (SMS)</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">إزالة %1$s من هذه المجموعة؟</string>
@@ -938,11 +938,11 @@
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
   <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">لا يمكنك الانضمام لهذه المجموعة من خلال الرابط لأن أحد المشرفين أزالك.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">لم تعُد وصلة المجموعة هذه صالحة.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">لم يعُد رابط المجموعة هذه صالحًا.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
-  <string name="GroupJoinBottomSheetDialogFragment_link_error">خطأ في الوصلة</string>
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">خطأ في الرابط</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
-  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">فشِل الانضمام عبر هذه الوصلة. يُرجى محاولة الانضمام لاحقا.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">فشِل الانضمام عبر هذا الرابط. يُرجى محاولة الانضمام لاحقًا.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">هل تريد الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">لتستطيع الإنضمام إلى هذه المجموعة يجب أن يوافق مشرف من هذه المجموعة على طلب انضمامك. عندما ترسل طلب انضمام، سيتم مشاركة اسمك وصورتك مع أعضاء المجموعة.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -972,7 +972,7 @@
   <string name="RequestConfirmationDialog_add_s_to_the_group">إضافة \"%1$s\" إلى المجموعة ؟</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">رفض طلب \"%1$s\" ؟</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
-  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">رفض طلب انضمام المستخدم « %1$s » ؟ لن يتمكن المستخدم من إرسال طلب الانضمام مرة أخرى للمجموعة بواسطة وصلة للمجموعة.</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">رفض طلب انضمام المستخدم \"%1$s\" ؟ لن يتمكن المستخدم من إرسال طلب الانضمام مرة أخرى للمجموعة بواسطة رابط للمجموعة.</string>
   <string name="RequestConfirmationDialog_add">إضافة</string>
   <string name="RequestConfirmationDialog_deny">رفض</string>
   <!--ImageEditorHud-->
@@ -1285,12 +1285,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">غير %1$s أشخاص الذين يستطيعون تعديل عضوية المجموعة إلى \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">تم تغيير من يمكنهم تعديل عضوية المجموعة ليصبح : \"%1$s\".</string>
   <!--GV2 announcement group change-->
-  <string name="MessageRecord_you_allow_all_members_to_send">لقد قمت بتغيير إعدادات المجموعة للسماح للمشرفين فقط بإرسال الرسائل.</string>
-  <string name="MessageRecord_you_allow_only_admins_to_send">لقد قمت بتغيير إعدادات المجموعة للسماح للمشرفين فقط بإرسال الرسائل.</string>
+  <string name="MessageRecord_you_allow_all_members_to_send">لقد قمت بتغيير إعدادات المجموعة للسماح للمُشرفين فقط بإرسال الرسائل.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">لقد قمت بتغيير إعدادات المجموعة للسماح للمُشرفين فقط بإرسال الرسائل.</string>
   <string name="MessageRecord_s_allow_all_members_to_send">لقد غيَّر العضو %1$s إعدادات المجموعة للسماح لجميع الأعضاء بإرسال الرسائل.</string>
-  <string name="MessageRecord_s_allow_only_admins_to_send">لقد غيَّر العضو %1$s إعدادات المجموعة للسماح للمشرفين فقط بإرسال الرسائل.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">لقد غيَّر العضو %1$s إعدادات المجموعة للسماح للمُشرفين فقط بإرسال الرسائل.</string>
   <string name="MessageRecord_allow_all_members_to_send">لقد تغيرت إعدادات المجموعة للسماح لجميع الأعضاء بإرسال الرسائل.</string>
-  <string name="MessageRecord_allow_only_admins_to_send">لقد تغيرت إعدادات المجموعة للسماح فقط للمشرفين بإرسال الرسائل.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">لقد تغيرت إعدادات المجموعة للسماح فقط للمُشرفين بإرسال الرسائل.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">لقد قمت بتفعيل وصلة المجموعة مع إيقاف موافقة المشرف.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">لقد قمت بتشغيل وصلة المجموعة مع تفعيل موافقة المشرف.</string>
@@ -1339,7 +1339,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">تعذر توصيل رسالة من %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">لقد تغير رقم هاتف %1$s.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">أأحببت هذه الميزة ؟ يمكنك التعبير عن امتنانك بواسطة « تعزيز ».</string>
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">أأحببت هذه الميزة ؟ يُمكنك التعبير عن امتنانك بواسطة \"تعزيز \".</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">يشتغل Signal بفضل أفراد مثلك. نتمنى منك الدعم لنا اليوم.</string>
   <!--Group Calling update messages-->
@@ -1501,8 +1501,8 @@
   <string name="ReactionsRecipientAdapter_you">أنت</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">التأكد لمواصلة التراسُل</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">للتمكن من الوقاية من الإزعاج في Signal، يُرجى إتمام التحقق.</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">بعد التحقق، يمكنك مواصلة التراسل. سوف تُرسَل تلقائيا كل رسالة متوقفة مؤقتا.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">للتمكّن من الوقاية من الإزعاج في Signal، يُرجى إتمام التحقق.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">بعد التحقق، يمكنك مواصلة التراسل. ستُرسَل تلقائيا لك كل رسالة متوقفة مؤقتًا.</string>
   <!--Recipient-->
   <string name="Recipient_you">أنت</string>
   <!--Name of recipient representing user\'s \'My Story\'-->
@@ -1526,13 +1526,13 @@
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">طاب 💜 يومك !</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">إن أصبحت من الداعمين لـ Signal، فذلك يظهر تعاطفك معنا.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">إن أصبحت من الداعمين لـ Signal، فذلك يُظهر تعاطفك معنا.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">يُرجى اللمس هنا لتشغيل مكالمتك بالصورة. </string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">للاتصال بـ%1$s، يحتاج Signal صلاحية الوصول إلى الكاميرا</string>
   <string name="WebRtcCallActivity__signal_s">Signal‏ %1$s</string>
   <string name="WebRtcCallActivity__calling">يتصل…</string>
-  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">إن المجموعة كبيرة جدا لكي يرن التطبيق على المشاركين.</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">إن المجموعة كبيرة جدًا لكي يتصل التطبيق بجميع المشاركين.</string>
   <!--Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect-->
   <string name="WebRtcCallActivity__reconnecting">يَجري إعادة الاِتصال..</string>
   <!--Title for dialog warning about lacking bluetooth permissions during a call-->
@@ -1552,15 +1552,15 @@
   <string name="WebRtcCallView__reconnecting">إعادة الاتصال جارية…</string>
   <string name="WebRtcCallView__joining">قيد الانضمام…</string>
   <string name="WebRtcCallView__disconnected">غير متّصل</string>
-  <string name="WebRtcCallView__signal_will_ring_s">سوف يرن Signal على %1$s</string>
-  <string name="WebRtcCallView__signal_will_ring_s_and_s">سوف يرن Signal على %1$s و%2$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s">سَيتصل Signal بـ%1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">سَيتصل Signal بـ %1$s و%2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
     <item quantity="zero">سوف يرن Signal على %1$s و%2$s. %3$d</item>
     <item quantity="one">سوف يرن Signal على %1$s و%2$s و%3$d آخر</item>
     <item quantity="two">سوف يرن Signal على %1$s و%2$s و%3$d آخريْن</item>
     <item quantity="few">سوف يرن Signal على %1$s و%2$s و%3$d آخرين</item>
     <item quantity="many">سوف يرن Signal على %1$s و%2$s و%3$d آخرين</item>
-    <item quantity="other">سوف يرن Signal على %1$s و%2$s و%3$d آخرين</item>
+    <item quantity="other">سَيتصل Signal بـ %1$s و%2$s و%3$d آخرين</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">سيتم إشعار %1$s</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">سيتم إشعار %1$s و%2$s</string>
@@ -1572,26 +1572,26 @@
     <item quantity="many">سيتم إشعار %1$s و%2$s و%3$d آخرين</item>
     <item quantity="other">سيتم إشعار %1$s و%2$s و%3$d آخرين</item>
   </plurals>
-  <string name="WebRtcCallView__ringing_s">يرن على  %1$s</string>
-  <string name="WebRtcCallView__ringing_s_and_s">يرن على %1$s و%2$s </string>
+  <string name="WebRtcCallView__ringing_s">الإتصال بـ  %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">الإتصال بـ %1$s و%2$s </string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
     <item quantity="zero">يرن على %1$s و%2$s. (%3$d)</item>
     <item quantity="one">يرن على %1$sو %2$s و%3$d آخر</item>
     <item quantity="two">يرن على %1$s و%2$s و%3$d آخريْن</item>
     <item quantity="few">يرن على %1$s و%2$s و%3$d آخرين</item>
     <item quantity="many">يرن على %1$s و%2$s و%3$d آخرين</item>
-    <item quantity="other">يرن على %1$s و%2$s و%3$d آخرين</item>
+    <item quantity="other">الإتصال بـ %1$s و%2$s و%3$d آخرين</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">يتصل بك %1$s</string>
-  <string name="WebRtcCallView__s_is_calling_you_and_s">إن %1$s يتصل بك وبـ %2$s</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">إن %1$s يتصل بك وبـ%2$s وبـ %3$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s يتصل بك وبـ %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s يتصل بك وبـ%2$s وبـ %3$s</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="zero">إن %1$s يتصل بك وبـ%2$s وبـ %3$s. (%4$d)</item>
     <item quantity="one">إن %1$s يتصل بك وبـ%2$s وبـ %3$s ويـ %4$d آخر</item>
     <item quantity="two">إن %1$s يتصل بك وبـ%2$s وبـ %3$s و بـ %4$d آخريْن</item>
     <item quantity="few">إن %1$s يتصل بك وبـ%2$s وبـ %3$s وبـ %4$d آخرين</item>
     <item quantity="many">إن %1$s يتصل بك وبـ%2$s وبـ %3$s وبـ %4$d آخرين</item>
-    <item quantity="other">إن %1$s يتصل بك وبـ%2$s وبـ %3$s وبـ %4$d آخرين</item>
+    <item quantity="other">%1$s يتصل بك وبـ%2$s وبـ %3$s وبـ %4$d آخرين</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">لا يوجد أحد هنا</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s في هذه المكالمة</string>
@@ -2308,10 +2308,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">إسحب للأسفل لرفض المكالمة</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">بعض المشاكل تتطلب انتباهك.</string>
-  <string name="message_details_header__sent">مُرسَلة بتاريخ :</string>
-  <string name="message_details_header__received">‫مُستلَمة :</string>
-  <string name="message_details_header__disappears">‫مُختفية :</string>
-  <string name="message_details_header__via">عبر :</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__sent">مُرسَلة بتاريخ :</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__received">‫مُستلَمة :</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__disappears">‫مُختفية :</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="message_details_header__via">عبر :</string> -->
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">مُعلَّق</string>
   <string name="message_details_recipient_header__sent_to">تمَّ الإرسال إلى</string>
@@ -4281,6 +4281,7 @@
   <!--Story settings private stories heading-->
   <string name="StorySettingsFragment__private_stories">القصص الخاصة</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">يكمن فقط للأشخاص الذين قمت بإضافتهم مشاهدة القصص الخاصة. وأنت فقط من يمكنه رؤية اسم القصة.</string>
   <!--Option label for creating a new private story-->
   <string name="StorySettingsFragment__new_private_story">قصة خاصة جديدة</string>
   <!--Page title for My Story options-->
