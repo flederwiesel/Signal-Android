@@ -18,7 +18,6 @@ import androidx.fragment.app.FragmentActivity;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.Rotate;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -185,7 +184,6 @@ public final class AvatarImageView extends AppCompatImageView {
           if (shouldBlur) {
             transforms.add(new BlurTransformation(ApplicationDependencies.getApplication(), 0.25f, BlurTransformation.MAX_RADIUS));
           }
-          transforms.add(new Rotate(0));	// As transforms must not be empty, insert no-op...
           blurred = shouldBlur;
 
           GlideRequest<Drawable> request = requestManager.load(photo.contactPhoto)
@@ -193,8 +191,7 @@ public final class AvatarImageView extends AppCompatImageView {
                                                          .fallback(fallbackContactPhotoDrawable)
                                                          .error(fallbackContactPhotoDrawable)
                                                          .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                         .downsample(DownsampleStrategy.CENTER_INSIDE)
-                                                         .transform(new MultiTransformation<>(transforms));
+                                                         .downsample(DownsampleStrategy.CENTER_INSIDE);
 
           if (avatarOptions.fixedSize > 0) {
             fixedSizeTarget = new FixedSizeTarget(avatarOptions.fixedSize);

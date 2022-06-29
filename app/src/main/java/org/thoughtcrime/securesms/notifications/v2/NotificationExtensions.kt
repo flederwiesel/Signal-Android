@@ -10,7 +10,6 @@ import android.os.Build
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.Rotate
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
@@ -44,12 +43,10 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
       if (shouldBlurAvatar()) {
         transforms += BlurTransformation(ApplicationDependencies.getApplication(), 0.25f, BlurTransformation.MAX_RADIUS)
       }
-      transforms += Rotate(0);	// As transforms must not be empty, insert no-op...
 
       GlideApp.with(context.applicationContext)
         .load(contactPhoto)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .transform(MultiTransformation(transforms))
         .submit(
           context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
           context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_height)
