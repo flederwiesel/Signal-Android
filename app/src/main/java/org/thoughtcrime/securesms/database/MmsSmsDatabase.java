@@ -31,6 +31,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageDatabase.MessageUpdate;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
@@ -44,6 +45,7 @@ import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -271,6 +273,56 @@ public class MmsSmsDatabase extends Database {
     String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null, true);
+  }
+
+  /**
+   * The number of messages that quote the target message
+   */
+  public int getQuotedCount(@NonNull MessageRecord messageRecord) {
+    RecipientId author    = messageRecord.isOutgoing() ? Recipient.self().getId() : messageRecord.getRecipient().getId();
+    long        timestamp = messageRecord.getDateSent();
+
+    String   where      = MmsDatabase.QUOTE_ID +  " = ?  AND " + MmsDatabase.QUOTE_AUTHOR + " = ?";
+    String[] whereArgs  = SqlUtil.buildArgs(timestamp, author);
+
+    try (Cursor cursor = getReadableDatabase().query(MmsDatabase.TABLE_NAME, COUNT, where, whereArgs, null, null, null)) {
+      return cursor.moveToFirst() ? cursor.getInt(0) : 0;
+    }
+  }
+
+  public List<MessageRecord> getAllMessagesThatQuote(@NonNull MessageId id) {
+    MessageRecord targetMessage;
+    try {
+      targetMessage = id.isMms() ? SignalDatabase.mms().getMessageRecord(id.getId()) : SignalDatabase.sms().getMessageRecord(id.getId());
+    } catch (NoSuchMessageException e) {
+      throw new IllegalArgumentException("Invalid message ID!");
+    }
+
+    RecipientId author = targetMessage.isOutgoing() ? Recipient.self().getId() : targetMessage.getRecipient().getId();
+    String      query  = MmsDatabase.QUOTE_ID + " = " + targetMessage.getDateSent() + " AND " + MmsDatabase.QUOTE_AUTHOR + " = " + author.serialize();
+    String      order  = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
+
+    List<MessageRecord> records = new ArrayList<>();
+
+    try (Reader reader = new Reader(queryTables(PROJECTION, query, order, null, true))) {
+      MessageRecord record;
+      while ((record = reader.getNext()) != null) {
+        records.add(record);
+        records.addAll(getAllMessagesThatQuote(new MessageId(record.getId(), record.isMms())));
+      }
+    }
+
+    Collections.sort(records, (lhs, rhs) -> {
+      if (lhs.getDateReceived() > rhs.getDateReceived()) {
+        return -1;
+      } else if (lhs.getDateReceived() < rhs.getDateReceived()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    return records;
   }
 
   private @NonNull String getStickyWherePartForParentStoryId(@Nullable Long parentStoryId) {
