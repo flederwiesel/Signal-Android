@@ -8,7 +8,9 @@ grep -FRHn -f <(cat <<"EOF"
 2c6bed
 3a76f0
 42A5F5
+5151F6
 6191f3
+8B8BF9
 blue_400
 circleCrop
 core_blue
