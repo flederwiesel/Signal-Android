@@ -21,7 +21,10 @@ EOF
 grep -Ev -f <(cat <<"EOF"
 ^\.git/
 ^app/src/main/java/org/thoughtcrime/securesms/color/MaterialColor.java:25
+^app/src/main/java/org/thoughtcrime/securesms/conversation/colors/ChatColorsPalette.kt:198
 ^app/src/main/java/org/thoughtcrime/securesms/insights/InsightsUserAvatar\.java:35
+^app/src/main/java/org/thoughtcrime/securesms/mediasend/v2/text/TextStoryBackgroundColors.kt:66
+^app/src/main/java/org/thoughtcrime/securesms/mediasend/v2/text/TextStoryBackgroundColors.kt:70
 ^app/src/main/res/values/material_colors\.xml:37
 ^app/src/main/res/values/material_colors\.xml:209
 ^app/src/main/res/values/conversation_colors.xml:27
