@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">സന്ദേശ൦ %s</string>
   <string name="ContactsDatabase_signal_call_s">%s നെ Signal കോള്‍ ചെയ്യുക</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">നല്‍കിയ നാമം</string>
   <string name="ContactNameEditActivity_family_name">കുടുംബ നാമം</string>
   <string name="ContactNameEditActivity_prefix">പ്രിഫിക്‌സ്</string>
   <string name="ContactNameEditActivity_suffix">സഫിക്സ്</string>
   <string name="ContactNameEditActivity_middle_name">മധ്യനാമം</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">വീട്</string>
   <string name="ContactShareEditActivity_type_mobile">മൊബൈൽ</string>
   <string name="ContactShareEditActivity_type_work">ജോലി</string>
   <string name="ContactShareEditActivity_type_missing">മറ്റുള്ളവ</string>
   <string name="ContactShareEditActivity_invalid_contact">തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് അസാധുവായിരുന്നു</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">അവതാർ</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">അയച്ചില്ല, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
   <string name="ConversationItem_error_partially_not_delivered">ഭാഗികമായി അയച്ചു, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
@@ -2965,6 +2970,8 @@
   <string name="CallParticipant__you">നിങ്ങൾ</string>
   <string name="CallParticipant__you_on_another_device">നിങ്ങൾ (മറ്റൊരു ഉപകരണത്തിൽ)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നത്:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
@@ -3859,6 +3866,8 @@
   <string name="StoriesLandingItem__share">പങ്കിടുക…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">ചാറ്റിലേക്ക് പോകുക</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">വിവരം</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">അയയ്ക്കുന്നു…</string>
   <!--Label when multiple stories are pending sending-->
@@ -3905,6 +3914,7 @@
     <item quantity="other">%1$d മറുപടികൾ</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">കാഴ്ച്ചകൾ ഓഫാണ്</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3918,7 +3928,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">ഇതുവരെ കാഴ്ച്ചകളൊന്നുമില്ല</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">നിങ്ങളുടെ സ്റ്റോറീസ് ആരൊക്കെ കണ്ടുവെന്ന് അറിയാൻ വായിച്ചതിനുള്ള സ്ഥിരീകരണം പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ഇതുവരെ മറുപടികളൊന്നുമില്ല</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4130,7 +4142,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">കൂടുതൽ കാണു</string>
   <string name="StoriesLinkPopup__visit_link">ലിങ്ക് സന്ദർശിക്കുക</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d ദിവസ ദൈർഘ്യം</item>
     <item quantity="other">%1$s · %2$d ദിവസം ദൈർഘ്യം</item>
@@ -4196,6 +4208,7 @@
     <item quantity="other">ഗ്രൂപ്പ് സ്റ്റോറി · %1$d കാഴ്‌ചക്കാർ</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">നിങ്ങളുടെ കാഴ്‌ച്ചക്കാരെ തിരഞ്ഞെടുക്കാൻ ടാപ്പ് ചെയ്യുക</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">സ്റ്റോറി ക്രമീകരണങ്ങൾ</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4240,37 +4253,64 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">മനസ്സിലായി</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">കോൺടെക്സ്റ്റ് മെനു തുറക്കുക</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · പരിശോധിച്ചുറപ്പിച്ചു</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">പരിശോധിച്ചു </string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">സുരക്ഷാ നമ്പറിൽ മാറ്റമുണ്ടായി</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">ഇനിപ്പറയുന്ന ആളുകൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാം. പുതിയ സുരക്ഷാ നമ്പർ സ്ഥിരീകരിക്കുന്നതിന്, ഒരു സ്വീകർത്താവിനെ ടാപ്പ് ചെയ്യുക. ഇത് നിർബന്ധമല്ല.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">സുരക്ഷാ നമ്പർ പരിശോധന</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">സുരക്ഷാ നമ്പർ പരിശോധന പൂർത്തിയായി</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">എല്ലാ കണക്ഷനുകളും അവലോകനം ചെയ്‌തു, തുടരുന്നതിന് അയയ്ക്കുക എന്നതിൽ ടാപ്പ് ചെയ്യുക.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുന്നത് പരിഗണിക്കുകയോ ചെയ്യുക.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">സുരക്ഷാ നമ്പർ ഉറപ്പാക്കു</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുക</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">എന്തായാലും അയയ്ക്കുക</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">കണക്ഷനുകൾ അവലോകനം ചെയ്യുക</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">കാണിക്കാൻ കൂടുതൽ സ്വീകർത്താക്കൾ ഇല്ല</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">ചെയ്‌തു</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">സുരക്ഷാ നമ്പറിൽ മാറ്റമുണ്ടായി</string>
   <!--Message of safety number review fragment-->
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">കോൺടാക്ടുകൾ</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">എല്ലാം നീക്കം ചെയ്യുക</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">നീക്കം ചെയ്യുക</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">എന്‍റെ സ്റ്റോറിയുടെ സ്വകാര്യത</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">എന്‍റെ സ്റ്റോറിയിലേക്കുള്ള പോസ്റ്റുകൾ ആർക്കൊക്കെ കാണാനാകും എന്ന് തിരഞ്ഞെടുക്കുക. നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും ക്രമീകരണങ്ങളിൽ മാറ്റം വരുത്താവുന്നതാണ്.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">എല്ലാ Signal കണക്ഷനുകളും</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ഇനിപ്പറയുന്നവ ഒഴികെ എല്ലാ Signal കണക്ഷനുകളും…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ഇനിപ്പറയുന്നവരുമായി മാത്രം പങ്കിടുക…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">അയച്ചത്</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">ലഭിച്ചു</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">അയച്ചത്</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">അയച്ചത്</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">വിവരം</string>
   <!--EOF-->
 </resources>

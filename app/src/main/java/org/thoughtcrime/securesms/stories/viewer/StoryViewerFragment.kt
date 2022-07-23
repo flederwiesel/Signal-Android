@@ -50,7 +50,8 @@ class StoryViewerFragment :
       storyViewerArgs.storyId,
       storyViewerArgs.isFromNotification,
       storyViewerArgs.groupReplyStartPosition,
-      storyViewerArgs.isUnviewedOnly
+      storyViewerArgs.isUnviewedOnly,
+      storyViewerArgs.isFromInfoContextMenuAction
     )
 
     storyPager.adapter = adapter
@@ -83,6 +84,10 @@ class StoryViewerFragment :
       if (state.crossfadeTarget is StoryViewerState.CrossfadeTarget.Record) {
         storyCrossfader.setTargetView(state.crossfadeTarget.messageRecord)
         requireActivity().supportStartPostponedEnterTransition()
+      }
+
+      if (state.skipCrossfade) {
+        viewModel.setCrossfaderIsReady(true)
       }
 
       if (state.loadState.isReady()) {

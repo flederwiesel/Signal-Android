@@ -426,7 +426,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onStart() {
     super.onStart();
-    ConversationFragment.prepare(requireContext());
     ApplicationDependencies.getAppForegroundObserver().addListener(appForegroundObserver);
     itemAnimator.disable();
   }
@@ -689,6 +688,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           AppStartup.getInstance().onCriticalRenderEventEnd();
           startupStopwatch.split("first-render");
           startupStopwatch.stop(TAG);
+
+          if (getContext() != null) {
+            ConversationFragment.prepare(getContext());
+          }
         });
       }
     });

@@ -172,17 +172,22 @@
   <string name="ContactsDatabase_message_s">សារ %s</string>
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់Signal  %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">នាមខ្លួន</string>
   <string name="ContactNameEditActivity_family_name">នាមត្រកូល</string>
   <string name="ContactNameEditActivity_prefix">ខាងដើម</string>
   <string name="ContactNameEditActivity_suffix">ខាងចុង</string>
   <string name="ContactNameEditActivity_middle_name">ឈ្មោះកណ្តាល</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">ផ្ទះ</string>
   <string name="ContactShareEditActivity_type_mobile">ចល័ត</string>
   <string name="ContactShareEditActivity_type_work">ធ្វើការ</string>
   <string name="ContactShareEditActivity_type_missing">ផ្សេងៗ</string>
   <string name="ContactShareEditActivity_invalid_contact">លេខទំនាក់ទំនងដែលបានជ្រើសរើសមិនត្រឹមត្រូវ</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">រូបតំណាង</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">មិនបានផ្ញើរ ចុចដើម្បីមើលព័ត៌មានលម្អិត</string>
   <string name="ConversationItem_error_partially_not_delivered">បានផ្ញើផ្នែកខ្លះ ប៉ះព័ត៌មើលលម្អិត</string>
@@ -2870,6 +2875,8 @@
   <string name="CallParticipant__you">អ្នក</string>
   <string name="CallParticipant__you_on_another_device">អ្នក (នៅលើឧបករណ៍មួយផ្សេងទៀត)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (នៅលើឧបករណ៍មួយផ្សេងទៀត)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">លុបគណនីអ្នកនឹង៖</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">វាយបញ្ចូលលេខរបស់អ្នក</string>
@@ -3756,6 +3763,8 @@
   <string name="StoriesLandingItem__share">ចែករំលែក…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">ចូលទៅការជជែក</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">ព័ត៌មាន</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">កំពុងផ្ញើ…</string>
   <!--Label when multiple stories are pending sending-->
@@ -3799,6 +3808,7 @@
     <item quantity="other">ចំនួនឆ្លើយតប %1$d</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">បានបិទចំនួនមើល</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3812,7 +3822,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">មិនទាន់មានចំនួនមើលទេ</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">បើកមុខងារអានសារដើម្បីមើលថាអ្នកណាដែលបានមើលរឿងរ៉ាវរបស់អ្នក។</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">ចូលទៅកាន់ការកំណត់</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">មិនទាន់មានការឆ្លើយតបទេ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4021,7 +4033,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">មើលបន្ថែម</string>
   <string name="StoriesLinkPopup__visit_link">ចូលមើលតំណ</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="other">%1$s · %2$d រយៈពេលថ្ងៃ</item>
   </plurals>
@@ -4084,6 +4096,7 @@
     <item quantity="other">រឿងរ៉ាវក្រុម ·  អ្នកមើល %1$d នាក់</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">ចុចដើម្បីជ្រើសរើសអ្នកមើលរបស់អ្នក</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">ការកំណត់រឿងរ៉ាវ</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4125,37 +4138,64 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">ទទួលបាន</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">បើកម៉ឺនុយបរិបទ</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · បានផ្ទៀងផ្ទាត់</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">បានផ្ទៀងផ្ទាត់</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">ការផ្លាស់ប្តូរលេខសុវត្ថិភាព</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">មនុស្សខាងក្រោមប្រហែលជាបានដំឡើង Signal ឡើងវិញ ឬផ្លាស់ប្តូរឧបករណ៍។ ចុចលើអ្នកទទួលដើម្បីបញ្ជាក់លេខសុវត្ថិភាពថ្មី។ នេះមិនមែនជាការតម្រូវទេ។</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">ការពិនិត្យលេខសុវត្ថិភាព</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">ការ​ពិនិត្យ​លេខ​សុវត្ថិភាព​បាន​បញ្ចប់</string>
+  <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">អ្នកភ្ជាប់ទំនាក់ទំនងទាំងអស់ត្រូវបានពិនិត្យមើល។ សូមចុចផ្ញើដើម្បីបន្ត។</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">អ្នកមានអ្នកភ្ជាប់ទំនាក់ទំនង %1$d នាក់ដែលប្រហែលជាបានដំឡើង Signal ឡើងវិញ ឬផ្លាស់ប្តូរឧបករណ៍។ មុនពេលចែករំលែករឿងរ៉ាវរបស់អ្នកជាមួយពួកគេ សូមពិនិត្យមើលលេខសុវត្ថិភាពរបស់ពួកគេ ឬពិចារណាដកពួកគេចេញពីរឿងរ៉ាវរបស់អ្នក។</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">ដកចេញពីរឿងរ៉ាវ</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">ផ្ញើ ទោះយ៉ាងណាក៏ដោយ</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">ពិនិត្យមើលអ្នកភ្ជាប់ទំនាក់ទំនង</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">មិនមានអ្នកទទួលដែលត្រូវបង្ហាញទៀតទេ</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">បញ្ចប់</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">ការផ្លាស់ប្តូរលេខសុវត្ថិភាព</string>
   <!--Message of safety number review fragment-->
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">បញ្ជីទំនាក់ទំនង</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">ដកចេញទាំងអស់</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">លុបចេញ</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">ឯកជនភាពនៃរឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ជ្រើសរើសអ្នកដែលអាចមើលឃើញសារបង្ហោះទៅរឿងរ៉ាវរបស់ខ្ញុំ។ អ្នកអាចធ្វើការផ្លាស់ប្តូរបានជានិច្ចនៅក្នុងការកំណត់។</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">ទំនាក់ទំនង Signal ទាំងអស់</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ទំនាក់ទំនង Signal ទាំងអស់លើកលែងតែ…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">គ្រាន់តែចែករំលែកជាមួយ…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">បានផ្ញើ</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">បានទទួល</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">បានផ្ញើទៅ</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">បានផ្ញើពី</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">ព័ត៌មាន</string>
   <!--EOF-->
 </resources>
