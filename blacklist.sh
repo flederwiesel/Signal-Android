@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Find places in files, where circleCrop() or ugly colours are used
+# Find places in files, where circleCrop(), oval shapes or ugly colours are used
 grep -FRHn -f <(cat <<"EOF"
 0099cc
 1851b4
@@ -16,7 +16,7 @@ circleCrop
 core_blue
 conversation_blue
 EOF
-) | # Accept a few expections; of course, don't search .git
+) | # Accept a few expections; of course, don't search .git and this file
 grep -Ev -f <(cat <<"EOF"
 ^\.git/
 ^app/src/main/baseline-prof.txt
