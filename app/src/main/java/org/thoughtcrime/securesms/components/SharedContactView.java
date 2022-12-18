@@ -174,13 +174,11 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     if (uri != null) {
       requestManager.load(new DecryptableUri(uri))
                     .fallback(R.drawable.symbol_person_display_40)
-                    .circleCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .dontAnimate()
                     .into(avatarView);
     } else {
       requestManager.load(R.drawable.symbol_person_display_40)
-                    .circleCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(avatarView);
     }

@@ -76,7 +76,7 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
-        tools:backgroundTint="@color/conversation_blue">
+        tools:backgroundTint="@color/conversation_ultramarine">
 
         <LinearLayout
             android:id="@+id/group_sender_holder"

@@ -391,7 +391,7 @@ object NotificationFactory {
         recipient.getContactDrawable(context)
       }
     } else {
-      FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN)).circleCrop()
+      FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN))
     }.toLargeBitmap(context)
 
     val builder: NotificationBuilder = NotificationBuilder.create(context)

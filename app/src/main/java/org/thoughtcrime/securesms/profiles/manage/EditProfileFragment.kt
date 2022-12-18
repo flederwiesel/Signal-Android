@@ -183,7 +183,6 @@ class EditProfileFragment : LoggingFragment() {
     if (avatarData.isPresent) {
       Glide.with(this)
         .load(avatarData.get())
-        .circleCrop()
         .into(binding.manageProfileAvatar)
     } else {
       Glide.with(this).load(null as Drawable?).into(binding.manageProfileAvatar)
