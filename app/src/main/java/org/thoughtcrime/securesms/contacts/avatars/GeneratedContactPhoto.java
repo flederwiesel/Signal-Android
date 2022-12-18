@@ -54,7 +54,7 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
       Avatars.ForegroundColor foregroundColor = Avatars.getForegroundColor(color);
       Avatar.Text             avatar          = new Avatar.Text(character, new Avatars.ColorPair(color, foregroundColor), Avatar.DatabaseId.DoNotPersist.INSTANCE);
       Drawable                foreground      = AvatarRenderer.createTextDrawable(context, avatar, inverted, targetSize, false);
-      Drawable                background      = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.circle_tintable));
+      Drawable                background      = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.hexagon));
 
       background.setColorFilter(new SimpleColorFilter(inverted ? foregroundColor.getColorInt() : color.colorInt()));
 

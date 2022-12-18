@@ -72,14 +72,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/symbol_check_24"
-                    android:tint="@color/blue_400"
+                    android:tint="@color/core_ultramarine"
                     android:clickable="false"/>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:textColor="@color/blue_400"
+                        android:textColor="@color/core_ultramarine"
                         android:text="@string/device_link_fragment__link_device"
                         android:clickable="false"/>
 

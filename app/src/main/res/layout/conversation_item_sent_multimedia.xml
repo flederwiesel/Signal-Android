@@ -46,7 +46,7 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         tools:background="@drawable/message_bubble_background_received_alone"
-        tools:backgroundTint="@color/conversation_blue">
+        tools:backgroundTint="@color/core_ultramarine">
 
         <LinearLayout
             android:id="@+id/story_reacted_label_holder"

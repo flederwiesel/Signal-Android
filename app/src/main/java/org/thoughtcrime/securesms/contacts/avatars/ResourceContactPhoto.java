@@ -68,7 +68,7 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
     final int backgroundColor = avatarColorPair.getBackgroundColor();
     final int foregroundColor = avatarColorPair.getForegroundColor();
 
-    Drawable        background = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.circle_tintable));
+    Drawable        background = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.hexagon));
     RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));
 
     //noinspection ConstantConditions

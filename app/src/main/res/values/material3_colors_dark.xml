@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="signal_dark_colorPrimary">#B6C5FA</color>
-    <color name="signal_dark_colorPrimaryContainer">#464B5C</color>
-    <color name="signal_dark_colorSecondary">#C1C6DD</color>
-    <color name="signal_dark_colorSecondaryContainer">#414659</color>
+    <color name="signal_dark_colorPrimary">@color/core_ultramarine</color>
+    <color name="signal_dark_colorPrimaryContainer">@color/core_ultramarine_light</color>
+    <color name="signal_dark_colorSecondary">@color/core_ultramarine_light</color>
+    <color name="signal_dark_colorSecondaryContainer">@color/core_ultramarine_light</color>
     <color name="signal_dark_colorSurface">#1B1C1F</color>
     <color name="signal_dark_colorSurfaceVariant">#303133</color>
     <color name="signal_dark_colorBackground">#1B1C1F</color>
     <color name="signal_dark_colorError">#FFB4A9</color>
     <color name="signal_dark_colorErrorContainer">#930006</color>
-    <color name="signal_dark_colorOnPrimary">#1E2438</color>
-    <color name="signal_dark_colorOnPrimaryContainer">#DBE1FC</color>
-    <color name="signal_dark_colorOnSecondary">#2A3042</color>
-    <color name="signal_dark_colorOnSecondaryContainer">#DCE1F9</color>
-    <color name="signal_dark_colorOnSurface">#E2E1E5</color>
-    <color name="signal_dark_colorOnSurfaceVariant">#BEBFC5</color>
-    <color name="signal_dark_colorOnSurfaceVariant1">#4D5059</color>
-    <color name="signal_dark_colorOnBackground">#E2E1E5</color>
+    <color name="signal_dark_colorOnPrimary">#ffffff</color>
+    <color name="signal_dark_colorOnPrimaryContainer">#ffffff</color>
+    <color name="signal_dark_colorOnSecondary">#ffffff</color>
+    <color name="signal_dark_colorOnSecondaryContainer">#ffffff</color>
+    <color name="signal_dark_colorOnSurface">#ffffff</color>
+    <color name="signal_dark_colorOnSurfaceVariant">#ffffff</color>
+    <color name="signal_dark_colorOnBackground">#ffffff</color>
     <color name="signal_dark_colorOutline">#5C5E65</color>
     <color name="signal_dark_neutralSurface">#14FFFFFF</color>
     <color name="signal_dark_colorOnCustom">#FFFFFF</color>

@@ -33,7 +33,10 @@ val abiPostFix: Map<String, Int> = mapOf(
   "x86_64" to 4
 )
 
-val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
+val keystores: Map<String, Properties?> = mapOf(
+  "debug" to loadKeystoreProperties("keystore.debug.properties"),
+  "release" to loadKeystoreProperties("keystore.release.properties")
+)
 
 val selectableVariants = listOf(
   "nightlyProdSpinner",
@@ -83,6 +86,10 @@ ktlint {
 }
 
 android {
+  signingConfigs {
+    create("release") {
+    }
+  }
   namespace = "org.thoughtcrime.securesms"
 
   buildToolsVersion = signalBuildToolsVersion
@@ -99,6 +106,15 @@ android {
   keystores["debug"]?.let { properties ->
     signingConfigs.getByName("debug").apply {
       storeFile = file("${project.rootDir}/${properties.getProperty("storeFile")}")
+      storePassword = properties.getProperty("storePassword")
+      keyAlias = properties.getProperty("keyAlias")
+      keyPassword = properties.getProperty("keyPassword")
+    }
+  }
+
+  keystores["release"]?.let { properties ->
+    signingConfigs.getByName("release").apply {
+      storeFile = file("${properties.getProperty("storeFile")}")
       storePassword = properties.getProperty("storePassword")
       keyAlias = properties.getProperty("keyAlias")
       keyPassword = properties.getProperty("keyPassword")
@@ -274,6 +290,9 @@ android {
     }
 
     getByName("release") {
+      if (keystores["release"] != null) {
+        signingConfig = signingConfigs["release"]
+      }
       isMinifyEnabled = true
       proguardFiles(*buildTypes["debug"].proguardFiles.toTypedArray())
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Release\"")
@@ -615,7 +634,7 @@ fun getLastCommitTimestamp(): String {
   ByteArrayOutputStream().use { os ->
     exec {
       executable = "git"
-      args = listOf("log", "-1", "--pretty=format:%ct")
+      args = listOf("log", "-1", "--pretty=format:%ct", "--no-show-signature")
       standardOutput = os
     }
 
