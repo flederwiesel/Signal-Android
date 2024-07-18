@@ -229,7 +229,7 @@ public class LinkPreviewView extends FrameLayout {
           new FallbackAvatarDrawable(
               getContext(),
               new FallbackAvatar.Resource.CallLink(AvatarColorHash.forCallLink(callLinkRootKey.getKeyBytes()))
-          ).circleCrop()
+          )
       );
       thumbnail.get().showSecondaryText(false);
       thumbnail.get().setOutlineEnabled(false);
