@@ -636,7 +636,7 @@ fun getLastCommitTimestamp(): String {
   ByteArrayOutputStream().use { os ->
     exec {
       executable = "git"
-      args = listOf("log", "-1", "--pretty=format:%ct")
+      args = listOf("log", "-1", "--pretty=format:%ct", "--no-show-signature")
       standardOutput = os
     }
 
