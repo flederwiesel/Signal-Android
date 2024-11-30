@@ -639,7 +639,7 @@ fun getLastCommitTimestamp(): String {
   assertIsGitRepo()
 
   return providers.exec {
-    commandLine("git", "log", "-1", "--pretty=format:%ct")
+    commandLine("git", "log", "-1", "--no-show-signature", "--pretty=format:%ct")
   }.standardOutput.asText.get() + "000"
 }
 
