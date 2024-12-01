@@ -73,7 +73,6 @@ public final class ContactChip extends Chip {
                       .placeholder(fallbackContactPhotoDrawable)
                       .fallback(fallbackContactPhotoDrawable)
                       .error(fallbackContactPhotoDrawable)
-                      .circleCrop()
                       .diskCacheStrategy(DiskCacheStrategy.ALL)
                       .into(new CustomTarget<Drawable>() {
                         @Override

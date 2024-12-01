@@ -176,13 +176,11 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActivity {
       requestManager
           .load(new DecryptableUri(uri))
           .fallback(R.drawable.symbol_person_display_40)
-          .circleCrop()
           .diskCacheStrategy(DiskCacheStrategy.ALL)
           .into(avatarView);
     } else {
       requestManager
           .load(R.drawable.symbol_person_display_40)
-          .circleCrop()
           .diskCacheStrategy(DiskCacheStrategy.ALL)
           .into(avatarView);
     }

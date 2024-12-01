@@ -57,7 +57,7 @@ data class NotificationConversation(
     return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
       recipient.getContactDrawable(context)
     } else {
-      FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN)).circleCrop()
+      FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN))
     }
   }
 

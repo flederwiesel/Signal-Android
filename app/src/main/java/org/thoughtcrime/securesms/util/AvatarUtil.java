@@ -20,7 +20,6 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -94,7 +93,7 @@ public final class AvatarUtil {
   public static void loadIconIntoImageView(@NonNull Recipient recipient, @NonNull ImageView target, int requestedSize) {
     Context context = target.getContext();
 
-    requestCircle(Glide.with(context).asDrawable(), context, recipient, requestedSize).into(target);
+    requestSquare(Glide.with(context).asDrawable(), context, recipient).into(target);
   }
 
   public static Bitmap loadIconBitmapSquareNoCache(@NonNull Context context,
@@ -132,17 +131,13 @@ public final class AvatarUtil {
       AvatarTarget   avatarTarget   = new AvatarTarget(size);
       RequestManager requestManager = Glide.with(context);
 
-      requestCircle(requestManager.asBitmap(), context, recipient, size).into(avatarTarget);
+      requestSquare(Glide.with(context).asBitmap(), context, recipient).into(avatarTarget);
 
       Bitmap bitmap = avatarTarget.await();
       return Objects.requireNonNullElseGet(bitmap, () -> DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size));
     } catch (InterruptedException e) {
       return DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size);
     }
-  }
-
-  private static <T> RequestBuilder<T> requestCircle(@NonNull RequestBuilder<T> requestBuilder, @NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    return request(requestBuilder, context, recipient, targetSize, new CircleCrop());
   }
 
   private static <T> RequestBuilder<T> requestSquare(@NonNull RequestBuilder<T> requestBuilder, @NonNull Context context, @NonNull Recipient recipient) {
@@ -185,7 +180,7 @@ public final class AvatarUtil {
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
     FallbackAvatar fallbackAvatar = FallbackAvatar.forTextOrDefault(recipient.getDisplayName(context), recipient.getAvatarColor());
 
-    Drawable avatar = new FallbackAvatarDrawable(context, fallbackAvatar).circleCrop();
+    Drawable avatar = new FallbackAvatarDrawable(context, fallbackAvatar);
     avatar.setBounds(0, 0, targetSize, targetSize);
 
     return avatar;
