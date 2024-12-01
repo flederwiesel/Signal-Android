@@ -25,7 +25,10 @@ val canonicalVersionName = "7.37.2"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
-val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
+val keystores: Map<String, Properties?> = mapOf(
+  "debug" to loadKeystoreProperties("keystore.debug.properties"),
+  "release" to loadKeystoreProperties("keystore.release.properties")
+)
 
 val selectableVariants = listOf(
   "nightlyProdSpinner",
@@ -92,9 +95,22 @@ android {
     freeCompilerArgs = listOf("-Xjvm-default=all")
   }
 
+  signingConfigs {
+    create("release") { }
+  }
+
   keystores["debug"]?.let { properties ->
     signingConfigs.getByName("debug").apply {
       storeFile = file("${project.rootDir}/${properties.getProperty("storeFile")}")
+      storePassword = properties.getProperty("storePassword")
+      keyAlias = properties.getProperty("keyAlias")
+      keyPassword = properties.getProperty("keyPassword")
+    }
+  }
+
+  keystores["release"]?.let { properties ->
+    signingConfigs.getByName("release").apply {
+      storeFile = file("${properties.getProperty("storeFile")}")
       storePassword = properties.getProperty("storePassword")
       keyAlias = properties.getProperty("keyAlias")
       keyPassword = properties.getProperty("keyPassword")
@@ -290,6 +306,10 @@ android {
       isMinifyEnabled = true
       proguardFiles(*buildTypes["debug"].proguardFiles.toTypedArray())
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Release\"")
+      if (keystores["release"] != null) {
+        signingConfig = signingConfigs["release"]
+        println("signingConfig = ${signingConfig}")
+      }
     }
 
     create("instrumentation") {
