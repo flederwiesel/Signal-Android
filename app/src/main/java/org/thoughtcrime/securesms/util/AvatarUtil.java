@@ -20,7 +20,6 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -95,7 +94,7 @@ public final class AvatarUtil {
   public static void loadIconIntoImageView(@NonNull Recipient recipient, @NonNull ImageView target, int requestedSize) {
     Context context = target.getContext();
 
-    requestCircle(Glide.with(context).asDrawable(), context, recipient, requestedSize).into(target);
+    requestSquare(Glide.with(context).asDrawable(), context, recipient, requestedSize).into(target);
   }
 
   public static Bitmap loadIconBitmapSquareNoCache(@NonNull Context context,
@@ -104,7 +103,7 @@ public final class AvatarUtil {
                                                    int height)
       throws ExecutionException, InterruptedException
   {
-    return requestSquare(Glide.with(context).asBitmap(), context, recipient)
+    return requestSquare(Glide.with(context).asBitmap(), context, recipient, width)
         .skipMemoryCache(true)
         .diskCacheStrategy(DiskCacheStrategy.NONE)
         .submit(width, height)
@@ -136,7 +135,7 @@ public final class AvatarUtil {
       if (recipient.getShouldBlurAvatar() && recipient.getHasAvatar()) {
         return DrawableUtil.toBitmap(AvatarGradientColors.getGradientDrawable(recipient), size, size);
       } else {
-        requestCircle(requestManager.asBitmap(), context, recipient, size).into(avatarTarget);
+        requestSquare(requestManager.asBitmap(), context, recipient, size).into(avatarTarget);
 
         Bitmap bitmap = avatarTarget.await();
         return Objects.requireNonNullElseGet(bitmap, () -> DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size));
@@ -146,12 +145,8 @@ public final class AvatarUtil {
     }
   }
 
-  private static <T> RequestBuilder<T> requestCircle(@NonNull RequestBuilder<T> requestBuilder, @NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    return request(requestBuilder, context, recipient, targetSize, new CircleCrop());
-  }
-
-  private static <T> RequestBuilder<T> requestSquare(@NonNull RequestBuilder<T> requestBuilder, @NonNull Context context, @NonNull Recipient recipient) {
-    return request(requestBuilder, context, recipient, UNDEFINED_SIZE, new CenterCrop());
+  private static <T> RequestBuilder<T> requestSquare(@NonNull RequestBuilder<T> requestBuilder, @NonNull Context context, @NonNull Recipient recipient, int size) {
+    return request(requestBuilder, context, recipient, size, new CenterCrop());
   }
 
   private static <T> RequestBuilder<T> request(@NonNull RequestBuilder<T> requestBuilder, @NonNull Context context, @NonNull Recipient recipient, int targetSize, @Nullable BitmapTransformation transformation) {
@@ -183,7 +178,7 @@ public final class AvatarUtil {
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
     FallbackAvatar fallbackAvatar = FallbackAvatar.forTextOrDefault(recipient.getDisplayName(context), recipient.getAvatarColor());
 
-    Drawable avatar = new FallbackAvatarDrawable(context, fallbackAvatar).circleCrop();
+    Drawable avatar = new FallbackAvatarDrawable(context, fallbackAvatar);
     avatar.setBounds(0, 0, targetSize, targetSize);
 
     return avatar;

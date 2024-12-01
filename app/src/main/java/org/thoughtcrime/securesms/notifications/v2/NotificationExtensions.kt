@@ -10,7 +10,6 @@ import android.os.Build
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
@@ -43,19 +42,19 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
       Glide.with(context.applicationContext)
         .load(contactPhoto)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .transform(MultiTransformation(listOf(CircleCrop())))
+        .transform(MultiTransformation())
         .submit(
           context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
           context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_height)
         )
         .get()
     } catch (e: InterruptedException) {
-      FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
+      FallbackAvatarDrawable(context, fallbackAvatar)
     } catch (e: ExecutionException) {
-      FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
+      FallbackAvatarDrawable(context, fallbackAvatar)
     }
   } else {
-    FallbackAvatarDrawable(context, fallbackAvatar).circleCrop()
+    FallbackAvatarDrawable(context, fallbackAvatar)
   }
 }
 

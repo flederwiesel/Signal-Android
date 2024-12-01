@@ -35,14 +35,6 @@ class FallbackAvatarDrawable(
     fillColor = ColorStateList.valueOf(avatarColorPair.backgroundColor)
   }
 
-  fun circleCrop(): FallbackAvatarDrawable {
-    shapeAppearanceModel = ShapeAppearanceModel.builder()
-      .setAllCorners(RoundedCornerTreatment())
-      .setAllCornerSizes(RelativeCornerSize(0.5f))
-      .build()
-    return this
-  }
-
   override fun onBoundsChange(bounds: Rect) {
     super.onBoundsChange(bounds)
 

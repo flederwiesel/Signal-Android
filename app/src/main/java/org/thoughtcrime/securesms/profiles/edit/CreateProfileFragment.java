@@ -134,7 +134,6 @@ public class CreateProfileFragment extends LoggingFragment {
                 .load(avatarBytes)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .circleCrop()
                 .into(binding.avatar);
       } else {
         Toast.makeText(requireActivity(), R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
@@ -256,7 +255,6 @@ public class CreateProfileFragment extends LoggingFragment {
 
       Glide.with(this)
               .load(bytes)
-              .circleCrop()
               .into(binding.avatar);
     });
 

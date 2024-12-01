@@ -22,7 +22,6 @@ import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
@@ -97,7 +96,7 @@ public final class AvatarImageView extends AppCompatImageView {
       typedArray.recycle();
     }
 
-    unknownRecipientDrawable = new FallbackAvatarDrawable(context, new FallbackAvatar.Resource.Person(AvatarColor.UNKNOWN)).circleCrop();
+    unknownRecipientDrawable = new FallbackAvatarDrawable(context, new FallbackAvatar.Resource.Person(AvatarColor.UNKNOWN));
     blurred                  = false;
     chatColors               = null;
   }
@@ -202,21 +201,18 @@ public final class AvatarImageView extends AppCompatImageView {
         boolean  shouldShowBlurGradient = avatarOptions.useBlurGradient && (!recipient.getShouldShowAvatarByDefault() || inProgressDownload);
         boolean  shouldHaveAvatar       = recipient.getHasAvatar();
         boolean  hasAvatar              = AvatarHelper.hasAvatar(getContext(), recipient.getId()) || (photo.contactPhoto instanceof SystemContactPhoto);
-        Drawable fallback               = new FallbackAvatarDrawable(getContext(), activeFallbackPhotoProvider.getFallbackAvatar(recipient)).circleCrop();
+        Drawable fallback               = new FallbackAvatarDrawable(getContext(), activeFallbackPhotoProvider.getFallbackAvatar(recipient));
 
         if (fixedSizeTarget != null) {
           requestManager.clear(fixedSizeTarget);
         }
 
         if (photo.contactPhoto != null && hasAvatar && !shouldBlur) {
-          List<Transformation<Bitmap>> transforms = Collections.singletonList(new CircleCrop());
-
           RequestBuilder<Drawable> request = requestManager.load(photo.contactPhoto)
                                                          .fallback(fallback)
                                                          .error(fallback)
                                                          .diskCacheStrategy(DiskCacheStrategy.ALL)
                                                          .downsample(DownsampleStrategy.CENTER_INSIDE)
-                                                         .transform(new MultiTransformation<>(transforms))
                                                          .addListener(redownloadRequestListener);
 
           if (wasUnblurred) {
@@ -277,7 +273,7 @@ public final class AvatarImageView extends AppCompatImageView {
 
   public void setImageBytesForGroup(@Nullable byte[] avatarBytes, @NonNull AvatarColor color)
   {
-    Drawable fallback = new FallbackAvatarDrawable(getContext(), new FallbackAvatar.Resource.Group(color)).circleCrop();
+    Drawable fallback = new FallbackAvatarDrawable(getContext(), new FallbackAvatar.Resource.Group(color));
 
     Glide.with(this)
             .load(avatarBytes)
@@ -285,7 +281,6 @@ public final class AvatarImageView extends AppCompatImageView {
             .fallback(fallback)
             .error(fallback)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .circleCrop()
             .into(this);
   }
 
